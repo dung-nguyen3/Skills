@@ -11,6 +11,16 @@
     "defaultMode": "acceptEdits"
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📋 STUDY GUIDE QUALITY PROTOCOL ACTIVE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n⚠️  MANDATORY: All study guides require verification\n\n✅ Pre-Creation Verification Checklist:\n   - Source file path specified\n   - Template identified\n   - Source-only policy confirmed\n   - Mnemonics will be researched (WebSearch required)\n\n✅ Post-Creation Verification Required:\n   - Source accuracy check\n   - Template compliance check\n   - Completeness check\n   - Quality check\n\n💡 Use slash commands for automatic compliance:\n   /create-excel [source-file]\n   /create-word [source-file]\n   /verify-accuracy [file] [source]\n\n🔒 Quality gates are ACTIVE and will enforce these requirements.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
