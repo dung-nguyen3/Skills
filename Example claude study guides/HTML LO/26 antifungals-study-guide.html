@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antifungals - Study Guide</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* MAIN TABS */
+.main-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.main-tab {
+    padding: 12px 24px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    color: #666;
+}
+
+.main-tab:hover {
+    background: #e8e8e8;
+    transform: translateY(-2px);
+}
+
+.main-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* SUB TABS */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.tab {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    color: #555;
+}
+
+.tab:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+/* SECTIONS */
+.main-section {
+    display: none;
+}
+
+.main-section.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* LEARNING OBJECTIVES */
+.objective-block {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 5px solid #667eea;
+}
+
+.objective-block h3 {
+    color: #667eea;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.answer-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.answer-content strong:first-of-type {
+    color: #764ba2;
+    font-size: 1.1em;
+}
+
+/* HIGHLIGHTS */
+.highlight-green {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #4caf50;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #1b5e20;
+}
+
+.highlight-purple {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #9c27b0;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #4a148c;
+}
+
+.highlight-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #2196f3;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #0d47a1;
+}
+
+.highlight-red {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #f44336;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #b71c1c;
+}
+
+.highlight-yellow {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #ffc107;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #f57f17;
+}
+
+.highlight-teal {
+    background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #009688;
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: 600;
+    color: #004d40;
+}
+
+/* COMPARISON TABLES */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.comparison-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.comparison-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.comparison-table tbody tr:hover {
+    background: #e3f2fd;
+    transition: background 0.3s;
+}
+
+/* COLOR-CODED BOXES */
+.high-yield-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-left: 5px solid #4caf50;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.high-yield-box h4 {
+    color: #2e7d32;
+    margin-bottom: 12px;
+}
+
+.clinical-pearl {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    border-left: 5px solid #ffc107;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.clinical-pearl h4 {
+    color: #f57f17;
+    margin-bottom: 12px;
+}
+
+.critical-box {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-left: 5px solid #f44336;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.critical-box h4 {
+    color: #c62828;
+    margin-bottom: 12px;
+}
+
+/* HIGH-YIELD SUMMARY BOXES */
+.highlight-box {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.highlight-box h3 {
+    color: #4a148c;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.highlight-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.highlight-card h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.highlight-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-card li {
+    padding: 8px 0;
+    line-height: 1.6;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .main-tabs {
+        flex-direction: column;
+    }
+    
+    .main-tab {
+        width: 100%;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tab {
+        width: 100%;
+    }
+    
+    .comparison-table {
+        font-size: 0.85em;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px;
+    }
+    
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .container {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .main-tabs,
+    .tabs {
+        display: none;
+    }
+    
+    .main-section,
+    .content-section {
+        display: block !important;
+    }
+    
+    .objective-block {
+        page-break-inside: avoid;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍄 Antifungals Study Guide</h1>
+        <p class="subtitle">Lecture 24: Antifungal Agents | Learning Objectives & Answers<br><em>Source: 26 antifungals.txt</em></p>
+        
+        <!-- 3 MAIN TABS -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="showMainSection('objectives')">📝 Learning Objectives</button>
+            <button class="main-tab" onclick="showMainSection('summary')">⚡ High-Yield Summary</button>
+            <button class="main-tab" onclick="showMainSection('comparisons')">📊 Master Comparison Tables</button>
+        </div>
+        
+        <!-- TAB 1: LEARNING OBJECTIVES -->
+        <div id="objectives-section" class="main-section active">
+            <h2>📝 Learning Objectives & Detailed Answers</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('systemic')">Systemic Antifungals</button>
+                <button class="tab" onclick="switchTab('azoles')">Azoles</button>
+                <button class="tab" onclick="switchTab('echinocandins')">Echinocandins</button>
+                <button class="tab" onclick="switchTab('topical')">Topical/Local</button>
+            </div>
+            
+            <div id="systemic" class="content-section active">
+                <!-- LO1 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 1: Recognize the major antifungal drugs and recall whether they are useful against systemic or local fungal infections.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        <p>The major antifungal drugs are divided into two main categories:</p>
+                        
+                        <p><strong>SYSTEMIC antifungals:</strong></p>
+                        <ul>
+                            <li><span class="highlight-green">Amphotericin B (Fungizone)</span> - DOC for most systemic infections</li>
+                            <li><span class="highlight-green">Flucytosine (Ancobon)</span> - Often combined with amphotericin B</li>
+                            <li><strong>Azoles:</strong> Ketoconazole, Fluconazole, Voriconazole, Itraconazole</li>
+                            <li><strong>Echinocandins:</strong> Caspofungin, Micafungin, Anidulafungin</li>
+                        </ul>
+                        
+                        <p><strong>LOCAL/TOPICAL antifungals:</strong></p>
+                        <ul>
+                            <li><span class="highlight-yellow">Terbinafine (Lamisil)</span> - Onychomycosis</li>
+                            <li><span class="highlight-yellow">Griseofulvin (Fulvicin)</span> - Dermatophytosis</li>
+                            <li><span class="highlight-yellow">Nystatin (Mycostatin)</span> - Candida infections</li>
+                            <li><strong>OTC:</strong> Clotrimazole, Miconazole, Tolnaftate</li>
+                        </ul>
+                        
+                        <div class="high-yield-box">
+                            <h4>🎯 High-Yield Classification</h4>
+                            <ul>
+                                <li><strong>Systemic fungi require systemic drugs</strong> - life-threatening infections need IV/oral agents</li>
+                                <li><strong>Superficial fungi can use topical drugs</strong> - skin/nail infections managed with local therapy</li>
+                                <li><strong>Some drugs work both ways:</strong> Azoles can be systemic or topical</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO2 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 2: Discuss amphotericin B and be familiar with the drug's toxicity, mechanism of action, and antifungal spectrum</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <p><span class="highlight-purple">Amphotericin B is a polyene antifungal</span> that binds to ergosterol in fungal cell membranes, forming pores that cause:</p>
+                        <ul>
+                            <li>Membrane depolarization</li>
+                            <li>Increased permeability to proteins and cations (K+, Na+, Ca2+)</li>
+                            <li>Leakage of intracellular contents → <span class="highlight-red">cell death</span></li>
+                        </ul>
+                        
+                        <p><strong>Antifungal Spectrum (Broad):</strong></p>
+                        <ul>
+                            <li><em>Histoplasma capsulatum</em></li>
+                            <li><em>Cryptococcus neoformans</em></li>
+                            <li><em>Coccidioides immitis</em></li>
+                            <li><em>Candida</em> species</li>
+                            <li><em>Blastomyces dermatitidis</em></li>
+                            <li>Some <em>Aspergillus</em></li>
+                        </ul>
+                        
+                        <p><strong>Toxicity:</strong></p>
+                        <div class="critical-box">
+                            <h4>⚠️ Major Toxicities</h4>
+                            <ul>
+                                <li><span class="highlight-red">NEPHROTOXICITY</span> - dose-dependent, occurs in nearly all patients</li>
+                                <li>Azotemia - elevated BUN and serum creatinine</li>
+                                <li><strong>Infusion-related:</strong> chills (50%), fever (20%), muscle spasms</li>
+                                <li>Hypokalemia, hepatic failure (rare)</li>
+                                <li><strong>Management:</strong> Hydration critical, slow infusion rate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO3 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 3: Discuss why amphotericin B is the drug of first choice for most systemic infections, and why other antifungals might be used in combination.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Why Amphotericin B is DOC:</strong></p>
+                        <ul>
+                            <li><span class="highlight-green">Broadest spectrum</span> of any antifungal</li>
+                            <li>Fungicidal (kills fungi) rather than fungistatic</li>
+                            <li>Effective against most life-threatening systemic mycoses</li>
+                            <li>IV administration for severe infections</li>
+                            <li>Decades of clinical experience</li>
+                        </ul>
+                        
+                        <p><strong>Combination Therapy Rationales:</strong></p>
+                        <ul>
+                            <li><strong>Flucytosine + Amphotericin B:</strong> <span class="highlight-purple">Synergistic effect</span>, especially for <span class="highlight-green">Cryptococcus infections (DOC combination)</span></li>
+                            <li><strong>Voriconazole + Amphotericin B:</strong> DOC combination for invasive <em>Aspergillus</em></li>
+                            <li>Combinations can allow lower doses, reducing toxicity</li>
+                            <li>Prevent emergence of resistance</li>
+                            <li>Broader coverage in empiric therapy</li>
+                        </ul>
+                        
+                        <p><strong>Limitations requiring alternatives:</strong></p>
+                        <ul>
+                            <li>Poor CNS, eye, and bone penetration</li>
+                            <li>Severe nephrotoxicity may require switching</li>
+                            <li>6 weeks to 4 months treatment duration</li>
+                        </ul>
+                        
+                        <div class="clinical-pearl">
+                            <h4>💎 Clinical Pearl</h4>
+                            <p>Amphotericin B's broad spectrum makes it ideal for empiric therapy in neutropenic fever when fungal infection is suspected but organism unknown</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO4 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 4: Discuss flucytosine and be familiar with the drug's toxicity, mechanism of action, and antifungal spectrum.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <p>Flucytosine is converted to <span class="highlight-purple">5-fluorouracil (5-FU)</span> inside fungal cells:</p>
+                        <ul>
+                            <li>Cytosine permease transports drug into cell</li>
+                            <li>Cytosine deaminase converts to 5-FU</li>
+                            <li>5-FU disrupts both RNA and DNA synthesis</li>
+                            <li>Inhibits thymidylate synthase → blocks DNA synthesis</li>
+                            <li>Substitutes for uracil → inhibits protein synthesis</li>
+                        </ul>
+                        
+                        <p><strong>Antifungal Spectrum (Narrower than Ampho B):</strong></p>
+                        <ul>
+                            <li><span class="highlight-green"><em>Cryptococcus</em></span> - primary use</li>
+                            <li><em>Candida</em></li>
+                            <li><em>Aspergillus</em></li>
+                        </ul>
+                        
+                        <p><strong>Toxicity:</strong></p>
+                        <ul>
+                            <li><span class="highlight-red">Bone marrow depression</span> - anemia, leukopenia, thrombocytopenia</li>
+                            <li>GI disturbances</li>
+                            <li>Elevated liver enzymes (ALT/AST) - reversible</li>
+                            <li>Renal elimination - impairment leads to toxicity</li>
+                        </ul>
+                        
+                        <div class="high-yield-box">
+                            <h4>🎯 Must-Know Fact</h4>
+                            <p><span class="highlight-green">Rarely used alone due to rapid resistance development</span> - almost always combined with amphotericin B</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO5 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 5: Specify which fungal infection flucytosine is the DOC for, and what pharmacokinetic property of flucytosine is related to this clinical use.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>DOC Indication:</strong></p>
+                        <p><span class="highlight-green">Flucytosine + Amphotericin B = DOC for Cryptococcal meningitis</span></p>
+                        
+                        <p><strong>Key Pharmacokinetic Property:</strong></p>
+                        <p><span class="highlight-purple">Excellent CNS penetration - enters CSF and aqueous humor</span></p>
+                        
+                        <p>This CSF penetration is critical because:</p>
+                        <ul>
+                            <li>Cryptococcus commonly causes meningitis in immunocompromised patients</li>
+                            <li>Many antifungals have poor CNS penetration</li>
+                            <li>Flucytosine achieves therapeutic levels in CSF</li>
+                            <li>Synergistic with amphotericin B for cryptococcal infections</li>
+                        </ul>
+                        
+                        <p><strong>Administration:</strong></p>
+                        <ul>
+                            <li>Oral administration</li>
+                            <li>Renal elimination - dose adjustment needed in renal impairment</li>
+                        </ul>
+                        
+                        <div class="critical-box">
+                            <h4>⚠️ Critical Point</h4>
+                            <p>Renal function must be monitored - accumulation in renal failure increases bone marrow toxicity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="azoles" class="content-section">
+                <!-- LO6 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 6: Discuss the "azole" class of antifungals and recall the drugs in this class.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Azole Class Members:</strong></p>
+                        <ul>
+                            <li><span class="highlight-yellow">Ketoconazole (Nizoral)</span> - rarely used orally due to toxicity</li>
+                            <li><span class="highlight-green">Fluconazole (Diflucan)</span> - DOC for valley fever</li>
+                            <li><span class="highlight-green">Voriconazole (Vfend)</span> - DOC for Aspergillus</li>
+                            <li><span class="highlight-blue">Itraconazole (Sporanox)</span> - broad spectrum</li>
+                        </ul>
+                        
+                        <p><strong>Common Mechanism:</strong></p>
+                        <p>All azoles <span class="highlight-purple">inhibit 14-alpha-demethylase</span> (a cytochrome P450 enzyme), blocking ergosterol synthesis</p>
+                        
+                        <p><strong>General Properties:</strong></p>
+                        <ul>
+                            <li>Fungistatic (stop growth) rather than fungicidal</li>
+                            <li>Oral and/or IV formulations available</li>
+                            <li>Significant drug interactions via P450 inhibition</li>
+                            <li>Generally less toxic than amphotericin B</li>
+                        </ul>
+                        
+                        <div class="high-yield-box">
+                            <h4>🎯 Remember the Pattern</h4>
+                            <p>All end in "-azole" and work by blocking ergosterol synthesis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO7 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 7: Recognize that the azole group of antifungals share a common mechanism of action, and be able to differentiate between their antifungal spectrums, adverse side effects and clinical use (DOC).</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Drug</th>
+                                    <th>Spectrum/DOC</th>
+                                    <th>Key Side Effects</th>
+                                    <th>Special Considerations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ketoconazole</strong></td>
+                                    <td>Broad spectrum<br>Limited use now</td>
+                                    <td><span class="highlight-red">Hepatotoxicity</span><br>Gynecomastia<br>Prolonged QT</td>
+                                    <td>Potent CYP3A4 inhibitor<br>Only when no alternatives</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fluconazole</strong></td>
+                                    <td><span class="highlight-green">DOC: Valley fever</span><br>Candidiasis<br>Cryptococcal meningitis</td>
+                                    <td>Headache (10-15%)<br>Nausea<br>Less toxic than others</td>
+                                    <td>Good CSF penetration<br>CYP2C9 inhibitor<br>Fewer interactions</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Voriconazole</strong></td>
+                                    <td><span class="highlight-green">DOC: Aspergillus</span><br>Fusarium<br>Scedosporium</td>
+                                    <td><span class="highlight-yellow">Visual disturbances</span> (reversible)<br>Photophobia</td>
+                                    <td>CYP2C19 polymorphism affects levels<br>Modest CSF penetration</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Itraconazole</strong></td>
+                                    <td>Aspergillosis<br>Blastomycosis<br>Histoplasmosis<br>Onychomycosis</td>
+                                    <td>GI effects<br>Rash (immunocompromised)</td>
+                                    <td>Potent CYP3A4 inhibitor<br>Capsules vs solution differ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="clinical-pearl">
+                            <h4>💎 Clinical Pearls</h4>
+                            <ul>
+                                <li><strong>Fluconazole:</strong> Safest azole, preferred when spectrum adequate</li>
+                                <li><strong>Voriconazole:</strong> Visual side effects are common but reversible</li>
+                                <li><strong>Ketoconazole:</strong> Endocrine effects limit use - inhibits testosterone synthesis</li>
+                                <li><strong>All azoles:</strong> Check for drug interactions before prescribing!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="echinocandins" class="content-section">
+                <!-- LO8 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 8: Discuss the echinocandin class of antifungals and recall the drugs in this class.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Echinocandin Class Members:</strong></p>
+                        <ul>
+                            <li><span class="highlight-green">Caspofungin (Cancidas)</span> - first approved</li>
+                            <li><span class="highlight-blue">Micafungin (Mycamine)</span></li>
+                            <li><span class="highlight-purple">Anidulafungin (Eraxis)</span></li>
+                        </ul>
+                        
+                        <p><strong>Common Features:</strong></p>
+                        <ul>
+                            <li>All are IV only - no oral formulations</li>
+                            <li>Called "penicillins of antifungals" - target cell wall</li>
+                            <li>Long half-lives (14-50 hours)</li>
+                            <li>Hepatic elimination</li>
+                            <li>Generally well-tolerated</li>
+                        </ul>
+                        
+                        <div class="high-yield-box">
+                            <h4>🎯 Memory Aid</h4>
+                            <p>All end in "-fungin" and are <span class="highlight-purple">fungicidal</span> (kill fungi)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO9 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 9: Recognize that the echinocandin group of antifungals share common features and mechanism of action, and identify their adverse side effects and clinical use (DOC).</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <p><span class="highlight-purple">Inhibits β(1,3)-D-glucan synthase</span> → disrupts fungal cell wall synthesis → <span class="highlight-red">fungicidal</span></p>
+                        <ul>
+                            <li>β-glucan is essential component of fungal cell wall</li>
+                            <li>Not present in mammalian cells - selective toxicity</li>
+                        </ul>
+                        
+                        <p><strong>Clinical Uses:</strong></p>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Drug</th>
+                                    <th>Primary Indications</th>
+                                    <th>Half-life</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Caspofungin</strong></td>
+                                    <td><span class="highlight-green">Invasive Aspergillosis (refractory)</span><br>Esophageal candidiasis<br>Candidemia</td>
+                                    <td>36-48 hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Micafungin</strong></td>
+                                    <td>Esophageal candidiasis<br>Candida prophylaxis in HSCT</td>
+                                    <td>14-17 hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Anidulafungin</strong></td>
+                                    <td>Esophageal candidiasis<br>Serious yeast infections</td>
+                                    <td>40-50 hours</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p><strong>Adverse Effects (All Echinocandins):</strong></p>
+                        <ul>
+                            <li>Increased liver enzymes (AST, ALT)</li>
+                            <li>Histamine release</li>
+                            <li>Headache, chills, GI upset</li>
+                            <li><span class="highlight-green">Lack of nephrotoxicity</span> - major advantage</li>
+                            <li><span class="highlight-green">Few drug interactions</span> - attractive option</li>
+                        </ul>
+                        
+                        <div class="clinical-pearl">
+                            <h4>💎 Clinical Pearl</h4>
+                            <p>Echinocandins are excellent for azole/amphotericin-resistant fungi and patients with renal impairment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="topical" class="content-section">
+                <!-- LO10 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 10: Discuss griseofulvin and be familiar with the drug's toxicity, mechanism of action, antifungal spectrum and clinical use. Discuss why the drug's binding to keratin is advantageous.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <ul>
+                            <li>Binds to <span class="highlight-purple">microtubules</span> and destroys mitotic spindle</li>
+                            <li><span class="highlight-yellow">Fungistatic</span> - prevents cell division</li>
+                        </ul>
+                        
+                        <p><strong>Antifungal Spectrum & Use:</strong></p>
+                        <ul>
+                            <li>Oral administration</li>
+                            <li>Systemic treatment of dermatophytosis (tinea infections)</li>
+                            <li>Active against dermatophytes only</li>
+                        </ul>
+                        
+                        <p><strong>Keratin Binding Advantage:</strong></p>
+                        <p><span class="highlight-green">Griseofulvin concentrates in keratin</span> - high levels in:</p>
+                        <ul>
+                            <li>Stratum corneum</li>
+                            <li>Outermost epidermis</li>
+                            <li>Hair and nails</li>
+                        </ul>
+                        <p>This <span class="highlight-purple">prevents infection in new skin structures</span> as they grow, allowing replacement of infected keratin over 6-12 months</p>
+                        
+                        <p><strong>Toxicity:</strong></p>
+                        <div class="critical-box">
+                            <h4>⚠️ Serious Adverse Effects</h4>
+                            <ul>
+                                <li><span class="highlight-red">Disulfiram-like effect</span> with alcohol</li>
+                                <li>Photosensitivity</li>
+                                <li>Hepatotoxicity</li>
+                                <li><span class="highlight-red">Teratogenic</span> - contraindicated in pregnancy and men 6 months before fathering</li>
+                                <li>Reduces warfarin activity (mechanism unclear)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="clinical-pearl">
+                            <h4>💎 Clinical Pearl</h4>
+                            <p>Long treatment (6-12 months) needed because drug only protects new keratin growth - must wait for infected tissue to be replaced</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO11 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 11: Discuss terbinafine and be familiar with the drug's toxicity, mechanism of action, antifungal spectrum and clinical use.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <ul>
+                            <li>Inhibits <span class="highlight-purple">squalene monooxygenase/epoxidase</span></li>
+                            <li>Blocks conversion of squalene to lanosterol</li>
+                            <li><span class="highlight-red">Squalene accumulation is toxic to fungi</span> → fungal cell death</li>
+                            <li>Different target than azoles (earlier in ergosterol pathway)</li>
+                        </ul>
+                        
+                        <p><strong>Clinical Use:</strong></p>
+                        <ul>
+                            <li>Oral or topical formulations</li>
+                            <li><span class="highlight-green">Superior to griseofulvin for onychomycosis</span></li>
+                            <li>Well absorbed, concentrates within nail</li>
+                            <li>Fungicidal against dermatophytes</li>
+                        </ul>
+                        
+                        <p><strong>Antifungal Spectrum:</strong></p>
+                        <ul>
+                            <li>Dermatophytes (primary use)</li>
+                            <li>Onychomycosis (nail infections)</li>
+                            <li>Tinea infections</li>
+                        </ul>
+                        
+                        <p><strong>Toxicity:</strong></p>
+                        <ul>
+                            <li><span class="highlight-red">Hepatotoxicity</span> - monitor liver function</li>
+                            <li><span class="highlight-yellow">Smell and taste disturbances</span> - unique side effect</li>
+                        </ul>
+                        
+                        <div class="high-yield-box">
+                            <h4>🎯 Key Advantage</h4>
+                            <p>Shorter treatment duration than griseofulvin and better nail penetration make it preferred for onychomycosis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LO12 -->
+                <div class="objective-block">
+                    <h3>Learning Objective 12: Discuss nystatin and be familiar with the drug's toxicity, mechanism of action, antifungal spectrum and clinical use.</h3>
+                    <div class="answer-content">
+                        <strong>Answer:</strong>
+                        
+                        <p><strong>Mechanism of Action:</strong></p>
+                        <ul>
+                            <li>Polyene antibiotic (similar to amphotericin B)</li>
+                            <li>Binds to ergosterol → alters membrane permeability</li>
+                            <li>Causes leakage of small molecules → <span class="highlight-red">cell death</span></li>
+                        </ul>
+                        
+                        <p><strong>Clinical Use:</strong></p>
+                        <p><span class="highlight-green">Primarily used for Candida infections</span>:</p>
+                        <ul>
+                            <li><strong>Oral thrush:</strong> Oral suspension ("swish and swallow")</li>
+                            <li><strong>Intestinal candidiasis:</strong> Oral tablets</li>
+                            <li><strong>Skin infections:</strong> Creams, powders, ointments</li>
+                            <li><strong>Vaginal candidiasis:</strong> Vaginal tablets</li>
+                        </ul>
+                        
+                        <p><strong>Antifungal Spectrum:</strong></p>
+                        <ul>
+                            <li><em>Candida</em> (primary target)</li>
+                            <li><em>Cryptococcus</em></li>
+                            <li><em>Histoplasma</em></li>
+                            <li><em>Blastomyces</em></li>
+                            <li>Various dermatophytes</li>
+                        </ul>
+                        
+                        <p><strong>Pharmacokinetics & Toxicity:</strong></p>
+                        <ul>
+                            <li><span class="highlight-green">Not absorbed from skin, mucous membranes, or GI tract</span></li>
+                            <li>Acts locally only - "too toxic for systemic use"</li>
+                            <li>Very well tolerated topically/orally</li>
+                            <li>Mild GI upset (nausea, diarrhea) possible with oral use</li>
+                        </ul>
+                        
+                        <div class="clinical-pearl">
+                            <h4>💎 Clinical Pearl</h4>
+                            <p>Nystatin's lack of absorption makes it perfect for superficial infections but useless for systemic disease - "what you see is what you treat"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 2: HIGH-YIELD SUMMARY -->
+        <div id="summary-section" class="main-section">
+            <h2>⚡ High-Yield Summary - Must-Know Facts</h2>
+            
+            <h3>🎯 Mechanisms of Action - Quick Reference</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Target</th>
+                        <th>Drug Class</th>
+                        <th>Specific Drugs</th>
+                        <th>Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ergosterol (membrane)</strong></td>
+                        <td>Polyenes</td>
+                        <td>Amphotericin B, Nystatin</td>
+                        <td><span class="highlight-red">Fungicidal</span> - pore formation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ergosterol synthesis</strong></td>
+                        <td>Azoles</td>
+                        <td>Fluconazole, Voriconazole, etc.</td>
+                        <td><span class="highlight-yellow">Fungistatic</span> - blocks 14α-demethylase</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cell wall (β-glucan)</strong></td>
+                        <td>Echinocandins</td>
+                        <td>Caspofungin, Micafungin, Anidulafungin</td>
+                        <td><span class="highlight-red">Fungicidal</span> - blocks synthesis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nucleic acids</strong></td>
+                        <td>Antimetabolite</td>
+                        <td>Flucytosine</td>
+                        <td><span class="highlight-yellow">Fungistatic</span> - disrupts RNA/DNA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Microtubules</strong></td>
+                        <td>-</td>
+                        <td>Griseofulvin</td>
+                        <td><span class="highlight-yellow">Fungistatic</span> - blocks mitosis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Squalene epoxidase</strong></td>
+                        <td>Allylamine</td>
+                        <td>Terbinafine</td>
+                        <td><span class="highlight-red">Fungicidal</span> - toxic squalene accumulation</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>🎯 Drug of Choice Quick Reference</h3>
+            <div class="highlight-box">
+                <h3>Must-Know DOC Pairings</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <h4>Systemic Infections</h4>
+                        <ul>
+                            <li><strong>Most systemic:</strong> <span class="highlight-green">Amphotericin B</span></li>
+                            <li><strong>Cryptococcal meningitis:</strong> <span class="highlight-green">Flucytosine + Amphotericin B</span></li>
+                            <li><strong>Valley fever:</strong> <span class="highlight-green">Fluconazole</span></li>
+                            <li><strong>Aspergillus:</strong> <span class="highlight-green">Voriconazole + Amphotericin B</span></li>
+                        </ul>
+                    </div>
+                    <div class="highlight-card">
+                        <h4>Local/Superficial</h4>
+                        <ul>
+                            <li><strong>Onychomycosis:</strong> <span class="highlight-yellow">Terbinafine</span></li>
+                            <li><strong>Oral thrush:</strong> <span class="highlight-yellow">Nystatin</span></li>
+                            <li><strong>Dermatophytosis:</strong> <span class="highlight-yellow">Griseofulvin</span></li>
+                            <li><strong>Vaginal candidiasis:</strong> <span class="highlight-yellow">Fluconazole or topical azoles</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>🎯 High-Yield Toxicities</h3>
+            <div class="critical-box">
+                <h4>⚠️ Never-Miss Side Effects</h4>
+                <ul>
+                    <li><strong>Amphotericin B:</strong> <span class="highlight-red">NEPHROTOXICITY</span> - hydration essential</li>
+                    <li><strong>Flucytosine:</strong> <span class="highlight-red">Bone marrow suppression</span></li>
+                    <li><strong>Ketoconazole:</strong> <span class="highlight-red">Hepatotoxicity + Gynecomastia</span></li>
+                    <li><strong>Voriconazole:</strong> <span class="highlight-yellow">Visual disturbances</span> (reversible)</li>
+                    <li><strong>Griseofulvin:</strong> <span class="highlight-red">Teratogenic + Disulfiram reaction</span></li>
+                    <li><strong>Terbinafine:</strong> <span class="highlight-yellow">Taste/smell disturbances</span></li>
+                </ul>
+            </div>
+            
+            <h3>🎯 Special Populations & Considerations</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Preferred Drug</th>
+                        <th>Avoid</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Renal failure</strong></td>
+                        <td>Echinocandins</td>
+                        <td>Amphotericin B</td>
+                        <td>No nephrotoxicity vs severe nephrotoxicity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CNS infection</strong></td>
+                        <td>Flucytosine, Fluconazole</td>
+                        <td>Echinocandins</td>
+                        <td>Good CSF penetration vs poor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pregnancy</strong></td>
+                        <td>Amphotericin B</td>
+                        <td>Griseofulvin</td>
+                        <td>Safe vs teratogenic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiple drugs</strong></td>
+                        <td>Echinocandins</td>
+                        <td>Azoles</td>
+                        <td>Few interactions vs P450 inhibition</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- TAB 3: MASTER COMPARISON TABLES -->
+        <div id="comparisons-section" class="main-section">
+            <h2>📊 Master Comparison Tables</h2>
+            
+            <h3>Complete Antifungal Drug Comparison</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Drug</th>
+                        <th>Mechanism</th>
+                        <th>Spectrum</th>
+                        <th>Route</th>
+                        <th>Key Toxicity</th>
+                        <th>Special Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Amphotericin B</strong></td>
+                        <td>Binds ergosterol, forms pores</td>
+                        <td>Broadest - most fungi</td>
+                        <td>IV</td>
+                        <td><span class="highlight-red">Nephrotoxicity</span></td>
+                        <td>DOC most systemic, poor CNS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flucytosine</strong></td>
+                        <td>Converted to 5-FU, disrupts nucleic acids</td>
+                        <td>Cryptococcus, Candida</td>
+                        <td>Oral</td>
+                        <td>Bone marrow suppression</td>
+                        <td>Excellent CSF penetration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fluconazole</strong></td>
+                        <td>Inhibits 14α-demethylase</td>
+                        <td>Candida, Cryptococcus, Valley fever</td>
+                        <td>Oral/IV</td>
+                        <td>Headache, mild</td>
+                        <td>DOC valley fever, safest azole</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Voriconazole</strong></td>
+                        <td>Inhibits 14α-demethylase</td>
+                        <td>Aspergillus, molds</td>
+                        <td>Oral/IV</td>
+                        <td><span class="highlight-yellow">Visual changes</span></td>
+                        <td>DOC Aspergillus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ketoconazole</strong></td>
+                        <td>Inhibits 14α-demethylase</td>
+                        <td>Broad</td>
+                        <td>Oral/Topical</td>
+                        <td><span class="highlight-red">Hepatotoxic, gynecomastia</span></td>
+                        <td>Rarely used systemically</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Itraconazole</strong></td>
+                        <td>Inhibits 14α-demethylase</td>
+                        <td>Aspergillus, Histoplasma</td>
+                        <td>Oral</td>
+                        <td>GI upset</td>
+                        <td>Strong CYP3A4 inhibitor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Caspofungin</strong></td>
+                        <td>Inhibits β-glucan synthase</td>
+                        <td>Candida, Aspergillus</td>
+                        <td>IV only</td>
+                        <td>Mild - liver enzymes</td>
+                        <td>No nephrotoxicity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Griseofulvin</strong></td>
+                        <td>Binds microtubules</td>
+                        <td>Dermatophytes only</td>
+                        <td>Oral</td>
+                        <td><span class="highlight-red">Teratogenic</span></td>
+                        <td>Binds keratin, 6-12 mo treatment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Terbinafine</strong></td>
+                        <td>Inhibits squalene epoxidase</td>
+                        <td>Dermatophytes</td>
+                        <td>Oral/Topical</td>
+                        <td>Taste/smell changes</td>
+                        <td>Superior for onychomycosis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nystatin</strong></td>
+                        <td>Binds ergosterol</td>
+                        <td>Candida primarily</td>
+                        <td>Topical/Oral</td>
+                        <td>Minimal - not absorbed</td>
+                        <td>Too toxic for systemic use</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="clinical-pearl">
+                <h4>💎 Clinical Decision Tree</h4>
+                <p><strong>Systemic infection?</strong> → Start with Amphotericin B unless specific pathogen known</p>
+                <p><strong>CNS involvement?</strong> → Add Flucytosine or use Fluconazole</p>
+                <p><strong>Renal impairment?</strong> → Consider Echinocandins</p>
+                <p><strong>Superficial only?</strong> → Topical azoles or Nystatin</p>
+                <p><strong>Nail infection?</strong> → Terbinafine preferred over Griseofulvin</p>
+            </div>
+            
+            <h3>P450 Drug Interactions - Azoles</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Drug</th>
+                        <th>CYP Inhibition</th>
+                        <th>Clinical Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ketoconazole</strong></td>
+                        <td>Strong 3A4, 2C9, 2C19, 1A2, 2C8</td>
+                        <td>Most drug interactions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Itraconazole</strong></td>
+                        <td>Strong 3A4</td>
+                        <td>Significant interactions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Voriconazole</strong></td>
+                        <td>2C9 > 3A4 > 2C19</td>
+                        <td>Variable due to polymorphism</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fluconazole</strong></td>
+                        <td>2C9 mainly</td>
+                        <td>Fewer interactions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+// Main tab switching
+function showMainSection(sectionId) {
+    // Hide all main sections
+    document.querySelectorAll('.main-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active class from all main tabs
+    document.querySelectorAll('.main-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected section
+    document.getElementById(sectionId + '-section').classList.add('active');
+    
+    // Add active class to clicked tab
+    event.target.classList.add('active');
+}
+
+// Sub-tab switching
+function switchTab(tabId) {
+    // Get the parent content area
+    const parentSection = event.target.closest('.main-section');
+    
+    // Hide all content sections within this parent
+    parentSection.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active class from all tabs
+    parentSection.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected content
+    document.getElementById(tabId).classList.add('active');
+    
+    // Add active class to clicked tab
+    event.target.classList.add('active');
+}
+
+// Initialize first tab as active on load
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure first main tab is active
+    const firstMainTab = document.querySelector('.main-tab');
+    const firstMainSection = document.querySelector('.main-section');
+    if (firstMainTab && firstMainSection) {
+        firstMainTab.classList.add('active');
+        firstMainSection.classList.add('active');
+    }
+    
+    // Ensure first sub-tab in each section is active
+    document.querySelectorAll('.main-section').forEach(section => {
+        const firstTab = section.querySelector('.tab');
+        const firstContent = section.querySelector('.content-section');
+        if (firstTab && firstContent) {
+            firstTab.classList.add('active');
+            firstContent.classList.add('active');
+        }
+    });
+});
+    </script>
+</body>
+</html>

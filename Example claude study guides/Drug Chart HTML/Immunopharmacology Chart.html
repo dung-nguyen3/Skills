@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immunopharmacology - Key Comparisons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background-color: #f8f9ff;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        
+        .drug-class {
+            background-color: #e3f2fd;
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .mechanism-row {
+            background-color: #fff3e0;
+        }
+        
+        .adverse-row {
+            background-color: #ffebee;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-contraindication {
+            background-color: #ef5350;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .badge-monitor {
+            background-color: #2196f3;
+            color: white;
+        }
+        
+        .badge-interaction {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .highlight-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .clinical-pearl {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .clinical-pearl h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+        
+        .high-yield {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .high-yield h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        strong {
+            color: #1976d2;
+        }
+        
+        .hallmark {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        .mnemonic {
+            background: #e1f5fe;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #0277bd;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            header {
+                background: #667eea;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Immunopharmacology Drug Comparisons</h1>
+            <p class="subtitle">Key Comparisons - Quick Reference Tables for Immunosuppressive & Hematopoietic Drugs</p>
+        </header>
+        
+        <div class="content">
+
+            <!-- TABLE 1: CORTICOSTEROIDS -->
+            <h2>1. Corticosteroids - General Immunosuppression</h2>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Prednisone (Deltasone®)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td>Corticosteroid - General Immunosuppressant</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td>
+                        <strong class="hallmark">🔴 Acts at multiple levels of immune system</strong><br>
+                        • <strong>Anti-inflammatory effect:</strong> Rapid onset<br>
+                        • <strong>Immunosuppressive effect:</strong> Takes time to develop<br>
+                        • Depresses macrophage function<br>
+                        • Inhibits T-cell proliferation and response to cytokines<br>
+                        • Decreases size and lymphoid content of spleen<br>
+                        • Decreases response to antibodies
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • <strong>Organ transplant:</strong> Used for 2-3 months post-transplant<br>
+                        • <strong>Long-term immunosuppression:</strong> Takes several weeks to develop<br>
+                        • <strong>Topical:</strong> Dermatitis, psoriasis<br>
+                        • <strong>Autoimmune diseases:</strong> Lupus, asthma, rheumatoid arthritis, allergies, Addison's disease
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects - SHORT TERM</strong></td>
+                    <td>
+                        • Hypertension<br>
+                        • Edema<br>
+                        • Hyperglycemia
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects - LONG TERM</strong></td>
+                    <td>
+                        • <strong class="hallmark">🔴 Cushing's-like syndrome</strong> (adrenal disorder)<br>
+                        • Weight gain, edema (Na⁺/water retention)<br>
+                        • Hyperglycemia<br>
+                        • Osteoporosis<br>
+                        • Suppressed immune system<br>
+                        • Decreased libido<br>
+                        • Euphoria (or depression/psychotic symptoms)<br>
+                        • Buffalo hump, moon face with red cheeks<br>
+                        • Cataracts<br>
+                        • Thin skin, easy bruising, poor wound healing<br>
+                        • Muscle wasting<br>
+                        • Avascular necrosis of femoral head
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Special Considerations</strong></td>
+                    <td>
+                        <span class="badge badge-warning">Monitor glucose</span>
+                        <span class="badge badge-warning">Monitor BP</span>
+                        <span class="badge badge-warning">Monitor bone density</span><br>
+                        • Most aggressive immunosuppression right after transplant<br>
+                        • Often used in multi-drug combinations<br>
+                        • Other corticosteroids (FYI): Cortisone, hydrocortisone, dexamethasone
+                    </td>
+                </tr>
+            </table>
+
+            <!-- TABLE 2: CALCINEURIN INHIBITORS COMPARISON -->
+            <h2>2. Calcineurin Inhibitors (T-Cell Suppressants)</h2>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Cyclosporine (Restasis)</th>
+                    <th>Tacrolimus (Prograf)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td colspan="2">Calcineurin Inhibitors - T-Cell Suppressants</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td colspan="2">
+                        <strong class="hallmark">🔴 Inhibits calcineurin → blocks T-cell activation</strong><br>
+                        • Suppresses early T-cell response to antigen<br>
+                        • <strong>Decreases IL-2 production</strong><br>
+                        • Selective inhibition of T lymphocytes<br>
+                        • <strong>NO bone marrow suppression</strong><br>
+                        • Does not affect suppressor T-cells or T-cell independent antibody-mediated immunity
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • Prevent rejection in organ transplant<br>
+                        • Maintenance following organ transplant<br>
+                        • Bone marrow transplants<br>
+                        • Autoimmune diseases: atopic dermatitis, severe asthma, rheumatoid arthritis, bowel inflammation<br>
+                        • <strong>Topical (Restasis):</strong> Chronic dry eyes from inflammation
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Widely used drug of choice</strong> by most organ transplant programs<br>
+                        • <strong>More effective than cyclosporine</strong><br>
+                        • Can be used to "rescue" during rejection episode<br>
+                        • <strong>Topical cream:</strong> Dermatitis
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects</strong></td>
+                    <td>
+                        • <strong class="hallmark">🔴 RENAL TOXICITY!</strong><br>
+                        • Gingival hyperplasia<br>
+                        • Hypertension<br>
+                        • CNS: tremors, hallucinations, seizures<br>
+                        • Hyperlipidemia<br>
+                        • Hyperglycemia<br>
+                        • Hyperuricemia<br>
+                        • Hirsutism<br>
+                        • Nausea, vomiting, diarrhea, anorexia
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Nephrotoxicity</strong> (dose-limiting)<br>
+                        • <strong class="hallmark">🔴 Hypertension</strong> (dose-limiting)<br>
+                        • <strong>Hyperglycemia</strong> (especially with corticosteroids)<br>
+                        • Tremor, headache, insomnia<br>
+                        • GI effects<br>
+                        • Increased infections<br>
+                        • Increased skin cancers<br>
+                        <br>
+                        <strong>*Less toxic than cyclosporine</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Drug Interactions</strong></td>
+                    <td colspan="2">
+                        <span class="badge badge-interaction">CYP3A4 substrate</span>
+                        <span class="badge badge-contraindication">NO grapefruit juice</span><br>
+                        • <strong>Rifampin:</strong> Induces CYP3A → decreases drug concentration<br>
+                        • <strong>Erythromycin, ketoconazole:</strong> Inhibit CYP3A → increases concentration<br>
+                        • <strong>Narrow therapeutic range</strong> - drug interactions are common
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Special Considerations</strong></td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor renal function</span>
+                        <span class="badge badge-monitor">Monitor BP frequently</span>
+                        <span class="badge badge-monitor">Monitor drug levels</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor kidney function</span>
+                        <span class="badge badge-monitor">Monitor BP frequently</span>
+                        <span class="badge badge-monitor">Monitor blood glucose</span><br>
+                        • Take on empty stomach<br>
+                        • Avoid grapefruit<br>
+                        • <strong>Narrow therapeutic range</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Key Differentiator</strong></td>
+                    <td>More gingival hyperplasia & hirsutism</td>
+                    <td><strong>More effective, less toxic - Drug of choice for most transplants</strong></td>
+                </tr>
+            </table>
+
+            <!-- TABLE 3: ANTIPROLIFERATIVE AGENTS -->
+            <h2>3. Antiproliferative Agents</h2>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Sirolimus (Rapamune)</th>
+                    <th>Mycophenolate Mofetil (CellCept)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td colspan="2">Antiproliferative Immunosuppressants</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td>
+                        <strong class="hallmark">🔴 Inhibits mTOR</strong><br>
+                        • Blocks T-cell proliferation → T-cell cycle arrest<br>
+                        • Inhibits B-cell differentiation
+                    </td>
+                    <td>
+                        <strong class="hallmark">🔴 Inhibits inosine monophosphate dehydrogenase</strong><br>
+                        • Blocks purine synthesis in T and B lymphocytes<br>
+                        • Inhibits antibody formation by B cells
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • <strong class="hallmark">🔴 Excellent choice for kidney transplant rejection prophylaxis</strong><br>
+                        • NO renal toxicity<br>
+                        • <strong>Not monotherapy</strong>
+                    </td>
+                    <td>
+                        • Prevent rejection after transplants<br>
+                        • <strong>Often combined with tacrolimus and corticosteroids</strong>
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects</strong></td>
+                    <td>
+                        • Bone marrow suppression<br>
+                        • Increases cholesterol/triglycerides
+                    </td>
+                    <td>
+                        • Bone marrow suppression<br>
+                        • Rash<br>
+                        • GI effects<br>
+                        • Infections<br>
+                        • Diarrhea
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Contraindications</strong></td>
+                    <td>
+                        <span class="badge badge-contraindication">Monitor lipid panel</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-contraindication">PREGNANCY</span><br>
+                        • 45-49% pregnancy loss<br>
+                        • Congenital malformations
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Key Differentiator</strong></td>
+                    <td><strong>NO renal toxicity - Best for kidney transplants</strong></td>
+                    <td><strong>Often triple therapy with tacrolimus + steroids</strong></td>
+                </tr>
+            </table>
+
+            <!-- TABLE 4: CYTOTOXIC AGENTS -->
+            <h2>4. Cytotoxic Agents (Antimetabolites & Alkylating Agents)</h2>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Azathioprine (Imuran)</th>
+                    <th>Methotrexate (Folex)</th>
+                    <th>Cyclophosphamide (Cytoxan)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td colspan="2">Antimetabolites</td>
+                    <td>Alkylating Agent</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td>
+                        • Converted to <strong>6-mercaptopurine</strong><br>
+                        • <strong class="hallmark">🔴 Inhibits purine synthesis</strong><br>
+                        • Induces apoptosis of activated T and B lymphocytes
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Dihydrofolate reductase (DHFR) inhibitor</strong><br>
+                        • Blocks purine biosynthesis<br>
+                        • Induces apoptosis of activated lymphocytes<br>
+                        • Depletes nucleotide pool → cytotoxic effect
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Forms phosphoramide mustard</strong><br>
+                        • Causes DNA-DNA cross-links<br>
+                        • Direct effect on T and B cells → lymphopenia<br>
+                        • Suppresses B-lymphocyte activity<br>
+                        • Blocks response to new antigens
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • Prevents rejection in transplant patients<br>
+                        • <strong>Combination with corticosteroids and other cytotoxic agents</strong>
+                    </td>
+                    <td>
+                        • <strong>Immunosuppression in organ transplant</strong> (low dose, long term)<br>
+                        • Psoriasis<br>
+                        • Rheumatoid arthritis<br>
+                        • Certain cancers (much higher dose)
+                    </td>
+                    <td>
+                        • Organ transplant rescue<br>
+                        • Bone marrow transplants<br>
+                        • Severe autoimmune disease<br>
+                        • Several cancers
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects</strong></td>
+                    <td>
+                        • <strong class="hallmark">🔴 Bone marrow suppression</strong><br>
+                        • Increased infections<br>
+                        • Nausea, vomiting, diarrhea<br>
+                        • Liver toxicity
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Bone marrow suppression</strong><br>
+                        • Stomatitis<br>
+                        • Alopecia<br>
+                        • Hepatotoxicity
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Hemorrhagic cystitis</strong><br>
+                        • Bone marrow suppression<br>
+                        • Infertility (ovulation & aspermia)<br>
+                        • Nausea, vomiting<br>
+                        • Alopecia
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Contraindications</strong></td>
+                    <td>
+                        <span class="badge badge-interaction">Allopurinol interaction!</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-contraindication">PREGNANCY - Fetal death</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-contraindication">D/C if severe hemorrhagic cystitis</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Drug Interactions</strong></td>
+                    <td>
+                        <strong class="hallmark">🔴 CRITICAL:</strong> Patients on <strong>allopurinol</strong> (hyperuricemia) must have azathioprine dose <strong>significantly reduced</strong><br>
+                        • Risk of potentially fatal blood dyscrasias<br>
+                        • <strong>Avoid combination if possible</strong>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        • Metabolized by liver P450 to active form
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Special Considerations - Mitigation</strong></td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor CBC</span>
+                        <span class="badge badge-monitor">Monitor LFTs</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor CBC</span>
+                        <span class="badge badge-monitor">Monitor LFTs</span><br>
+                        • Low dose for immunosuppression<br>
+                        • High dose for cancer
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">HYDRATION</span>
+                        <span class="badge badge-monitor">MESNA</span><br>
+                        <strong>Hemorrhagic cystitis prevention:</strong><br>
+                        • <strong>MESNA:</strong> Concentrates in bladder, conjugates acrolein to inactivate and eliminate it<br>
+                        • <strong>Hydration:</strong> Reduces toxicity significantly<br>
+                        • Acrolein (metabolite) irritates bladder wall
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Key Differentiator</strong></td>
+                    <td><strong>FATAL interaction with allopurinol - reduce dose!</strong></td>
+                    <td><strong>DHFR inhibitor - contraindicated in pregnancy</strong></td>
+                    <td><strong>Hemorrhagic cystitis - MUST use MESNA + hydration</strong></td>
+                </tr>
+            </table>
+
+            <!-- TABLE 5: BIOLOGICS - MONOCLONAL ANTIBODIES -->
+            <h2>5. Biologics - Monoclonal Antibodies</h2>
+            
+            <div class="highlight-box">
+                <strong>Monoclonal Antibody Nomenclature:</strong><br>
+                • <strong>Mouse (-momab):</strong> 100% murine<br>
+                • <strong>Chimeric (-ximab):</strong> 75% human, 25% murine<br>
+                • <strong>Humanized (-zumab):</strong> 95% human, 5% murine<br>
+                • <strong>Human (-umab):</strong> 100% human
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Basiliximab (Simulect)</th>
+                    <th>Adalimumab (Humira)</th>
+                    <th>Etanercept (Enbrel)</th>
+                    <th>Abatacept (Orencia)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td>Chimeric monoclonal antibody (-ximab)</td>
+                    <td>Human monoclonal antibody (-umab)</td>
+                    <td>Fusion protein</td>
+                    <td>Human recombinant fusion protein</td>
+                </tr>
+                <tr>
+                    <td><strong>Target</strong></td>
+                    <td>IL-2 receptor (CD25)</td>
+                    <td>TNF-alpha</td>
+                    <td>TNF-alpha</td>
+                    <td>CD80/86 (costimulatory signal)</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td>
+                        <strong class="hallmark">🔴 Binds IL-2 receptor (CD25) on T-cells</strong><br>
+                        • Inhibits IL-2 activation<br>
+                        • Blocks T-cell proliferation
+                    </td>
+                    <td>
+                        <strong class="hallmark">🔴 Neutralizes TNF-alpha</strong><br>
+                        • Blocks biological activity of TNF-alpha<br>
+                        • Reduces inflammation
+                    </td>
+                    <td>
+                        <strong class="hallmark">🔴 Neutralizes TNF-alpha</strong><br>
+                        • Fusion protein that blocks TNF-alpha<br>
+                        • Contains human TNFRp75 (TNFR2)
+                    </td>
+                    <td>
+                        <strong class="hallmark">🔴 Competes with CD28 for CD80/86</strong><br>
+                        • Prevents costimulatory signal required for T-cell activation<br>
+                        • Blocks second signal needed for T-cell activation
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • <strong>At time of transplant</strong> for induction of immunosuppression<br>
+                        • <strong class="hallmark">🔴 Reduces renal rejection 50%</strong>
+                    </td>
+                    <td>
+                        • Psoriasis<br>
+                        • Rheumatoid arthritis<br>
+                        • Other autoimmune conditions
+                    </td>
+                    <td>
+                        • Psoriasis<br>
+                        • Rheumatoid arthritis<br>
+                        • Other autoimmune conditions
+                    </td>
+                    <td>
+                        • Psoriasis<br>
+                        • Rheumatoid arthritis<br>
+                        • Other autoimmune conditions
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects</strong></td>
+                    <td>
+                        • <strong>Very few!</strong><br>
+                        • Nausea<br>
+                        • GI effects
+                    </td>
+                    <td>
+                        • <strong>Infections (27-80%)</strong><br>
+                        • Headache<br>
+                        • Rash
+                    </td>
+                    <td>
+                        • <strong>Infections (27-80%)</strong><br>
+                        • Headache<br>
+                        • Rash
+                    </td>
+                    <td>
+                        • <strong>Infections (54%)</strong><br>
+                        • Headache
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Special Considerations</strong></td>
+                    <td>
+                        • Well tolerated<br>
+                        • Can be used to "prime" immunosuppression prior to transplant
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor for infections</span><br>
+                        • Available for psoriasis and RA
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor for infections</span><br>
+                        • Available for psoriasis and RA
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor for infections</span><br>
+                        • Available for psoriasis and RA
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Key Differentiator</strong></td>
+                    <td><strong>Used for transplant induction - Very few adverse effects</strong></td>
+                    <td colspan="2"><strong>TNF-alpha blockers - High infection rates</strong></td>
+                    <td><strong>Blocks T-cell costimulation - Moderate infections</strong></td>
+                </tr>
+            </table>
+
+            <!-- TABLE 6: HEMATOPOIETIC STIMULATING DRUGS -->
+            <h2>6. Hematopoietic Stimulating Drugs</h2>
+            
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Filgrastim, G-CSF (Neupogen®)</th>
+                    <th>Erythropoietin (Epogen; Procrit)</th>
+                </tr>
+                <tr>
+                    <td><strong>Drug Class</strong></td>
+                    <td>Granulocyte Colony-Stimulating Factor (G-CSF)</td>
+                    <td>Erythropoiesis-Stimulating Agent (ESA)</td>
+                </tr>
+                <tr class="mechanism-row">
+                    <td><strong>Mechanism of Action</strong></td>
+                    <td>
+                        <strong class="hallmark">🔴 Human recombinant G-CSF</strong><br>
+                        • Stimulates bone marrow production of neutrophils<br>
+                        • Promotes neutrophil differentiation and maturation
+                    </td>
+                    <td>
+                        <strong class="hallmark">🔴 Human recombinant erythropoietin</strong><br>
+                        • Stimulates bone marrow production of red blood cells<br>
+                        • Increases Hct and Hgb<br>
+                        • Promotes erythrocyte differentiation
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Clinical Uses</strong></td>
+                    <td>
+                        • <strong>Treatment of severe neutropenia</strong><br>
+                        • <strong>Enables patients to continue chemotherapy and immunotherapy</strong><br>
+                        • Prevents treatment delays due to low neutrophil counts
+                    </td>
+                    <td>
+                        • <strong>Treatment of severe anemia</strong> induced by:<br>
+                        &nbsp;&nbsp;• Antiviral therapy<br>
+                        &nbsp;&nbsp;• Cancer chemotherapy<br>
+                        &nbsp;&nbsp;• Chronic kidney disease<br>
+                        • <strong>Enables patients to continue chemotherapy and immunotherapy</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Administration</strong></td>
+                    <td>
+                        • <strong>Subcutaneous injection</strong><br>
+                        • Depot form - slowly released
+                    </td>
+                    <td>
+                        • <strong>Subcutaneous or IV injection</strong>
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>Adverse Effects</strong></td>
+                    <td>
+                        • <strong>Bone pain</strong> (common) - from active bone marrow formation<br>
+                        • Injection site reactions
+                    </td>
+                    <td>
+                        • <strong>Hypertension</strong><br>
+                        • <strong class="hallmark">🔴 Increased risk of thrombosis/stroke</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Special Considerations</strong></td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor CBC</span>
+                        <span class="badge badge-monitor">Monitor ANC</span><br>
+                        • Bone pain indicates active marrow production (expected)
+                    </td>
+                    <td>
+                        <span class="badge badge-monitor">Monitor CBC</span>
+                        <span class="badge badge-monitor">Monitor Hct/Hgb</span>
+                        <span class="badge badge-monitor">Monitor BP</span>
+                        <span class="badge badge-monitor">Monitor platelets</span><br>
+                        • <strong>Iron supplementation may be needed</strong><br>
+                        • Maintain serum iron levels for optimal response
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Key Differentiator</strong></td>
+                    <td><strong>Increases neutrophils - Bone pain is common & expected</strong></td>
+                    <td><strong>Increases RBCs - Requires iron supplementation, risk of clots</strong></td>
+                </tr>
+            </table>
+
+            <!-- CLINICAL DECISION-MAKING TABLE -->
+            <h2>7. Treatment Selection by Clinical Scenario</h2>
+            
+            <table>
+                <tr>
+                    <th>Clinical Scenario</th>
+                    <th>First-Line Drug(s)</th>
+                    <th>Rationale</th>
+                    <th>Key Monitoring</th>
+                </tr>
+                <tr>
+                    <td><strong>Kidney Transplant</strong></td>
+                    <td>
+                        <strong>Tacrolimus</strong> + <strong>Mycophenolate</strong> + <strong>Prednisone</strong>
+                    </td>
+                    <td>
+                        • Tacrolimus: Most effective, drug of choice<br>
+                        • Consider Sirolimus if renal toxicity concern (NO renal toxicity)
+                    </td>
+                    <td>
+                        Renal function, BP, glucose
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Liver/Heart Transplant</strong></td>
+                    <td>
+                        <strong>Tacrolimus</strong> + <strong>Mycophenolate</strong> + <strong>Prednisone</strong>
+                    </td>
+                    <td>
+                        • Standard triple therapy<br>
+                        • Most effective combination
+                    </td>
+                    <td>
+                        Renal function, BP, glucose, LFTs
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Transplant Induction</strong></td>
+                    <td>
+                        <strong>Basiliximab</strong>
+                    </td>
+                    <td>
+                        • Given at time of transplant<br>
+                        • Reduces rejection by 50%<br>
+                        • Very few adverse effects
+                    </td>
+                    <td>
+                        GI symptoms (minimal)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Transplant Rejection Episode</strong></td>
+                    <td>
+                        <strong>Tacrolimus</strong> (rescue)<br>
+                        <strong>Cyclophosphamide</strong> (severe)
+                    </td>
+                    <td>
+                        • Tacrolimus can rescue during rejection<br>
+                        • Cyclophosphamide for transplant rescue
+                    </td>
+                    <td>
+                        Renal function, CBC, urine for blood
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Rheumatoid Arthritis</strong></td>
+                    <td>
+                        <strong>Methotrexate</strong> (low dose)<br>
+                        OR <strong>Adalimumab/Etanercept</strong> (biologics)
+                    </td>
+                    <td>
+                        • MTX: Low dose, long term for immunosuppression<br>
+                        • Biologics: TNF-alpha blockers
+                    </td>
+                    <td>
+                        CBC, LFTs (MTX)<br>
+                        Infections (biologics)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Psoriasis</strong></td>
+                    <td>
+                        <strong>Topical:</strong> Corticosteroids, Tacrolimus<br>
+                        <strong>Systemic:</strong> Cyclosporine, Methotrexate, Biologics
+                    </td>
+                    <td>
+                        • Topical for localized disease<br>
+                        • Systemic for widespread or severe disease
+                    </td>
+                    <td>
+                        Varies by drug selected
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Patient on Allopurinol</strong></td>
+                    <td>
+                        <strong>AVOID Azathioprine</strong><br>
+                        OR significantly reduce dose
+                    </td>
+                    <td>
+                        • <strong class="hallmark">🔴 Fatal blood dyscrasias risk</strong><br>
+                        • Avoid combination if possible
+                    </td>
+                    <td>
+                        CBC if must use combination
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Pregnant Patient</strong></td>
+                    <td>
+                        <strong>AVOID:</strong><br>
+                        • Methotrexate (fetal death)<br>
+                        • Mycophenolate (45-49% pregnancy loss)
+                    </td>
+                    <td>
+                        • Both are teratogenic<br>
+                        • Contraindicated in pregnancy
+                    </td>
+                    <td>
+                        Pregnancy test before starting
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Chemotherapy-Induced Neutropenia</strong></td>
+                    <td>
+                        <strong>Filgrastim (G-CSF)</strong>
+                    </td>
+                    <td>
+                        • Increases neutrophil production<br>
+                        • Allows continuation of chemotherapy
+                    </td>
+                    <td>
+                        CBC, ANC
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Chemotherapy-Induced Anemia</strong></td>
+                    <td>
+                        <strong>Erythropoietin</strong> + <strong>Iron supplementation</strong>
+                    </td>
+                    <td>
+                        • Increases RBC production<br>
+                        • Iron needed for optimal response
+                    </td>
+                    <td>
+                        CBC, Hct/Hgb, iron levels, BP, platelets
+                    </td>
+                </tr>
+            </table>
+
+            <!-- HIGH-YIELD SUMMARY -->
+            <div class="high-yield">
+                <h3>🔗 Most Important Drug Comparisons to Remember</h3>
+                <ul>
+                    <li><strong>Calcineurin Inhibitors:</strong> Tacrolimus > Cyclosporine (more effective, less toxic) - both cause nephrotoxicity but NO bone marrow suppression</li>
+                    <li><strong>Sirolimus vs Others:</strong> ONLY immunosuppressant with NO renal toxicity - ideal for kidney transplants</li>
+                    <li><strong>Bone Marrow Suppression:</strong> Cytotoxic drugs (azathioprine, methotrexate, cyclophosphamide), mycophenolate, sirolimus ALL suppress marrow. Calcineurin inhibitors (cyclosporine, tacrolimus) do NOT.</li>
+                    <li><strong>Azathioprine + Allopurinol:</strong> FATAL interaction - must reduce azathioprine dose significantly or avoid completely</li>
+                    <li><strong>Cyclophosphamide Hemorrhagic Cystitis:</strong> MUST use MESNA + hydration to prevent - acrolein metabolite damages bladder</li>
+                    <li><strong>Pregnancy Contraindications:</strong> Methotrexate (fetal death) and Mycophenolate (45-49% pregnancy loss)</li>
+                    <li><strong>CYP3A4 Interactions:</strong> Cyclosporine and Tacrolimus - NO grapefruit juice, watch rifampin (decreases), erythromycin/ketoconazole (increases)</li>
+                    <li><strong>Biologics Nomenclature:</strong> -momab (mouse), -ximab (chimeric), -zumab (humanized), -umab (human)</li>
+                    <li><strong>Basiliximab:</strong> Best tolerated biologic - very few adverse effects, used for transplant induction, reduces rejection 50%</li>
+                    <li><strong>G-CSF vs EPO:</strong> G-CSF increases neutrophils (bone pain common), EPO increases RBCs (needs iron, causes HTN/clots)</li>
+                    <li><strong>Corticosteroid Timing:</strong> Anti-inflammatory effect is RAPID, immunosuppressive effect takes WEEKS to develop</li>
+                    <li><strong>Long-term Steroid Effects:</strong> Cushing's syndrome - buffalo hump, moon face, osteoporosis, hyperglycemia, suppressed immunity</li>
+                </ul>
+            </div>
+
+            <!-- CLINICAL PEARLS -->
+            <div class="clinical-pearl">
+                <h3>💡 Clinical Decision-Making Pearls</h3>
+                <ul>
+                    <li><strong>If kidney transplant → Then Sirolimus</strong> (NO renal toxicity) or Tacrolimus (most effective)</li>
+                    <li><strong>If patient on allopurinol → Then AVOID azathioprine</strong> (fatal blood dyscrasias)</li>
+                    <li><strong>If using cyclophosphamide → Then MUST give MESNA + hydration</strong> (prevent hemorrhagic cystitis)</li>
+                    <li><strong>If transplant induction needed → Then Basiliximab</strong> (well-tolerated, reduces rejection 50%)</li>
+                    <li><strong>If pregnant or planning pregnancy → Then AVOID methotrexate and mycophenolate</strong> (teratogenic)</li>
+                    <li><strong>If renal toxicity develops → Then switch from cyclosporine/tacrolimus to sirolimus</strong></li>
+                    <li><strong>If gingival hyperplasia develops → Then consider tacrolimus over cyclosporine</strong> (less gingival effects)</li>
+                    <li><strong>If chemotherapy-induced neutropenia → Then G-CSF (Filgrastim)</strong> - monitor ANC, expect bone pain</li>
+                    <li><strong>If chemotherapy-induced anemia → Then EPO + iron supplementation</strong> - monitor BP and thrombosis risk</li>
+                    <li><strong>If patient taking cyclosporine or tacrolimus → Then NO grapefruit juice</strong> (CYP3A4 inhibition)</li>
+                    <li><strong>If rejection episode occurs → Then tacrolimus can rescue</strong> or use cyclophosphamide for severe cases</li>
+                    <li><strong>If TNF-alpha blocker used → Then monitor for infections</strong> (27-80% risk with adalimumab/etanercept)</li>
+                    <li><strong>If using erythropoietin → Then MUST supplement iron</strong> (needed for RBC production)</li>
+                    <li><strong>If T-cell suppression without marrow toxicity needed → Then calcineurin inhibitors</strong> (cyclosporine/tacrolimus)</li>
+                    <li><strong>If multi-drug transplant regimen → Then typically tacrolimus + mycophenolate + prednisone</strong> (triple therapy)</li>
+                </ul>
+            </div>
+
+            <!-- MECHANISM MNEMONICS -->
+            <h2>8. Mechanism of Action Summary - Quick Reference</h2>
+            
+            <div class="mnemonic">
+                <strong>Drug Target Mnemonic: "CATS MP"</strong><br>
+                <strong>C</strong>alcineurin inhibitors (Cyclosporine, Tacrolimus)<br>
+                <strong>A</strong>lkylating agent (Cyclophosphamide)<br>
+                <strong>T</strong>NF blockers (Adalimumab, Etanercept)<br>
+                <strong>S</strong>teroids (Prednisone)<br>
+                <strong>M</strong>TOR inhibitor (Sirolimus)<br>
+                <strong>P</strong>urine synthesis blockers (Azathioprine, Mycophenolate, Methotrexate)
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Mechanism</th>
+                    <th>Drugs</th>
+                    <th>Key Point</th>
+                </tr>
+                <tr>
+                    <td><strong>Calcineurin Inhibition</strong></td>
+                    <td>Cyclosporine, Tacrolimus</td>
+                    <td>↓ IL-2 production → T-cell suppression (NO marrow suppression)</td>
+                </tr>
+                <tr>
+                    <td><strong>mTOR Inhibition</strong></td>
+                    <td>Sirolimus</td>
+                    <td>T-cell cycle arrest, B-cell inhibition (NO renal toxicity)</td>
+                </tr>
+                <tr>
+                    <td><strong>Purine Synthesis Inhibition</strong></td>
+                    <td>Azathioprine (→6-MP), Mycophenolate (IMPDH), Methotrexate (DHFR)</td>
+                    <td>Blocks DNA/RNA synthesis → lymphocyte apoptosis</td>
+                </tr>
+                <tr>
+                    <td><strong>DNA Alkylation</strong></td>
+                    <td>Cyclophosphamide</td>
+                    <td>DNA cross-links → lymphopenia (requires MESNA for bladder protection)</td>
+                </tr>
+                <tr>
+                    <td><strong>IL-2 Receptor Blockade</strong></td>
+                    <td>Basiliximab</td>
+                    <td>Blocks CD25 → prevents T-cell activation (minimal side effects)</td>
+                </tr>
+                <tr>
+                    <td><strong>TNF-alpha Neutralization</strong></td>
+                    <td>Adalimumab, Etanercept</td>
+                    <td>Blocks TNF-alpha → reduced inflammation (high infection risk)</td>
+                </tr>
+                <tr>
+                    <td><strong>Costimulation Blockade</strong></td>
+                    <td>Abatacept</td>
+                    <td>Blocks CD80/86 → prevents T-cell activation signal 2</td>
+                </tr>
+                <tr>
+                    <td><strong>Multiple Pathways</strong></td>
+                    <td>Corticosteroids (Prednisone)</td>
+                    <td>Widespread immunosuppression - anti-inflammatory (fast) + immunosuppressive (slow)</td>
+                </tr>
+                <tr>
+                    <td><strong>Hematopoietic Stimulation</strong></td>
+                    <td>G-CSF (Filgrastim), EPO</td>
+                    <td>Stimulates bone marrow → increases neutrophils or RBCs</td>
+                </tr>
+            </table>
+
+            <!-- TOXICITY COMPARISON -->
+            <h2>9. Major Toxicities - Quick Comparison</h2>
+            
+            <table>
+                <tr>
+                    <th>Major Toxicity</th>
+                    <th>Drugs with This Toxicity</th>
+                    <th>Management/Mitigation</th>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 RENAL TOXICITY</strong></td>
+                    <td>
+                        <strong>Cyclosporine</strong> (worst)<br>
+                        <strong>Tacrolimus</strong> (less than cyclosporine)
+                    </td>
+                    <td>
+                        • Monitor renal function & BP frequently<br>
+                        • Dose-limiting toxicity<br>
+                        • Consider sirolimus if develops
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 BONE MARROW SUPPRESSION</strong></td>
+                    <td>
+                        All cytotoxic drugs:<br>
+                        • Azathioprine<br>
+                        • Methotrexate<br>
+                        • Cyclophosphamide<br>
+                        Plus:<br>
+                        • Mycophenolate<br>
+                        • Sirolimus
+                    </td>
+                    <td>
+                        • Monitor CBC regularly<br>
+                        • May need G-CSF support<br>
+                        • Dose adjustments based on counts<br>
+                        • Increased infection risk
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 HEMORRHAGIC CYSTITIS</strong></td>
+                    <td>
+                        <strong>Cyclophosphamide</strong> (acrolein metabolite)
+                    </td>
+                    <td>
+                        • <strong>MESNA</strong> (conjugates acrolein)<br>
+                        • <strong>Hydration</strong><br>
+                        • D/C if severe hemorrhagic cystitis
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 HEPATOTOXICITY</strong></td>
+                    <td>
+                        • Azathioprine<br>
+                        • Methotrexate
+                    </td>
+                    <td>
+                        • Monitor LFTs<br>
+                        • Dose adjustments if elevated
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 HYPERGLYCEMIA</strong></td>
+                    <td>
+                        • Corticosteroids<br>
+                        • Tacrolimus (especially with steroids)
+                    </td>
+                    <td>
+                        • Monitor blood glucose<br>
+                        • May need antihyperglycemic agents<br>
+                        • Dose adjustments
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong class="hallmark">🔴 INFECTIONS</strong></td>
+                    <td>
+                        <strong>ALL immunosuppressants</strong><br>
+                        Highest risk:<br>
+                        • TNF-alpha blockers (27-80%)<br>
+                        • Abatacept (54%)<br>
+                        • General immunosuppression
+                    </td>
+                    <td>
+                        • Monitor for signs of infection<br>
+                        • Early treatment of infections<br>
+                        • Consider prophylaxis<br>
+                        • Patient education on infection risk
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>GINGIVAL HYPERPLASIA</strong></td>
+                    <td>
+                        <strong>Cyclosporine</strong> (more common)
+                    </td>
+                    <td>
+                        • Good oral hygiene<br>
+                        • Consider switch to tacrolimus
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>HIRSUTISM</strong></td>
+                    <td>
+                        <strong>Cyclosporine</strong>
+                    </td>
+                    <td>
+                        • Cosmetic management<br>
+                        • Consider switch to tacrolimus
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>HYPERLIPIDEMIA</strong></td>
+                    <td>
+                        • Cyclosporine<br>
+                        • Sirolimus
+                    </td>
+                    <td>
+                        • Monitor lipid panel<br>
+                        • May need lipid-lowering agents
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>HYPERTENSION & THROMBOSIS</strong></td>
+                    <td>
+                        <strong>Erythropoietin</strong>
+                    </td>
+                    <td>
+                        • Monitor BP closely<br>
+                        • Monitor for signs of clot/stroke<br>
+                        • Adjust EPO dosing
+                    </td>
+                </tr>
+                <tr class="adverse-row">
+                    <td><strong>BONE PAIN</strong></td>
+                    <td>
+                        <strong>G-CSF (Filgrastim)</strong>
+                    </td>
+                    <td>
+                        • Common and expected (marrow activation)<br>
+                        • Analgesics as needed<br>
+                        • Reassure patient this is normal
+                    </td>
+                </tr>
+            </table>
+
+            <!-- ORGAN TRANSPLANT SUMMARY -->
+            <div class="highlight-box">
+                <h3>🏥 Organ Transplant Medication Summary</h3>
+                <p><strong>Standard Multi-Drug Approach:</strong></p>
+                <ul>
+                    <li><strong>Induction (at time of transplant):</strong> Basiliximab - reduces rejection 50%, minimal side effects</li>
+                    <li><strong>Early Post-Transplant (Most Aggressive):</strong> Tacrolimus + Mycophenolate + Prednisone (triple therapy)</li>
+                    <li><strong>Maintenance Therapy:</strong> Continue immunosuppression to prevent rejection - typically lower doses</li>
+                    <li><strong>Rejection Episodes:</strong> Tacrolimus can rescue, or use cyclophosphamide for severe cases</li>
+                    <li><strong>Special Consideration for Kidney Transplant:</strong> Consider Sirolimus (NO renal toxicity) as part of regimen</li>
+                </ul>
+                
+                <p><strong>Timeline:</strong></p>
+                <ul>
+                    <li><strong>Pre-transplant:</strong> Sometimes induction therapy to pre-suppress immune response</li>
+                    <li><strong>Day of transplant:</strong> Basiliximab + begin triple therapy</li>
+                    <li><strong>First 2-3 months:</strong> Most aggressive immunosuppression with corticosteroids</li>
+                    <li><strong>Long-term:</strong> Maintenance with T-cell suppressants ± antiproliferatives, taper steroids</li>
+                </ul>
+            </div>
+
+            <!-- FINAL SUMMARY -->
+            <div class="clinical-pearl">
+                <h3>📚 Final Key Points for Exam Success</h3>
+                <ul>
+                    <li><strong>NO Bone Marrow Suppression:</strong> Calcineurin inhibitors (cyclosporine, tacrolimus), corticosteroids, biologics</li>
+                    <li><strong>YES Bone Marrow Suppression:</strong> All cytotoxic drugs, mycophenolate, sirolimus</li>
+                    <li><strong>Renal Toxicity Ranking:</strong> Cyclosporine > Tacrolimus >> Sirolimus (NONE)</li>
+                    <li><strong>Most Effective for Transplant:</strong> Tacrolimus (widely used drug of choice by most programs)</li>
+                    <li><strong>Best Tolerated Biologic:</strong> Basiliximab (very few adverse effects, only nausea/GI)</li>
+                    <li><strong>MUST Use MESNA:</strong> Cyclophosphamide (prevents hemorrhagic cystitis from acrolein)</li>
+                    <li><strong>Fatal Drug Interaction:</strong> Azathioprine + Allopurinol (reduce dose or avoid)</li>
+                    <li><strong>Pregnancy Category X:</strong> Methotrexate (fetal death), Mycophenolate (45-49% loss)</li>
+                    <li><strong>CYP3A4 Metabolism:</strong> Cyclosporine, Tacrolimus (NO grapefruit, watch drug interactions)</li>
+                    <li><strong>Requires Iron Supplementation:</strong> Erythropoietin (needs iron for RBC production)</li>
+                    <li><strong>Cushing's Syndrome:</strong> Long-term corticosteroid use (buffalo hump, moon face, osteoporosis)</li>
+                    <li><strong>General Immunosuppression Risk:</strong> ALL drugs increase infection risk and malignancy risk</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

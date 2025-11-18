@@ -1,0 +1,1080 @@
+# COMPLETE INSTRUCTIONS: Creating Excel Study Guides with Learning Objectives and Comparison Charts
+
+## OVERVIEW
+This instruction set combines two approaches for creating comprehensive medical study Excel files:
+1. **Learning Objectives Format** - Each learning objective with detailed answers, comparison tables, mnemonics, and clinical pearls
+2. **Key Comparison/Master Chart/Summary Format** - Side-by-side comparison charts with integrated mnemonics
+
+## ⚠️ CRITICAL REQUIREMENTS ⚠️
+
+❌ **SOURCE FILE ONLY**: Use ONLY information from the source file. **DO NOT ADD EXTERNAL KNOWLEDGE** (except for mnemonics).
+   - If information is not in the source file, DO NOT include it
+   - Copy medical terms EXACTLY as written in source
+   - Include page references: (Pages X-Y)
+
+✅ **RESEARCH MNEMONICS**: Use web search to find established medical mnemonics and memory tricks. **NEVER INVENT NEW ONES**.
+   - Search medical education websites
+   - Use USMLE prep resources
+   - Verify mnemonics from multiple sources
+
+⚠️ **EXACT COLOR SCHEME**: Follow the soft pastel color palette specified below - **DO NOT DEVIATE**
+
+✅ **COMPREHENSIVE COVERAGE**: Include **ALL** information that helps answer the learning objectives
+   - Read the ENTIRE source file
+   - Include every condition mentioned
+   - Don't skip minor topics
+
+---
+
+## PART 1: SETUP AND PREPARATION
+
+### Step 1: Read Source Files Thoroughly
+1. ✅ Read **ALL** source files **COMPLETELY** from beginning to end
+2. ✅ Identify all learning objectives (look for "Learning Objectives:", "Objectives:", "By the end of...")
+3. ⚠️ **COPY LEARNING OBJECTIVES EXACTLY AS WRITTEN** - **NEVER PARAPHRASE**
+4. ✅ Note all conditions, concepts, and topics that need comparison tables
+5. ✅ Extract **ALL** relevant information for each learning objective
+6. ❌ **DO NOT USE INFORMATION FROM OUTSIDE THE SOURCE FILE**
+
+### Step 2: Research Mnemonics
+**Use web_search to find established medical mnemonics**
+
+Search Strategy:
+```
+"medical mnemonics [specific topic]"
+"[concept] memory tricks medical students"
+"[topic] mnemonic USMLE"
+"how to remember [concept] medical school"
+```
+
+Examples:
+- "encapsulated bacteria mnemonic SHINE SKIS"
+- "hypersensitivity reactions mnemonic ACID"
+- "antibody classes mnemonic GAMED"
+- "white blood cell order mnemonic never let monkeys"
+
+⚠️ **CRITICAL**: Only use mnemonics found through research - **DO NOT INVENT NEW ONES**. ❌
+
+---
+
+## PART 2: COLOR SCHEME (EXACT HEX CODES) or other similar soft pastel if you used these for the charts in each sheet already. 
+
+### Soft Pastel Palette:
+```python
+# Main colors for headers and backgrounds
+LIGHT_BLUE_HEADER = 'A8BFD8'
+LIGHT_BLUE_MAIN = 'E3F2FD'
+LIGHT_GREEN_HEADER = 'A8CCBA'
+LIGHT_GREEN_MAIN = 'E8F5E9'
+LIGHT_PURPLE_HEADER = 'C8B8DC'
+LIGHT_PURPLE_MAIN = 'F3E5F5'
+LIGHT_TEAL_HEADER = 'A8CCCC'
+LIGHT_TEAL_MAIN = 'E0F2F1'
+LIGHT_PEACH_HEADER = 'DCB8A0'
+LIGHT_PEACH_MAIN = 'FFE0B2'
+LIGHT_PINK_HEADER = 'F8BBD0'
+LIGHT_PINK_MAIN = 'FCE4EC'
+
+# Special boxes
+MNEMONIC_BG = 'E6F3FF'  # Light blue for mnemonics
+CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
+
+# Main sheet title color
+MAIN_TITLE_COLOR = '4472C4'  # Dark blue for main sheet titles
+```
+
+---
+
+## PART 3: PYTHON SETUP CODE
+
+### Required Imports and Basic Setup:
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+
+# Create workbook
+wb = Workbook()
+wb.remove(wb.active)  # Remove default sheet
+
+# Border style
+thin_border = Border(
+    left=Side(style='thin'),
+    right=Side(style='thin'),
+    top=Side(style='thin'),
+    bottom=Side(style='thin')
+)
+```
+
+### Helper Functions:
+
+```python
+def set_column_widths(ws, widths_dict):
+    """Set column widths for a worksheet"""
+    for col, width in widths_dict.items():
+        ws.column_dimensions[col].width = width
+
+def add_comparison_table(ws, start_row, title, headers, data, header_color, main_color):
+    """
+    Add a comparison table with title, headers, and data
+
+    Args:
+        ws: worksheet object
+        start_row: starting row number
+        title: table title (will be merged across columns)
+        headers: list of column headers
+        data: list of lists (rows of data)
+        header_color: hex color for title row
+        main_color: hex color for header row and first column
+
+    Returns:
+        next available row number
+    """
+    current_row = start_row
+
+    # Title row (merged across all columns)
+    ws.merge_cells(f'A{current_row}:{get_column_letter(len(headers))}{current_row}')
+    title_cell = ws[f'A{current_row}']
+    title_cell.value = title
+    title_cell.font = Font(bold=True, size=12, color='FFFFFF')
+    title_cell.fill = PatternFill(start_color=header_color, end_color=header_color, fill_type='solid')
+    title_cell.alignment = Alignment(horizontal='center', vertical='center')
+    ws.row_dimensions[current_row].height = 25
+
+    current_row += 1
+
+    # Header row
+    for col_idx, header in enumerate(headers, 1):
+        cell = ws.cell(row=current_row, column=col_idx)
+        cell.value = header
+        cell.font = Font(bold=True, size=11)
+        cell.fill = PatternFill(start_color=main_color, end_color=main_color, fill_type='solid')
+        cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+        cell.border = thin_border
+
+    current_row += 1
+
+    # Data rows
+    for row_data in data:
+        for col_idx, value in enumerate(row_data, 1):
+            cell = ws.cell(row=current_row, column=col_idx)
+            cell.value = value
+            # First column is bold with color
+            if col_idx == 1:
+                cell.font = Font(bold=True, size=10)
+                cell.fill = PatternFill(start_color=main_color, end_color=main_color, fill_type='solid')
+            cell.alignment = Alignment(wrap_text=True, vertical='top')
+            cell.border = thin_border
+        ws.row_dimensions[current_row].height = 50
+        current_row += 1
+
+    return current_row
+
+def add_mnemonic_box(ws, start_row, content):
+    """
+    Add a mnemonic/memory tricks box
+
+    Args:
+        ws: worksheet object
+        start_row: starting row number
+        content: mnemonic text content
+
+    Returns:
+        next available row number
+    """
+    ws.merge_cells(f'A{start_row}:E{start_row}')
+    cell = ws[f'A{start_row}']
+    cell.value = f'💡 MEMORY TRICKS & MNEMONICS\n\n{content}'
+    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+    cell.fill = PatternFill(start_color='E6F3FF', end_color='E6F3FF', fill_type='solid')
+    cell.font = Font(size=11)
+    cell.border = thin_border
+    ws.row_dimensions[start_row].height = 100
+    return start_row + 1
+
+def add_clinical_pearl_box(ws, start_row, content):
+    """
+    Add a clinical pearls box
+
+    Args:
+        ws: worksheet object
+        start_row: starting row number
+        content: clinical pearl text content
+
+    Returns:
+        next available row number
+    """
+    ws.merge_cells(f'A{start_row}:E{start_row}')
+    cell = ws[f'A{start_row}']
+    cell.value = f'💎 CLINICAL PEARLS\n\n{content}'
+    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+    cell.fill = PatternFill(start_color='E8F5E9', end_color='E8F5E9', fill_type='solid')
+    cell.font = Font(size=11)
+    cell.border = thin_border
+    ws.row_dimensions[start_row].height = 80
+    return start_row + 1
+```
+
+---
+
+## PART 4: LEARNING OBJECTIVES FORMAT
+
+### Sheet Structure:
+- One sheet per major topic (e.g., "Immunology I - Learning Objectives", "Immunology II - Learning Objectives")
+- Column widths: A=30, B=30, C=30, D=30, E=30 (5 columns total)
+- Each learning objective follows this pattern:
+  1. Learning Objective Title (merged A:E, purple text, 35px height)
+  2. Summary paragraph (merged A:E, source-only information, 100-150px height)
+  3. Comparison tables (using add_comparison_table function)
+  4. Mnemonic box (using add_mnemonic_box function)
+  5. Clinical pearl box (using add_clinical_pearl_box function) - if applicable
+  6. 2 blank rows before next LO
+
+### Example Code for Learning Objectives Sheet:
+
+```python
+# Create sheet
+ws1 = wb.create_sheet('Topic - Learning Objectives')
+
+# Set column widths
+set_column_widths(ws1, {'A': 30, 'B': 30, 'C': 30, 'D': 30, 'E': 30})
+
+current_row = 1
+
+# Sheet title
+ws1.merge_cells(f'A{current_row}:E{current_row}')
+ws1[f'A{current_row}'] = 'TOPIC - LEARNING OBJECTIVES'
+ws1[f'A{current_row}'].font = Font(bold=True, size=16, color='FFFFFF')
+ws1[f'A{current_row}'].fill = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
+ws1[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws1.row_dimensions[current_row].height = 30
+
+current_row += 2
+
+# LO1: [Learning Objective Title - EXACT from source]
+ws1.merge_cells(f'A{current_row}:E{current_row}')
+ws1[f'A{current_row}'] = 'Learning Objective 1: [EXACT TITLE FROM SOURCE]'
+ws1[f'A{current_row}'].font = Font(bold=True, size=13, color='764BA2')
+ws1[f'A{current_row}'].alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
+ws1.row_dimensions[current_row].height = 35
+
+current_row += 1
+
+# Summary paragraph
+ws1.merge_cells(f'A{current_row}:E{current_row}')
+summary1 = '[⚠️ EXTRACT FROM SOURCE FILE ONLY - Include ALL relevant information. Add page numbers: (Pages X-Y)]'
+ws1[f'A{current_row}'].value = f'Summary:\n{summary1}'
+ws1[f'A{current_row}'].alignment = Alignment(wrap_text=True, vertical='top')
+ws1[f'A{current_row}'].font = Font(size=10)
+ws1.row_dimensions[current_row].height = 120
+
+current_row += 2
+
+# Comparison table(s)
+current_row = add_comparison_table(
+    ws1, current_row,
+    'Comparison Table Title',
+    ['Header 1', 'Header 2', 'Header 3'],  # Column headers
+    [
+        ['Row 1 label', 'Row 1 data col 2', 'Row 1 data col 3'],
+        ['Row 2 label', 'Row 2 data col 2', 'Row 2 data col 3'],
+        # Add more rows as needed
+    ],
+    LIGHT_BLUE_HEADER, LIGHT_BLUE_MAIN  # Use different colors for each table
+)
+
+current_row += 1
+
+# Mnemonic box (if researched and found)
+mnem1 = '[RESEARCHED MNEMONIC]\n[Letter] = [Meaning]\n[Letter] = [Meaning]\n...'
+current_row = add_mnemonic_box(ws1, current_row, mnem1)
+
+current_row += 1
+
+# Clinical pearl box (if applicable)
+pearl1 = '• [Clinical pearl 1]\n• [Clinical pearl 2]\n• [Clinical pearl 3]'
+current_row = add_clinical_pearl_box(ws1, current_row, pearl1)
+
+current_row += 2
+
+# Repeat for LO2, LO3, etc.
+```
+
+### ⚠️ Learning Objectives Design Rules:
+1. **Learning Objective Title**: Purple color (#764BA2), **BOLD**, size 13, left-aligned, merged across A:E
+2. **Summary**: Font size 10, wrap text enabled, height 100-150px, **USE SOURCE FILE ONLY** ❌
+3. **Comparison Tables**: **ROTATE** through color schemes (blue, green, purple, teal, peach, pink)
+4. **Spacing**: **ALWAYS** leave 2 blank rows between learning objectives
+5. **Mnemonic Boxes**: Light blue background (#E6F3FF), 💡 emoji, height 100px, **RESEARCH ONLY**
+6. **Clinical Pearl Boxes**: Light green background (#E8F5E9), 💎 emoji, height 80px
+
+---
+
+## PART 5: KEY COMPARISONS FORMAT
+
+### Sheet Structure:
+- One "Key Comparisons" sheet with multiple comparison tables
+- Each comparison table compares similar conditions/concepts side-by-side
+- Mnemonic boxes placed directly below relevant comparison tables
+- Column widths: A=25, B=35, C=35, D=35, E=35
+
+### Example Code for Key Comparisons Sheet:
+
+```python
+# Create sheet
+ws_key = wb.create_sheet('Key Comparisons')
+
+# Set column widths
+ws_key.column_dimensions['A'].width = 25
+for col in ['B', 'C', 'D', 'E']:
+    ws_key.column_dimensions[col].width = 35
+
+current_row = 1
+
+# Sheet title
+ws_key.merge_cells(f'A{current_row}:E{current_row}')
+ws_key[f'A{current_row}'] = 'KEY COMPARISONS'
+ws_key[f'A{current_row}'].font = Font(bold=True, size=16, color='FFFFFF')
+ws_key[f'A{current_row}'].fill = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
+ws_key[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws_key.row_dimensions[current_row].height = 30
+
+current_row += 2
+
+# Comparison Table 1
+ws_key.merge_cells(f'A{current_row}:E{current_row}')
+ws_key[f'A{current_row}'] = 'COMPARISON 1: [Topic A vs Topic B vs Topic C]'
+ws_key[f'A{current_row}'].font = Font(bold=True, size=14, color='FFFFFF')
+ws_key[f'A{current_row}'].fill = PatternFill(start_color=LIGHT_BLUE_HEADER, end_color=LIGHT_BLUE_HEADER, fill_type='solid')
+ws_key[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws_key.row_dimensions[current_row].height = 25
+
+current_row += 1
+
+# Column headers (items being compared)
+headers = ['Feature', 'Topic A', 'Topic B', 'Topic C']
+for col_idx, header in enumerate(headers, 1):
+    cell = ws_key.cell(row=current_row, column=col_idx)
+    cell.value = header
+    cell.font = Font(bold=True, size=11)
+    cell.fill = PatternFill(start_color=LIGHT_BLUE_MAIN, end_color=LIGHT_BLUE_MAIN, fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+    cell.border = thin_border
+
+current_row += 1
+
+# Data rows (comparison categories)
+comparison_data = [
+    ['Definition', 'Definition of A', 'Definition of B', 'Definition of C'],
+    ['Mechanism', 'Mechanism of A', 'Mechanism of B', 'Mechanism of C'],
+    ['Examples', 'Examples of A', 'Examples of B', 'Examples of C'],
+    # Add more rows as needed
+]
+
+for row_data in comparison_data:
+    for col_idx, value in enumerate(row_data, 1):
+        cell = ws_key.cell(row=current_row, column=col_idx)
+        cell.value = value
+        if col_idx == 1:  # First column (feature names)
+            cell.font = Font(bold=True, size=10)
+            cell.fill = PatternFill(start_color=LIGHT_BLUE_MAIN, end_color=LIGHT_BLUE_MAIN, fill_type='solid')
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+        cell.border = thin_border
+    ws_key.row_dimensions[current_row].height = 50
+    current_row += 1
+
+current_row += 1
+
+# Mnemonic box directly below comparison table
+mnemonic_content = """MNEMONIC: "[RESEARCHED ACRONYM]"
+
+[Letter] = [Meaning]
+[Letter] = [Meaning]
+[Letter] = [Meaning]
+
+[Optional: Additional memory trick or context]"""
+
+ws_key.merge_cells(f'A{current_row}:E{current_row}')
+cell = ws_key[f'A{current_row}']
+cell.value = f'💡 MEMORY TRICKS & MNEMONICS\n\n{mnemonic_content}'
+cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+cell.fill = PatternFill(start_color=MNEMONIC_BG, end_color=MNEMONIC_BG, fill_type='solid')
+cell.font = Font(size=11)
+cell.border = thin_border
+ws_key.row_dimensions[current_row].height = 100
+
+current_row += 3  # Leave space before next comparison table
+
+# Repeat for Comparison Table 2, 3, etc.
+```
+
+### ⚠️ Key Comparisons Design Rules:
+1. **Table Layout**: **COLUMNS = items being compared**, **ROWS = comparison categories**
+2. **First Column**: Feature/category names (**BOLD**, colored background)
+3. **Spacing**: **ALWAYS** leave 2-3 blank rows between different comparison tables
+4. **Mnemonics**: **PLACE DIRECTLY BELOW** each relevant comparison table (not on separate sheet)
+5. **Color Rotation**: Use **DIFFERENT** color schemes for each comparison table
+6. ❌ **USE SOURCE FILE INFORMATION ONLY** for table content
+
+---
+
+## PART 6: MASTER CHART FORMAT
+
+### Sheet Structure:
+- One "Master Chart" sheet with comprehensive overview
+- ROWS = individual conditions/topics
+- COLUMNS = key characteristics
+- First row frozen for scrolling
+
+### Example Code for Master Chart Sheet:
+
+```python
+# Create sheet
+ws_master = wb.create_sheet('Master Chart')
+
+# Set column widths
+column_widths = {'A': 25, 'B': 35, 'C': 35, 'D': 30, 'E': 30, 'F': 30}
+for col, width in column_widths.items():
+    ws_master.column_dimensions[col].width = width
+
+# Header row
+headers = ['Condition/Topic', 'Definition', 'Key Features', 'Mechanism', 'Clinical Presentation', 'Management']
+for col_idx, header in enumerate(headers, 1):
+    cell = ws_master.cell(1, col_idx, header)
+    cell.font = Font(bold=True, size=12, color='FFFFFF')
+    cell.fill = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+    cell.border = thin_border
+
+# Freeze first row
+ws_master.freeze_panes = 'A2'
+
+# Data rows
+data_rows = [
+    ['Condition 1', 'Definition 1', 'Features 1', 'Mechanism 1', 'Presentation 1', 'Management 1'],
+    ['Condition 2', 'Definition 2', 'Features 2', 'Mechanism 2', 'Presentation 2', 'Management 2'],
+    # Add all conditions from source
+]
+
+for row_idx, row_data in enumerate(data_rows, start=2):
+    for col_idx, value in enumerate(row_data, 1):
+        cell = ws_master.cell(row_idx, col_idx, value)
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+        cell.border = thin_border
+        # First column bold
+        if col_idx == 1:
+            cell.font = Font(bold=True, size=10)
+    ws_master.row_dimensions[row_idx].height = 60
+```
+
+### Master Chart Design Rules:
+1. **Header Row**: Dark blue background (#4472C4), white text, frozen
+2. **First Column**: Condition/topic names (bold)
+3. **Text Wrapping**: Enabled for all cells
+4. **Row Height**: Adjusted to fit wrapped text (typically 60px)
+5. **Comprehensive**: Include ALL conditions/topics from source material
+
+---
+
+## PART 7: SUMMARY SHEET FORMAT
+
+### Sheet Structure:
+- One "Summary" sheet with high-yield notes
+- Multiple sections with different topics
+- Bullet points and concise information
+- Color-coded boxes for different types of information
+
+### Example Code for Summary Sheet:
+
+```python
+# Create sheet
+ws_summary = wb.create_sheet('Summary')
+
+# Set column widths
+set_column_widths(ws_summary, {'A': 50, 'B': 50, 'C': 50})
+
+current_row = 1
+
+# Sheet title
+ws_summary.merge_cells(f'A{current_row}:C{current_row}')
+ws_summary[f'A{current_row}'] = 'HIGH-YIELD SUMMARY NOTES'
+ws_summary[f'A{current_row}'].font = Font(bold=True, size=16, color='FFFFFF')
+ws_summary[f'A{current_row}'].fill = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
+ws_summary[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws_summary.row_dimensions[current_row].height = 30
+
+current_row += 2
+
+# Section 1: Key Concepts
+ws_summary.merge_cells(f'A{current_row}:C{current_row}')
+ws_summary[f'A{current_row}'] = 'KEY CONCEPTS'
+ws_summary[f'A{current_row}'].font = Font(bold=True, size=14, color='FFFFFF')
+ws_summary[f'A{current_row}'].fill = PatternFill(start_color=LIGHT_PURPLE_HEADER, end_color=LIGHT_PURPLE_HEADER, fill_type='solid')
+ws_summary[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws_summary.row_dimensions[current_row].height = 25
+
+current_row += 1
+
+# Bullet points
+bullet_points = """• Key concept 1
+• Key concept 2
+• Key concept 3
+• Key concept 4"""
+
+ws_summary.merge_cells(f'A{current_row}:C{current_row}')
+ws_summary[f'A{current_row}'].value = bullet_points
+ws_summary[f'A{current_row}'].alignment = Alignment(wrap_text=True, vertical='top')
+ws_summary[f'A{current_row}'].font = Font(size=11)
+ws_summary.row_dimensions[current_row].height = 80
+
+current_row += 2
+
+# Section 2: Must-Memorize Values
+# Similar structure...
+
+# Section 3: If You See X, Think Y
+# Similar structure...
+```
+
+---
+
+## PART 8: COMPLETE WORKFLOW
+
+### Step-by-Step Process:
+
+1. **Read and Analyze Source Files**
+   - Extract all learning objectives verbatim
+   - Identify all topics that need comparison tables
+   - Note all conditions/concepts for master chart
+
+2. **Research Mnemonics**
+   - Use web_search for each major topic
+   - Compile list of established mnemonics
+   - Note where each mnemonic should be placed
+
+3. **Create Workbook Structure**
+   ```python
+   wb = Workbook()
+   wb.remove(wb.active)
+   ```
+
+4. **Create Learning Objectives Sheets** (if applicable)
+   - One sheet per major topic
+   - Follow LO format: Title → Summary → Tables → Mnemonics → Clinical Pearls
+   - Use helper functions for consistency
+
+5. **Create Key Comparisons Sheet**
+   - Multiple comparison tables
+   - Mnemonics directly below relevant tables
+   - Rotate through color schemes
+
+6. **Create Master Chart Sheet**
+   - Comprehensive table with all conditions
+   - Frozen header row
+   - All columns with wrap text
+
+7. **Create Summary Sheet**
+   - High-yield notes
+   - Bullet points and concise information
+   - Color-coded sections
+
+8. **Save Workbook**
+   ```python
+   output_path = '/path/to/output/filename.xlsx'
+   wb.save(output_path)
+   print(f"File saved: {output_path}")
+   ```
+
+---
+
+## PART 9: DESIGN SPECIFICATIONS
+
+### Typography:
+- **Main Sheet Titles**: Size 16, Bold, White text, Blue background (#4472C4)
+- **Learning Objective Titles**: Size 13, Bold, Purple text (#764BA2)
+- **Table Titles**: Size 12-14, Bold, White text, Colored background (varies)
+- **Table Headers**: Size 11, Bold, Colored background (light shade)
+- **Body Text**: Size 10, Normal weight
+- **Mnemonic/Pearl Boxes**: Size 11, Normal weight
+
+### Spacing:
+- **Between Learning Objectives**: 2 blank rows
+- **Between Comparison Tables**: 2-3 blank rows
+- **After Summary Paragraph**: 2 blank rows before first table
+- **After Comparison Table**: 1 blank row before mnemonic
+- **After Mnemonic**: 1 blank row (or 2 if starting new LO)
+
+### Cell Heights:
+- **Main Sheet Title**: 30px
+- **Learning Objective Title**: 35px
+- **Summary Paragraph**: 100-150px (adjust to fit content)
+- **Table Title Row**: 25px
+- **Table Data Rows**: 50px (adjust to fit wrapped text)
+- **Mnemonic Box**: 100px (adjust to fit content)
+- **Clinical Pearl Box**: 80px (adjust to fit content)
+
+### Column Widths:
+
+**Learning Objectives Sheets**:
+- All columns (A-E): 30
+
+**Key Comparisons Sheet**:
+- Column A: 25
+- Columns B-E: 35
+
+**Master Chart Sheet**:
+- Column A: 25
+- Columns B-F: 30-35 (adjust based on content)
+
+**Summary Sheet**:
+- All columns: 50
+
+### Borders:
+- All table cells have thin borders
+- Use `thin_border` style defined in setup
+
+### Text Alignment:
+- **Titles**: Center horizontally and vertically
+- **Learning Objective Titles**: Left-aligned horizontally, center vertically
+- **Summary Paragraphs**: Left-aligned, top-aligned vertically
+- **Table Headers**: Center horizontally and vertically
+- **Table Data**: Left-aligned, top-aligned vertically
+- **Mnemonic/Pearl Boxes**: Left-aligned, top-aligned vertically
+
+---
+
+## PART 10: ⚠️ VERIFICATION CHECKLIST ⚠️
+
+### ✅ Before Delivering File:
+
+**Content** (❌ CRITICAL):
+- [ ] ✅ All learning objectives copied **EXACTLY** from source
+- [ ] ✅ **ALL** information from source files included
+- [ ] ❌ **NO EXTERNAL INFORMATION ADDED** (except researched mnemonics)
+- [ ] ✅ Medical terminology matches source **EXACTLY**
+- [ ] ✅ Page references included in summaries (Pages X-Y)
+- [ ] ❌ **VERIFY: Did you read the ENTIRE source file?**
+- [ ] ❌ **VERIFY: Did you include EVERY condition mentioned in source?**
+
+**Mnemonics** (⚠️ IMPORTANT):
+- [ ] ✅ **ALL** mnemonics researched via web_search
+- [ ] ✅ Each mnemonic **VERIFIED** from medical education sources
+- [ ] ✅ Mnemonics placed **DIRECTLY BELOW** relevant content
+- [ ] ✅ **FULL BREAKDOWN** of each acronym/phrase provided
+- [ ] ❌ **NO INVENTED MNEMONICS** - research only!
+
+**Learning Objectives Sheets** (if applicable):
+- [ ] Each LO has: Title → Summary → Tables → Mnemonics → Clinical Pearls
+- [ ] Proper color rotation for tables
+- [ ] Adequate spacing between LOs
+- [ ] Row heights adjusted to fit content
+
+**Key Comparisons Sheet**:
+- [ ] Clear comparison tables (columns = items, rows = categories)
+- [ ] Mnemonics directly below relevant comparisons
+- [ ] Proper color rotation
+- [ ] Adequate spacing between tables
+
+**Master Chart Sheet**:
+- [ ] One row per condition/topic
+- [ ] All relevant columns included
+- [ ] First row frozen
+- [ ] Text wrapping enabled
+
+**Summary Sheet**:
+- [ ] High-yield notes included
+- [ ] Organized by sections
+- [ ] Concise bullet points
+- [ ] Color-coded boxes
+
+**Formatting**:
+- [ ] Exact color scheme followed (hex codes)
+- [ ] Column widths set appropriately
+- [ ] Row heights adjusted for wrapped text
+- [ ] Consistent fonts and styles
+- [ ] All cells have borders where appropriate
+- [ ] Text wrapping enabled for all content cells
+
+**File Management**:
+- [ ] File saved with descriptive name
+- [ ] File location confirmed
+- [ ] File opens without errors
+
+---
+
+## PART 11: TROUBLESHOOTING
+
+### Common Issues and Solutions:
+
+**Issue**: Can't find a mnemonic for a topic
+- **Solution**: Try different search terms, search medical education forums, check USMLE resources. If truly not found, skip the mnemonic box.
+
+**Issue**: Source file is unclear about a topic
+- ⚠️ **Solution**: **ONLY INCLUDE WHAT'S EXPLICITLY STATED**. ❌ **DON'T GUESS** or add external information. Note any missing information with: `[Information not provided in source]`
+
+**Issue**: Tables are too large/complex
+- **Solution**: Break into multiple smaller tables. Consider splitting by category. Use multiple sheets if needed.
+
+**Issue**: Text doesn't fit in cells
+- **Solution**: Increase row height. Enable text wrapping. Adjust column widths if necessary.
+
+**Issue**: Too many colors make it confusing
+- **Solution**: Rotate through the 6 main color pairs (blue, green, purple, teal, peach, pink) consistently. Don't use more than 6 different colors.
+
+**Issue**: Summary paragraph is too long
+- **Solution**: Increase row height (100-150px typical). Consider breaking into multiple paragraphs if over 200 words.
+
+---
+
+## PART 12: EXAMPLE OUTPUT STRUCTURE
+
+### Structure Example:
+
+```
+Excel Workbook: "Topic_Study_Guide.xlsx"
+
+Sheet 1: "Topic A - Learning Objectives"
+├── Sheet Title
+├── Learning Objective 1
+│   ├── Summary Paragraph
+│   ├── Comparison Table 1
+│   ├── Comparison Table 2
+│   ├── Mnemonic Box
+│   └── Clinical Pearl Box
+├── Learning Objective 2
+│   ├── Summary Paragraph
+│   ├── Comparison Table 1
+│   ├── Mnemonic Box
+│   └── Clinical Pearl Box
+└── ...
+
+Sheet 2: "Topic B - Learning Objectives"
+└── (Same structure as Sheet 1)
+
+Sheet 3: "Key Comparisons"
+├── Comparison Table 1
+├── Mnemonic Box
+├── [blank rows]
+├── Comparison Table 2
+├── Mnemonic Box
+├── [blank rows]
+└── ...
+
+Sheet 4: "Master Chart"
+├── Header Row (frozen)
+├── Condition 1
+├── Condition 2
+└── ...
+
+Sheet 5: "Summary"
+├── Section 1: Key Concepts
+├── Section 2: Must-Memorize
+├── Section 3: If You See X, Think Y
+└── Section 4: High-Yield Pearls
+```
+
+---
+
+## PART 13: COMPLETE CODE TEMPLATE
+
+```python
+"""
+Complete Excel Study Guide Creator
+Combines Learning Objectives format with Key Comparisons/Master Chart/Summary format
+"""
+
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+
+# ==================== COLOR DEFINITIONS ====================
+LIGHT_BLUE_HEADER = 'A8BFD8'
+LIGHT_BLUE_MAIN = 'E3F2FD'
+LIGHT_GREEN_HEADER = 'A8CCBA'
+LIGHT_GREEN_MAIN = 'E8F5E9'
+LIGHT_PURPLE_HEADER = 'C8B8DC'
+LIGHT_PURPLE_MAIN = 'F3E5F5'
+LIGHT_TEAL_HEADER = 'A8CCCC'
+LIGHT_TEAL_MAIN = 'E0F2F1'
+LIGHT_PEACH_HEADER = 'DCB8A0'
+LIGHT_PEACH_MAIN = 'FFE0B2'
+LIGHT_PINK_HEADER = 'F8BBD0'
+LIGHT_PINK_MAIN = 'FCE4EC'
+MNEMONIC_BG = 'E6F3FF'
+CLINICAL_PEARL_BG = 'E8F5E9'
+MAIN_TITLE_COLOR = '4472C4'
+
+# ==================== BORDER STYLE ====================
+thin_border = Border(
+    left=Side(style='thin'),
+    right=Side(style='thin'),
+    top=Side(style='thin'),
+    bottom=Side(style='thin')
+)
+
+# ==================== HELPER FUNCTIONS ====================
+def set_column_widths(ws, widths_dict):
+    """Set column widths"""
+    for col, width in widths_dict.items():
+        ws.column_dimensions[col].width = width
+
+def add_comparison_table(ws, start_row, title, headers, data, header_color, main_color):
+    """Add a comparison table"""
+    current_row = start_row
+
+    # Title
+    ws.merge_cells(f'A{current_row}:{get_column_letter(len(headers))}{current_row}')
+    title_cell = ws[f'A{current_row}']
+    title_cell.value = title
+    title_cell.font = Font(bold=True, size=12, color='FFFFFF')
+    title_cell.fill = PatternFill(start_color=header_color, end_color=header_color, fill_type='solid')
+    title_cell.alignment = Alignment(horizontal='center', vertical='center')
+    ws.row_dimensions[current_row].height = 25
+
+    current_row += 1
+
+    # Headers
+    for col_idx, header in enumerate(headers, 1):
+        cell = ws.cell(row=current_row, column=col_idx)
+        cell.value = header
+        cell.font = Font(bold=True, size=11)
+        cell.fill = PatternFill(start_color=main_color, end_color=main_color, fill_type='solid')
+        cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+        cell.border = thin_border
+
+    current_row += 1
+
+    # Data rows
+    for row_data in data:
+        for col_idx, value in enumerate(row_data, 1):
+            cell = ws.cell(row=current_row, column=col_idx)
+            cell.value = value
+            if col_idx == 1:
+                cell.font = Font(bold=True, size=10)
+                cell.fill = PatternFill(start_color=main_color, end_color=main_color, fill_type='solid')
+            cell.alignment = Alignment(wrap_text=True, vertical='top')
+            cell.border = thin_border
+        ws.row_dimensions[current_row].height = 50
+        current_row += 1
+
+    return current_row
+
+def add_mnemonic_box(ws, start_row, content):
+    """Add mnemonic box"""
+    ws.merge_cells(f'A{start_row}:E{start_row}')
+    cell = ws[f'A{start_row}']
+    cell.value = f'💡 MEMORY TRICKS & MNEMONICS\n\n{content}'
+    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+    cell.fill = PatternFill(start_color=MNEMONIC_BG, end_color=MNEMONIC_BG, fill_type='solid')
+    cell.font = Font(size=11)
+    cell.border = thin_border
+    ws.row_dimensions[start_row].height = 100
+    return start_row + 1
+
+def add_clinical_pearl_box(ws, start_row, content):
+    """Add clinical pearl box"""
+    ws.merge_cells(f'A{start_row}:E{start_row}')
+    cell = ws[f'A{start_row}']
+    cell.value = f'💎 CLINICAL PEARLS\n\n{content}'
+    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+    cell.fill = PatternFill(start_color=CLINICAL_PEARL_BG, end_color=CLINICAL_PEARL_BG, fill_type='solid')
+    cell.font = Font(size=11)
+    cell.border = thin_border
+    ws.row_dimensions[start_row].height = 80
+    return start_row + 1
+
+# ==================== CREATE WORKBOOK ====================
+wb = Workbook()
+wb.remove(wb.active)
+
+# ==================== SHEET 1: LEARNING OBJECTIVES ====================
+ws_lo = wb.create_sheet('Topic - Learning Objectives')
+set_column_widths(ws_lo, {'A': 30, 'B': 30, 'C': 30, 'D': 30, 'E': 30})
+
+current_row = 1
+
+# Sheet title
+ws_lo.merge_cells(f'A{current_row}:E{current_row}')
+ws_lo[f'A{current_row}'] = 'TOPIC - LEARNING OBJECTIVES'
+ws_lo[f'A{current_row}'].font = Font(bold=True, size=16, color='FFFFFF')
+ws_lo[f'A{current_row}'].fill = PatternFill(start_color=MAIN_TITLE_COLOR, end_color=MAIN_TITLE_COLOR, fill_type='solid')
+ws_lo[f'A{current_row}'].alignment = Alignment(horizontal='center', vertical='center')
+ws_lo.row_dimensions[current_row].height = 30
+
+current_row += 2
+
+# LO1
+ws_lo.merge_cells(f'A{current_row}:E{current_row}')
+ws_lo[f'A{current_row}'] = 'Learning Objective 1: [EXACT TEXT FROM SOURCE]'
+ws_lo[f'A{current_row}'].font = Font(bold=True, size=13, color='764BA2')
+ws_lo[f'A{current_row}'].alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
+ws_lo.row_dimensions[current_row].height = 35
+
+current_row += 1
+
+# Summary
+ws_lo.merge_cells(f'A{current_row}:E{current_row}')
+summary = '[⚠️ EXTRACT FROM SOURCE FILE ONLY. Include page numbers: (Pages X-Y)]'
+ws_lo[f'A{current_row}'].value = f'Summary:\n{summary}'
+ws_lo[f'A{current_row}'].alignment = Alignment(wrap_text=True, vertical='top')
+ws_lo[f'A{current_row}'].font = Font(size=10)
+ws_lo.row_dimensions[current_row].height = 120
+
+current_row += 2
+
+# Comparison table
+current_row = add_comparison_table(
+    ws_lo, current_row,
+    'Comparison Table Title',
+    ['Header 1', 'Header 2', 'Header 3'],
+    [
+        ['Row 1', 'Data 1', 'Data 1'],
+        ['Row 2', 'Data 2', 'Data 2'],
+    ],
+    LIGHT_BLUE_HEADER, LIGHT_BLUE_MAIN
+)
+
+current_row += 1
+
+# Mnemonic
+mnem = '[RESEARCHED MNEMONIC]'
+current_row = add_mnemonic_box(ws_lo, current_row, mnem)
+
+current_row += 2
+
+# ==================== SHEET 2: KEY COMPARISONS ====================
+ws_key = wb.create_sheet('Key Comparisons')
+set_column_widths(ws_key, {'A': 25, 'B': 35, 'C': 35, 'D': 35, 'E': 35})
+
+# [Add comparison tables with mnemonics as shown in Part 5]
+
+# ==================== SHEET 3: MASTER CHART ====================
+ws_master = wb.create_sheet('Master Chart')
+
+# Set column widths
+column_widths = {'A': 25, 'B': 35, 'C': 35, 'D': 30, 'E': 30}
+for col, width in column_widths.items():
+    ws_master.column_dimensions[col].width = width
+
+# Headers
+headers = ['Condition', 'Definition', 'Features', 'Mechanism', 'Management']
+for col_idx, header in enumerate(headers, 1):
+    cell = ws_master.cell(1, col_idx, header)
+    cell.font = Font(bold=True, size=12, color='FFFFFF')
+    cell.fill = PatternFill(start_color=MAIN_TITLE_COLOR, end_color=MAIN_TITLE_COLOR, fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+    cell.border = thin_border
+
+ws_master.freeze_panes = 'A2'
+
+# [Add data rows as shown in Part 6]
+
+# ==================== SHEET 4: SUMMARY ====================
+ws_summary = wb.create_sheet('Summary')
+
+# [Add summary content as shown in Part 7]
+
+# ==================== SAVE WORKBOOK ====================
+output_path = '/path/to/output/Study_Guide.xlsx'
+wb.save(output_path)
+print(f"File saved: {output_path}")
+```
+
+---
+
+## ⚠️ SUMMARY ⚠️
+
+This instruction set provides a comprehensive template for creating Excel study guides that combine:
+1. **Learning Objectives Format** - Detailed answers with comparison tables, mnemonics, and clinical pearls
+2. **Key Comparisons Format** - Side-by-side comparison charts
+3. **Master Chart Format** - Comprehensive overview table
+4. **Summary Format** - High-yield notes
+
+**✅ KEY PRINCIPLES:**
+- ❌ **SOURCE FILE ONLY** - **NO EXTERNAL INFORMATION** (except researched mnemonics)
+- ⚠️ **EXACT COLOR SCHEME** (soft pastels) - **DO NOT DEVIATE**
+- ✅ **CONSISTENT FORMATTING** and spacing
+- ✅ Helper functions for maintainability
+- ✅ **COMPREHENSIVE COVERAGE** of **ALL** material
+
+**⚠️ REMEMBER - CRITICAL:**
+- ❌ **USE SOURCE FILE INFORMATION ONLY**
+- ✅ Read source files **THOROUGHLY** (entire file, every page)
+- ✅ Research mnemonics via web search (verify from multiple sources)
+- ✅ Follow design specifications **EXACTLY**
+- ❌ **COPY LEARNING OBJECTIVES EXACTLY** - never paraphrase
+- ✅ Verify **ALL** information before delivery
+- ✅ Test file opens correctly without errors
+
+**❌ DO NOT:**
+- Add external medical knowledge
+- Invent mnemonics
+- Paraphrase learning objectives
+- Skip any conditions mentioned in source
+- Change color scheme
+- Guess or assume information not in source
+
+---
+
+## 🔍 VERIFICATION STEP - COUNT ALL LEARNING OBJECTIVES
+
+⚠️ **CRITICAL: Always verify you included ALL learning objectives** ⚠️
+
+### Before Delivering:
+
+1. **Count Learning Objectives in Source File:**
+   ```bash
+   # Count lines after "Learning Objectives:" header
+   grep -A 20 "Learning Objectives" source_file.txt
+   ```
+
+2. **Count Learning Objectives in Your Script:**
+   ```python
+   # Count all lines with "Learning Objective X:"
+   grep "Learning Objective [0-9]" your_script.py | wc -l
+   ```
+
+3. **Verify Excel File After Creation:**
+   ```python
+   from openpyxl import load_workbook
+
+   wb = load_workbook('output_file.xlsx')
+
+   for sheet_name in wb.sheetnames:
+       if 'Learning Objectives' in sheet_name:
+           ws = wb[sheet_name]
+           lo_count = 0
+           for row in ws.iter_rows():
+               for cell in row:
+                   if cell.value and isinstance(cell.value, str) and cell.value.startswith('Learning Objective'):
+                       lo_count += 1
+                       print(f"{sheet_name} - LO{lo_count}: {cell.value}")
+
+           print(f"\n✓ Total in {sheet_name}: {lo_count}")
+   ```
+
+### ⚠️ Common Mistakes to Avoid:
+
+❌ **DO NOT:**
+- Skip any learning objectives
+- Combine multiple LOs into one
+- Stop early before completing all LOs
+
+✅ **DO:**
+- Count LOs in source FIRST
+- Match that exact number in your script
+- Verify the Excel file contains all LOs
+- Copy LO titles EXACTLY from source
+
+### Example Verification Output:
+```
+Source File: 10 learning objectives found
+Script: 10 learning objective code blocks created
+Excel File: 10 learning objectives verified
+
+✓ ALL LEARNING OBJECTIVES INCLUDED
+```
+
+---
+
+**End of Instructions**

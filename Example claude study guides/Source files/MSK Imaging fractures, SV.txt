@@ -1,0 +1,857 @@
+Page 1:
+M U SC U LO S K EL ETA L  
+DI A G N OS T I C S  &  
+I N T R O  T O  
+F R A CT U R E S
+R E G A N  A L F O R D, PA - C
+C L I N I C A L  M E D I C I N E  I
+1 1  S E P T  2 0 2 5
+M A N Y  T H A N K S  T O  S A R A H  B O L A N D E R .  D M S C ,  P A - C ,  D F A A P A
+
+Page 2:
+OBJECTIVES
+• Compare and contrast the following musculoskeletal (MSK) imaging modalities: plain 
+radiography, computed tomography (CT), magnetic resonance imaging (MRI), bone scan, 
+DXA and ultrasound
+• Outline a systematic approach to musculoskeletal imaging as outlined in this lecture.
+• Describe a fracture in terms of site, anatomic location, fracture pattern, extent of injury, 
+and amount of displacement.
+• Define and identify basic fracture patterns on radiograph: transverse, oblique, spiral, 
+comminuted, segmental, torus, compression, greenstick, bowing.
+• Identify basic fracture fragment displacement qualities including angulation, translation, and 
+displacement. 
+• Identify concerning clinical findings for open fractures and recommend appropriate 
+management.
+
+Page 3:
+LECTURE OUTLINE
+• Methods of Imaging
+• Fracture Characteristics
+• Cases
+–On the exam:  You will be expected to identify fractures on 
+radiographs and identify basic characteristics of fractures; refer to 
+Objectives.
+
+Page 4:
+M S K  
+D I A G N O S T I C S
+
+Page 5:
+MUSCULOSKELETAL (MSK) IMAGING
+• In addition to history/physical exam findings, radiographic modalities 
+allow viewing of internal structures to guide treatment
+• Ionizing vs Non-ionizing methods
+– Soft tissue (muscle, fat)
+– Ligaments, tendons, etc
+– Bones
+What does “ionizing radiation” mean?
+Radiation that penetrates tissue and 
+alters/damages DNA, which potentially increases 
+cancer risk (more so in children / fetal tissue)
+
+Page 6:
+MSK IMAGING METHODS
+IONIZING
+• Plain Radiography (Xrays)
+• Computed Tomography (CT)
+– CT Arthrography
+• Nuclear Scintigraphy (bone scan)
+• Dual-energy x-ray absorptiometry 
+(DXA)
+NON-IONIZING
+• Magnetic Resonance Imaging (MRI)
+– MR arthography
+• Ultrasound
+
+Page 7:
+PLAIN RADIOGRAPHY 
+(X-RAYS)
+Air
+Black
+Fat Fluid Muscle Bone
+White
+• Images obtained by projecting x-ray beams (radiation) through a subject onto an 
+image detector (film or digital)
+– Dense tissues/objects absorb more radiation (fewer beams pass through to detector) 
+these tissues appear white / “radiopaque”
+– Less-dense tissues have more radiation pass through  appears darker / “radiolucent”
+Gray 7
+More DenseLess Dense
+“radiopaque”
+“radiolucent”
+
+Page 8:
+8
+Lateral view of the skull, 
+normal study
+Note contiguous 
+density of the bone
+Case courtesy of Mohd Radhwan Bin Abidin, 
+Radiopaedia.org, rID: 150811
+
+Page 9:
+9
+History: Axe thrown at right leg
+Note discontinuity of bone density 
+ unicortical fracture of tibia 
+(doesn’t go all the way through)
+Note soft tissue involvement and 
+lack of metallic foreign body
+Case courtesy of Craig Hacking, Radiopaedia.org, rID:
+
+Page 10:
+10
+History: Car accident
+There is a significantly displaced 
+spiral fracture of the proximal 
+femoral shaft with additional 
+avulsion fracture of the lesser 
+trochanter.
+Case courtesy of Dr Andrew Dixon, Radiopaedia.org, rID:
+
+Page 11:
+RADIOGRAPHY AKA X-RAY
+INDICATIONS
+• First-line for many MSK conditions
+– Inexpensive, widely-available 
+outpatient, quick result
+– Typically ordered prior to more 
+advanced imaging (CT scan, MRI)
+• Many specific indications:
+– Trauma (fractures, dislocations), 
+tumors, arthritis, etc. 
+• Images can be viewed immediately* 
+with preliminary interpretation
+CONSIDERATIONS
+• Small amount of radiation (less 
+than CT scan)
+• Children / Pregnancy = not a 
+contraindication if needed, but 
+consider alternative method
+• May not be diagnostic for 
+exclusively soft tissue injuries
+11
+*Look at your own films
+Radiologist performs definitive interpretation
+
+Page 12:
+• A – Stationery Xray 
+machine (patient must go to 
+radiology department)
+• B – portable Xray machine 
+(can be performed at 
+bedside)
+• C – Mini C-arm (can do 
+Xrays plus fluoroscopy –
+live action)
+12
+A B
+C
+
+Page 13:
+RADIOGRAPHY VIEWS
+• Based on direction of Xray beam traveling from emitter through tissue toward 
+detector
+– Posterior/Anterior (PA) – beam travels posterior to anterior
+• Ex. PA chest = beam passes from back to chest
+– Anterior/Posterior (AP) – beam travels anterior to posterior
+• Ex. AP chest = beam passes from chest to back
+
+Page 14:
+RADIOGRAPHY VIEWS, CONT’D
+• Based on direction of Xray beam traveling from emitter through 
+tissue toward detector
+– Lateral – beam travels from one side of the body to the other
+– Obliques – beam angled to the transverse or coronal plane
+– Site-specific views (ankle mortise, swimmer’s view, weight bearing, etc)
+• Obtain at least 2 views on Xray to fully evaluate for fractures
+– “One view is no view”
+
+Page 15:
+15
+Oblique view Lateral viewAP view of left foot
+“One view is no view”https://coreem.net/core/ankle-stress-views/
+
+Page 16:
+COMPUTED TOMOGRAPHY (CT)
+• CT scan takes multiple x-rays rapidly to 
+recreate internal structures 
+– Images can be manipulated to improve 
+view (“windows” / slices)
+• Iodine-based contrast enhances 
+tissue density differences 
+– IV, oral, rectal forms of contrast
+
+Page 17:
+CT VIEWS = ANATOMICAL PLANES
+Planes:
+– Axial/Transverse: horizontal 
+slices (Divides Superior and 
+Inferior)
+– Coronal: Longitudinal slice 
+(Divides Anterior and 
+Posterior)
+– Sagittal: Longitudinal slice 
+(Divides Right and Left)
+17
+Axial/
+
+Page 18:
+CT VIEWS Interpretation:
+• A Axial: looking from the patient’s feet toward the head
+– “Feet at your face” – looking at the image towards the patients’ head  
+– ALWAYS
+• B Coronal: patient is facing you
+• C Sagittal: Looking from the side 
+18Case courtesy of Dr Roberto Schubert, Radiopaedia.org, rID: 15923
+
+Page 19:
+CT SCAN – CHEST, ABD, PELVIS
+• Axial view • Coronal view
+19
+https://radiopaedia.org/cases/52597/studies/58511?lang=us
+
+Page 20:
+CT SCAN – CHEST, ABD, PELVIS
+• Sagittal view
+20
+https://radiopaedia.org/cases/52597/studies/58511?lang=us
+
+Page 21:
+CT - INDICATIONS* 
+• Excellent diagnostic accuracy, specifically for bones:
+– Occult/subtle fractures not visible on radiography 
+– Assess fracture healing (especially if concerned for non-union / lack of healing)
+– Fully evaluate complex fractures or polytraumatic injuries  
+• CT arthrogram
+– Contrast is directly injected into joint (sterile technique) to identify intra-articular loose 
+bodies or specific issues
+• Not very common
+*Multiple other indications
+
+Page 22:
+RADIATION RISK
+• Despite accuracy, CT scan is not first-line MSK imaging modality in 
+most cases
+– High radiation compared to radiography
+– Expensive, non-portable
+– Certain contraindications (next slide)
+• For certain settings, CT scan may be first line or indicated after 
+initial XRay: 
+– Major, high-energy trauma (significant force)
+– Complex fractures, open fracture, joint involvement identified on XRay
+
+Page 23:
+CT SCAN – CONSIDERATIONS
+• True allergy to contrast dye (iodinated)
+– Allergy to contrast = urticaria / hives, facial edema, bronchospasm
+• Side effects of contrast = nausea, sweating/hot flashes
+– Shellfish, topical iodine allergy are not cross-reactive with contrast
+• Decreased renal function / kidney disease
+• Significant metal in area to be imaged can create artifact 
+(streaking that obscures view - pictured)
+• Pregnancy
+– Harm to fetal tissue depends on gestational age and dose of radiation; consider MRI / 
+ultrasound if appropriate
+• Patient habitus
+– Diameter of CT scanner; table weight limit (esp if >300 lb)
+• Clinical tip: Know weight limit of tables + scales at your facility
+Case courtesy of Dinesh Brand, Radiopaedia.org, rID: 67631
+
+Page 24:
+DUAL-ENERGY X-RAY 
+ABSORPTIOMETRY (DXA)
+• Bone strength determined by bone mineral 
+density (BMD)
+– BMD is decreased in osteoporosis; loss is associated with increased bone 
+fracture risk
+• Dual energy X-ray absorptiometry (DXA) scans
+– Two x-ray beams at different energy levels are passed through specific locations of 
+patient bones (hip / wrist / spine); tissue absorption is subtracted and bone 
+density is estimated
+– Resultant calculation is compared to population and age matched values (Z/T 
+scores)
+
+Page 25:
+DUAL-ENERGY X-RAY 
+ABSORPTIOMETRY (DXA)
+• Information from DXA scans is used to:
+– Diagnose osteoporosis or low bone mineral density (BMD),
+• Through screening or for evaluation of other conditions
+• T-scores / Z-scores
+– Estimate future fracture risk
+– Monitor effectiveness of treatments to prevent bone density loss
+
+Page 26:
+BONE SCINTIGRAPHY (BONE SCAN)
+• Nuclear medicine technique
+– Very sensitive for evaluating 
+hyperactive bone activity
+• “Hot spots” = areas of increased 
+bone activity / remodeling 
+(radioisotope tracer)
+– Bony malignancy / tumors
+– Infection, fractures
+– Radiation exposure depends on 
+specific study
+26Case courtesy of Dr Henry Knipe, Radiopaedia.org, rID: 31380
+
+Page 27:
+BONE SCAN
+INDICATIONS
+• Bone metastases 
+– Cancer spread to bone
+• Primary bone tumors 
+– Cancer starting in bone
+• Osteomyelitis 
+– Bacterial bone infection
+• Occult (hidden) fractures
+
+Page 28:
+MAGNETIC RESONANCE IMAGING (MRI)
+• Uses a strong magnetic field with 
+radiofrequency pulses that are transmitted to 
+receiver coils 
+– No ionizing radiation
+• Detects changes in tissue water content 
+(inflammation, neoplasm, ischemia, etc), and 
+computer collects differences in tissue signals 
+(T1 vs T2) & recreates image of structures
+• Gadoliunium-based contrast has less
+potential for allergy, renal problems
+• Lengthy exam time, $$, noisy
+• May require medication for claustrophobia
+28
+Case courtesy of Dr Roberto Schubert, Radiopaedia.org, rID: 16703
+
+Page 29:
+MRI
+INDICATIONS
+• Best for evaluating of non-bony tissue
+– Meniscus, articular cartilage, ligaments, 
+tendons, brain, spinal cord, etc.
+• Can also provide bony detail if not 
+visible/detailed on CT scan
+– Avascular necrosis, osteomyelitis, 
+malignancy
+• MR arthrogram
+– Contrast is directly injected into joint
+(sterile technique)
+– Detects complex soft tissue injuries or 
+labral tears 29
+Axial 
+“Feet at 
+your face”
+Coronal Sagittal
+Case courtesy of Mohd Radhwan Bin Abidin, Radiopaedia.org, rID: 147131
+
+Page 30:
+MRI
+CONTRAINDICATIONS
+• Unstable/uncooperative patient
+• Inability to lay flat / tolerate position
+• Ferromagnetic materials
+– Beds, oxygen tanks, crash carts, keys, etc.
+– Metallic objects in body (metal foreign body, some 
+tattoo inks, bullets, piercings, shotgun pellets, etc)
+– Certain pacemakers, implanted cardiac valves, clips, 
+cochlear implants…
+• Many newer implants are not ferromagnetic, but can 
+cause artifact on image; check with manufacturer
+
+Page 31:
+ULTRASOUND
+• Sound waves are transmitted into 
+tissues and images are produced by 
+the “bounceback” of soundwaves 
+transmitted to the ultrasound 
+transducer
+– No ionizing radiation
+– Doppler ultrasound measures blood 
+flow (vascular studies)
+
+Page 32:
+ULTRASOUND
+INDICATIONS
+• Frequently used in children / 
+pregnant women for multiple 
+conditions
+• Best for soft tissue conditions 
+(tendons and muscles)
+– Minimal use in evaluating bone
+• Guided assistance for joint injections, 
+biopsies, soft tissue drainage
+CONTRAINDICATIONS
+• Few if any; patient preference
+• Operator / skill dependent
+
+Page 33:
+MUSCULOSKELETAL IMAGING
+• Choice of Imaging:
+1. Clinical presentation: history, mechanism of injury (MOI), location of pain
+2. Differential Diagnoses / Urgency of study
+3. Availability of imaging modalities
+• American College of Radiology (ACR) publishes guidelines for 
+imaging
+– https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria
+• Plain radiography is the initial imaging of choice for most
+MSK conditions
+
+Page 34:
+A P P R O A C H  T O  
+O R D E R I N G  &  
+I N T E R P R E T I N G  
+R A D I O G R A P H S :
+F R A C T U R E S
+
+Page 35:
+FIRST STEPS WITH RADIOGRAPHS
+• Fracture = disruption of structural continuity of bony cortex; a “break” in a bone
+– Fractures can be complete (fully through entire bone) or incomplete (partially through bone)
+• When viewing fracture radiographs, make sure of the following:
+– Is this the correct patient and correct study?
+• Identity, laterality, study date
+• Correct view and orientation
+• Know your patient; be prepared to discuss history
+– What do I expect to find?
+– Does this match the clinical history? 
+– Describe what you see
+• Name of bone, fracture location, fracture pattern, position of bone
+
+Page 36:
+AT THE END OF THIS LECTURE, MY GOALS FOR 
+YOU ARE TO BE ABLE TO:
+Answer the following questions for an XRay:
+1. What is this bone? 
+2. Is it broken?
+3. Where in the bone is it broken and how (type of 
+fracture)?
+4. Describe what you see to a specialist. 
+5. Decipher a basic radiology report.
+
+Page 37:
+-Condition of overlying tissue
+-Name of the injured bone / location of 
+fracture
+-Fracture Line Orientation / Pattern
+-Displacement / Angulation
+Basic Fracture Description
+
+Page 38:
+OPEN FRACTURES
+• When evaluating acute injuries with possible 
+fractures, closely evaluate skin integrity
+– Remove clothing, splints, bandages
+– Open fracture = fracture with bone fragments that 
+penetrate overlying skin
+– Cannot reliably exclude open fracture based on Xray 
+• ANY skin wound / puncture near fracture should 
+be evaluated as an open fracture
+– If a fracture is open, or could be  lead with this 
+information when communicating to specialist
+– Open fractures require urgent evaluation by 
+orthopedics + needs IV antibiotics / surgery 38
+https://orthoinfo.aaos.org/en/diseases--conditions/open-fractures/
+Do not miss
+
+Page 39:
+39
+LOCATION
+Illustrations by Sandra Ehrler. 
+Reproduced with Permission.
+• Which bone? Which part of the bone?  
+• Ex. Epiphysis, diaphysis/shaft
+• Joint involvement?
+• Also referred to as ‘articular extension’
+
+Page 40:
+ARTICULAR EXTENSION
+• Fracture involving the joint
+– Usually requires surgery
+40
+Case courtesy of Dr Aditya Shetty, Radiopaedia.org, rID: 28755
+Radiology report:
+“History of fall with injury to 
+right wrist. 
+Distal radial fracture that 
+extends to intra-articular 
+surface.”
+
+Page 41:
+NAME THE BONES
+(NO FRACTURES)
+41Case courtesy of Mohd Radhwan Bin Abidin, 
+Radiopaedia.org, rID: 148399 Case courtesy of Gni Liew, Radiopaedia.org, rID: 166765
+Case courtesy of Bruno Di Muzio, Radiopaedia.org, 
+rID: 44153
+Knee - left
+Elbow - right
+Shoulder - left
+
+Page 42:
+NAME FRACTURE LOCATION + BONE
+42
+Case courtesy of Frank Gaillard, Radiopaedia.org, rID: 18162
+Radiopaedia.org, rID: 13768
+Case courtesy of Frank Gaillard, Radiopaedia.org, rID: 18281
+
+Page 43:
+-Condition of overlying tissues
+-Name of the injured bone / location of 
+fracture
+-Fracture Line Orientation / Pattern
+-Displacement / Angulation
+Basic Fracture Description
+
+Page 44:
+FRACTURE LINE ORIENTATION
+3 POSSIBLE ORIENTATIONS OF FRACTURE LINES:
+• Transverse: Fracture 
+line runs perpendicular 
+to length
+• Oblique: Fracture line 
+runs diagonally at an 
+angle to long axis
+• Spiral: fracture line 
+runs diagonally at angle 
+to long axis and has 
+rotational 
+component (high 
+energy)
+
+Page 45:
+45Case courtesy of Dr Jeremy Jones, Radiopaedia.org, rID: 6387
+
+Page 46:
+Case courtesy of Dr Piotr Gołofit, Radiopaedia.org, rID: 48267 46
+
+Page 47:
+Case courtesy of Dr Andrew Dixon, Radiopaedia.org, rID: 2570447
+
+Page 48:
+INCOMPLETE FRACTURES
+• Incomplete fractures = break is not 
+completely through bone
+• More common in children (pliable 
+periosteum)
+– Bowing: Bending of bone without breaking
+– Greenstick: Partial-thickness fracture; 
+cortex/periosteum interrupted on one side
+– Torus / Buckle: Axial load causes 
+“buckling” of cortex and periosteum
+48
+Stay tuned for Salter-Harris fractures (covered in peds ortho) 
+involving the growth plate
+
+Page 49:
+Case courtesy of Dr Jeremy Jones, Radiopaedia.org, rID: 44173
+BOWING
+
+Page 50:
+Case courtesy of Dr Hani Salam, Radiopaedia.org, rID: 13297
+GREENSTICK
+
+Page 51:
+Case courtesy of Dr Hani Salam, Radiopaedia.org, rID: 9611
+TORUS / 
+BUCKLE
+
+Page 52:
+NUMBER OF SEGMENTS
+• 2 bone pieces divided by 1 fracture line
+• ex.  Transverse, oblique, etc.
+• Unless specified as comminuted, this is a ‘typical’ fracture
+Fracture (simple)
+• More than 2 fragments separated by a fracture line 
+• Segmented: a type of comminuted fracture 
+• Two separate fracture lines divide bone 
+into multiple segments
+Comminuted
+
+Page 53:
+NUMBER OF SEGMENTS
+53
+• Typical / simple • Comminuted • Segmental (type of 
+comminuted)
+Case courtesy of Samir Benoudina, 
+Radiopaedia.org, rID: 48182
+Case courtesy of Frank Gaillard, 
+Radiopaedia.org, rID: 7952
+Case courtesy of Hani M. Al Salam, 
+Radiopaedia.org, rID: 13297
+
+Page 54:
+-Condition of overlying tissues
+-Name of the injured bone / location of 
+fracture
+-Fracture Line Orientation / Pattern
+-Displacement / Angulation
+Basic Fracture Description
+
+Page 55:
+NON-DISPLACED FRACTURES 
+• Fracture without loss of 
+anatomic alignment = non-
+displaced fracture
+55
+Case courtesy of Dr Benoudina Samir, Radiopaedia.org, rID: 21948
+
+Page 56:
+DISPLACED FRACTURES = LOSS OF 
+ANATOMIC ALIGNMENT
+• Description of displacement is based on distal 
+fragment in relation to proximal limb
+– Body is assumed to be in anatomic position
+• Think of this as an attempt to answer the 
+question, “what happened to this bone 
+during the fracture?”
+56
+Case courtesy of Bahman Rasuli, Radiopaedia.org, rID: 90137
+
+Page 57:
+• Radiology report: “Completely 
+displaced transverse fracture of 
+the distal radius and ulna with 
+dorsal angulation”
+Case courtesy of Bahman Rasuli, Radiopaedia.org, rID: 90137
+
+Page 58:
+POSITION:  DISPLACED FRACTURES
+• Descriptors of fractures* 
+– Complete displacement 
+• Bone moves totally out of alignment to anatomical normal
+• Describe orientation of distal fragment
+58
+Case courtesy of Bahman Rasuli, Radiopaedia.org, rID: 90137 *Based on distal fragment
+“Completely displaced
+transverse fracture of the 
+distal radius and ulna with 
+dorsal angulation”
+
+Page 59:
+TRANSLATION
+– Descriptors of fractures
+• Translation
+– No deviation from long axis
+– Bone has been shifted (measured in percent 
+or width)
+• Ex. 25% displaced vs 3 mm displaced 
+59
+Illustrations by Sandra Ehrler. Reproduced with Permission.
+
+Page 60:
+TRANSLATION
+60
+•Right tibia
+•Transverse fracture
+•Ventral (~80%) and 
+lateral (10%) translation
+*Description is based 
+on distal fragment
+
+Page 61:
+ANGULATION
+– Descriptors of fractures 
+• Angulation*
+– Angle of deviation from long bone axis
+– Described from anatomic position
+• Dorsal vs volar angulation
+• Varus / valgus angulation
+• Radial / ulnar angulation
+61
+Illustrations by Sandra Ehrler. Reproduced with Permission.
+*Description of position is based on distal fragment displacement
+
+Page 62:
+ANGULATION
+• Dorsal angulation of the distal fragment relative to the long axis of the proximal fragment
+62
+Case courtesy of Bahman Rasuli, Radiopaedia.org, rID: 90137
+“Completely displaced
+transverse fracture of the distal 
+radius and ulna with dorsal 
+angulation”
+Dorsal
+Volar / Palmar
+Volar / Palmar
+
+Page 63:
+ANGULATION
+• Volar angulation of the distal fragment relative to the long axis of the proximal fragment
+63Case courtesy of Anson Chan, Radiopaedia.org, rID: 178086
+“Moderately volar 
+angulated fractures 
+traversing the 
+midshaft radius and 
+ulna.”
+Dorsal
+Volar / Palmar
+Volar / Palmar
+Dorsal
+
+Page 64:
+POSITION:  DISPLACED FRACTURES
+– Descriptors of fractures 
+• Rotation
+– Twisting of distal fragment relative to 
+proximal portion
+– Difficult to see on radiography
+– More obvious on clinical examination when
+looking at joint orientation
+64
+Illustrations by Sandra Ehrler. Reproduced with Permission.
+
+Page 65:
+Case courtesy of Assoc Prof Craig Hacking, 
+Radiopaedia.org, rID: 57656
+ROTATION
+
+Page 66:
+POSITION:  DISPLACED FRACTURES
+• *Description of position is based on distal fragment placement.
+66
+Illustrations by Sandra Ehrler. Reproduced with Permission.
+
+Page 67:
+• “Completely displaced 
+transverse fracture of distal 
+radius and ulna with dorsal 
+angulation”
+Case courtesy of Bahman Rasuli, Radiopaedia.org, rID: 90137
+
+Page 68:
+O T H E R  
+F R A C T U R E  
+PAT T E R N S
+A V U L S I O N
+V E R T E B R A L
+S T R E S S
+P A T H O L O G I C
+F R A C T U R E - D I S L O C A T I O N
+
+Page 69:
+OTHER FRACTURE PATTERNS
+• Avulsion
+– Bony disruption / fracture from 
+sudden, forceful muscle contraction 
+– More common in skeletally-
+immature
+69Case courtesy of Frank Gaillard, Radiopaedia.org, rID: 10356
+
+Page 70:
+OTHER FRACTURE PATTERNS
+• Spinal compression fracture
+– Occurs in vertebral bodies
+70
+Case courtesy of Dr Sajoscha A. Sorrentino, Radiopaedia.org, rID: 20123
+
+Page 71:
+OTHER FRACTURE PATTERNS
+• Stress (fatigue)
+– A fracture in a normal 
+bone due to 
+repeated loading 
+(repetitive physical 
+activity: running, weight 
+lifting, etc).
+
+Page 72:
+OTHER FRACTURE PATTERNS
+• Pathologic fracture
+– Certain radiographic 
+characteristics; “moth eaten” or 
+“lytic” lesions
+– Non-traumatic fractures
+– Suspect malignancy
+• Metastasis vs primary bone 
+lesion
+72
+Left femur osteosarcoma
+Case courtesy of Leonardo Lustosa, 
+Radiopaedia.org, rID: 194015
+
+Page 73:
+OTHER FRACTURE PATTERNS
+• Fracture-dislocation = fracture with concomitant 
+dislocation, in same or different bone
+–Needs surgical repair
+–Many types
+• Galeazzi and Monteggia forearm fracture-dislocations are 
+common (References and Resources)
+
+Page 74:
+IMPORTANT CONCEPTS FOR ORDERING 
+MEDICAL IMAGING
+• When ordering radiographs/medical imaging:
+– Who is this patient?
+• What medical conditions do they have? Medications? Contraindications?
+– Why am I ordering this?
+• Be very specific with the reason for the order
+• Consider if this is the right modality
+– What is the mechanism of injury or disease process?
+• What am I expecting to see?
+– When did the injury / symptom occur?
+• Compare with old images if present
+– How quickly does this study need to happen?
+
+Page 75:
+SUMMARY
+Be systematic
+Document vascular and 
+neuro status of distal 
+region
+Verify the patient
+Obtain quality films
+– Multiple correct views
+– Joint visualization
+Systematically identity fractures
+– Compare to unaffected side as needed
+Describe fractures as accurately as possible
+– Location
+– Orientation / Pattern / Segments
+– Position / Displacement
+83
+*Look at your own films and correlate findings with clinical exam
+Clinical pearl: if you are sending the patient to 
+the ED and the patient is agreeable, call ahead
+and leave your contact info if the ED provider 
+wishes to speak with you.
+
+Page 76:
+REFERENCES
+• Espinosa JA, Nolan TW. Reducing errors made by emergency physicians in interpreting radiographs: longitudinal study. BMJ. 
+2000;320(7237):737-740.
+• Eng J, Mysko WK, Weller GE, et al. Interpretation of emergency department radiographs a comparison of emergency medicine 
+physicians with radiologists, residents with faculty, and film with digital display. AJR AM J Roentgenol. 2000;175:1233-1238.
+• Martin J, Marsh JL, Nepola JV, Dirchl DR, Hurwitz S, DeCoster TA. Radiographic fracture assessments: which ones can we 
+reliably make? J Orthop Trauma. 2000;14(6):379-385.
+• Bolander, S. A systematic approach to describing fractures. JAAPA. 2019;32(5):23-29.
+• Beutler, et al. General principles of fracture management: bone healing and fracture description. Accessed 2024. Ed. Gammons,
+Asplund, Grayzel. Wolters-Kluwer: UpToDate.
+• Radiopaedia. http://radiopaedia.org/. Accessed Summer 2025 (June – September), specific cases attributed throughout. 
+• Smithuis R. Radiological Society of the Netherlands.  Radiology Assistant Educational site. http://www.radiologyassistant.nl. 
+Accessed September 8th, 2024.
+• StatPearls.
+
+Page 77:
+Copyrights apply
+
+Page 78:
+86
+GALEAZZI FRACTURE-
+DISLOCATION
+• Radial shaft fracture (middle/distal 
+third) with associated dislocation 
+of the distal radioulnar joint 
+(DRUJ)
+86
+Case courtesy of Dr Alexandra Stanislavsky, Radiopaedia.org, rID: 10961
+
+Page 79:
+87
+MONTEGGIA FRACTURE-
+DISLOCATION
+• Ulna shaft (proximal third) fx 
+with dislocation of radial head
+87
+Case courtesy of Assoc Prof Frank Gaillard, Radiopaedia.org, rID: 8012
