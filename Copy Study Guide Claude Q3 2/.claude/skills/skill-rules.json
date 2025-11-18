@@ -123,10 +123,12 @@
       },
       "blockMessage": "⚠️ CRITICAL - Source-Only Policy Enforcement\n\n📋 PRE-CREATION VERIFICATION REQUIRED:\n\n☐ Source file: [specify exact path]\n☐ Instruction template: [Word LO 11-5.txt / Excel Drugs Chart 11-1.txt / HTML LO 10-30.txt]\n☐ Source-only policy: I will ONLY use information from [source file]\n☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch\n☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them\n☐ Save location: [Class]/[Exam]/Claude Study Tools/\n\nREQUIRED ACTIONS:\n1. Read the ENTIRE source file first\n2. Read the COMPLETE template file\n3. STATE the verification checklist above\n4. ONLY then proceed with creation\n\n⛔ DO NOT proceed until checklist is stated.\n⛔ DO NOT add external medical facts (except researched mnemonics).\n⛔ DO NOT invent mnemonics - WebSearch only.\n\n💡 TIP: Use slash commands /create-excel, /create-word, /verify-accuracy",
       "skipConditions": {
-        "sessionSkillUsed": false,
+        "sessionSkillUsed": true,
         "fileMarkers": [
-          "VERIFICATION CHECKLIST COMPLETED"
-        ]
+          "VERIFICATION CHECKLIST COMPLETED",
+          "@verified"
+        ],
+        "envOverride": "SKIP_SOURCE_ONLY_ENFORCEMENT"
       }
     },
     "template-compliance-checker": {

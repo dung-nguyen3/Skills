@@ -2,6 +2,9 @@
 .claude/hooks/state/*.json
 .claude/hooks/state/session_*
 
+# Study guide session cache (verification tracking, should not be committed)
+.claude/study-guide-cache/
+
 # Node modules (if any hooks use npm packages)
 node_modules/
 

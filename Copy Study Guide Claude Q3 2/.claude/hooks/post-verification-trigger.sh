@@ -32,15 +32,19 @@ if [[ ! "$file_path" =~ \.(xlsx|docx|html)$ ]]; then
     exit 0  # Not a study guide format, skip
 fi
 
-# State directory for tracking verification
-state_dir="$CLAUDE_PROJECT_DIR/.claude/hooks/state"
+# State directory for tracking verification (using study-guide-cache)
+state_dir="$CLAUDE_PROJECT_DIR/.claude/study-guide-cache/${session_id}"
 mkdir -p "$state_dir"
 
-post_verification_file="$state_dir/${session_id}_post_verification.json"
+# Log this file creation
+echo "$(date +%s):$file_path:created" >> "$state_dir/created-files.log"
 
-# Check if post-verification was already completed
+post_verification_file="$state_dir/post-verification.json"
+
+# Check if post-verification was already completed for this session
 if [[ -f "$post_verification_file" ]]; then
-    exit 0  # Already done, don't spam
+    # Still log the file, but don't show reminder again
+    exit 0
 fi
 
 # Extract filename from path
@@ -87,8 +91,11 @@ State: "Post-creation verification complete" after checking above
 💡 Or use detailed verification:
 /verify-accuracy "$file_path" "[source-file]"
 
-To mark post-verification complete, create file:
-$post_verification_file
+To mark post-verification complete, I need to:
+1. Run all 4 verification checks above
+2. State "Post-creation verification complete"
+3. Create completion marker with:
+   echo '{"verified":true,"timestamp":"'"\$(date -Iseconds)"'"}' > "$post_verification_file"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF

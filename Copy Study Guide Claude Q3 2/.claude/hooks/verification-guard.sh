@@ -32,15 +32,16 @@ if [[ ! "$file_path" =~ \.(xlsx|docx|html)$ ]]; then
     exit 0  # Not a study guide format, allow
 fi
 
-# State directory for tracking verification
-state_dir="$CLAUDE_PROJECT_DIR/.claude/hooks/state"
+# State directory for tracking verification (using study-guide-cache)
+state_dir="$CLAUDE_PROJECT_DIR/.claude/study-guide-cache/${session_id}"
 mkdir -p "$state_dir"
 
-verification_file="$state_dir/${session_id}_verification.json"
+verification_file="$state_dir/verification.json"
 
 # Check if verification checklist was completed this session
 if [[ -f "$verification_file" ]]; then
-    # Verification was done, allow the operation
+    # Verification was done, log this file creation attempt
+    echo "$(date +%s):$file_path:pre-verified" >> "$state_dir/operations.log"
     exit 0
 fi
 
@@ -78,8 +79,11 @@ VERIFICATION CHECKLIST:
 
 ⚠️  This block ensures source-only policy and quality standards.
 
-To mark verification complete, create file:
-$verification_file
+To mark verification complete, I need to:
+1. Read the entire source file
+2. State the verification checklist
+3. Create verification marker with:
+   echo '{"verified":true,"timestamp":"'"\$(date -Iseconds)"'","file":"$file_path"}' > "$verification_file"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF

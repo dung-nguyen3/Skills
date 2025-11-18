@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Stop hook that checks for incomplete verification at session end
+# Stop hook that checks for incomplete verification and runs accuracy validation
 # This runs when Claude Code session stops
 
 # Read session information from stdin
@@ -10,85 +10,126 @@ session_info=$(cat)
 # Extract session ID
 session_id=$(echo "$session_info" | jq -r '.session_id // empty')
 
-# State directory
-state_dir="$CLAUDE_PROJECT_DIR/.claude/hooks/state"
+# State directory (using study-guide-cache)
+cache_dir="$CLAUDE_PROJECT_DIR/.claude/study-guide-cache/${session_id}"
 
-# Check if state directory exists
-if [[ ! -d "$state_dir" ]]; then
-    exit 0  # No state to check
+# Check if cache directory exists
+if [[ ! -d "$cache_dir" ]]; then
+    exit 0  # No study guide work this session
 fi
 
-verification_file="$state_dir/${session_id}_verification.json"
-post_verification_file="$state_dir/${session_id}_post_verification.json"
+verification_file="$cache_dir/verification.json"
+post_verification_file="$cache_dir/post-verification.json"
+created_files_log="$cache_dir/created-files.log"
 
-# Check for incomplete work scenarios
+# Initialize check results
 incomplete_work=false
 warnings=()
+accuracy_issues=()
 
 # Scenario 1: Pre-verification done but post-verification not done
 if [[ -f "$verification_file" ]] && [[ ! -f "$post_verification_file" ]]; then
     incomplete_work=true
-    warnings+=("⚠️  Pre-creation verification was completed, but post-creation verification was NOT completed")
+    warnings+=("⚠️  Pre-creation verification completed, but post-creation verification was NOT completed")
 fi
 
-# Scenario 2: Check if any study guide files were created this session
-created_files_log="$state_dir/${session_id}_created_files.log"
+# Scenario 2: Check if study guide files were created
 if [[ -f "$created_files_log" ]]; then
     file_count=$(wc -l < "$created_files_log" 2>/dev/null || echo "0")
-    if [[ $file_count -gt 0 ]] && [[ ! -f "$post_verification_file" ]]; then
-        incomplete_work=true
-        warnings+=("⚠️  Created $file_count study guide file(s) but did not run post-verification")
+
+    if [[ $file_count -gt 0 ]]; then
+        if [[ ! -f "$post_verification_file" ]]; then
+            incomplete_work=true
+            warnings+=("⚠️  Created $file_count study guide file(s) but did not run post-verification")
+        fi
+
+        # ACCURACY VALIDATION: Check created files for common issues
+        while IFS=: read -r timestamp filepath action; do
+            filename=$(basename "$filepath")
+
+            # Check for vague language indicators in filename
+            if [[ "$filename" =~ [Dd]raft|[Tt]emp|[Tt]est|WIP ]]; then
+                accuracy_issues+=("📄 $filename - Filename suggests incomplete work (draft/temp/test)")
+            fi
+
+            # Log file for accuracy tracking
+            echo "$filepath" >> "$cache_dir/files-needing-verification.txt"
+        done < "$created_files_log"
     fi
 fi
 
-# If no incomplete work, exit cleanly
-if [[ "$incomplete_work" = false ]]; then
-    # Clean up old session state files (keep only last 5 sessions)
-    cd "$state_dir"
-    ls -t ${session_id}_*.json 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
+# If no issues, clean up and exit
+if [[ "$incomplete_work" = false ]] && [[ ${#accuracy_issues[@]} -eq 0 ]]; then
+    # Clean up old session caches (keep last 5 sessions)
+    parent_dir="$CLAUDE_PROJECT_DIR/.claude/study-guide-cache"
+    if [[ -d "$parent_dir" ]]; then
+        cd "$parent_dir"
+        ls -t | tail -n +6 | xargs rm -rf 2>/dev/null || true
+    fi
     exit 0
 fi
 
-# Display warnings about incomplete work
+# Display warnings
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️  INCOMPLETE VERIFICATION DETECTED
+⚠️  STUDY GUIDE QUALITY CHECK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Session ending with incomplete verification work:
-
-$(printf '%s\n' "${warnings[@]}")
-
-📋 WHAT THIS MEANS:
-Study guides were created but NOT verified for accuracy.
-This could mean:
-- Incorrect information from source
-- Template non-compliance
-- Merged cells incorrectly grouped
-- Missing content
-
-🎯 RECOMMENDED ACTIONS FOR NEXT SESSION:
-1. Run post-creation verification on created files
-2. Use: /verify-accuracy "[file]" "[source]"
-3. Or manually verify all 4 quality checks
-
-💡 FILES THAT NEED VERIFICATION:
 EOF
 
-# List files that were created
-if [[ -f "$created_files_log" ]]; then
+if [[ "$incomplete_work" = true ]]; then
+    echo "INCOMPLETE VERIFICATION DETECTED:"
+    echo ""
+    printf '%s\n' "${warnings[@]}"
+    echo ""
+fi
+
+if [[ ${#accuracy_issues[@]} -gt 0 ]]; then
+    echo "POTENTIAL ACCURACY ISSUES:"
+    echo ""
+    printf '%s\n' "${accuracy_issues[@]}"
+    echo ""
+fi
+
+# Show files needing verification
+if [[ -f "$cache_dir/files-needing-verification.txt" ]]; then
+    echo "FILES REQUIRING VERIFICATION:"
     while IFS= read -r file; do
-        echo "   📄 $file"
-    done < "$created_files_log"
+        echo "   📄 $(basename "$file")"
+    done < "$cache_dir/files-needing-verification.txt"
+    echo ""
+fi
+
+# Recommendations based on issue count
+total_issues=$((${#warnings[@]} + ${#accuracy_issues[@]}))
+
+if [[ $total_issues -ge 3 ]]; then
+    cat <<EOF
+🤖 RECOMMENDED: Use accuracy verification agent
+   Multiple issues detected - automated verification recommended
+
+   Next session, run:
+   /verify-accuracy [file-path] [source-path]
+
+EOF
+else
+    cat <<EOF
+🎯 RECOMMENDED ACTIONS FOR NEXT SESSION:
+   1. Run post-creation verification on all files
+   2. Use /verify-accuracy for deep analysis
+   3. Verify source-only policy followed
+   4. Check for vague language or invented information
+
+EOF
 fi
 
 cat <<EOF
+💡 PREVENTION:
+   - Always complete post-verification before ending session
+   - Use slash commands (/create-excel, /create-word) for automatic verification
+   - State "Post-creation verification complete" after checks
 
-To prevent this warning:
-- Always state "Post-creation verification complete" after creating study guides
-- Use slash commands which enforce verification workflows
-- Complete all quality checks before ending session
-
+Session cache: $cache_dir
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
