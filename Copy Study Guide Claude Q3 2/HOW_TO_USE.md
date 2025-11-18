@@ -904,24 +904,58 @@ Claude Templates/
 
 ---
 
-## Next Steps
+## Infrastructure Status
 
-**Phase 1 (COMPLETE):** Foundation infrastructure
+**Phase 1 (COMPLETE):** Foundation
 - ✓ Settings and permissions
 - ✓ Skill trigger rules
 - ✓ UserPromptSubmit hook
 - ✓ Slash commands
 
-**Phase 2 (Coming Soon):** Quality Gates
-- PreToolUse hook - Blocks writes without verification
-- PostToolUse hook - Auto-reminder after creation
-- Stop hook - Catches incomplete work
+**Phase 2 (COMPLETE):** Quality Gates
+- ✓ PreToolUse hook - Blocks writes without verification
+- ✓ PostToolUse hook - Auto-reminder after creation
+- ✓ Stop hook - Catches incomplete work
+- ✓ SessionStart hook - Shows requirements at session start
 
-**Phase 3 (Coming Soon):** Auto-Activation Skills
-- Actual skill implementations (SKILL.md files)
-- mnemonic-researcher skill
-- study-guide-verifier skill
-- source-only-enforcer skill
+**Phase 3 (PARTIAL):** Native Skills
+- ✓ source-only-enforcer (SKILL.md created - 80%+ activation)
+- ✓ study-guide-verifier (SKILL.md created - 80%+ activation)
+- ⏳ mnemonic-researcher (using skill-rules.json - 50% activation)
+- ⏳ template-compliance-checker (using skill-rules.json - 50% activation)
+- ⏳ drug-classification-assistant (using skill-rules.json - 50% activation)
+
+**Reliability Improvements (COMPLETE):**
+- ✓ Error resilience in all hooks (jq failures, fallback session IDs)
+- ✓ Environment override support (`SKIP_STUDY_GUIDE_VERIFICATION=1`)
+- ✓ Separate SessionStart script (maintainable)
+- ✓ TypeScript hook dependencies (package.json, tsconfig.json)
+
+---
+
+## Emergency Override
+
+If hooks malfunction or block legitimate operations, you can temporarily disable them:
+
+**Method 1: Environment Variable (Recommended)**
+```bash
+export SKIP_STUDY_GUIDE_VERIFICATION=1
+# Your study guide creation command
+unset SKIP_STUDY_GUIDE_VERIFICATION
+```
+
+**Method 2: File Marker**
+Add `@verified` comment to your source files to skip enforcement.
+
+**Method 3: Session-Based**
+Once verification is completed in a session, subsequent study guides are allowed automatically (no repeated blocking).
+
+**When to use:**
+- Hooks are malfunctioning
+- Emergency study guide creation needed
+- Testing or debugging
+
+**Important:** Re-enable verification after emergency use!
 
 ---
 

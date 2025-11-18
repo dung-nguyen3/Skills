@@ -1,16 +1,32 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 # PostToolUse hook that reminds to run post-creation verification
 # This runs AFTER Edit, MultiEdit, or Write tools complete successfully
 
+# Emergency override: Skip all verification checks
+if [[ -n "$SKIP_STUDY_GUIDE_VERIFICATION" ]]; then
+    exit 0
+fi
+
+# Check for jq dependency
+if ! command -v jq &>/dev/null; then
+    echo "⚠️  Warning: jq not found, skipping post-verification hook" >&2
+    exit 0  # Fail-open if jq is missing
+fi
+
 # Read tool information from stdin
 tool_info=$(cat)
 
-# Extract relevant data
-tool_name=$(echo "$tool_info" | jq -r '.tool_name // empty')
-file_path=$(echo "$tool_info" | jq -r '.tool_input.file_path // empty')
-session_id=$(echo "$tool_info" | jq -r '.session_id // empty')
+# Extract relevant data with error handling
+tool_name=$(echo "$tool_info" | jq -r '.tool_name // empty' 2>/dev/null || echo "")
+file_path=$(echo "$tool_info" | jq -r '.tool_input.file_path // empty' 2>/dev/null || echo "")
+session_id=$(echo "$tool_info" | jq -r '.session_id // empty' 2>/dev/null || echo "")
+
+# Fallback session ID if extraction failed
+if [[ -z "$session_id" ]]; then
+    session_id="fallback-$(date +%Y%m%d-%H%M%S)"
+fi
 
 # Only check Write/Edit/MultiEdit tools
 if [[ ! "$tool_name" =~ ^(Edit|MultiEdit|Write)$ ]]; then

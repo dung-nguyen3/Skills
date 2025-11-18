@@ -1,14 +1,30 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 # Stop hook that checks for incomplete verification and runs accuracy validation
 # This runs when Claude Code session stops
 
+# Emergency override: Skip all verification checks
+if [[ -n "$SKIP_STUDY_GUIDE_VERIFICATION" ]]; then
+    exit 0
+fi
+
+# Check for jq dependency
+if ! command -v jq &>/dev/null; then
+    echo "⚠️  Warning: jq not found, skipping session check" >&2
+    exit 0  # Fail-open if jq is missing
+fi
+
 # Read session information from stdin
 session_info=$(cat)
 
-# Extract session ID
-session_id=$(echo "$session_info" | jq -r '.session_id // empty')
+# Extract session ID with error handling
+session_id=$(echo "$session_info" | jq -r '.session_id // empty' 2>/dev/null || echo "")
+
+# Fallback session ID if extraction failed
+if [[ -z "$session_id" ]]; then
+    session_id="fallback-$(date +%Y%m%d-%H%M%S)"
+fi
 
 # State directory (using study-guide-cache)
 cache_dir="$CLAUDE_PROJECT_DIR/.claude/study-guide-cache/${session_id}"
