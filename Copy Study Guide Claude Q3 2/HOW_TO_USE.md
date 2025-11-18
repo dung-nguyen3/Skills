@@ -6,7 +6,10 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 ### 1. Slash Commands (Quick Actions)
 - `/create-word` - Create Word study guide from source file
-- `/create-excel` - Create Excel drug chart from source file
+- `/create-excel` - Create 4-tab Excel drug chart (pharmacology)
+- `/create-drug-html` - Create interactive HTML drug reference (pharmacology)
+- `/create-lo-guide` - Create HTML learning objectives guide (ANY medical topic)
+- `/create-clinical-guide` - Create clinical assessment guide (history & physical exam)
 - `/verify-accuracy` - Deep accuracy analysis of existing study guide
 
 ### 2. Skill Auto-Activation System
@@ -102,6 +105,143 @@ Your study guide folder now has automated quality controls and shortcuts:
 - You want to double-check an existing study guide
 - You made manual edits and want accuracy check
 - Source file was updated and you need to sync
+
+---
+
+### Example 4: Create Interactive HTML Drug Chart
+
+**You say:**
+```
+/create-drug-html Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+```
+
+**What happens:**
+1. Claude loads the Drug Chart HTML template
+2. States the verification checklist
+3. Reads your source file completely
+4. Creates single-page interactive HTML with:
+   - Drug Classes & Comparisons (with key similarities/differences)
+   - Master Drug Chart (sortable by clicking headers)
+   - Quick Reference (first-line treatments, mnemonics)
+5. Researches mnemonics via WebSearch
+6. Runs post-creation verification
+7. Saves to: `Pharmacology/Exam 3/Claude Study Tools/HIV_Antivirals_Reference_Chart.html`
+
+**Best for:**
+- Quick mobile reference during rotations
+- Offline study (works without internet)
+- Comparing drugs within classes visually
+
+---
+
+### Example 5: Create Learning Objectives Guide (Any Medical Topic)
+
+**You say:**
+```
+/create-lo-guide Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
+```
+
+**What happens:**
+1. Claude loads the HTML LO template
+2. States the verification checklist
+3. Reads your source file completely
+4. Creates 4-tab HTML study guide with:
+   - Tab 1: Learning Objectives (Q&A format for each LO)
+   - Tab 2: Key Comparisons (focused 2-3 way comparison tables)
+   - Tab 3: Master Comparison Tables (complete differential diagnosis)
+   - Tab 4: Summary (high-yield pearls, mnemonics, "If X Think Y")
+5. Researches mnemonics via WebSearch
+6. Runs post-creation verification
+7. Saves to: `Clinical Medicine/Exam 2/Claude Study Tools/Cardiovascular_Disease_Study_Guide.html`
+
+**Works for ALL medical topics:**
+- Pathophysiology (cardiovascular, hematology, immunology)
+- Clinical medicine (rheumatology, endocrinology)
+- Physiology (respiratory, renal)
+- Procedures and techniques
+- ANY lecture with learning objectives
+
+---
+
+### Example 6: Create Clinical Assessment Guide
+
+**You say:**
+```
+/create-clinical-guide "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
+```
+
+**What happens:**
+1. Claude loads the Clinical Assessment template
+2. States the verification checklist
+3. Reads your source file completely
+4. Creates interactive HTML organized by onset (Acute/Subacute/Chronic) with:
+   - Complete HPI (OLDCAARTS) - exact patient questions to ask
+   - Essential PMH, FH, SH - relevant history elements
+   - Focused ROS - checkbox format for all systems
+   - Detailed Physical Exam - inspection, palpation, specialized tests
+   - Differential diagnosis by presentation pattern
+   - Clinical decision trees
+5. Follows Medical History Card format exactly
+6. Runs post-creation verification
+7. Saves to: `Clinical Medicine/Exam 1/Claude Study Tools/Leg_Pain_Clinical_Assessment_Guide.html`
+
+**Best for:**
+- OSCE preparation
+- Physical diagnosis courses
+- Clinical rotations
+- Patient encounter practice
+- Chief complaint workups
+
+---
+
+## Template Selection Guide
+
+### Which Command Should I Use?
+
+| Content Type | Recommended Command | Output Format |
+|--------------|---------------------|---------------|
+| **Pharmacology (drugs)** | `/create-excel` OR `/create-drug-html` | Excel or HTML |
+| **Any medical topic with learning objectives** | `/create-lo-guide` | HTML |
+| **Clinical history & physical exam** | `/create-clinical-guide` | HTML |
+| **Word document needed** | `/create-word` | Word (any topic) |
+
+### Detailed Selection Guide
+
+**Use `/create-excel` when:**
+- Creating comprehensive drug charts
+- Need 4-tab format (Details, Comparisons, Master Chart, Pearls)
+- Want print-friendly Excel for exam prep
+- Studying pharmacology: antibiotics, antivirals, antineoplastics, cardiovascular drugs
+
+**Use `/create-drug-html` when:**
+- Creating quick drug reference for mobile
+- Need offline-ready HTML file
+- Want sortable drug tables
+- Same content as Excel but more portable
+
+**Use `/create-lo-guide` when:**
+- Source has learning objectives
+- ANY medical topic: pathophysiology, diseases, procedures, physiology
+- Examples: Cardiovascular disease, Hematology II, Immunology, Rheumatology, Respiratory physiology
+- Want 4-tab HTML with Q&A, comparisons, master tables, summary
+
+**Use `/create-clinical-guide` when:**
+- Learning history-taking and physical examination
+- Need chief complaint workup (e.g., "Leg Pain", "Headache", "Chest Pain")
+- Want OLDCAARTS format with exact patient questions
+- Preparing for OSCE or clinical rotations
+- Need differential diagnosis by onset (acute/subacute/chronic)
+
+**Use `/create-word` when:**
+- School requires Word document submission
+- Need print-friendly document
+- Works for any medical topic
+
+### Can I Use Multiple Templates?
+
+**Yes!** For pharmacology, consider creating BOTH:
+- `/create-excel` - Comprehensive study (detailed tables, comparisons)
+- `/create-drug-html` - Quick mobile reference (same content, different format)
 
 ---
 

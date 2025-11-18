@@ -24,7 +24,7 @@ VERIFICATION CHECKLIST:
 ### Step 2: Load Template
 
 Read and understand the complete template:
-- **File**: `Copy Study Guide Claude Q3 2/Claude Templates/Excel Drugs Chart 11-1.txt`
+- **File**: `Example claude study guides/Excel Drug Chart/Excel Drugs Chart 11-1.txt`
 - Read ALL 1,144 lines before starting
 - Note soft pastel color codes, structure, formatting rules
 - Review Python implementation examples

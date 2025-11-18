@@ -1,18 +1,21 @@
-# Pharmacy Study Guide Automation
+# Medical Study Guide Automation
 
-Automated study guide creation system with quality verification for pharmacy school.
+Automated study guide creation system with quality verification for **ALL medical specialties**: pharmacology, pathophysiology, clinical medicine, physical examination, and procedures.
 
 ## Quick Start
 
-**Create a study guide:**
+**Create a study guide** (choose based on content type):
 ```
-/create-word [source.txt]
-/create-excel [source.txt]
+/create-excel [source.txt]           # Pharmacology - 4-tab drug chart
+/create-drug-html [source.txt]       # Pharmacology - interactive HTML
+/create-lo-guide [source.txt]        # Any medical topic with LOs
+/create-clinical-guide [source.txt]  # History & physical exam
+/create-word [source.txt]            # Word format (any topic)
 ```
 
 **Verify accuracy:**
 ```
-/verify-accuracy
+/verify-accuracy [study-guide] [source]
 ```
 
 ## What This Does
@@ -30,12 +33,20 @@ Creates comprehensive study guides from source material with:
 - `sources/` - Source material (lecture notes, PDFs, transcripts)
 - `templates/` - Word/Excel/HTML templates for study guides
 
+## Template Types
+
+**4 different templates for different content:**
+1. **Drug Chart HTML** - Interactive pharmacology reference (mobile-friendly)
+2. **Excel Drug Chart** - Comprehensive 4-tab drug analysis (print-friendly)
+3. **HTML Learning Objectives** - Works for ANY medical topic with LOs
+4. **Clinical Assessment Guide** - History-taking and physical exam by chief complaint
+
 ## Key Features
 
 ### Phase 1: Foundation
-- Source-only enforcement skill
-- Study guide verifier skill
-- Slash commands for creating Word/Excel guides
+- Source-only enforcement skill (works for all specialties)
+- Study guide verifier skill (content-agnostic)
+- Slash commands for all 4 template types
 
 ### Phase 2: Quality Gates
 - PreToolUse hook blocks creation without verification

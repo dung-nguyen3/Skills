@@ -24,7 +24,7 @@ VERIFICATION CHECKLIST:
 ### Step 2: Load Template
 
 Read and understand the complete template:
-- **File**: `Copy Study Guide Claude Q3 2/Claude Templates/Word LO 11-5.txt`
+- **File**: `Example claude study guides/Word/Word LO 11-5.txt`
 - Read the ENTIRE template before starting
 - Note all requirements, colors, structure, formatting rules
 

@@ -1,12 +1,33 @@
-# Study Guide Creation - Core Protocol
+# Medical Study Guide Creation - Core Protocol
 
 ## Purpose
-Create comprehensive pharmacy study guides (Word, Excel, HTML) from source materials with strict quality controls.
+Create comprehensive medical education study guides (Word, Excel, HTML) from source materials with strict quality controls. Supports **ALL medical specialties**: pharmacology, pathophysiology, clinical medicine, physical examination, and procedures.
 
-## Templates Available
-- **Word**: `Claude Templates/Word LO 11-5.txt` - Learning objectives with tables
-- **Excel**: `Claude Templates/Excel Drugs Chart 11-1.txt` - 4-tab drug charts
-- **HTML**: `Claude Templates/HTML LO with Master Chart 10-30.txt` - Interactive lessons
+## Template Types Available
+
+### Type 1: Drug Chart HTML (Pharmacology)
+- **Location**: `Example claude study guides/Drug Chart HTML/Drug Chart HTML.txt`
+- **Use for**: Drug reference charts, pharmacology
+- **Format**: Interactive single-page HTML with tabs
+- **Example**: HIV drugs, antivirals, antibiotics
+
+### Type 2: Excel Drug Chart (Pharmacology)
+- **Location**: `Example claude study guides/Excel Drug Chart/Excel Drugs Chart 11-1.txt`
+- **Use for**: Comprehensive drug analysis with 4-tab format
+- **Format**: Excel workbook (Drug Details, Key Comparisons, Master Chart, High-Yield)
+- **Example**: Antineoplastics, antifungals, cardiovascular drugs
+
+### Type 3: HTML Learning Objectives (Any Medical Topic)
+- **Location**: `Example claude study guides/HTML LO/HTML LO with Master Chart 10-30.txt`
+- **Use for**: ANY medical topic with learning objectives
+- **Format**: 4-tab HTML (LO Q&A, Key Comparisons, Master Tables, Summary)
+- **Example**: Cardiovascular disease, hematology, immunology, rheumatology, respiratory physiology
+
+### Type 4: Clinical Assessment Guide (Clinical Skills)
+- **Location**: `Example claude study guides/Physical Assessment/Physical Assessment Instructions.txt`
+- **Use for**: History-taking and physical examination by chief complaint
+- **Format**: Interactive HTML with OLDCAARTS, PMH, FH, SH, ROS, focused exam
+- **Example**: Leg pain workup, differential diagnosis by onset
 
 ---
 

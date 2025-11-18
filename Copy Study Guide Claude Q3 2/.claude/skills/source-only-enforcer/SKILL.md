@@ -1,9 +1,11 @@
 ---
 name: source-only-enforcer
 description: |
-  CRITICAL QUALITY GATE: Enforces source-only policy for pharmacy study guide creation.
+  CRITICAL QUALITY GATE: Enforces source-only policy for ALL medical study guide creation.
 
-  ACTIVATES when creating Excel drug charts, Word study guides, or HTML lessons.
+  ACTIVATES when creating study guides for ANY medical specialty: pharmacology, pathophysiology,
+  clinical medicine, physical examination, or procedures.
+
   BLOCKS creation without pre-creation verification checklist confirming source file and template.
 
   This skill prevents adding external medical facts (except researched mnemonics) and ensures
@@ -11,7 +13,7 @@ description: |
 skill_type: guardrail
 enforcement_level: block
 priority: critical
-version: 1.0.0
+version: 2.0.0
 tools_required:
   - Read
   - Write
@@ -24,18 +26,25 @@ activation_confidence: high
 
 ## Core Responsibility
 
-Ensure ALL pharmacy study guides are created from source material only, with mandatory pre-creation verification.
+Ensure ALL medical study guides are created from source material only, with mandatory pre-creation verification.
 
 **NO external medical facts** - Only information from source file (exception: researched mnemonics via WebSearch).
+
+**Works for ALL medical specialties**: Pharmacology, pathophysiology, clinical medicine, physical examination, procedures.
 
 ## When This Activates
 
 **Prompt triggers:**
-- "create excel drug chart"
+- "create drug chart" (Excel or HTML)
+- "create learning objectives guide" (HTML)
+- "create clinical assessment guide" (HTML)
 - "make study guide from lecture"
-- "generate word study guide"
+- "generate word/excel/html study guide"
 - "/create-excel [source-file]"
 - "/create-word [source-file]"
+- "/create-drug-html [source-file]"
+- "/create-lo-guide [source-file]"
+- "/create-clinical-guide [source-file]"
 
 **File triggers:**
 - Working with files in `Claude Study Tools/` directory
@@ -48,7 +57,7 @@ Before creating ANY study guide, you MUST state:
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: [exact path to source file]
-☐ Instruction template: [Word LO 11-5.txt / Excel Drugs Chart 11-1.txt / HTML LO 10-30.txt]
+☐ Instruction template: [Drug Chart HTML / Excel Drug Chart / HTML LO / Clinical Assessment / Word LO]
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
