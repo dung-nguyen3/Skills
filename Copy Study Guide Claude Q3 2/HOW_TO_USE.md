@@ -113,30 +113,37 @@ Skills are specialized knowledge bases that automatically activate when you need
 
 ### Installed Skills:
 
-**1. source-only-enforcer** (CRITICAL - Blocks until verified)
+**IMPORTANT:** Claude AUTOMATICALLY does pre-creation and post-creation verification for all study guides. Skills are safety nets that enforce this if Claude somehow skips a step.
+
+**1. source-only-enforcer** (CRITICAL - Safety Net)
 - **Triggers when you say:** "create excel", "create study guide", "make drug chart"
-- **What it does:** Blocks creation until you state the verification checklist
-- **Why:** Prevents adding external medical facts, enforces source-only policy
+- **What it does:** Ensures Claude states the pre-creation verification checklist automatically before starting
+- **Why:** Safety net that prevents Claude from skipping verification or adding external medical facts
+- **You don't do anything:** Claude handles this automatically - you just request the study guide
 
 **2. mnemonic-researcher** (HIGH - Suggests)
 - **Triggers when you say:** "find mnemonic", "help me remember", "memory trick"
-- **What it does:** Suggests researching established mnemonics via WebSearch
+- **What it does:** Reminds Claude to research established mnemonics via WebSearch (already required)
 - **Why:** Ensures you get PROVEN mnemonics, not invented ones
+- **You don't do anything:** Claude automatically researches mnemonics during study guide creation
 
 **3. study-guide-verifier** (CRITICAL - Suggests)
 - **Triggers when you say:** "verify accuracy", "check study guide", "analyze file"
-- **What it does:** Suggests systematic 6-step verification protocol
-- **Why:** Ensures comprehensive accuracy checking
+- **What it does:** Activates the systematic 6-step verification protocol
+- **Why:** Ensures comprehensive accuracy checking of existing study guides
+- **When to use:** When you want to verify an already-created study guide
 
 **4. template-compliance-checker** (HIGH - Suggests)
 - **Triggers when you say:** "check format", "correct colors", "template"
-- **What it does:** Reminds you of template requirements
+- **What it does:** Reminds Claude of template requirements during creation
 - **Why:** Ensures consistent formatting across all study guides
+- **You don't do anything:** Claude follows templates automatically
 
 **5. drug-classification-assistant** (MEDIUM - Suggests)
 - **Triggers when you say:** "drug class", "MOA", "first-line", "classification"
-- **What it does:** Helps verify drug-specific vs class-wide information
+- **What it does:** Helps Claude verify drug-specific vs class-wide information
 - **Why:** Prevents incorrect grouping of drugs
+- **You don't do anything:** Claude checks this automatically during creation
 
 ### Example Session with Skill Auto-Activation:
 
@@ -145,7 +152,7 @@ Skills are specialized knowledge bases that automatically activate when you need
 Create an Excel drug chart from the HIV antivirals lecture
 ```
 
-**What you see:**
+**What happens behind the scenes (you see this in output):**
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🎯 SKILL ACTIVATION CHECK
@@ -158,7 +165,7 @@ ACTION: Use Skill tool BEFORE responding
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-**Then Claude responds:**
+**Then Claude AUTOMATICALLY states the verification checklist (you don't do this):**
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: Pharmacology/Exam 3/Extract/HIV Antivirals.txt
@@ -171,7 +178,9 @@ VERIFICATION CHECKLIST:
 Now reading source file...
 ```
 
-**No extra work required** - Claude automatically follows the protocol!
+**What you do:** Nothing! Just request the study guide and Claude handles all verification automatically.
+
+**The skill system ensures:** Claude doesn't skip the verification steps, even if it gets distracted or makes a mistake.
 
 ---
 
