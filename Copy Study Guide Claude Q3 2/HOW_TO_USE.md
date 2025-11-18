@@ -14,11 +14,11 @@ Your study guide folder now has automated quality controls and shortcuts:
 - Enforces quality checks (source-only policy, verification)
 - Runs in the background - no manual activation needed
 
-### 3. Hook System (Background Quality Gates)
+### 3. Hook System (Background Quality Gates) ✅ ACTIVE
 - **UserPromptSubmit** - Analyzes your prompts and suggests skills
-- **PreToolUse** - Will block writes without verification (Phase 2)
-- **PostToolUse** - Will remind to verify after creation (Phase 2)
-- **Stop** - Will catch incomplete work at session end (Phase 2)
+- **PreToolUse** - Blocks writes without verification ⛔
+- **PostToolUse** - Reminds to verify after creation 📋
+- **Stop** - Catches incomplete work at session end ⚠️
 
 ---
 
@@ -181,6 +181,145 @@ Now reading source file...
 **What you do:** Nothing! Just request the study guide and Claude handles all verification automatically.
 
 **The skill system ensures:** Claude doesn't skip the verification steps, even if it gets distracted or makes a mistake.
+
+---
+
+## How Quality Gate Hooks Work
+
+Quality gate hooks are automatic enforcement mechanisms that run at different lifecycle events to ensure study guide quality.
+
+### The Three Quality Gates:
+
+**1. Pre-Creation Gate (verification-guard.sh)** ⛔
+
+**When it runs:** BEFORE Claude creates/edits study guide files
+
+**What it does:**
+- Detects if Claude is about to write to a study guide file (`Claude Study Tools/*.xlsx|.docx|.html`)
+- Checks if pre-creation verification checklist was completed
+- BLOCKS the write operation if verification not done
+- Shows error message explaining what's needed
+
+**Example scenario:**
+```
+You say: "Create study guide from lecture 42"
+Claude tries to write file
+↓
+Hook detects: Writing to "Claude Study Tools/Lecture_42.docx"
+Hook checks: Is verification file present? NO
+↓
+⛔ BLOCKED - Shows error message
+Claude sees: Must state verification checklist first
+Claude states checklist, creates verification marker
+Hook checks again: Verification file present? YES
+↓
+✅ ALLOWED - Write proceeds
+```
+
+**Why this matters:** Prevents Claude from creating study guides without reading the source file completely and confirming the source-only policy.
+
+---
+
+**2. Post-Creation Reminder (post-verification-trigger.sh)** 📋
+
+**When it runs:** AFTER Claude creates/edits study guide files
+
+**What it does:**
+- Detects that a study guide file was just created/modified
+- Shows reminder about post-creation verification
+- Lists all 4 verification checks required
+- Suggests using `/verify-accuracy` for deep analysis
+
+**Example output:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 POST-CREATION VERIFICATION REMINDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Study guide file created/modified:
+📁 HIV_Drug_Chart.xlsx
+
+⚠️  MANDATORY NEXT STEP: Run post-creation verification
+
+Verify the completed file for:
+1. ✓ Source Accuracy
+2. ✓ Template Compliance
+3. ✓ Completeness
+4. ✓ Quality Checks
+
+🎯 ACTION REQUIRED:
+State: "Post-creation verification complete"
+```
+
+**Why this matters:** Reminds Claude to verify the study guide was created correctly before moving on to other tasks.
+
+---
+
+**3. Session End Check (verification-completion-check.sh)** ⚠️
+
+**When it runs:** When Claude Code session STOPS
+
+**What it does:**
+- Checks if pre-verification was done but post-verification was skipped
+- Checks if study guide files were created but not verified
+- Warns about incomplete work
+- Lists files that need verification
+- Suggests actions for next session
+
+**Example scenario:**
+```
+Session ending...
+↓
+Hook checks: Files created this session? YES (2 files)
+Hook checks: Post-verification done? NO
+↓
+⚠️  WARNING - Incomplete verification detected
+
+Files needing verification:
+📄 HIV_Drug_Chart.xlsx
+📄 Antibiotics_Study_Guide.docx
+
+Recommended actions for next session:
+1. Run /verify-accuracy on each file
+2. Complete all 4 quality checks
+```
+
+**Why this matters:** Catches situations where you might have created study guides but forgot to verify them before the session ended.
+
+---
+
+### How They Work Together:
+
+**Normal workflow:**
+1. 📝 You: `/create-excel source.txt`
+2. ✅ Claude states verification checklist (automatic)
+3. ⛔ PreToolUse hook: Checks verification → ALLOWS
+4. 📝 Claude creates Excel file
+5. 📋 PostToolUse hook: Shows reminder
+6. ✅ Claude runs post-verification (automatic)
+7. ✅ Claude states "Post-creation verification complete"
+8. ⚠️  Stop hook: Checks complete → No warning
+
+**If Claude skips verification:**
+1. 📝 You: "Make study guide"
+2. 📝 Claude tries to write file
+3. ⛔ PreToolUse hook: No verification → **BLOCKS**
+4. ❌ Claude sees error, realizes must verify first
+5. ✅ Claude states verification checklist
+6. ✅ Creates verification marker
+7. ⛔ PreToolUse hook: Verification present → ALLOWS
+8. 📝 Claude creates file
+9. 📋 PostToolUse hook: Shows reminder
+10. ✅ Claude completes post-verification
+
+### What You Do:
+
+**NOTHING!** The hooks work automatically in the background. You just:
+- Request study guides normally
+- Use slash commands (recommended)
+- Claude handles all verification automatically
+
+The hooks ensure Claude doesn't skip steps even if it gets confused or makes a mistake.
 
 ---
 
