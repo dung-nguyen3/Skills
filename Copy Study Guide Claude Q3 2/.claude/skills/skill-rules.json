@@ -1,0 +1,238 @@
+{
+  "version": "1.0",
+  "description": "Skill activation triggers for pharmacy study guide creation. Controls when skills automatically suggest or enforce quality checks.",
+  "skills": {
+    "mnemonic-researcher": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Researches established medical mnemonics and memory tricks for study guides",
+      "promptTriggers": {
+        "keywords": [
+          "mnemonic",
+          "mnemonics",
+          "memory trick",
+          "memory tricks",
+          "memorize",
+          "remember",
+          "recall",
+          "analogy",
+          "analogies",
+          "if X think Y",
+          "clinical association",
+          "USMLE mnemonic"
+        ],
+        "intentPatterns": [
+          "(find|search|research|look up).*?(mnemonic|memory trick|analogy)",
+          "(create|add|include).*?(mnemonic|memory trick)",
+          "help.*?(remember|memorize|recall)",
+          "(what|any).*?mnemonic.*?for"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Claude Study Tools/**/*.xlsx",
+          "**/Claude Study Tools/**/*.docx",
+          "**/Claude Study Tools/**/*.html",
+          "**/Claude Templates/**/*.txt"
+        ],
+        "contentPatterns": [
+          "💡 MEMORY TRICKS",
+          "MNEMONICS",
+          "Memory tricks row",
+          "High-Yield & Pearls"
+        ]
+      }
+    },
+    "study-guide-verifier": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "critical",
+      "description": "Systematic verification of study guide accuracy against source files",
+      "promptTriggers": {
+        "keywords": [
+          "verify accuracy",
+          "check accuracy",
+          "verify study guide",
+          "verify file",
+          "analyze accuracy",
+          "source accuracy",
+          "verification",
+          "post-creation verification",
+          "re-verify",
+          "validate study guide"
+        ],
+        "intentPatterns": [
+          "(verify|check|validate|analyze).*?(accuracy|study guide|file)",
+          "(compare|match).*?(source|original)",
+          "(find|identify).*?(error|issue|mistake|problem)",
+          "make sure.*?(correct|accurate|match)"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Claude Study Tools/**/*.xlsx",
+          "**/Claude Study Tools/**/*.docx",
+          "**/Claude Study Tools/**/*.html"
+        ],
+        "contentPatterns": [
+          "Drug Details",
+          "Master Chart",
+          "Learning Objectives",
+          "Key Comparisons"
+        ]
+      }
+    },
+    "source-only-enforcer": {
+      "type": "guardrail",
+      "enforcement": "block",
+      "priority": "critical",
+      "description": "Enforces source-only policy for study guide creation - blocks external medical facts",
+      "promptTriggers": {
+        "keywords": [
+          "create excel",
+          "create word",
+          "create study guide",
+          "create drug chart",
+          "create html",
+          "study guide",
+          "drug chart",
+          "/create-excel",
+          "/create-word"
+        ],
+        "intentPatterns": [
+          "(create|make|generate|build).*?(study guide|drug chart|excel|word|html)",
+          "(start|begin).*?(creating|making).*?(study guide|drug chart)",
+          "create.*?from.*?(source|lecture|extract)"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Extract/**/*.txt",
+          "**/Extract/**/*.pdf",
+          "**/Pharmacology/**/*.txt",
+          "**/Claude Templates/**/*.txt"
+        ],
+        "contentPatterns": [
+          "Learning Objective",
+          "Lecture",
+          "Drug:",
+          "Mechanism:",
+          "Adverse Effects:"
+        ]
+      },
+      "blockMessage": "⚠️ CRITICAL - Source-Only Policy Enforcement\n\n📋 PRE-CREATION VERIFICATION REQUIRED:\n\n☐ Source file: [specify exact path]\n☐ Instruction template: [Word LO 11-5.txt / Excel Drugs Chart 11-1.txt / HTML LO 10-30.txt]\n☐ Source-only policy: I will ONLY use information from [source file]\n☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch\n☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them\n☐ Save location: [Class]/[Exam]/Claude Study Tools/\n\nREQUIRED ACTIONS:\n1. Read the ENTIRE source file first\n2. Read the COMPLETE template file\n3. STATE the verification checklist above\n4. ONLY then proceed with creation\n\n⛔ DO NOT proceed until checklist is stated.\n⛔ DO NOT add external medical facts (except researched mnemonics).\n⛔ DO NOT invent mnemonics - WebSearch only.\n\n💡 TIP: Use slash commands /create-excel, /create-word, /verify-accuracy",
+      "skipConditions": {
+        "sessionSkillUsed": false,
+        "fileMarkers": [
+          "VERIFICATION CHECKLIST COMPLETED"
+        ]
+      }
+    },
+    "template-compliance-checker": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Ensures study guides follow template specifications for colors, structure, and formatting",
+      "promptTriggers": {
+        "keywords": [
+          "template",
+          "format",
+          "formatting",
+          "color scheme",
+          "pastel colors",
+          "tab structure",
+          "sections",
+          "compliance",
+          "template instructions"
+        ],
+        "intentPatterns": [
+          "(check|verify|ensure).*?(template|format|formatting)",
+          "(follow|match|comply).*?template",
+          "(correct|fix).*?(color|format|structure)",
+          "does it.*?(follow|match|comply)"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Claude Study Tools/**/*.xlsx",
+          "**/Claude Study Tools/**/*.docx",
+          "**/Claude Templates/**/*.txt"
+        ],
+        "contentPatterns": [
+          "soft pastel",
+          "hex code",
+          "#E6F3FF",
+          "4 tabs",
+          "Drug Details",
+          "Key Comparisons",
+          "Master Chart"
+        ]
+      }
+    },
+    "drug-classification-assistant": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Assists with drug classification, MOA, and first-line designation verification",
+      "promptTriggers": {
+        "keywords": [
+          "drug class",
+          "classification",
+          "mechanism of action",
+          "MOA",
+          "first-line",
+          "DOC",
+          "drug of choice",
+          "class-wide",
+          "drug-specific"
+        ],
+        "intentPatterns": [
+          "(verify|check|confirm).*?(classification|class|MOA|first-line)",
+          "is.*?(first-line|class-wide|drug-specific)",
+          "(what|which).*?(class|MOA|mechanism)",
+          "(group|classify|categorize).*?drug"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Extract/**/*drug*.txt",
+          "**/Extract/**/*antiviral*.txt",
+          "**/Extract/**/*antibiotic*.txt",
+          "**/Claude Study Tools/**/*Drug_Chart*.xlsx"
+        ],
+        "contentPatterns": [
+          "Drug:",
+          "Class:",
+          "Mechanism:",
+          "First-line:",
+          "DOC"
+        ]
+      }
+    }
+  },
+  "notes": {
+    "enforcement_types": {
+      "suggest": "Skill suggestion appears but doesn't block execution",
+      "block": "Requires verification checklist before proceeding (critical quality gate)",
+      "warn": "Shows warning but allows proceeding"
+    },
+    "priority_levels": {
+      "critical": "Highest - Always trigger when matched (source-only, verification)",
+      "high": "Important - Trigger for most matches (mnemonics, templates)",
+      "medium": "Moderate - Trigger for clear matches (classifications)",
+      "low": "Optional - Trigger only for explicit matches"
+    },
+    "workflow": {
+      "creation": "source-only-enforcer blocks until verification checklist stated",
+      "research": "mnemonic-researcher suggests when mnemonics needed",
+      "verification": "study-guide-verifier suggests during accuracy checks",
+      "compliance": "template-compliance-checker suggests for format issues"
+    },
+    "customization": {
+      "pathPatterns": "Adjust to match your study folder structure (Pharmacology/Exam X/...)",
+      "keywords": "Add specific drug classes or topics as needed",
+      "contentPatterns": "Add patterns for specific lecture formats or templates"
+    }
+  }
+}
