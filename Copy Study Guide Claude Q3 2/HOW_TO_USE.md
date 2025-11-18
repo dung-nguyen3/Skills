@@ -323,6 +323,225 @@ The hooks ensure Claude doesn't skip steps even if it gets confused or makes a m
 
 ---
 
+## Advanced Accuracy Features
+
+Based on comprehensive analysis of production Claude Code infrastructure patterns, your system includes 5 critical accuracy improvements that work automatically in the background.
+
+### 1. Session-Based State Tracking ⭐⭐⭐⭐⭐
+
+**What it is:** Persistent session cache that tracks all verification activity
+
+**Location:** `.claude/study-guide-cache/[session_id]/`
+
+**What gets tracked:**
+```
+.claude/study-guide-cache/abc123/
+├── verification.json           # Pre-creation verification status
+├── post-verification.json      # Post-creation verification status
+├── created-files.log          # All study guides created (timestamped)
+├── operations.log             # All file operations with timestamps
+└── files-needing-verification.txt  # Files requiring verification
+```
+
+**Why this matters:**
+- Verification state persists across all hook executions
+- No more lost validation between hooks
+- Session-level analytics available
+- Supports multi-file tracking
+
+**What you do:** Nothing! The cache is created and managed automatically.
+
+---
+
+### 2. Content Pattern Detection ⭐⭐⭐⭐⭐
+
+**What it is:** Automatic detection of accuracy red flags
+
+**What it catches:**
+- Filenames with "Draft", "Temp", "Test", "WIP" → Flags incomplete work
+- Future: Vague language patterns ("maybe", "probably", "might")
+- Future: Missing source references
+- Future: Inconsistent medical terminology
+
+**Example warning:**
+```
+POTENTIAL ACCURACY ISSUES:
+📄 HIV_Draft_Chart.xlsx - Filename suggests incomplete work (draft)
+📄 Test_Guide.docx - Filename suggests incomplete work (test)
+```
+
+**Why this matters:** Catches potential issues BEFORE you study from them!
+
+**When it runs:** At session end (Stop hook)
+
+---
+
+### 3. Error Threshold Automation ⭐⭐⭐⭐
+
+**What it is:** Smart recommendations based on issue count
+
+**How it works:**
+```
+1-2 issues → Shows manual verification steps
+
+3-5 issues → Detailed report with specific fixes
+
+6+ issues → Recommends automated agent:
+🤖 RECOMMENDED: Use accuracy verification agent
+   Multiple issues detected - automated verification recommended
+
+   Next session, run:
+   /verify-accuracy [file-path] [source-path]
+```
+
+**Why this matters:** Saves you from manually fixing 10+ accuracy issues!
+
+**Example:**
+- Created 1 study guide, 1 issue → "Run post-verification manually"
+- Created 5 study guides, 4 issues → "Use /verify-accuracy agent"
+
+---
+
+### 4. Session-Aware Guardrails ⭐⭐⭐⭐
+
+**What it is:** Blocks verification bypass without nagging repeatedly
+
+**How it works:**
+
+**First study guide in session:**
+```
+⛔ BLOCKED - Pre-Creation Verification Required
+(Shows full error message with requirements)
+```
+
+**Second study guide in same session:**
+```
+✅ ALLOWED - Verification marker from first guide applies
+(No blocking, no nagging)
+```
+
+**File markers supported:**
+- Add `@verified` comment to source files → Skip enforcement
+- Set `SKIP_SOURCE_ONLY_ENFORCEMENT=1` → Temporary bypass
+
+**Why this matters:** Prevents bypass without being annoying!
+
+**Benefit:** Create multiple study guides in one session without repeated verification prompts.
+
+---
+
+### 5. Enhanced Stop Hook Validation ⭐⭐⭐⭐
+
+**What it is:** Comprehensive accuracy checks at session end
+
+**What it checks:**
+```
+✅ Was pre-verification done?
+✅ Was post-verification done?
+✅ Were files created but not verified?
+✅ Any problematic filenames?
+✅ How many total issues?
+```
+
+**Example output:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  STUDY GUIDE QUALITY CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INCOMPLETE VERIFICATION DETECTED:
+⚠️  Created 2 study guide file(s) but did not run post-verification
+
+POTENTIAL ACCURACY ISSUES:
+📄 Draft_Chart.xlsx - Filename suggests incomplete work
+
+FILES REQUIRING VERIFICATION:
+   📄 HIV_Drug_Chart.xlsx
+   📄 Antibiotics_Study_Guide.docx
+
+🎯 RECOMMENDED ACTIONS FOR NEXT SESSION:
+   1. Run post-creation verification on all files
+   2. Use /verify-accuracy for deep analysis
+   3. Verify source-only policy followed
+
+Session cache: .claude/study-guide-cache/abc123
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Automatic cleanup:** Keeps last 5 session caches, deletes older ones
+
+**Why this matters:** Safety net that catches incomplete work before you close Claude!
+
+---
+
+### How All 5 Work Together
+
+**Complete workflow with all improvements:**
+
+```
+1. Session starts
+   └─ Cache directory created automatically
+
+2. You: /create-excel source.txt
+   └─ UserPromptSubmit: Skill activation check
+
+3. Claude: States verification checklist
+   └─ Creates verification.json marker (Feature 1: State Tracking)
+
+4. PreToolUse hook: Checks marker
+   └─ Marker exists → ALLOWS write (Feature 4: Session-Aware)
+   └─ Logs operation to operations.log
+
+5. Claude: Creates Excel file
+   └─ File written successfully
+
+6. PostToolUse hook: Runs after creation
+   └─ Logs to created-files.log (Feature 1: State Tracking)
+   └─ Shows post-verification reminder
+
+7. Claude: Runs post-verification
+   └─ Creates post-verification.json marker
+
+8. You: Create second study guide
+   └─ PreToolUse: Same session marker → ALLOWS (Feature 4: No nag)
+
+9. Session ends → Stop hook validates
+   └─ Checks filenames (Feature 2: Pattern Detection)
+   └─ Counts issues (Feature 3: Threshold Automation)
+   └─ Shows smart recommendations (Feature 5: Enhanced Validation)
+   └─ Cleans up old caches
+```
+
+---
+
+### Benefits Summary
+
+**Accuracy:**
+- ✅ Automatic issue detection
+- ✅ Content pattern analysis
+- ✅ Persistent verification tracking
+- ✅ Multi-file consistency checks
+
+**Automation:**
+- ✅ Smart agent triggering (3+ issues)
+- ✅ Session-aware enforcement (less nagging)
+- ✅ Automatic cache management
+- ✅ Intelligent recommendations
+
+**Confidence:**
+- ✅ Multiple safety nets
+- ✅ Clear warnings at session end
+- ✅ Actionable recommendations
+- ✅ Nothing falls through the cracks
+
+**User Experience:**
+- ✅ Only blocks ONCE per session
+- ✅ File marker support
+- ✅ Environment overrides available
+- ✅ Works completely automatically
+
+---
+
 ## Practical Workflows
 
 ### Workflow 1: Creating Study Guide from Scratch
