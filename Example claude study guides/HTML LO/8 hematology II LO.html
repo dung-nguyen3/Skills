@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hematology II - Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .main-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .main-tab {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .main-tab:hover {
+            background: #e8e8e8;
+            transform: translateY(-2px);
+        }
+
+        .main-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .main-section {
+            display: none;
+        }
+
+        .main-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .objective-block {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        .objective-block h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .answer-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .answer-content strong:first-of-type {
+            color: #764ba2;
+            font-size: 1.1em;
+        }
+
+        .answer-content p {
+            margin-bottom: 15px;
+        }
+
+        .answer-content ul {
+            margin: 15px 0 15px 25px;
+        }
+
+        .answer-content li {
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #333;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .highlight-green {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #4caf50;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #1b5e20;
+        }
+
+        .highlight-purple {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #9c27b0;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #4a148c;
+        }
+
+        .highlight-blue {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #2196f3;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #0d47a1;
+        }
+
+        .highlight-red {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #f44336;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #b71c1c;
+        }
+
+        .highlight-yellow {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #ffc107;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #f57f17;
+        }
+
+        .highlight-teal {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            padding: 5px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #009688;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
+            color: #004d40;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #e3f2fd;
+            transition: background 0.3s;
+        }
+
+        .high-yield-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .high-yield-box h4 {
+            color: #2e7d32;
+            margin-bottom: 12px;
+        }
+
+        .clinical-pearl {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .clinical-pearl h4 {
+            color: #f57f17;
+            margin-bottom: 12px;
+        }
+
+        .critical-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 5px solid #f44336;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .critical-box h4 {
+            color: #c62828;
+            margin-bottom: 12px;
+        }
+
+        .mnemonic-box {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border-left: 5px solid #0288d1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .mnemonic-box h4 {
+            color: #01579b;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .main-tabs {
+                flex-direction: column;
+            }
+            
+            .main-tab {
+                width: 100%;
+            }
+            
+            .comparison-table {
+                font-size: 0.85em;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .main-tabs {
+                display: none;
+            }
+            
+            .main-section {
+                display: block !important;
+            }
+            
+            .objective-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Hematology II Study Guide</h1>
+        <p class="subtitle">Hemolytic Anemias | Learning Objectives & Comprehensive Review<br><em>Source: Hematology II.txt</em></p>
+        
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="showMainSection('objectives')">📋 Learning Objectives</button>
+            <button class="main-tab" onclick="showMainSection('summary')">⚡ High-Yield Summary</button>
+            <button class="main-tab" onclick="showMainSection('comparisons')">📊 Key Clinical Comparisons</button>
+        </div>
+        
+        <!-- TAB 1: LEARNING OBJECTIVES -->
+        <div id="objectives-section" class="main-section active">
+            <h2>📋 Learning Objectives & Detailed Answers</h2>
+            
+            <div class="objective-block">
+                <h3>Learning Objective: Compare and contrast physiology, clinical findings, diagnostic studies, and treatment plans for the following conditions: hemolytic anemias (G6PD deficiency, Hereditary Spherocytosis, Sickle Cell Anemia, Paroxysmal Nocturnal Hemoglobinuria, Microangiopathic Hemolytic Anemia, Thalassemia), Autoimmune hemolytic anemia, and hemolytic transfusion reaction.</h3>
+                
+                <div class="answer-content">
+                    <strong>Answer:</strong>
+                    
+                    <p>Hemolytic anemia is characterized by premature RBC destruction. Normal RBC lifespan is 120 days with 1% loss per day. Bone marrow can compensate for up to 5X increased loss per day, with anemia occurring when greater than 5% loss per day occurs. Hemolysis can be classified as intracorpuscular (cell defect) versus extracorpuscular (environmental), and intravascular versus extravascular (spleen).</p>
+
+                    <h4>🔬 Hemolytic Anemia Laboratory Findings</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Test</th>
+                                <th>Finding</th>
+                                <th>Cause</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reticulocyte</strong></td>
+                                <td>High</td>
+                                <td>Marrow response</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unconjugated Bilirubin</strong></td>
+                                <td>Increased</td>
+                                <td>Hemoglobin breakdown</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LDH</strong></td>
+                                <td>High</td>
+                                <td>Released from RBCs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Haptoglobin</strong></td>
+                                <td>Low</td>
+                                <td>Binds free hemoglobin</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Urobilinogen and urine HGB</strong></td>
+                                <td>Positive</td>
+                                <td>Spill over</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DAT</strong></td>
+                                <td>Positive if immune related</td>
+                                <td>Antibodies on RBCs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Peripheral smear abnormalities</strong></td>
+                                <td>NRBCs and abnormal RBCs</td>
+                                <td>Depends on the cause</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>🩸 Transfusion Testing and Reactions</h4>
+                    <p><strong>Coombs Tests:</strong></p>
+                    <ul>
+                        <li><strong>Direct Coombs (DAT - Direct Antiglobulin Test):</strong> Tests for antibodies on patient's cells. Detects IgG or complement (C3) on RBCs. May be negative if affected RBCs have lysed.</li>
+                        <li><strong>Indirect Coombs (IAT - Indirect Antiglobulin Test):</strong> Tests for antibodies in patient's serum. Used for the screen part of "type and screen" and for crossmatch.</li>
+                    </ul>
+
+                    <p><strong>Transfusion Preparations:</strong></p>
+                    <ul>
+                        <li><strong>Type and Screen:</strong> Type = ABO and D (Rh) testing; Screen = Indirect Coombs/IAT</li>
+                        <li><strong>Type and Cross:</strong> Type and screen PLUS crossmatch (mixes patient's serum with donor blood cells to confirm compatibility via indirect Coombs/IAT)</li>
+                    </ul>
+
+                    <h4>🔴 Transfusion Reactions</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Timing</th>
+                                <th>Mechanism</th>
+                                <th>Clinical Features</th>
+                                <th>Management</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Acute Hemolytic Transfusion Reaction</strong></td>
+                                <td>First 24 hours</td>
+                                <td>Life-threatening intravascular hemolysis due to ABO or other RBC antigen incompatibility</td>
+                                <td><span class="highlight-red">Classic Triad: Fever, Flank Pain, Dark Urine</span><br>Also: hemoglobinuria, nausea, vomiting, dyspnea, hypotension, tachycardia</td>
+                                <td>Stop transfusion immediately, supportive care</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Delayed Hemolytic Transfusion Reaction</strong></td>
+                                <td>After 24 hours (can be 2-6 weeks later)</td>
+                                <td>Antibody development, usually anamnestic response (memory response from previous exposure)</td>
+                                <td>Extravascular hemolysis<br>Fever, chills, jaundice</td>
+                                <td>Supportive care</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Febrile Non-Hemolytic</strong></td>
+                                <td>During or shortly after</td>
+                                <td>Cytokines from donor leukocytes</td>
+                                <td>Temperature ≥1°C above baseline<br><span class="highlight-green">Most common transfusion reaction</span></td>
+                                <td>Antipyretics, rule out hemolytic reaction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>📊 Comprehensive Comparison: Normocytic Hemolytic Anemias</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Condition</th>
+                                <th>Pathophysiology/Inheritance</th>
+                                <th>Epidemiology</th>
+                                <th>Clinical Features</th>
+                                <th>Triggers/Risk Factors</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>G6PD Deficiency</strong></td>
+                                <td><span class="highlight-purple">Most common enzymopathy in humans</span><br>X-linked inheritance<br>G6PD helps RBC handle oxidative stress; deficiency leads to RBC lysis</td>
+                                <td>Common in Mediterranean and African descent</td>
+                                <td>Most asymptomatic with mildly decreased RBC lifespan<br>May become symptomatic 2-4 days after exposure to offending drug<br>Episodic, chronic hemolysis is rare</td>
+                                <td><span class="highlight-red">Oxidative stress triggers</span>:<br>• Infection (most common)<br>• Drugs: primaquine, aspirin, nitrofurantoin, phenazopyridine, sulfonamides, ribavirin, dapsone<br>• Fava beans<br>• Metabolic acidosis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hereditary Spherocytosis</strong></td>
+                                <td>Autosomal dominant<br>Membrane defect<br>RBCs are round and not deformable<br>Extravascular hemolysis in spleen</td>
+                                <td>Most common in Northern European descent</td>
+                                <td>Variable severity<br>Anemia, jaundice, splenomegaly<br>May have pigmented gallstones<br>Normal MCV</td>
+                                <td>Hereditary transmission<br>Splenic sequestration of abnormal cells</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paroxysmal Nocturnal Hemoglobinuria (PNH)</strong></td>
+                                <td>Acquired, intravascular, rare<br>Complement-mediated<br>Mutation in bone marrow</td>
+                                <td>Rare acquired condition</td>
+                                <td><span class="highlight-purple">Tea-colored urine, more notable at night</span><br>Associated with pancytopenia and thrombosis</td>
+                                <td>Acquired mutation in hematopoietic stem cells<br>Increased complement sensitivity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microangiopathic Hemolytic Anemia (MAHA)</strong></td>
+                                <td>Intravascular hemolytic anemia<br>RBC trauma from shearing forces</td>
+                                <td>Associated with underlying mechanical or microvascular disease</td>
+                                <td>Anemia with evidence of RBC trauma<br><span class="highlight-red">Schistocytes on smear</span></td>
+                                <td>• Mechanical heart valves or stenosis<br>• March hemoglobinuria<br>• TTP, HUS, DIC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Warm Autoimmune Hemolytic Anemia (WAIHA)</strong></td>
+                                <td>IgG autoantibodies attach to RBCs at body temperature<br>Extravascular destruction by spleen</td>
+                                <td>Can be primary or secondary</td>
+                                <td>Signs of hemolytic anemia<br>May have dark urine/hemoglobinuria<br>Microspherocytes on smear</td>
+                                <td>Secondary causes:<br>• Lymphoproliferative malignancy<br>• Infection<br>• Drugs: antibiotics (PCN, cephalosporin), NSAIDs (diclofenac)<br>• Autoimmune disorders: SLE, scleroderma, RA</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cold Autoimmune Hemolytic Anemia</strong></td>
+                                <td>IgM binds to cells at cold temperature and lyses with C3 on warming<br>Intravascular hemolysis</td>
+                                <td>Associated with infections or malignancy</td>
+                                <td>Hemolysis triggered by cold exposure<br>Acrocyanosis in cold</td>
+                                <td>• Infections: Mycoplasma, mononucleosis<br>• Malignancy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Condition</th>
+                                <th>Diagnostic Studies</th>
+                                <th>Key Lab/Smear Findings</th>
+                                <th>Treatment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>G6PD Deficiency</strong></td>
+                                <td>• Hemolytic anemia labs<br>• <span class="highlight-green">Low G6PD level</span><br>• Peripheral smear</td>
+                                <td><span class="highlight-purple">Bite/blister cells</span><br><span class="highlight-purple">Heinz bodies</span> (clumps of damaged hemoglobin)</td>
+                                <td>• Avoid oxidative stress<br>• Supportive care<br>• Hydration or transfusion if severe<br>• <span class="highlight-red">Splenectomy is NOT helpful</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hereditary Spherocytosis</strong></td>
+                                <td>• Osmotic Fragility Test or Flow cytometry<br>• Hemolytic anemia labs<br>• Normal MCV</td>
+                                <td><span class="highlight-purple">Spherocytes</span> on smear</td>
+                                <td><span class="highlight-green">Splenectomy can be curative</span><br>• Folic acid supplementation<br>• Transfusion if severe</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paroxysmal Nocturnal Hemoglobinuria</strong></td>
+                                <td>• <span class="highlight-green">Diagnosed with flow cytometry</span><br>• Negative DAT test</td>
+                                <td>Pancytopenia<br>Signs of intravascular hemolysis<br>Dark urine</td>
+                                <td>• Supportive care<br>• Transfusions<br>• Anticoagulation for thrombosis<br>• Eculizumab (complement inhibitor)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MAHA</strong></td>
+                                <td>• Hemolytic anemia labs<br>• Peripheral smear<br>• Identify underlying cause</td>
+                                <td><span class="highlight-red">Schistocytes (fragmented RBCs)</span></td>
+                                <td>• Treat underlying cause<br>• Supportive care<br>• Transfusion if needed<br>• Address mechanical valve/TTP/HUS/DIC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Warm AIHA</strong></td>
+                                <td>• <span class="highlight-green">DAT positive (IgG)</span><br>• Hemolytic anemia labs</td>
+                                <td>Microspherocytes<br>Elevated unconjugated bilirubin<br>Low haptoglobin</td>
+                                <td>• Treat underlying disease<br>• <span class="highlight-green">Glucocorticoids</span><br>• Consider splenectomy<br>• Supportive care</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cold AIHA</strong></td>
+                                <td>• May have positive DAT<br>• Cold agglutinin titer</td>
+                                <td>Agglutination at cold temperatures<br>Complement activation</td>
+                                <td>• <span class="highlight-green">Avoid cold exposure</span><br>• Treat underlying disease<br>• Supportive care<br>• Rituximab for severe cases</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>📊 Sickle Cell Disease - Detailed Analysis</h4>
+                    <p><strong>Pathophysiology:</strong> Inherited hemoglobinopathy causing deformation of RBCs into sickle shape under hypoxic conditions, resulting in: (1) Extravascular hemolysis in spleen, (2) Impaired blood flow, (3) Inflammation</p>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Genotype</th>
+                                <th>Hemoglobin Chains</th>
+                                <th>Severity</th>
+                                <th>Clinical Significance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HbAS (Sickle Cell Trait)</strong></td>
+                                <td>α₂β, α₂βˢ<br>One abnormal β globin</td>
+                                <td>Asymptomatic</td>
+                                <td>Patient is a carrier<br>Typically clinically insignificant<br>Protects against malaria</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbSS (Sickle Cell Disease)</strong></td>
+                                <td>α₂βˢ, α₂βˢ<br>Homozygous</td>
+                                <td><span class="highlight-red">Severe</span></td>
+                                <td>Most severe form<br>Requires comprehensive management</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbSβ⁰ (Compound)</strong></td>
+                                <td>α₂βˢ, α₂β⁰</td>
+                                <td><span class="highlight-red">Severe</span></td>
+                                <td>Similar to HbSS in severity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbSβ⁺ (Compound)</strong></td>
+                                <td>α₂βˢ, α₂β⁺</td>
+                                <td>Moderate</td>
+                                <td>Milder than HbSS</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbSC (Compound)</strong></td>
+                                <td>α₂βˢ, α₂βᶜ</td>
+                                <td>Moderate</td>
+                                <td>Variable severity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Epidemiology:</strong> Mostly affects those with African ancestry (also Asian Indian, Hispanic, Middle Eastern descent). Protects against malaria. Approximately 100,000 people in the US have sickle cell disease. Autosomal recessive inheritance.</p>
+
+                    <p><strong>Presentation:</strong> Can start when hemoglobin F dissipates at 4-6 months of age.</p>
+
+                    <p><strong>Provoking Circumstances:</strong></p>
+                    <ul>
+                        <li><strong>Hypoxia or acidosis:</strong> Asthma, COPD, obstructive sleep apnea, URI, excessive exertion, altitude, metabolic acidosis</li>
+                        <li><strong>Dehydration:</strong> Vomiting, diarrhea, diabetes</li>
+                        <li><strong>Substances:</strong> Alcohol, medications, cocaine, smoking</li>
+                        <li><strong>Temperature extremes:</strong> Hypo/hyperthermia</li>
+                        <li><strong>Infections</strong></li>
+                    </ul>
+
+                    <p><strong>Exacerbations and Complications:</strong></p>
+                    <ul>
+                        <li><span class="highlight-red">Significant pain - most common</span></li>
+                        <li><span class="highlight-red">Acute chest syndrome</span> (chest pain, fever, hypoxia, lung infiltrates, not infection)</li>
+                        <li>Ischemia: Stroke or MI</li>
+                        <li>Osteonecrosis of femoral head</li>
+                        <li>Leg ulcers</li>
+                        <li>Organ disease: gallbladder, liver, kidneys, pulmonary hypertension, retinopathy, priapism, autosplenectomy</li>
+                    </ul>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Diagnosis</strong></td>
+                                <td>• <span class="highlight-green">Hemoglobin electrophoresis</span><br>• Genetic testing and counseling<br>• <span class="highlight-purple">Newborns in AZ screened for HbSS, HbSC, and HbSβ</span><br>• Normocytic-normochromic anemia, high retic count<br>• Peripheral smear: sickle cells, NRBCs, target cells, Howell-Jolly bodies (nuclear remnants)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Preventative Care</strong></td>
+                                <td>• Avoid provoking factors<br>• <span class="highlight-green">Lifelong folate supplementation</span><br>• <span class="highlight-red">IMMUNIZATIONS (up to date) - especially encapsulated organisms</span><br>• Ophthalmology retinal exam at 10 yo and every 1-2 years<br>• Microalbuminuria annually starting at 10 yo<br>• <strong>HbSS and HbSβ⁰:</strong><br>&nbsp;&nbsp;- PCN prophylaxis daily for <5 years old<br>&nbsp;&nbsp;- Annual transcranial doppler ultrasonography (TCD) age 2-16</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Acute Exacerbation Treatment</strong></td>
+                                <td><span class="highlight-red">FLUIDS, ANALGESICS, Oxygen, Incentive spirometry</span><br>• Transfusions/transfusion therapy specialist<br>• Address underlying trigger</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chronic Disease-Modifying Treatment</strong></td>
+                                <td>• <span class="highlight-green">Hydroxyurea increases hemoglobin F</span><br>&nbsp;&nbsp;- Used for sickle cell disease starting at 9 months<br>• <strong>Definitive treatment:</strong> Hematopoietic stem cell transplant<br>• Gene therapy under investigation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>📊 Microcytic Hemolytic Anemia: Thalassemia</h4>
+                    <p><strong>Overview:</strong> Inherited chronic hemolytic anemia protective against malaria. Affects people with ancestry from Mediterranean, Africa, India, Southeast Asia. Caused by abnormality in α-globin or β-globin chains, leading to dysfunctional chains and premature RBC destruction.</p>
+
+                    <p><strong>Key Laboratory Features:</strong></p>
+                    <ul>
+                        <li>Proportionately higher than expected RBC count relative to hemoglobin</li>
+                        <li><span class="highlight-green">Low MCV, Normal RDW</span> (distinguishes from iron deficiency which has elevated RDW)</li>
+                        <li>+/- anemia</li>
+                        <li>Iron overload can be a problem</li>
+                        <li>Diagnosed with <span class="highlight-green">hemoglobin electrophoresis</span></li>
+                        <li>May be identified on newborn heel stick screening</li>
+                    </ul>
+
+                    <h4>Alpha Thalassemia Classification</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Phenotype</th>
+                                <th>Number of Genes Present</th>
+                                <th>Genotype</th>
+                                <th>Clinical Features</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Normal</strong></td>
+                                <td>4</td>
+                                <td>αα/αα</td>
+                                <td>None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Silent Carrier</strong></td>
+                                <td>3</td>
+                                <td>-α/αα</td>
+                                <td>No anemia, normal red blood count, low MCV</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2 Gene Deletion (Alpha Thalassemia Trait)</strong></td>
+                                <td>2</td>
+                                <td>--/αα or -α/-α</td>
+                                <td>Mild anemia, hypochromia, and low MCV<br>Not clinically significant</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hemoglobin H Disease</strong></td>
+                                <td>1</td>
+                                <td>--/-α</td>
+                                <td>Moderate anemia, fragmented cells with hypochromia, and low MCV<br>Moderately severe form</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hemoglobin Barts (Hydrops Fetalis)</strong></td>
+                                <td>0</td>
+                                <td>--/--</td>
+                                <td><span class="highlight-red">Death in utero caused by severe anemia</span><br>Typically incompatible with life</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Beta Thalassemia Classification</h4>
+                    <p><strong>Mutation in one or both β-globin genes</strong></p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Severity</th>
+                                <th>Transfusion Requirement</th>
+                                <th>Features</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nontransfusion Dependent</strong></td>
+                                <td>Mild to moderate</td>
+                                <td>Do not require regular transfusion</td>
+                                <td>Variable severity<br>May need occasional transfusions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transfusion Dependent (Beta Thalassemia Major)</strong></td>
+                                <td><span class="highlight-red">Severe</span></td>
+                                <td><span class="highlight-red">Requires transfusions for survival</span></td>
+                                <td>Usually mutations of both β-globin genes<br>Severe anemia from early childhood</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Hemoglobin Types in Adults</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Hemoglobin Form</th>
+                                <th>Chain Composition</th>
+                                <th>Clinical Significance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HbA (Normal)</strong></td>
+                                <td>α₂β₂</td>
+                                <td>Normal adult hemoglobin</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbA₂</strong></td>
+                                <td>α₂δ₂</td>
+                                <td>Minor component in adults</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HbF (Fetal)</strong></td>
+                                <td>α₂γ₂</td>
+                                <td><span class="highlight-purple">Increased proportion if Beta Thalassemia</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hb Bart</strong></td>
+                                <td>γ₄</td>
+                                <td><span class="highlight-purple">Increased if Alpha thalassemia, especially in newborns</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hb H</strong></td>
+                                <td>β₄</td>
+                                <td><span class="highlight-purple">Increased if Alpha thalassemia with 3+ α deletions (not newborns)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Thalassemia Treatment</h4>
+                    <ul>
+                        <li>Supportive care, transfusions as needed</li>
+                        <li><span class="highlight-green">Folate supplementation for life</span></li>
+                        <li><span class="highlight-red">Avoid iron supplements unless iron deficient</span> (iron can cause overload)</li>
+                        <li>Splenectomy can be helpful</li>
+                        <li>Chelation therapy if iron overload develops</li>
+                    </ul>
+
+                    <div class="critical-box">
+                        <h4>⚠️ CRITICAL Safety Information</h4>
+                        <ul>
+                            <li><strong>Acute Hemolytic Transfusion Reaction Emergency:</strong> Stop transfusion immediately if fever, flank pain, or dark urine develop. Life-threatening ABO incompatibility.</li>
+                            <li><strong>Sickle Cell Acute Chest Syndrome:</strong> Fever, chest pain, hypoxia, pulmonary infiltrates - can rapidly progress. Aggressive hydration, analgesia, oxygen, incentive spirometry, consider transfusion.</li>
+                            <li><strong>G6PD Crisis:</strong> Avoid oxidative triggers. Remember fava beans, sulfonamides, primaquine, dapsone. Can cause severe hemolysis requiring transfusion.</li>
+                            <li><strong>Thalassemia Iron Overload:</strong> Do NOT give iron supplements unless truly iron deficient. Transfusion-dependent patients develop iron overload requiring chelation.</li>
+                        </ul>
+                    </div>
+
+                    <div class="clinical-pearl">
+                        <h4>💎 Clinical Pearls</h4>
+                        <ul>
+                            <li><strong>Splenectomy Utility:</strong> Curative for Hereditary Spherocytosis, helpful for Thalassemia, NOT helpful for G6PD deficiency</li>
+                            <li><strong>DAT Interpretation:</strong> Positive in Warm AIHA (IgG), may be positive in Cold AIHA, NEGATIVE in PNH despite being hemolytic</li>
+                            <li><strong>Schistocytes Think:</strong> MAHA - mechanical heart valves, TTP, HUS, DIC, march hemoglobinuria</li>
+                            <li><strong>Heinz Bodies Think:</strong> G6PD deficiency with oxidative stress</li>
+                            <li><strong>Tea-Colored Urine at Night Think:</strong> Paroxysmal Nocturnal Hemoglobinuria</li>
+                            <li><strong>Howell-Jolly Bodies Think:</strong> Autosplenectomy (sickle cell) or post-splenectomy - vaccinate for encapsulated organisms!</li>
+                            <li><strong>Most Common Transfusion Reaction:</strong> Febrile non-hemolytic (temperature ≥1°C above baseline)</li>
+                            <li><strong>MCV Normal, RDW Normal Think:</strong> Thalassemia trait (vs iron deficiency which has elevated RDW)</li>
+                            <li><strong>Sickle Cell Prophylaxis:</strong> PCN until age 5, vaccines for encapsulated organisms, folate for life, hydroxyurea starting at 9 months</li>
+                        </ul>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <h4>🧠 Memory Tricks & Mnemonics</h4>
+                        <ul>
+                            <li><strong>Hemolytic Anemia Labs - "HUBUL":</strong>
+                                <ul>
+                                    <li><strong>H</strong>aptoglobin LOW</li>
+                                    <li><strong>U</strong>nconjugated bilirubin HIGH</li>
+                                    <li><strong>B</strong>ilirubin unconjugated</li>
+                                    <li><strong>U</strong>robilinogen positive</li>
+                                    <li><strong>L</strong>DH HIGH</li>
+                                </ul>
+                            </li>
+                            <li><strong>G6PD Triggers - "FIND SPASM":</strong>
+                                <ul>
+                                    <li><strong>F</strong>ava beans</li>
+                                    <li><strong>I</strong>nfections (most common)</li>
+                                    <li><strong>N</strong>itrofurantoin</li>
+                                    <li><strong>D</strong>apsone</li>
+                                    <li><strong>S</strong>ulfonamides</li>
+                                    <li><strong>P</strong>rimaquine</li>
+                                    <li><strong>AS</strong>pirin</li>
+                                    <li><strong>M</strong>etabolic acidosis</li>
+                                </ul>
+                            </li>
+                            <li><strong>Acute Hemolytic Transfusion Reaction Triad:</strong> "FuD" - <strong>F</strong>ever, Flan<strong>k</strong> pain, <strong>D</strong>ark urine</li>
+                            <li><strong>Sickle Cell Acute Management - "FLAPOIS":</strong>
+                                <ul>
+                                    <li><strong>FL</strong>uids</li>
+                                    <li><strong>A</strong>nalgesics</li>
+                                    <li><strong>P</strong>ulmonary support (O₂, incentive spirometry)</li>
+                                    <li><strong>I</strong>ncentive spirometry</li>
+                                    <li><strong>S</strong>upportive care</li>
+                                </ul>
+                            </li>
+                            <li><strong>Heinz = Ketchup bottles:</strong> Heinz bodies (clumps) in G6PD like Heinz ketchup</li>
+                            <li><strong>Sphero-"sphere"-ocytosis:</strong> Round cells get stuck in spleen's narrow slits - treat with splenectomy</li>
+                            <li><strong>"PNH at Night":</strong> Paroxysmal Nocturnal Hemoglobinuria - tea-colored urine MORE at night</li>
+                            <li><strong>Thalassemia - "Thai + Sickle-MIA":</strong> Common in Mediterranean, Africa, India, Asia (Thai) - MICrocytic (MIA), unlike sickle cell which is normocytic</li>
+                            <li><strong>Warm vs Cold AIHA:</strong> <strong>W</strong>arm = <strong>I</strong>g<strong>G</strong> (WIG), Cold = IgM (M for Mycoplasma/Mono)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 2: HIGH-YIELD SUMMARY -->
+        <div id="summary-section" class="main-section">
+            <h2>⚡ High-Yield Summary - Must-Know Facts</h2>
+            
+            <h3>🎯 Hemolytic Anemia Similarities & Key Differences</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>✅ What They Have in Common</th>
+                        <th>❌ Key Differences</th>
+                        <th>⚡ Must-Know Distinguishing Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            • <strong>High reticulocyte count</strong> (bone marrow compensation)<br><br>
+                            • <strong>Elevated unconjugated bilirubin</strong> (hemoglobin breakdown)<br><br>
+                            • <strong>High LDH</strong> (released from lysed RBCs)<br><br>
+                            • <strong>Low haptoglobin</strong> (binds free hemoglobin)<br><br>
+                            • <strong>Positive urobilinogen/urine hemoglobin</strong> (spillover)<br><br>
+                            • Abnormal RBCs on peripheral smear<br><br>
+                            • May need folate supplementation<br><br>
+                            • Variable severity presentations
+                        </td>
+                        <td>
+                            <strong>G6PD:</strong> Episodic, X-linked, triggered by oxidative stress, Heinz bodies/bite cells<br><br>
+                            <strong>Hereditary Spherocytosis:</strong> Spherocytes, osmotic fragility test, curative splenectomy<br><br>
+                            <strong>PNH:</strong> Tea-colored urine at night, flow cytometry diagnosis, DAT NEGATIVE<br><br>
+                            <strong>MAHA:</strong> Schistocytes (RBC fragments), mechanical/microvascular causes<br><br>
+                            <strong>Warm AIHA:</strong> DAT POSITIVE (IgG), microspherocytes, glucocorticoid responsive<br><br>
+                            <strong>Cold AIHA:</strong> Cold-triggered, IgM, mycoplasma/mono association<br><br>
+                            <strong>Sickle Cell:</strong> Normocytic, hemoglobin electrophoresis, vaso-occlusive crises<br><br>
+                            <strong>Thalassemia:</strong> MICROCYTIC with NORMAL RDW, hemoglobin electrophoresis
+                        </td>
+                        <td>
+                            <strong>X-linked inheritance:</strong> G6PD deficiency only<br><br>
+                            <strong>Acquired conditions:</strong> PNH, autoimmune hemolytic anemias, MAHA<br><br>
+                            <strong>Microcytic hemolytic:</strong> Only Thalassemia<br><br>
+                            <strong>DAT positive:</strong> Warm AIHA (always), may be positive in Cold AIHA<br><br>
+                            <strong>Pathognomonic smear findings:</strong><br>
+                            • Heinz bodies → G6PD<br>
+                            • Spherocytes → HS or WAIHA<br>
+                            • Schistocytes → MAHA<br>
+                            • Sickle cells → SCD<br><br>
+                            <strong>Curative splenectomy:</strong> Hereditary Spherocytosis only
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🎯 Pathognomonic Findings</h3>
+            <div class="high-yield-box">
+                <h4>🎯 If You See This, Think That</h4>
+                <ul>
+                    <li><span class="highlight-purple">Heinz bodies + Bite/Blister cells</span> → <strong>G6PD deficiency</strong> (especially after fava beans, sulfonamides, or infection)</li>
+                    <li><span class="highlight-purple">Spherocytes + Positive osmotic fragility</span> → <strong>Hereditary Spherocytosis</strong></li>
+                    <li><span class="highlight-purple">Tea-colored urine at night + Negative DAT</span> → <strong>Paroxysmal Nocturnal Hemoglobinuria</strong></li>
+                    <li><span class="highlight-purple">Schistocytes (fragmented RBCs)</span> → <strong>MAHA</strong> (think mechanical valves, TTP, HUS, DIC, march hemoglobinuria)</li>
+                    <li><span class="highlight-purple">Microspherocytes + Positive DAT (IgG)</span> → <strong>Warm Autoimmune Hemolytic Anemia</strong></li>
+                    <li><span class="highlight-purple">Sickle cells + Howell-Jolly bodies</span> → <strong>Sickle Cell Disease</strong> (autosplenectomy)</li>
+                    <li><span class="highlight-purple">Low MCV + Normal RDW + High RBC count</span> → <strong>Thalassemia trait</strong> (vs iron deficiency with high RDW)</li>
+                    <li><span class="highlight-red">Fever + Flank pain + Dark urine during transfusion</span> → <strong>Acute Hemolytic Transfusion Reaction</strong> (STOP transfusion immediately!)</li>
+                </ul>
+            </div>
+
+            <h3>🎯 Treatment Decision Points</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Clinical Scenario</th>
+                        <th>First-Line Treatment</th>
+                        <th>Key Considerations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>G6PD Deficiency</strong></td>
+                        <td>• Avoid oxidative triggers<br>• Supportive care<br>• Hydration</td>
+                        <td><span class="highlight-red">Splenectomy NOT helpful</span><br>Patient education on trigger avoidance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hereditary Spherocytosis</strong></td>
+                        <td>• <span class="highlight-green">Splenectomy (curative)</span><br>• Folic acid supplementation</td>
+                        <td>Only hemolytic anemia where splenectomy is curative<br>Vaccinate before splenectomy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warm AIHA</strong></td>
+                        <td>• <span class="highlight-green">Glucocorticoids</span><br>• Treat underlying cause<br>• Supportive care</td>
+                        <td>Rule out secondary causes<br>Consider splenectomy if refractory<br>May need immunosuppression</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cold AIHA</strong></td>
+                        <td>• <span class="highlight-green">Avoid cold exposure</span><br>• Treat underlying infection/malignancy<br>• Supportive care</td>
+                        <td>Think Mycoplasma or Mononucleosis<br>Rituximab for severe cases</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sickle Cell Acute Crisis</strong></td>
+                        <td>• <span class="highlight-red">FLUIDS</span><br>• <span class="highlight-red">ANALGESICS</span><br>• Oxygen<br>• Incentive spirometry</td>
+                        <td>Aggressive pain management<br>Monitor for acute chest syndrome<br>Transfusion if severe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sickle Cell Chronic Management</strong></td>
+                        <td>• <span class="highlight-green">Hydroxyurea</span> (start at 9 months)<br>• Lifelong folate<br>• Vaccines for encapsulated organisms<br>• PCN prophylaxis <5 years old</td>
+                        <td>Definitive: Stem cell transplant<br>Annual TCD age 2-16<br>Retinal exams starting age 10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thalassemia</strong></td>
+                        <td>• Transfusions as needed<br>• Lifelong folate<br>• <span class="highlight-red">AVOID iron supplements</span></td>
+                        <td>Iron overload risk with transfusions<br>May need chelation therapy<br>Splenectomy can help</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MAHA</strong></td>
+                        <td>• <span class="highlight-green">Treat underlying cause</span><br>• Supportive care<br>• Transfusions if needed</td>
+                        <td>Address mechanical valve, TTP, HUS, DIC<br>Plasmapheresis for TTP<br>Supportive for others</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acute Hemolytic Transfusion Reaction</strong></td>
+                        <td>• <span class="highlight-red">STOP TRANSFUSION IMMEDIATELY</span><br>• Supportive care<br>• Aggressive hydration<br>• Maintain urine output</td>
+                        <td>Life-threatening emergency<br>Usually ABO incompatibility<br>Send labs immediately<br>Report to blood bank</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🎯 Diagnostic Test Selection</h3>
+            <div class="high-yield-box">
+                <h4>🎯 Which Test to Order</h4>
+                <ul>
+                    <li><strong>Suspect G6PD:</strong> G6PD level (may be falsely normal during acute hemolysis - recheck later)</li>
+                    <li><strong>Suspect Hereditary Spherocytosis:</strong> Osmotic Fragility Test or Flow cytometry</li>
+                    <li><strong>Suspect PNH:</strong> Flow cytometry (definitive), DAT will be NEGATIVE</li>
+                    <li><strong>Suspect Autoimmune:</strong> Direct Antiglobulin Test (DAT/Direct Coombs) - positive IgG for warm, may be positive for cold</li>
+                    <li><strong>Suspect Sickle Cell or Thalassemia:</strong> Hemoglobin electrophoresis</li>
+                    <li><strong>Before Transfusion:</strong> Type and Screen (routine) or Type and Cross (urgent or if antibodies present)</li>
+                    <li><strong>Peripheral Smear Critical For:</strong> MAHA (schistocytes), G6PD (Heinz bodies/bite cells), spherocytosis (spherocytes), sickle cell (sickle cells)</li>
+                </ul>
+            </div>
+
+            <h3>🎯 Critical Values to Memorize</h3>
+            <div class="high-yield-box">
+                <h4>🎯 Must-Know Reference Values</h4>
+                <ul>
+                    <li><span class="highlight-green">Normal RBC lifespan: 120 days (1% loss/day)</span></li>
+                    <li><span class="highlight-green">Bone marrow compensation: Up to 5X normal loss</span></li>
+                    <li><span class="highlight-green">Anemia develops when: >5% loss/day</span></li>
+                    <li><span class="highlight-green">Sickle cell symptoms start: 4-6 months (when HbF dissipates)</span></li>
+                    <li><span class="highlight-green">Reticulocyte normal: 0.5-1.5%</span> (elevated in hemolysis)</li>
+                    <li><span class="highlight-green">MCV normal: 80-100 fL</span> (thalassemia <80, most hemolytic anemias 80-100)</li>
+                    <li><span class="highlight-green">Febrile transfusion reaction: ≥1°C above baseline</span></li>
+                </ul>
+            </div>
+
+            <h3>🎯 Peripheral Smear Quick Reference</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Finding on Smear</th>
+                        <th>Think This Condition</th>
+                        <th>Additional Key Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Heinz bodies</strong></td>
+                        <td>G6PD deficiency</td>
+                        <td>Clumps of damaged hemoglobin; also see bite/blister cells</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bite/Blister cells</strong></td>
+                        <td>G6PD deficiency</td>
+                        <td>Oxidative damage to RBCs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spherocytes</strong></td>
+                        <td>Hereditary Spherocytosis or WAIHA</td>
+                        <td>Round RBCs lacking central pallor; microspherocytes in WAIHA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Schistocytes</strong></td>
+                        <td>MAHA</td>
+                        <td>RBC fragments from mechanical shearing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sickle cells</strong></td>
+                        <td>Sickle Cell Disease</td>
+                        <td>Also target cells, NRBCs, Howell-Jolly bodies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Howell-Jolly bodies</strong></td>
+                        <td>Splenectomy or autosplenectomy</td>
+                        <td>Nuclear remnants; seen in sickle cell (autosplenic)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Target cells</strong></td>
+                        <td>Thalassemia, Sickle Cell, Liver disease</td>
+                        <td>Central area of hemoglobin surrounded by pallor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NRBCs (nucleated RBCs)</strong></td>
+                        <td>Marrow response to anemia</td>
+                        <td>Immature RBCs released due to stress</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Basophilic stippling</strong></td>
+                        <td>Lead poisoning, Thalassemia</td>
+                        <td>Blue dots from ribosomal RNA aggregates</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- TAB 3: KEY CLINICAL COMPARISONS -->
+        <div id="comparisons-section" class="main-section">
+            <h2>📊 Master Comparison Tables</h2>
+            
+            <h3>1. Normocytic Hemolytic Anemias: Complete Side-by-Side Comparison</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>G6PD Deficiency</th>
+                        <th>Hereditary Spherocytosis</th>
+                        <th>PNH</th>
+                        <th>MAHA</th>
+                        <th>Warm AIHA</th>
+                        <th>Cold AIHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Inheritance</strong></td>
+                        <td>X-linked</td>
+                        <td>Autosomal dominant</td>
+                        <td>Acquired</td>
+                        <td>Acquired</td>
+                        <td>Acquired</td>
+                        <td>Acquired</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Defect Type</strong></td>
+                        <td>Enzymopathy</td>
+                        <td>Membrane defect</td>
+                        <td>Complement sensitivity</td>
+                        <td>Mechanical trauma</td>
+                        <td>Autoimmune</td>
+                        <td>Autoimmune</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Site of Hemolysis</strong></td>
+                        <td>Extravascular (spleen)</td>
+                        <td>Extravascular (spleen)</td>
+                        <td>Intravascular</td>
+                        <td>Intravascular</td>
+                        <td>Extravascular (spleen)</td>
+                        <td>Intravascular</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HALLMARK FINDING</strong></td>
+                        <td><strong>🔴 Heinz bodies + Bite cells</strong></td>
+                        <td><strong>🔴 Spherocytes</strong></td>
+                        <td><strong>🔴 Tea-colored urine at night</strong></td>
+                        <td><strong>🔴 Schistocytes</strong></td>
+                        <td><strong>🔴 DAT positive (IgG)</strong></td>
+                        <td><strong>🔴 Cold-triggered</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>MCV</strong></td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Triggers</strong></td>
+                        <td>Oxidative stress:<br>• Infection (most common)<br>• Fava beans<br>• Drugs: sulfonamides, primaquine, dapsone<br>• Metabolic acidosis</td>
+                        <td>None specific<br>Hereditary</td>
+                        <td>Complement activation</td>
+                        <td>• Mechanical heart valves<br>• March hemoglobinuria<br>• TTP, HUS, DIC</td>
+                        <td>• Lymphoproliferative malignancy<br>• Drugs (PCN, cephalosporins, NSAIDs)<br>• Autoimmune disorders</td>
+                        <td>• Cold exposure<br>• Mycoplasma infection<br>• Mononucleosis<br>• Malignancy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DAT Result</strong></td>
+                        <td>Negative</td>
+                        <td>Negative</td>
+                        <td><span class="highlight-purple">Negative</span></td>
+                        <td>Negative</td>
+                        <td><span class="highlight-green">Positive (IgG)</span></td>
+                        <td>May be positive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Diagnostic Test</strong></td>
+                        <td><span class="highlight-green">G6PD level</span><br>(May be falsely normal during crisis)</td>
+                        <td><span class="highlight-green">Osmotic Fragility Test</span> or Flow cytometry</td>
+                        <td><span class="highlight-green">Flow cytometry</span></td>
+                        <td>Identify underlying cause<br>Peripheral smear</td>
+                        <td>DAT (Direct Coombs)</td>
+                        <td>Cold agglutinin titer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Treatment</strong></td>
+                        <td><strong>First-line:</strong><br>• Avoid oxidative triggers<br>• Supportive care<br>• Hydration<br>• Transfusion if severe<br><br><span class="highlight-red">Splenectomy NOT helpful</span></td>
+                        <td><strong>First-line:</strong><br>• <span class="highlight-green">Splenectomy (curative)</span><br>• Folic acid supplementation<br>• Transfusions if severe<br><br><strong>Vaccinate before splenectomy</strong></td>
+                        <td><strong>First-line:</strong><br>• Supportive care<br>• Transfusions<br>• Eculizumab (complement inhibitor)<br>• Anticoagulation for thrombosis</td>
+                        <td><strong>First-line:</strong><br>• <span class="highlight-green">Treat underlying cause</span><br>• Supportive care<br>• Transfusions if needed<br>• Plasmapheresis for TTP</td>
+                        <td><strong>First-line:</strong><br>• <span class="highlight-green">Glucocorticoids</span><br>• Treat underlying cause<br>• Supportive care<br><br><strong>Alternative:</strong><br>• Splenectomy if refractory<br>• Immunosuppression</td>
+                        <td><strong>First-line:</strong><br>• <span class="highlight-green">Avoid cold exposure</span><br>• Treat underlying infection/malignancy<br>• Supportive care<br><br><strong>Alternative:</strong><br>• Rituximab for severe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Differentiator</strong></td>
+                        <td><strong>Episodic hemolysis after oxidative trigger; X-linked</strong></td>
+                        <td><strong>Only hemolytic anemia curable with splenectomy</strong></td>
+                        <td><strong>DAT negative despite hemolysis; pancytopenia; thrombosis risk</strong></td>
+                        <td><strong>Schistocytes from mechanical RBC trauma</strong></td>
+                        <td><strong>IgG antibodies on RBCs; warm temperature</strong></td>
+                        <td><strong>IgM antibodies; cold-triggered; infection association</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Sickle Cell Disease: Comprehensive Management Guide</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Specific Details</th>
+                        <th>Clinical Pearls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Genotypes by Severity</strong></td>
+                        <td><strong>Severe:</strong> HbSS, HbSβ⁰<br><strong>Moderate:</strong> HbSC, HbSβ⁺<br><strong>Asymptomatic:</strong> HbAS (trait)</td>
+                        <td>Trait protects against malaria<br>Most common in African descent<br>Autosomal recessive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acute Crisis Management</strong></td>
+                        <td><span class="highlight-red">FLUIDS - aggressive IV hydration</span><br><span class="highlight-red">ANALGESICS - aggressive pain control</span><br><span class="highlight-red">OXYGEN - maintain sat >95%</span><br>Incentive spirometry - prevent ACS<br>Address triggers<br>Transfusion if severe</td>
+                        <td>Pain is MOST COMMON complication<br>Acute chest syndrome can develop rapidly<br>Monitor closely for complications<br>Consider exchange transfusion for severe ACS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chronic Disease Management</strong></td>
+                        <td><span class="highlight-green">Hydroxyurea starting at 9 months</span> (increases HbF)<br>Lifelong folate supplementation<br>Avoid provoking factors<br>Regular monitoring</td>
+                        <td>Hydroxyurea reduces crisis frequency<br>Increases fetal hemoglobin<br>Monitor CBC regularly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preventive Care: ALL Patients</strong></td>
+                        <td>• Vaccines for encapsulated organisms (up to date)<br>• Ophthalmology starting age 10, then q1-2 years<br>• Annual microalbuminuria starting age 10<br>• Avoid triggers: hypoxia, dehydration, cold, infection</td>
+                        <td>Functional asplenia/autosplenectomy<br>High infection risk<br>Retinopathy screening critical<br>Kidney damage common</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preventive Care: HbSS and HbSβ⁰ Only</strong></td>
+                        <td><span class="highlight-green">PCN prophylaxis daily until age 5</span><br><span class="highlight-green">Annual transcranial doppler (TCD) ages 2-16</span></td>
+                        <td>PCN prevents sepsis from encapsulated organisms<br>TCD screens for stroke risk<br>Stop PCN at 5 if fully vaccinated</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Major Complications</strong></td>
+                        <td><strong>Acute Chest Syndrome:</strong> CP, fever, hypoxia, infiltrates<br><strong>Stroke:</strong> Screen with TCD<br><strong>Priapism:</strong> Urologic emergency<br><strong>Osteonecrosis:</strong> Especially femoral head<br><strong>Autosplenectomy:</strong> Increases infection risk<br><strong>Leg ulcers, gallstones, kidney disease, retinopathy</strong></td>
+                        <td>ACS is leading cause of death<br>Stroke risk highest in children<br>Chronic organ damage accumulates<br>Howell-Jolly bodies indicate autosplenectomy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Definitive Treatment</strong></td>
+                        <td><span class="highlight-green">Hematopoietic stem cell transplant</span><br>Gene therapy under investigation</td>
+                        <td>Only curative option<br>Requires matched donor<br>Significant risks<br>Gene therapy promising</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Provoking Factors to Avoid</strong></td>
+                        <td><strong>Hypoxia/Acidosis:</strong> Asthma, COPD, OSA, URI, altitude, exertion<br><strong>Dehydration:</strong> Vomiting, diarrhea, diabetes<br><strong>Temperature:</strong> Hypo/hyperthermia<br><strong>Substances:</strong> Alcohol, cocaine, smoking<br><strong>Infection</strong></td>
+                        <td>Patient education critical<br>Address triggers promptly<br>Maintain good hydration<br>Avoid high altitude</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. Thalassemia vs Iron Deficiency: Key Distinctions</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Thalassemia Trait</th>
+                        <th>Iron Deficiency</th>
+                        <th>Key Differentiator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MCV</strong></td>
+                        <td><80 (microcytic)</td>
+                        <td><80 (microcytic)</td>
+                        <td>Both microcytic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RDW</strong></td>
+                        <td><span class="highlight-green">NORMAL</span></td>
+                        <td><span class="highlight-red">ELEVATED</span></td>
+                        <td><strong>🔴 CRITICAL DIFFERENTIATOR</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RBC Count</strong></td>
+                        <td><span class="highlight-purple">Normal to HIGH</span><br>(disproportionately high for degree of anemia)</td>
+                        <td>Low</td>
+                        <td>Thalassemia: more RBCs, just smaller</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hemoglobin Pattern</strong></td>
+                        <td><strong>Alpha:</strong> Normal or ↑Hb Bart (newborns), ↑Hb H (3+ deletions)<br><strong>Beta:</strong> ↑HbA₂, ↑HbF</td>
+                        <td>Normal pattern, just decreased amount</td>
+                        <td>Hemoglobin electrophoresis diagnostic for thalassemia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Iron Studies</strong></td>
+                        <td>Normal or HIGH iron<br>Normal ferritin</td>
+                        <td>LOW iron<br>LOW ferritin<br>HIGH TIBC</td>
+                        <td>Iron normal/high in thalassemia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Treatment</strong></td>
+                        <td><span class="highlight-red">AVOID iron supplements unless truly deficient</span><br>Folate supplementation<br>Transfusions if severe<br>Splenectomy can help</td>
+                        <td><span class="highlight-green">Iron supplementation</span><br>Ferrous sulfate 325mg PO TID<br>Treat underlying cause</td>
+                        <td><strong>NEVER give iron to thalassemia patients</strong> - risk of overload</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inheritance</strong></td>
+                        <td>Hereditary<br>Mediterranean, African, Asian descent</td>
+                        <td>Acquired<br>Usually from blood loss or poor intake</td>
+                        <td>Family history helpful</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reticulocyte</strong></td>
+                        <td>Normal to slightly elevated<br>(signs of hemolysis if severe)</td>
+                        <td>Normal to low<br>(decreased production)</td>
+                        <td>Hemolytic component in thalassemia</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4. Alpha vs Beta Thalassemia</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Genetics</th>
+                        <th>Severity Spectrum</th>
+                        <th>Lab Findings</th>
+                        <th>Management</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Alpha Thalassemia</strong></td>
+                        <td>4 α-globin genes<br>Deletion-based<br>Severity by # deleted</td>
+                        <td><strong>4 genes (αα/αα):</strong> Normal<br><strong>3 genes (-α/αα):</strong> Silent carrier<br><strong>2 genes (--/αα or -α/-α):</strong> Trait, mild<br><strong>1 gene (--/-α):</strong> Hb H disease, moderate<br><strong>0 genes (--/--):</strong> Hb Bart, lethal</td>
+                        <td>↑Hb Bart (newborns)<br>↑Hb H (3+ deletions)<br>Microcytic<br>Normal RDW</td>
+                        <td>Most mild, no treatment<br>Hb H may need transfusions<br>Hb Bart incompatible with life</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Beta Thalassemia</strong></td>
+                        <td>2 β-globin genes<br>Mutation-based<br>β⁰ (no production)<br>β⁺ (reduced production)</td>
+                        <td><strong>Nontransfusion Dependent:</strong> Milder, occasional transfusions<br><br><strong>Transfusion Dependent (Major):</strong> Severe, regular transfusions for survival</td>
+                        <td>↑HbA₂<br>↑HbF<br>Microcytic<br>Normal RDW<br>Severe anemia if major</td>
+                        <td><strong>Minor:</strong> Usually no treatment<br><br><strong>Major:</strong> Regular transfusions<br>Chelation for iron overload<br>Splenectomy may help<br>Stem cell transplant curative</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5. Transfusion Reactions: Recognition and Management</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Reaction Type</th>
+                        <th>Timing</th>
+                        <th>Recognition (Signs/Symptoms)</th>
+                        <th>Immediate Management</th>
+                        <th>Prevention</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Acute Hemolytic</strong></td>
+                        <td>Within first 24 hours<br>(often within minutes)</td>
+                        <td><span class="highlight-red">Classic Triad:</span><br>• <strong>Fever</strong><br>• <strong>Flank pain</strong><br>• <strong>Dark urine</strong><br><br>Also: hemoglobinuria, hypotension, tachycardia, dyspnea, nausea/vomiting</td>
+                        <td><span class="highlight-red">STOP TRANSFUSION IMMEDIATELY</span><br>• Keep IV line open with saline<br>• Aggressive hydration<br>• Maintain urine output >100mL/hr<br>• Send labs (CBC, Coombs, blood bank)<br>• Report to blood bank<br>• Supportive care</td>
+                        <td>Proper type and crossmatch<br>Two-person verification<br>Check patient ID carefully</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Febrile Non-Hemolytic</strong></td>
+                        <td>During or shortly after transfusion</td>
+                        <td><span class="highlight-green">Temperature ≥1°C above baseline</span><br>Most common transfusion reaction<br>No hemolysis</td>
+                        <td>• Stop transfusion<br>• Rule out hemolytic reaction<br>• Antipyretics (acetaminophen)<br>• May resume if hemolysis excluded</td>
+                        <td>Leukoreduction of blood products<br>Premedication with acetaminophen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delayed Hemolytic</strong></td>
+                        <td>After 24 hours<br>(typically 2-6 weeks)</td>
+                        <td>Extravascular hemolysis<br>Fever<br>Chills<br>Jaundice<br>Falling Hgb<br>Positive DAT</td>
+                        <td>• Usually self-limited<br>• Supportive care<br>• Identify antibody<br>• Update blood bank records</td>
+                        <td>Careful antibody screening<br>Document antibodies in patient record</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Allergic</strong></td>
+                        <td>During transfusion</td>
+                        <td>Mild: urticaria, pruritus<br>Severe: anaphylaxis, bronchospasm, hypotension</td>
+                        <td><strong>Mild:</strong><br>• Pause transfusion<br>• Antihistamines<br>• Resume if improved<br><br><strong>Severe:</strong><br>• Stop transfusion<br>• Epinephrine<br>• Airway management<br>• IV fluids</td>
+                        <td>Premedication with antihistamines<br>Washed RBCs for severe cases<br>IgA-deficient blood if IgA deficiency</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TRALI</strong><br>(Transfusion-Related Acute Lung Injury)</td>
+                        <td>Within 6 hours</td>
+                        <td>Acute respiratory distress<br>Hypoxemia<br>Bilateral infiltrates<br>Normal cardiac pressures</td>
+                        <td>• Stop transfusion<br>• Oxygen/ventilatory support<br>• DO NOT give diuretics<br>• Supportive care</td>
+                        <td>Male donor plasma preferred<br>Donor leukocyte antibody screening</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TACO</strong><br>(Transfusion-Associated Circulatory Overload)</td>
+                        <td>During or within 6 hours</td>
+                        <td>Dyspnea<br>Hypertension<br>JVD<br>Pulmonary edema<br>Elevated BNP</td>
+                        <td>• Stop/slow transfusion<br>• <span class="highlight-green">Diuretics</span><br>• Oxygen<br>• Elevate head of bed<br>• Supportive care</td>
+                        <td>Slower infusion rate<br>Diuretics before/during transfusion<br>Smaller aliquots for high-risk patients</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="clinical-pearl">
+                <h4>💎 Key Clinical Decision Points</h4>
+                <ul>
+                    <li><strong>Splenectomy Decision Tree:</strong>
+                        <ul>
+                            <li>✅ <strong>DO</strong> for Hereditary Spherocytosis (curative)</li>
+                            <li>✅ <strong>CONSIDER</strong> for severe Thalassemia, refractory Warm AIHA</li>
+                            <li>❌ <strong>DO NOT</strong> for G6PD deficiency (not helpful)</li>
+                        </ul>
+                    </li>
+                    <li><strong>When to Give Iron:</strong>
+                        <ul>
+                            <li>✅ Iron deficiency anemia</li>
+                            <li>❌ <strong>NEVER</strong> in Thalassemia unless proven iron deficient (risk of overload)</li>
+                            <li>❌ <strong>NEVER</strong> in hemolytic anemias (iron overload from hemolysis)</li>
+                        </ul>
+                    </li>
+                    <li><strong>DAT Interpretation Guide:</strong>
+                        <ul>
+                            <li><strong>Positive IgG:</strong> Warm AIHA (body temperature hemolysis)</li>
+                            <li><strong>Positive C3:</strong> Cold AIHA or Warm AIHA</li>
+                            <li><strong>Negative despite hemolysis:</strong> Think PNH, G6PD, Hereditary Spherocytosis, MAHA</li>
+                        </ul>
+                    </li>
+                    <li><strong>Emergency Situations Requiring Immediate Action:</strong>
+                        <ul>
+                            <li>🚨 Acute hemolytic transfusion reaction → STOP transfusion, aggressive hydration</li>
+                            <li>🚨 Acute chest syndrome in sickle cell → Oxygen, fluids, incentive spirometry, consider exchange transfusion</li>
+                            <li>🚨 Severe G6PD crisis → Supportive care, may need transfusion</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMainSection(sectionId) {
+            document.querySelectorAll('.main-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.main-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId + '-section').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstMainTab = document.querySelector('.main-tab');
+            const firstMainSection = document.querySelector('.main-section');
+            if (firstMainTab && firstMainSection) {
+                firstMainTab.classList.add('active');
+                firstMainSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+##HPI: (OLD CAARTS)##
+___ Onset
+___ Location 
+___ Duration (constant / intermittent)
+___ Character (quality & severity of sx)
+___ Aggravating and Alleviating factors (includes tx tried)
+___ Associated signs / symptoms
+___ Radiation
+___ Timing (relation to time of day / recurring circumstance)
+___ Setting in which it occurred
+
+##PMH##
+___ Allergies (medications, latex, food / reaction)
+___ Medications (prescription & OTC, supplements)
+___ Medical Conditions (past & current)
+___ Surgeries / Hospitalizations
+___ Accidents / Injuries
+___ OB/Gyn (including LMP, OB Hx, Pap)
+___ Immunizations (childhood & adult and seasonal)
+___ Last dental visit 
+
+##FH##
+___ Father (age, medical conditions)
+___ Mother (age, medical conditions)
+___ Siblings (age[s], medical conditions)
+___ Children (age[s], medical conditions)
+___ Addl. family history of heart disease or cancer
+
+##SH##
+___ Occupation 			___ Tobacco / vape 
+___ Relationship status		___ EtOH	
+___ Exercise / hobbies / education	___ IVDU / recreational drugs
+___ Social determinants of health (SDOH)
+
+##REVIEW OF SYSTEMS (ROS)##
+General (Gen)
+___ Fever / chills		    	___ Weight change
+___ Fatigue / malaise		___ Sleep 
+___ Sweats 			___ Night sweats
+Psychiatric (Psych)
+___ Mood changes			___ Memory change
+___ Anxiety / nervousness		___ Sleep disturbance 
+___ Mania			___ Suicidal / homicidal 
+___ Sadness / depression	      	       thoughts or actions
+___ Anhedonia
+Skin
+___ Rash				___ Pigmentation / texture
+___ Itching			___ Nail changes
+
+HEENOT
+Head
+___ Headaches 			___ Dizziness
+___ Syncope			___ Trauma / injury
+Eyes
+___ Vision change 		 	___ Pain
+___ Assistive device		___ Discharge
+___ Scotoma (field loss)		___ Redness
+___ Blurring			___ Use of eye drops
+___ Diplopia			___ Last eye exam
+___ Photophobia			
+Ears
+___ Hearing change		___ Tinnitus		 
+___ Assistive device		___ Vertigo
+____Otorrhea			___Otalgia
+Nose
+___ Congestion			___ Anosmia
+___ Rhinorrhea			___ Postnasal drip
+___ Epistaxis			___ Sinus pain
+Oral & Throat 
+___ Dental problems / implants	___ Sore throat / tongue
+___ Oral lesion / abscess		___ Hoarseness
+___ Bleeding gums			
+
+
+
+Neck
+___ Swollen glands			___ Neck stiffness/ pain 
+___ Neck masses			___ Limited ROM
+___ Thyroid nodules		
+Pulmonary (Pulm)
+___ Dyspnea 			___ Sputum (amount, color)
+___ Wheezing			___ Hemoptysis
+___ Cough (frequency, type)		___ Chest pain (pleuritic)
+___ Snoring
+Cardiovascular (CV)
+___ Chest pain / pressure / tightness	___ Palpitation (frequency)	
+___ Dyspnea (SOB / DOE)     		___ Claudication
+___ Orthopnea (#pillows) 		___ Lower extremity edema 
+___ PND	                                        	___ Hx of HTN / HLD
+Gastrointestinal (GI)	
+___ Appetite change		___ Constipation
+___ Food intolerance		___ Diarrhea
+___ Indigestion / reflux		___ Hematochezia
+___ Dysphagia			___ Melena
+___ Odynophagia			___ Hemorrhoids
+___ Nausea / vomiting		___ Proctalgia
+___ Hematemesis			___ Hernia
+___ Abdominal pain			___ Jaundice
+___ Flatus / eructation		___ Pruritus
+___ Change in stool color/type	___ Color of urine	 
+Extremities/Musculoskeletal (MSK)
+___ Swelling 			___ Joint pain / stiffness
+___ Redness 			___ ROM 
+___ Deformity			___ Prior x-rays / procedures
+___ Warmth
+Neurologic (Neuro)
+___ Headache 			___ Memory change 
+___ Dizziness / syncope		___ Tremors
+___ Weakness	 		___ Hx of seizures
+___ Reduced coordination		___ Hx of head injury	 
+___ Falls				___ Paresthesia
+Breasts 
+___ Pain / tenderness		___ Nipple discharge
+___ Lumps / masses		 
+___ Mammograms
+Genitourinary (GU)
+Urinary
+___ Frequency			___ Incontinence 
+___ Urgency			___ Urine characteristics 
+___ Hesitancy			___ Low back / flank pain
+___ Dysuria			___ Hx renal stones 
+___ Hematuria
+Genital
+___ Discharge			___ Rash 
+___ Blisters	___ Ulceration / chancre
+___ Sexual concerns (dysfunction, dyspareunia, libido)
+Gynecologic (GYN)
+___ Age at menarche / menopause	___ Dysmenorrhea	
+___ Menses schedule, flow		___ Vaginal discharge/ itching
+___ Post-menopausal bleeding 
+Hematologic (Heme)
+___ Anemia			___ Easy bruising / bleeding
+___ Lymphadenopathy		___ Hx of blood clots
+___ Hx of blood transfusion		___ Frequent / unusual 
+	 	      			       infections
+Endocrine (Endo)
+Thyroid
+___ Hot / cold sensitivity
+___ Excessive sweating
+___ Tremor	
+___ Palpitations
+___ Weight change	
+___ Skin / hair changes
+Pancreas
+___ Polyuria 
+___ Polydipsia
+___ Polyphagia   	
+Adrenal
+___ skin pigment changes
+___ orthostatic hypotension
+___ skin striae	
+___ weakness / fatigue
+
+Gonadal
+___ Libido change
+___ Erectile dysfunction	  
+___ Infertility
+
+
+
+

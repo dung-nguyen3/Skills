@@ -1,0 +1,710 @@
+Learning Objectives: 
+
+1. Be familiar with the mechanisms of viral replication and where drugs may act to inhibit
+this process.
+2. Recall the antivirals used to treat each of the discussed viral infections.
+3. Recognize the drugs used for treatment of HSV and VZV, their mechanisms of action,
+mechanism of viral resistance and adverse side effects.
+4. Recognize the drugs used for treatment of cytomegalovirus and/or herpes, their
+mechanisms of action, mechanism of viral resistance and adverse side effects.
+5. Recognize the drugs used for treatment of influenza, their mechanisms of action,
+mechanism of viral resistance and adverse side effects.
+6. Recognize the drug used for treatment of RSV, its mechanisms of action, mechanism of
+viral resistance and adverse side effects.
+7. Recognize the drugs used for treatment of HBV and HVC, their mechanisms of action,
+mechanism of viral resistance and adverse side effects.
+8. Recognize the drugs used for treatment of COVID 19, their mechanisms of action,
+mechanism of viral resistance and adverse side effects.
+HERPES SIMPLEX & VARICELLA-ZOSTER CMV/HERPES
+Acyclovir (Zovirax) Ganciclovir (Cytovene)
+Valacyclovir (Valtrex) Valganciclovir (Valcyte)
+Docosanol (Abreva) Foscarnet (Foscavir)
+INFLUENZA RSV
+Oseltamivir (Tamiflu) Ribavirin (Virazole)
+Zanamivir (Relenza) Palivizumab (Synagis)
+HEPATITIS B COVID-19
+Tenofovir (Viread) Remdesivir (Veklury)
+Entecavir (Baraclude) Molnupiravir (Lagevrio)
+Lamivudine (Epivir) Nirmatrelvir and ritonavir (Paxlovid)
+HEPATITIS C
+Sofosbuvir/Ledipasvir (Harvoni)
+Sofosbuvir/Velpatasvir (Epclusa)
+
+
+
+## Page 1: Title Slide
+**Title:** Antiviral Drugs
+
+
+## Page 2: Viral Life Cycle
+**Image:** Diagram showing the 8-step viral replication cycle within a host cell:
+1. **Binding to cell surface receptors** - virus attaches to host cell
+2. **Entry** - virus enters the cell
+3. **Uncoating** - viral genetic material is released
+4. **Replication** - viral RNA or DNA is copied
+   - DNA viruses replicate in the nucleus (shown as "viral DNA")
+   - RNA viruses replicate in cytoplasm (shown as "viral RNA")
+5. **Transcription** - viral genes are transcribed to mRNA
+6. **Translation** - viral proteins are made
+7. **Virion Assembly** - new virus particles are assembled
+8. **Release** - new viruses exit to infect other cells
+
+This diagram illustrates the key steps where antiviral drugs can intervene.
+
+## Page 3: Antiviral Outline
+A comprehensive list of antiviral drugs organized by the viruses they treat:
+
+**HSV/VZV (Herpes Simplex Virus/Varicella Zoster Virus):**
+- Acyclovir (Zovirax)
+- Valacyclovir (Valtrex)
+- Docosanol (Abreva)
+
+**CMV/HERPES (Cytomegalovirus):**
+- Ganciclovir (Cytovene)
+- Valganciclovir (Valcyte)
+- Foscarnet (Foscavir)
+
+**INFLUENZA:**
+- Oseltamivir (Tamiflu)
+- Zanamivir (Relenza)
+
+**COVID-19:**
+- Remdesivir (Veklury)
+- Molnupiravir (Lagevrio)
+- Nirmatrelvir and ritonavir (Paxlovid)
+
+**Hepatitis B (chronic):**
+- Tenofovir (Viread)
+- Entecavir (Baraclude)
+- Lamivudine (Epivir)
+
+**Respiratory Syncytial Virus (RSV):**
+- Ribavirin (Virazole)
+- Palivizumab (Synagis)
+
+**Hepatitis C:**
+- Sofosbuvir/Ledipasvir (Harvoni)
+- Sofosbuvir/Velpatasvir (Epclusa)
+
+## Page 4: DNA Base Pairing
+**Image:** Shows the double helix structure of DNA with detailed molecular structures of the four DNA bases:
+- **Thymine** (blue) pairs with **Adenine** (pink) via hydrogen bonds
+- **Guanine** (green) pairs with **Cytosine** (yellow) via hydrogen bonds
+
+The image shows the sugar-phosphate backbone (5' to 3' direction) and the specific hydrogen bonding patterns between complementary bases. This is fundamental to understanding how nucleoside analog antivirals work - they mimic these natural bases.
+
+## Page 5: HERPES - HSV
+**Comic:** A three-panel comic illustrating that "What happens in Vegas, DOESN'T stay in Vegas" - "You have herpes" - emphasizing that HSV is a lifelong infection.
+
+**Images showing HSV manifestations:**
+1. **Herpes simplex blepharitis** - infection around the eye/eyelid
+2. **Genital herpes (female)** - lesions in genital area
+3. **Herpes gingivitis** - lesions inside the mouth on gums
+4. **Cold sore** - characteristic lesion on the lip
+
+These images demonstrate the various presentations of HSV-1 and HSV-2 infections in different body locations.
+
+## Page 6: Varicella Zoster Virus - VZV (Chickenpox/Shingles)
+
+**Drugs listed:**
+- Acyclovir (Zovirax)
+- Valacyclovir (Valtrex)
+- Docosanol (Abreva)
+
+**Images showing VZV manifestations:**
+1. **Chickenpox** (left) - child's back covered with characteristic small vesicular rash
+2. **Diagram** (center) - anatomical illustration showing the varicella virus traveling along a nerve shaft, with labels indicating:
+   - Hair shaft
+   - Skin surface
+   - Initial stage consists of burning pain and sensitive skin
+   - Weakened immune system reactivates virus
+   - Dormant varicella virus
+   - Blisters develop, fill with chickenpox pus
+   - Blisters burst, crust over and heal
+   - Nerve damage can cause postherpetic neuralgia
+3. **Shingles** (right) - painful dermatomal rash showing the characteristic unilateral distribution along a nerve pathway
+
+This illustrates how VZV causes chickenpox initially, then remains dormant in nerve ganglia and can reactivate as shingles years later.
+
+---
+
+## Page 7: Acyclovir (Zovirax)
+
+**Mechanism of Action:**
+- Guanosine analogue
+- Requires phosphorylation and activation by viral thymidine kinase
+- Inhibits DNA synthesis; competes with dGTP
+- Concentrated in viral-infected cells; toxicity selective for virus
+
+**Images:**
+
+**Top right diagram:** Shows the mechanism of acyclovir activation and action:
+- Herpes simplex virus enters the cell
+- Acyclovir enters the cytoplasm
+- **Herpes thymidine kinase** (highlighted in blue box) phosphorylates acyclovir to monophosphate
+- Host cell kinases further phosphorylate to diphosphate and triphosphate
+- Acyclovir triphosphate competes with dGTP and gets incorporated into viral DNA
+- **Herpes DNA polymerase** (shown in blue) uses the drug
+- This leads to chain termination and inhibition of viral DNA synthesis
+
+**Bottom right image:** Molecular structure comparison showing:
+- **Guanine** base (blue shaded area)
+- **Portion of deoxyribose** (green shaded area with complete sugar ring)
+- **MISSING** (red arrow) - acyclovir lacks the complete sugar moiety, making it a "dead end" when incorporated into DNA
+
+The key innovation is that acyclovir is preferentially activated by viral thymidine kinase, making it selectively toxic to infected cells.
+
+## Page 8: Acyclovir Chain Termination Mechanism
+
+**Two-panel comparison:**
+
+**Left panel - "Elongation - Normal reaction":**
+- Shows a growing DNA chain with normal nucleotides
+- Each nucleotide has an **OH group** at the 3' position (red arrow pointing to "Next base added here")
+- This allows the next base to be added and the chain to continue growing
+
+**Right panel - "Acyclovir is incorporated - Chain Termination":**
+- Shows acyclovir incorporated into the DNA chain
+- **Dead end - No OH to attach new base** (circled in red)
+- The acyclovir molecule lacks the 3'-OH group needed for the next nucleotide to attach
+- DNA synthesis stops - chain termination
+
+This diagram clearly illustrates why acyclovir works: once incorporated, it prevents any further extension of the viral DNA strand because there's no hydroxyl group for the next nucleotide to bind to.
+
+## Page 9: Acyclovir/Valacyclovir
+
+**Acyclovir:**
+- Oral, topical, IV
+- Resistance develops due to **decrease or mutation in viral thymidine kinase**
+
+**Valacyclovir:**
+- Oral
+- Pro-drug; converted to acyclovir
+- **Higher bioavailability**
+
+**Diagram on right:** Shows the phosphorylation pathway for antivirals:
+- Acyclovir, penciclovir, ganciclovir enter the cell
+- **Virus-specified enzymes** (circled in red) - particularly thymidine kinase and UL97 - phosphorylate the drugs to monophosphate
+- Trifluridine and cidofovir shown as alternatives
+- **Host kinases** then convert to diphosphate and triphosphate forms
+- The triphosphate forms either:
+  - Incorporate into viral DNA → Chain termination
+  - Competitively inhibit viral DNA polymerase → Inhibition of viral DNA synthesis
+- Foscarnet (shown in dotted box) directly inhibits the polymerase without needing phosphorylation
+
+This highlights that viral enzymes activate most antivirals, providing selectivity.
+
+## Page 10: Therapeutic Use
+
+**DOC HSV/VZV (Drug of Choice)**
+
+**Uses:**
+- Genital herpes - orally and topically; symptomatic and asymptomatic
+- Herpes keratitis - topically, oral
+- Intraoral herpes - oral
+- Herpes zoster - oral/topical
+- Herpes encephalitis, varicella zoster - IV
+- Prophylaxis in organ transplant
+- Chronically to immunocompromised patients
+
+**Images:**
+1. **Top right:** Herpes keratitis - eye with corneal scarring/damage visible
+2. **Middle right:** Diagram of head showing **HSV: Meningitis & Encephalitis** with inflamed brain (red) and spinal cord
+3. **Bottom right:** "Genital Herpes" - showing genital lesions
+
+These images emphasize the serious complications of HSV that require antiviral treatment, including CNS involvement and recurrent genital disease.
+
+## Page 11: Adverse Effects
+
+**Adverse effects:**
+- **Very well-tolerated**; due to concentration of drug within viral cells
+- Nausea, vomiting, headache
+- **Nephrotoxicity with high IV doses:**
+  - Hydration is important
+  - Decreased renal function will affect drug levels significantly
+- **Safe in pregnancy**
+
+The key point is that acyclovir is remarkably safe because it's selectively activated in virus-infected cells and concentrated there, sparing normal cells from toxicity.
+
+## Page 12: Docosanol (Abreva)
+
+**Mechanism of action and use:**
+- **Inhibits viral fusion** to host cell plasma membrane
+- Virus can't get into cell
+- **OTC** for cold sores, herpes simplex; topical
+- Minor side effects:
+  - Irritates skin
+  - Headache
+
+**Image:** Shows a person with a prominent cold sore on the upper lip, demonstrating the typical presentation that would be treated with this OTC medication.
+
+Docosanol works differently from acyclovir - it prevents viral entry rather than inhibiting DNA synthesis.
+
+## Page 13: CMV and Herpes
+
+**CMV** (Cytomegalovirus)
+
+**Drugs:**
+- Ganciclovir (Cytovene); Valganciclovir (Valcyte)
+- Foscarnet (Foscavir)
+
+**Images showing CMV disease:**
+1. **Top left:** CMV retinitis - fundoscopic view showing retinal hemorrhages and whitish areas of necrosis
+2. **Top right:** CMV colitis - endoscopic view showing severe ulceration and inflammation of the colon
+3. **Bottom left:** Pregnant woman - indicating congenital CMV concerns
+4. **Bottom right:** "ORGAN DONOR" logo with hands exchanging organs - CMV is a major concern in transplant recipients
+
+These images emphasize that CMV causes serious disease primarily in immunocompromised patients (transplant recipients, HIV/AIDS patients, newborns).
+
+## Page 14: Ganciclovir/Valganciclovir
+
+**Mechanism of action:**
+- Guanosine analogue
+- Activated by viral kinases in cells infected with herpes or CMV
+- Activated drug inhibits DNA polymerase
+- **Less selective than acyclovir and more toxic**
+
+**Diagram - CMV Infected Cell:**
+Shows the activation pathway:
+- GCV (ganciclovir) enters the cell
+- **CMV phosphotransferase (UL97)** (circled in red) phosphorylates GCV to monophosphate
+- **Cellular Enzymes** further phosphorylate to diphosphate and triphosphate (GCV-PPP)
+- GCV-triphosphate inhibits **CMV DNA polymerase (UL54)** (shown with upward arrow and "inhibition" label)
+
+The key difference from acyclovir is that CMV uses a different viral kinase (UL97 phosphotransferase) rather than thymidine kinase for the initial activation step.
+
+## Page 15: Ganciclovir/Valganciclovir (continued)
+
+**Ganciclovir** - ocular implant, oral, IV  
+**Valganciclovir** - oral only
+
+**Therapeutic use:**
+- **DOC – CMV or CMV/Herpes co-infections**
+- **Oral** - Treatment or prophylaxis of CMV/herpes in immunocompromised or transplant patients
+- **Oral, IV or ocular implant** - CMV retinitis (replace every 5-8 months)
+- **IV** – life-threatening CMV
+- **No recommendation for treatment of pregnant women** – category C drug
+
+**Images:**
+1. **Top right:** Diagram of eye cross-section showing **ganciclovir implant** placement in the vitreous cavity, near the retina and macula
+2. **Bottom right:** Photograph of actual ganciclovir ocular implant - small pellet device that slowly releases drug
+
+The ocular implant provides sustained local delivery of ganciclovir directly to the retina, bypassing systemic side effects for CMV retinitis treatment.
+
+## Page 16: Ganciclovir/Valganciclovir: Adverse Effects
+
+**Adverse effects:**
+- **Myelosuppression:** neutropenia, thrombocytopenia, leukopenia
+- CNS - headache, confusion, seizures
+- Nausea, fever, rash
+- Phlebitis
+- Hepatotoxicity
+
+**Images:** Two circular diagrams comparing normal blood composition to blood with leukopenia:
+- **NORMAL:** Shows appropriate numbers of red blood cells (red circles), white blood cells (larger purple/pink cells), and platelets
+- **LEUKOPENIA:** Shows reduced numbers of white blood cells (fewer purple/pink cells)
+
+The bone marrow suppression is the most significant toxicity and limits the use of ganciclovir, requiring regular blood count monitoring.
+
+---
+## Page 17: Foscarnet (Foscavir)
+
+**Mechanism of action:**
+- **Directly inhibits DNA & RNA polymerase, reverse transcriptase** – does NOT require phosphorylation for activity
+
+**Therapeutic use:**
+- IV only
+- **CMV encephalitis** - Foscarnet + ganciclovir
+- Ganciclovir-resistant CMV or HSV/CMV
+
+**Toxicity:**
+- **Renal toxicity** – hydration reduces toxicity significantly
+
+**Diagram on right:** Shows the phosphorylation pathway with Foscarnet's mechanism:
+- Acyclovir, penciclovir, ganciclovir require **Virus-specified enzymes** (circled in red) like thymidine kinase and UL97 for initial phosphorylation
+- Trifluridine, cidofovir shown as alternatives
+- Host kinases convert to diphosphate then triphosphate
+- **Foscarnet** (circled in red at bottom) bypasses all phosphorylation steps and directly inhibits viral DNA polymerase through **Competitive inhibition of viral DNA polymerase**
+- This leads to **Inhibition of viral DNA synthesis**
+
+The key advantage of foscarnet is that it doesn't require viral enzymes for activation, making it useful for resistant strains that have mutated thymidine kinase or UL97.
+
+## Page 18: Influenza
+
+**Title:** Influenza Virus
+
+**Drugs:**
+- Oseltamivir (Tamiflu)
+- Zanamivir (Relenza)
+
+**Images:**
+1. **Top left:** Cartoon character with symptoms labeled - headache (stars), fever (thermometer), runny nose, cough, sore throat - illustrating typical flu symptoms
+2. **Bottom left:** Electron microscopy image of influenza virus particles (spherical, spiky structures)
+3. **Center:** Healthcare worker illustration with text "Get Your Flu Shots" promoting vaccination
+4. **Right:** Elderly patient appearing ill in bed
+
+The images emphasize both the symptomatic burden of influenza and the importance of prevention through vaccination, with antivirals serving as treatment options.
+
+## Page 19: Oseltamivir (Tamiflu) / Zanamivir (Relenza)
+
+**MOA:** Neuraminidase inhibitors, block release of virus from cells
+
+**Diagram showing two scenarios:**
+
+**Panel A - Neuraminidase activity (normal viral replication):**
+- Host cell with nucleus
+- **Budding virus** at cell surface
+- **Receptor containing sialic acid**
+- **Neuraminidase cleaves receptor** releasing the virus
+- **Hemagglutinin** on virus surface
+- **Virion** released
+- **Release of new virions** leading to **Continued viral replication**
+
+**Panel B - Neuraminidase inhibitor (drug effect):**
+- **Neuraminidase inhibitors** (shown as red crescents) block the enzyme
+- Receptor containing sialic acid
+- **Virion** remains stuck to cell surface
+- **No virion release** 
+- **Halted viral replication** (shown as faded/ghost virions)
+
+The diagram clearly shows that without neuraminidase activity, newly formed viruses cannot detach from the host cell, preventing spread to other cells.
+
+## Page 20: Oseltamivir (Tamiflu) / Zanamivir (Relenza)
+
+**Use:**
+Active against **influenza A and B**
+- **Start within 48 hours** – peak of viral replication
+
+**Administration:**
+- **Oseltamivir** - oral, approved for patients >1 year, **preferred treatment**
+- **Zanamivir** - nasal or oral inhaler, approved for patients >7 years
+
+**Adverse effects:**
+
+**Oseltamivir:**
+- Nausea/vomiting common
+- Better if take with food
+
+**Zanamivir:**
+- **Not recommended for those with airway disease**
+- May worsen respiratory function in COPD; cause bronchospasm in asthmatics
+
+The key clinical point is that oseltamivir is generally preferred due to oral administration and broader safety profile, while zanamivir's inhaled route makes it problematic for patients with underlying lung disease.
+
+## Page 21: Coronavirus - COVID-19
+
+**Drugs listed:**
+- Remdesivir (Veklury)
+- Molnupiravir (Lagevrio) - EUA
+- Nirmatrelvir and ritonavir (Paxlovid)
+
+**Images:**
+1. **Top:** Global pandemic visualization - Earth with COVID-19 virus particles (red spherical structures with spike proteins) surrounding it, with data visualization points showing spread
+2. **Bottom right:** Greek alphabet display showing the naming convention for SARS-CoV-2 variants:
+   - Alpha, Beta, Gamma, Delta, Epsilon, Zeta, Eta, Theta, Iota
+   - Kappa, Lambda, Mu, Nu, Xi, Omicron, Pi, Rho
+   - Sigma, Tau, Upsilon, Phi, Chi, Psi, Omega
+
+This illustrates the global impact of COVID-19 and the WHO's system for naming variants of concern using Greek letters.
+
+## Page 22: Coronavirus - COVID-19 (Mechanism Diagram)
+
+**Detailed cellular mechanism showing drug targets:**
+
+The diagram shows SARS-CoV-2 virus and a host cell with:
+
+**Left side - Virus entry:**
+- SARS-CoV-2 virus with spike proteins
+- **ACE2** receptor on cell surface
+- Virus enters the cell
+
+**Inside the cell:**
+- **RdRp** (RNA-dependent RNA polymerase) shown in the cytoplasm with wavy green lines (viral RNA)
+- Red "T" bar showing where **Remdesivir, Molnupiravir, VV116** block RdRp
+
+**Lower right:**
+- **Polyprotein processing** 
+- **Mpro** (main protease) shown processing viral proteins
+- Red "T" bar showing where **Nirmatrelvir** blocks Mpro
+
+This diagram illustrates the two main antiviral strategies:
+1. Blocking viral RNA replication (remdesivir, molnupiravir target RdRp)
+2. Blocking viral protein processing (nirmatrelvir targets the main protease)
+
+## Page 23: Remdesivir (Veklury)
+
+**MOA:** Adenosine analog and inhibits the RNA-dependent RNA polymerase (RdRp) of coronaviruses (including SARS-CoV-2)
+
+**Use:**
+- Parenteral, indicated for the treatment of adults and pediatric patients ≥28 days old (>3Kg) requiring hospitalization for COVID-19 or at high risk
+
+**Adverse reactions:** Include nausea and ALT/AST increase and...
+
+**Images:**
+1. **Bottom left:** Infographic showing "**5 DAYS SHORTER RECOVERY TIME WITH VEKLURY**" - comparison showing median 10 days vs 15 days with placebo; recovery rate ratio: 1.29 [95% CI, 1.12-1.49], p<0.001
+
+2. **Bottom right:** Molecular visualization showing remdesivir (blue molecule) being incorporated into viral RNA chain (yellow strand with bases), illustrating the mechanism of chain termination
+
+The key clinical benefit is demonstrated reduction in recovery time, though the drug must be given intravenously in hospitalized or high-risk patients.
+
+## Page 24: Molnupiravir (Lagevrio)
+
+**MOA:** Ribonucleoside analog, inhibits the replication of SARS-CoV-2
+
+**Administration:**
+- Oral
+- EUA approved for >18yrs, may affect bone and cartilage growth
+- Originally developed for influenza
+- Generally well tolerated
+
+**Image:** Molecular mechanism diagram showing:
+- **HIV virus** at top
+- **Viral RNA strand** (yellow) with normal bases
+- **Molnupiravir** (yellow molecules) being incorporated
+- **Mutations** (purple/pink regions) appearing in the replicated RNA
+- Caption: "Molnupiravir (yellow) is incorporated into the viral RNA, where it leads to mutations (purple) that ultimately prevent the virus from replicating"
+
+The mechanism is "error catastrophe" - molnupiravir causes so many mutations during viral replication that the virus produces non-functional copies and cannot continue spreading.
+
+## Page 25: Nirmatrelvir and Ritonavir (Paxlovid)
+
+**Use:**
+- Oral, approved for the treatment of mild-to-moderate COVID-19 >18yrs who are at high risk for progression to severe COVID-19, including hospitalization or death
+
+**MOA:**
+- **Nirmatrelvir** – protease inhibitor
+- **Ritonavir** – pharmacoenhancer (CYP3A4 inhibitor)
+
+**Adverse effects:**
+- **Viral rebound** - frequency, mechanism, and clinical implications are unclear
+- Dysgeusia, diarrhea, hypertension, and myalgia
+
+The combination is important: nirmatrelvir is the active antiviral, while ritonavir "boosts" its levels by inhibiting its metabolism, allowing for lower doses and less frequent dosing. This is the same strategy used in HIV treatment with protease inhibitors.
+
+## Page 26: Respiratory Syncytial Virus (RSV)
+
+**Drugs:**
+- Ribavirin (Virazole)
+- Palivizumab (Synagis)
+
+
+
+RSV is particularly dangerous for infants, premature babies, and those with underlying heart or lung conditions, making prophylaxis and treatment important.
+
+---
+## Page 27: Ribavirin (Virazole)
+
+**Mechanism of action:**
+- Guanosine analogue; phosphorylated by host
+- **Inhibits RNA polymerase**; inhibition of mRNA synthesis, protein synthesis and replication
+
+**Spectrum & Therapeutic use:**
+- Aerosol, oral
+- **Primary uses – RSV treatment (aerosol) and hepatitis C**
+- Active against Influenza A and B, HSV, HIV-1, SARS, West Nile
+
+**Image on right:** 
+Photograph showing **ribavirin aerosol delivery system** - a patient isolation tent/chamber with blue aerosol delivery equipment. The device nebulizes ribavirin for inhalation treatment, particularly for severe RSV in hospitalized infants.
+
+The aerosol administration allows direct delivery to the respiratory tract where RSV replicates, but requires special equipment and isolation to prevent occupational exposure to healthcare workers.
+
+## Page 28: Ribavirin (Virazole): Adverse Effects
+
+**Adverse effects:**
+
+- **Oral** - Dose-dependent **hemolytic anemia**
+- **Aerosol** - respiratory depression, cardiac arrest, hypotension
+- **Teratogenic! Category X drug; do not conceive for at least 6 months after exposure to drug**
+- **Occupational exposure problematic**
+
+**Image:** Diagram showing "**HIV-Related Risk Factors for Lactic Acidosis**" with a human figure in center and six connected boxes:
+- Taking NRTIs
+- Being Female
+- Pregnancy
+- Obesity
+- Poor Liver Function
+- Low CD4 Count
+
+Note: This image appears to be about NRTI side effects rather than ribavirin specifically, and may have been included to show the serious nature of antiviral toxicities.
+
+The Category X designation is critical - ribavirin is absolutely contraindicated in pregnancy and women/men must use contraception during and for 6 months after treatment.
+
+## Page 29: Palivizumab (Synagis)
+
+**MOA:** Monoclonal antibody against RSV, neutralizing and inhibits host cell fusion
+- **Confers passive immunity**
+- Injected once a month
+
+**Diagram on right:** Shows mechanism of action:
+- Host **Cell** membrane (shown in tan/beige)
+- **RSV** virus particles (circular, shown with green and red markers)
+- **RSV F** protein on virus surface
+- **Palivizumab** antibodies (Y-shaped, shown in pink/purple) blocking the virus
+- Two viruses marked with red **X** showing neutralization
+- Labels showing **Murine** (pink) and **human** (purple) portions of the humanized antibody
+- Caption: "Palivizumab - mechanism of action"
+
+**Use:** Recommended for **RSV prophylaxis** during RSV season for:
+- Infants born at ≤28 weeks 6 days gestational age and <12 months at the start of RSV season
+- Infants <12 months of age with chronic lung disease (CLD) of prematurity
+- Infants ≤12 months of age with hemodynamically significant CHD
+- Infants and children <24 months of age with CLD of prematurity necessitating medical therapy (eg, supplemental oxygen) within 6 months prior to the beginning of RSV season
+
+This is prophylaxis, not treatment - given monthly to high-risk infants throughout RSV season (typically fall/winter) to prevent severe disease.
+
+## Page 30: Hepatitis B
+
+**Drugs:**
+- Tenofovir (Viread)
+- Entecavir (Baraclude)
+- Lamivudine (Epivir)
+
+**Note:** Suppress HBV replication and hepatic inflammation but do not eradicate HBV
+
+**Image - "PROGRESSION OF LIVER DAMAGE":**
+Shows four stages of liver disease with actual liver specimens:
+
+1. **HEALTHY LIVER** (dark reddish-brown, smooth surface)
+   - "A healthy liver is able to perform its normal functions effectively, e.g. aiding digestion and breaking down harmful drugs and poisons."
+
+2. **FIBROTIC LIVER** (lighter, slightly irregular)
+   - "Continuous inflammation of the liver caused by hepatitis C can lead to fibrosis – the formation of scar tissue within the liver."
+
+3. **CIRRHOTIC LIVER** (nodular, irregular surface)
+   - "Extensive scarring can block the flow of blood through the liver and cause liver function to deteriorate over time - this is called cirrhosis."
+
+4. **LIVER CANCER** (severely damaged, tumor visible)
+   - "Hepatitis C is a leading cause of liver cancer – the formation of a malignant tumor in the liver."
+
+This progression emphasizes why chronic hepatitis B treatment is important - to prevent progression to cirrhosis and liver cancer.
+
+## Page 31: Hepatitis B (Drug Details)
+
+**Tenofovir:**
+- Adenosine analogue, inhibits HBV DNA polymerase; reverse transcriptase inhibitor also used for HIV
+- High response, low resistance
+
+**Entecavir:**
+- Guanosine analogue, inhibits HBV DNA polymerase
+- Rare hepatic encephalopathy
+
+**Lamivudine:**
+- Cytosine analogue, inhibits HBV polymerase, also used for HIV
+- Few side effects (rare pancreatitis)
+- Resistance common after chronic use (>5 yrs)
+
+**Note:** **DOCs. Excellent safety profile even in those with advanced disease (cirrhosis)**
+
+All three drugs work by inhibiting the HBV DNA polymerase, but tenofovir and entecavir are preferred due to lower resistance rates compared to lamivudine.
+
+## Page 32: Hepatitis C
+
+**Title slide showing:**
+
+**Sofosbuvir/Ledipasvir (Harvoni)**
+**Sofosbuvir/Velpatasvir (Epclusa)**
+
+**Images:**
+
+1. **Left - HCV Genotype Distribution** (pie chart):
+   - **Genotype 1a: 60.3%** (largest, dark red)
+   - **Genotype 1b: 16.7%** (green)
+   - **Genotype 2: 11.3%** (teal)
+   - **Genotype 3: 9.6%** (orange)
+   - **Genotype 4: 0.3%** (light purple)
+   - **Genotype 5: 0.0%**
+   - **Genotype 6: 0.3%**
+   - **Genotype 1 subtype unknown: 1.2%**
+   - Figure 14: Distribution of HCV genotypes (1-6)
+
+2. **Top right:** Microscopic image of **cirrhotic liver** showing nodular surface with extensive fibrosis (reddish-brown tissue with irregular scarring)
+
+3. **Bottom right:** Close-up photograph of an eye showing **jaundice** (yellowing of the sclera/white of eye), a sign of liver dysfunction
+
+The genotype distribution is important because earlier HCV treatments were genotype-specific, though newer regimens like Harvoni and Epclusa work across multiple genotypes.
+
+## Page 33: Hepatitis C (Treatment Options)
+
+**Table showing approved HCV combination therapies:**
+
+| Drug | Combinations | Approved | Genotypes |
+|------|-------------|----------|-----------|
+| **Harvoni** | Ledipasvir-sofosbuvir | 2014 | 1, 4, 5, 6 |
+| Viekira Pak | Dasabuvir-ombitasvir-paritaprevir-ritonavir | 2014 | 1 |
+| Zepatier | Elbasvir-grazoprevir | 2016 | 1, 4 |
+| Technivie | Ombitasvir-paritaprevir-ritonavir | 2015 | 4 |
+| **Epclusa** | Sofosbuvir-velpatasvir | 2016 | **1-6** |
+| Vosevi | Sofosbuvir-velpatasvir-voxilaprevir | 2017 | 1-6 |
+| Mavyret | Glecaprevir-pibrentasvir | 2017 | 1-6 |
+
+**Large text at bottom: "Cure>95%!!"**
+
+This represents a revolution in hepatitis C treatment - moving from interferon-based regimens with low cure rates and severe side effects to oral direct-acting antivirals (DAAs) with >95% cure rates and minimal side effects. Harvoni and Epclusa are highlighted as important pan-genotypic options.
+
+## Page 34: Sofosbuvir/Ledipasvir (Harvoni) / Sofosbuvir/Velpatasvir (Epclusa)
+
+**Mechanism of action:**
+
+- **Sofosbuvir** – nucleoside analogue (uridine); **inhibits viral NS5B RNA polymerase**, prevents viral replication
+
+- **Ledipasvir/Velpatasvir** – **inhibits HCV NS5A protein**, prevents viral replication and assembly
+
+- Well-tolerated – fatigue, headache, irritability
+
+**Diagram on right - HCV Life Cycle:**
+Shows the hepatitis C virus entering a host cell:
+- **Entry** - HCV virus entering cell
+- Viral genome releases
+- **NS3-4A** protease complex (orange/yellow)
+- **NS4B** (purple)
+- **NS2** (pink)
+- **NS5B** (blue) - RNA polymerase shown at **Replication** stage
+- **NS5A** (purple) shown at **Assembly** stage
+- **P7** protein
+- New virus particles being assembled
+
+The diagram shows the two drug targets:
+- Sofosbuvir blocks NS5B at the replication stage
+- Ledipasvir/Velpatasvir block NS5A at the assembly stage
+
+This dual mechanism explains the high efficacy of these combination therapies.
+
+## Page 35: Sofosbuvir/Ledipasvir (Harvoni) - Cost
+
+**Title:** Harvoni Cost in USA
+
+**Left side - Cost breakdown:**
+- **8-week treatment:** $63,000 or $1,125 per pill
+- **12-week treatment:** $94,500 or $1,125 per pill
+- **24-week treatment:** $189,000 or $1,125 per pill
+
+**Right side - Comic:**
+Cartoon titled "**Hep C Cure Club**" showing:
+- Two bouncers in suits blocking entry
+- A sick patient in hospital gown with IV pole trying to enter
+- Bouncer says: "SORRY, I CAN'T LET YOU IN! YOU'RE NOT SICK ENOUGH."
+- Comic credit: © 2016 Marty Two Bulls m2bulls.com
+
+**Bottom note:** Generic via GoodRx - $5049/28 tablets (taken once daily)
+
+This slide highlights the enormous cost barrier to HCV treatment, even with generic availability. The comic satirically illustrates that insurance often required patients to have advanced liver disease (cirrhosis) before approving treatment, due to the high cost - a troubling situation where patients had to get sicker before they could access a cure.
+
+## Page 36: Summary Table - Antiviral Drugs
+
+**Comprehensive summary table:**
+
+| Virus | Drug of first choice | Alternate |
+|-------|---------------------|-----------|
+| **HSV** | Acyclovir/valacyclovir | Ganciclovir/valganciclovir, Docosanol (OTC), Foscarnet, Cidofovir |
+| **VZV** | Acyclovir/valacyclovir | |
+| **CMV** | Ganciclovir/valganciclovir | Foscarnet (retinitis), Cidofovir (retinitis) |
+| **Influenza** | Zanamivir (inhaler) or Oseltamivir (oral) | Baloxavir Marboxil |
+| **RSV** | Ribavirin | |
+| **Hepatitis B** | Entecavir, Tenofovir | Lamivudine |
+| **Hepatitis C** | Sofosbuvir/Ledipasvir (Harvoni), Sofosbuvir/Velpatasvir (Epclusa) | |
+
+This provides a quick reference for drug selection based on the causative virus, emphasizing first-line therapies and alternatives for resistant cases or special situations.
+
+---
+
+
