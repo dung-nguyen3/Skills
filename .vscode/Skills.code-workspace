@@ -33,7 +33,15 @@
       "*.md": "markdown"
     },
     "markdown.preview.fontSize": 14,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "workbench.startupEditor": "readme",
+    "markdown.preview.breaks": true,
+    "markdown.preview.linkify": true,
+    "markdown.preview.typographer": true
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": []
   },
   "extensions": {
     "recommendations": [
