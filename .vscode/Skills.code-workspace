@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "name": "📁 Skills Repository (Root)",
+      "path": ".."
+    },
+    {
+      "name": "🏗️ Infrastructure Examples",
+      "path": "../infrastructure-examples"
+    },
+    {
+      "name": "📚 Study Guides",
+      "path": "../study-guides"
+    },
+    {
+      "name": "📊 Analysis Documents",
+      "path": "../analysis-docs"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": false,
+      "**/.DS_Store": true,
+      "**/node_modules": true,
+      "**/__pycache__": true,
+      "**/*.pyc": true
+    },
+    "editor.formatOnSave": true,
+    "editor.rulers": [80, 120],
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "files.associations": {
+      "CLAUDE.md": "markdown",
+      "*.md": "markdown"
+    },
+    "markdown.preview.fontSize": 14,
+    "editor.wordWrap": "on"
+  },
+  "extensions": {
+    "recommendations": [
+      "anthropic.claude-code",
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "yzhang.markdown-all-in-one"
+    ]
+  }
+}

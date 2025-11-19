@@ -22,15 +22,24 @@ This repository contains Claude Code infrastructure examples and study guide mat
 
 ### Repository Structure
 
-**`claude-infrastructure-showcase/`**
+**`infrastructure-examples/`**
 - Examples of skills, hooks, commands, and agents
 - Reference material for creating Claude Code automation
 - Study these before building new skills/hooks
 
-**`Copy Study Guide Claude Q3 2/`**
+**`study-guides/`**
 - Pharmacy study guide materials
 - Has its own CLAUDE.md with detailed study guide protocols
 - Contains templates for Word, Excel, and HTML study guides
+
+**`analysis-docs/`**
+- Analysis and planning documents
+- Template improvement documentation
+- Historical record of decisions and changes
+
+**`scripts/`**
+- Standalone utility scripts
+- One-off automation tools
 
 ## When Working in Subdirectories
 
