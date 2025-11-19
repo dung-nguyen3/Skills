@@ -170,6 +170,37 @@ Detailed protocol includes:
 
 ---
 
+## Git Operations
+
+### CRITICAL: Always Include Working Directory
+
+**ALWAYS prefix git commands with `cd` to the project directory:**
+
+```bash
+cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git [command]
+```
+
+**Examples:**
+- ✅ `cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git status`
+- ✅ `cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git add . && git commit -m "message"`
+- ❌ `git status` (may run in wrong directory)
+
+**Why:** Ensures git commands always operate on the correct repository, regardless of current working directory.
+
+### Git Push/Pull Protocol
+
+**For git push:**
+- Always use: `git push -u origin [branch-name]`
+- Branch must start with `claude/` and end with session ID
+- On network failures, retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s)
+
+**For git fetch/pull:**
+- Prefer specific branches: `git fetch origin [branch-name]`
+- On network failures, retry up to 4 times with exponential backoff
+- For pulls: `git pull origin [branch-name]`
+
+---
+
 ## Maintenance Protocol
 
 ### CRITICAL: Update HOW_TO_USE.md After Changes
