@@ -38,12 +38,15 @@ Creates comprehensive study guides from source material with:
   - Template code (.py)
 
 **Infrastructure (Advanced):**
-- `.claude/` - Claude Code configuration
+- **`infrastructure-docs/`** - Technical documentation for developers
+  - Phase implementation details
+  - Research and design decisions
+  - Infrastructure extension guides
+- **`.claude/`** - Claude Code configuration
   - `skills/` - Auto-activating knowledge (with resource libraries)
   - `agents/` - Specialized agents (mnemonic-researcher, study-guide-analyzer)
   - `hooks/` - Workflow automation (quality gates, tracking)
   - `scripts/` - Batch validation tools
-- Technical documentation (PHASE_*.md, COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md)
 
 ## Template Types
 
@@ -101,13 +104,16 @@ Creates comprehensive study guides from source material with:
 ## Documentation
 
 **Start Here (User Docs):**
+- **[user-docs/START_HERE.md](user-docs/START_HERE.md)** ⭐ - 3-step quick start guide (read this first!)
 - **[user-docs/HOW_TO_USE.md](user-docs/HOW_TO_USE.md)** - Complete guide to creating and verifying study guides
 - **[user-docs/MAINTENANCE.md](user-docs/MAINTENANCE.md)** - Customization and troubleshooting
 - **[templates-and-examples/README.md](templates-and-examples/README.md)** - Template reference guide
 
 **Technical/Infrastructure (Advanced):**
-- **[PHASE_5_COMPLETION.md](PHASE_5_COMPLETION.md)** - Latest infrastructure status and features
-- **[COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md](COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md)** - Research and design decisions
+- **[infrastructure-docs/](infrastructure-docs/)** - Technical documentation for developers
+  - [PHASE_5_COMPLETION.md](infrastructure-docs/PHASE_5_COMPLETION.md) - Latest infrastructure status and features
+  - [COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md](infrastructure-docs/COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md) - Research and design decisions
+  - [PHASE_5.1_IMPLEMENTATION.md](infrastructure-docs/PHASE_5.1_IMPLEMENTATION.md) - Hook ecosystem details
 - **[CLAUDE.md](CLAUDE.md)** - Instructions for Claude Code (not for users)
 
 ## Emergency Override
