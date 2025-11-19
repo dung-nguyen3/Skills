@@ -1,0 +1,393 @@
+# Excel Master Chart Template - Instructions
+
+## Purpose
+Create a single-sheet Excel Master Chart listing ALL items from source in a comprehensive, searchable table. Quick-reference chart for exam review.
+
+---
+
+## Core Requirements
+
+**See parent CLAUDE.md for:**
+- Source-only policy
+- WebSearch requirements for mnemonics
+- Verification checklists
+- File organization
+
+**Master Chart specific:**
+- Single sheet format (simpler than 4-tab drug chart)
+- User defines columns/categories
+- Color-coded rows by category/class
+- Frozen header for easy scrolling
+
+---
+
+## Reference Files
+
+**Color scheme & formatting:**
+- `Excel_Color_Reference.txt` - Complete color palette (shared with Excel Drugs Chart)
+
+**Complete working examples:**
+- `Python_Examples/Excel_Master_Chart_Example.py` - Three examples: drugs, conditions, lab values
+
+---
+
+## FILE STRUCTURE
+
+### Single Sheet:
+- **Sheet name:** "Master Chart"
+- Frozen header row (row 1)
+- Color-coded rows by group/class/category
+- All items in one searchable table
+
+---
+
+## COLUMN STRUCTURE - USER DEFINED
+
+### Common Examples:
+
+**For Drug Charts:**
+- Drug Class, Drug Name (Brand), Route, Mechanism, Uses, Adverse Effects, Contraindications, Drug Interactions, Special Considerations
+
+**For Condition Charts:**
+- Condition, Epidemiology, Risk Factors, Clinical Presentation, Diagnostics, Labs, Treatment
+
+**For Lab Value Charts:**
+- Test Name, Normal Range, Increased In, Decreased In, Clinical Significance
+
+**For Physiology Concepts:**
+- Concept, Definition, Normal Values, Clinical Relevance, Pathology
+
+### Process:
+1. **Ask user:** "What columns would you like in the Master Chart?"
+2. **If user doesn't specify:** Suggest appropriate columns based on source content
+3. **Adjust column widths** based on content type
+
+### Column Width Guidelines:
+- Short text (Route, Status): 12-15
+- Medium text (Drug Class, Condition): 20-25
+- Long text (Mechanism, Clinical Features): 30-40
+- Name columns: 25-30
+
+**First column = grouping/category column** (bold text, light colored background)
+
+---
+
+## COLOR SCHEME
+
+**See `Excel_Color_Reference.txt` for complete specifications**
+
+### Header Row (Row 1):
+```
+Background: #4472C4 (Dark blue)
+Font: White, Bold, Size 12
+Alignment: Center, wrap text
+Row height: 25
+```
+
+### Data Row Colors (Rotate by Category):
+Rotate through these 10 colors as categories change:
+
+```python
+ROW_COLORS = [
+    'D9E2F3',  # Ice Blue
+    'C8E6C9',  # Seafoam
+    'D1C4E9',  # Light Orchid
+    'F7E7CE',  # Champagne
+    'BDD7EE',  # Sky Blue
+    'F0F8FF',  # Pale Azure
+    'FCE4EC',  # Blush Pink
+    'EDE7F6',  # Soft Lilac
+    'FFE8D6',  # Soft Tangerine
+    'BBDEFB',  # Powder Blue
+]
+```
+
+### Color Assignment:
+- Assign ONE color per category/class/group
+- All items in same category get same row color
+- Rotate through colors: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, repeat
+
+**Example:**
+- NRTIs → Ice Blue (#D9E2F3)
+- NNRTIs → Seafoam (#C8E6C9)
+- Integrase Inhibitors → Light Orchid (#D1C4E9)
+- etc.
+
+---
+
+## FORMATTING SPECIFICATIONS
+
+### Text Formatting:
+
+**Header row:**
+- Font: Calibri, Bold, Size 12, White
+- Background: Dark blue (#4472C4)
+- Alignment: Center horizontal, center vertical
+- Word wrap: Enabled
+- Row height: 25
+
+**Data rows:**
+- Font: Calibri, Size 11, Black
+- Column A (category/class): Bold
+- Other columns: Regular weight
+- Alignment: Left horizontal, top vertical
+- Word wrap: Enabled
+- Row height: Auto-expand to fit content
+
+### Borders:
+- White borders (#FFFFFF) on all cells
+- Invisible borders that blend with pastel backgrounds
+- Creates clean, modern look
+
+---
+
+## CONTENT GUIDELINES
+
+### Category/Class Column (Column A):
+- Use abbreviated names for space efficiency
+- Examples: "NRTI", "Beta-blocker", "Viral pharyngitis"
+- Bold text, light colored background
+
+### Detail Columns:
+**Include from source only:**
+- Drug Name: "Generic (Brand)" format
+- Mechanism: Brief, use arrows (→) for cause/effect
+- Uses: Mark first-line with 🟢 if source specifies
+- Adverse Effects: Mark serious with ⚠️
+- Contraindications: List or "None"
+- Special Considerations: Monitoring, screening requirements
+
+**Mark important info with emojis:**
+- 🟢 First-line/preferred
+- ⚠️ Serious effects/warnings
+- ❗ Critical information
+- ✅ Positive notes (e.g., "Safe in pregnancy")
+- 🚫 Absolute contraindications
+
+---
+
+## PYTHON IMPLEMENTATION
+
+### Essential Helper Function
+
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
+# Colors from Excel_Color_Reference.txt
+HEADER_BG = '4472C4'
+ROW_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
+              'F0F8FF', 'FCE4EC', 'EDE7F6', 'FFE8D6', 'BBDEFB']
+
+def set_cell_style(cell, text, bold=False, bg_color=None):
+    """Apply cell styling - black text always for readability"""
+    cell.value = text
+    cell.font = Font(name='Calibri', size=11, bold=bold, color='000000')
+    cell.alignment = Alignment(horizontal='left', vertical='top', wrap_text=True)
+
+    if bg_color:
+        cell.fill = PatternFill(start_color=bg_color, end_color=bg_color, fill_type='solid')
+
+    # White borders
+    cell.border = Border(
+        left=Side(style='thin', color='FFFFFF'),
+        right=Side(style='thin', color='FFFFFF'),
+        top=Side(style='thin', color='FFFFFF'),
+        bottom=Side(style='thin', color='FFFFFF')
+    )
+```
+
+### Basic Structure
+
+```python
+wb = Workbook()
+ws = wb.active
+ws.title = "Master Chart"
+
+# Set column widths
+column_widths = {'A': 20, 'B': 25, 'C': 35, ...}  # User-defined
+for col_letter, width in column_widths.items():
+    ws.column_dimensions[col_letter].width = width
+
+# Create header row
+headers = ['Category', 'Item', 'Details', ...]  # User-defined
+# Apply header styling (see Excel_Color_Reference.txt)
+
+# Freeze header
+ws.freeze_panes = 'A2'
+
+# Add data rows with color-coding by category
+# (See complete example in Excel_Master_Chart_Example.py)
+
+wb.save(output_path)
+```
+
+### Complete Working Examples
+
+**For full implementations with three different use cases, see:**
+`Python_Examples/Excel_Master_Chart_Example.py`
+
+Includes:
+- Example 1: Drug Master Chart
+- Example 2: Condition/Disease Master Chart
+- Example 3: Lab Values Master Chart
+- All helper functions
+- Color rotation logic
+- Complete working code
+
+---
+
+## CREATION WORKFLOW
+
+### Step 1: Determine Columns
+- Ask user OR analyze source to determine appropriate columns
+- Match column types to content (drugs vs conditions vs labs)
+
+### Step 2: Read Source File
+- Read ENTIRE source file
+- Identify ALL items mentioned
+- Group items by category/class
+
+### Step 3: Organize Categories
+- List all categories found
+- Assign color to each (rotate through palette)
+- Order logically (as presented in source or by importance)
+
+### Step 4: Extract Information
+For EACH item, extract ONLY the columns specified:
+- Category/Class (always Column A)
+- User-specified detail columns
+- Mark important info with appropriate emojis
+
+### Step 5: Create Excel File
+- Set up workbook with single "Master Chart" sheet
+- Create header row (dark blue, white text)
+- Add each item as a row with appropriate category color
+- Freeze header row
+- Auto-expand row heights
+
+### Step 6: Verify Completeness
+- All items from source included
+- Information matches source exactly
+- Colors consistent within categories
+- Emojis used appropriately
+- Header frozen for scrolling
+
+---
+
+## VERIFICATION CHECKLIST
+
+Before finalizing:
+
+**Completeness:**
+- [ ] ALL items from source included (unless user specified subset)
+- [ ] No items missed
+- [ ] All user-specified columns filled
+
+**Accuracy:**
+- [ ] All information from source only
+- [ ] Names spelled correctly (match source)
+- [ ] Details match source descriptions
+- [ ] No external knowledge added (except * marked)
+
+**Formatting:**
+- [ ] Header row: Dark blue, white bold text, size 12, frozen
+- [ ] Data rows: Size 11, black text
+- [ ] First column bold (category/class)
+- [ ] All cells have white borders
+- [ ] Word wrap enabled
+- [ ] Row heights fit content
+
+**Color Coding:**
+- [ ] Each category has ONE consistent color
+- [ ] Colors rotate through 10-color palette
+- [ ] All items in same category have same color
+
+**Emojis:**
+- [ ] 🟢 used for first-line/preferred (if specified in source)
+- [ ] ⚠️ used for serious effects/warnings
+- [ ] ❗ used for critical information
+- [ ] ✅ used for positive notes
+
+---
+
+## COMMON MISTAKES TO AVOID
+
+**DON'T:**
+- ❌ Add items not in source
+- ❌ Guess information not provided
+- ❌ Add external knowledge without * marker
+- ❌ Use different colors for same category
+- ❌ Skip columns user asked for
+- ❌ Use gray/black borders (use white)
+- ❌ Forget to freeze header row
+
+**DO:**
+- ✅ Use exact spelling from source
+- ✅ Mark important info with emojis
+- ✅ Keep information concise but complete
+- ✅ Use consistent color per category
+- ✅ Ask for clarification if requirements unclear
+- ✅ Reference complete example code when needed
+
+---
+
+## FILE NAMING
+
+### Format:
+```
+[Topic]_Master_Chart.xlsx
+```
+
+**Examples:**
+- HIV_Drugs_Master_Chart.xlsx
+- Cardiovascular_Conditions_Master_Chart.xlsx
+- Lab_Values_Master_Chart.xlsx
+
+### Save Location:
+```
+[Class]/[Exam]/Claude Study Tools/[Filename]
+```
+
+---
+
+## EXAMPLE OUTPUTS
+
+### Example 1: Drug Chart
+**Columns:** Drug Class | Drug Name (Brand) | Route | Mechanism | Uses | Adverse Effects | Contraindications
+
+**Sample rows:**
+- NRTI | Tenofovir (Viread) | Oral | Nucleoside analog → chain termination | 🟢 HIV - First line | ⚠️ Nephrotoxicity | CrCl <50
+- NRTI | Emtricitabine (Emtriva) | Oral | Nucleoside analog → chain termination | 🟢 HIV - First line | Minimal | None
+
+### Example 2: Condition Chart
+**Columns:** Condition | Epidemiology | Risk Factors | Clinical Presentation | Treatment
+
+**Sample rows:**
+- Type 2 DM | Most common form | Obesity, family history | Polyuria, polydipsia | 🟢 Metformin first-line
+- Hypertension | 1 in 3 adults | Age, salt intake | Often asymptomatic | 🟢 ACE inhibitors/ARBs
+
+### Example 3: Lab Values Chart
+**Columns:** Test Name | Normal Range | Increased In | Decreased In | Significance
+
+**Sample rows:**
+- Hemoglobin | 13-17 g/dL (M) | Polycythemia, dehydration | Anemia | O₂ carrying capacity
+- Platelets | 150-400K/μL | Thrombocytosis | Thrombocytopenia | Bleeding risk
+
+---
+
+## CRITICAL REMINDERS
+
+1. **Ask about columns** - Don't assume, ask user what they want
+2. **Source only** - Use only source file information
+3. **Complete coverage** - Every item from source (or user-specified list)
+4. **Consistent colors** - One color per category, always
+5. **Frozen header** - Must freeze for scrolling
+6. **Verify completeness** - Check against source before finalizing
+
+---
+
+**End of Instructions**
+
+**For complete working examples:** `Python_Examples/Excel_Master_Chart_Example.py`
+**For color specifications:** `Excel_Color_Reference.txt`

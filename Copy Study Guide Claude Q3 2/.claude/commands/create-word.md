@@ -21,12 +21,16 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-### Step 2: Load Template
+### Step 2: Load Resources
 
-Read and understand the complete template:
-- **File**: `Example claude study guides/Word/Word LO 11-5.txt`
-- Read the ENTIRE template before starting
-- Note all requirements, colors, structure, formatting rules
+Read these files in order:
+1. **Template**: `templates-and-examples/Word_LO_11-5_REVISED.txt`
+   - Main instructions and requirements (~450 lines)
+   - Includes correct table formatting (black text on pastel backgrounds)
+
+2. **Example Code**: `templates-and-examples/Python_Examples/Word_LO_Example.py`
+   - Complete 4-section implementation with all helper functions
+   - Shows Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
 
 ### Step 3: Read Source File
 
