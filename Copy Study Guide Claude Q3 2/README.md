@@ -28,10 +28,22 @@ Creates comprehensive study guides from source material with:
 
 ## Directory Structure
 
-- `.claude/` - Claude Code configuration (hooks, skills, commands, settings)
-- `study-guides/` - Generated study guides organized by session
-- `sources/` - Source material (lecture notes, PDFs, transcripts)
-- `templates/` - Word/Excel/HTML templates for study guides
+**For Users:**
+- **`user-docs/`** - Complete usage and maintenance documentation
+  - `HOW_TO_USE.md` - How to create and verify study guides
+  - `MAINTENANCE.md` - Customization and troubleshooting
+- **`templates-and-examples/`** - Template files and example study guides
+  - Template instructions (.txt)
+  - Example study guides (.xlsx, .html)
+  - Template code (.py)
+
+**Infrastructure (Advanced):**
+- `.claude/` - Claude Code configuration
+  - `skills/` - Auto-activating knowledge (with resource libraries)
+  - `agents/` - Specialized agents (mnemonic-researcher, study-guide-analyzer)
+  - `hooks/` - Workflow automation (quality gates, tracking)
+  - `scripts/` - Batch validation tools
+- Technical documentation (PHASE_*.md, COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md)
 
 ## Template Types
 
@@ -88,9 +100,15 @@ Creates comprehensive study guides from source material with:
 
 ## Documentation
 
-- **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete user guide for creating and verifying study guides
-- **[MAINTENANCE.md](MAINTENANCE.md)** - Maintenance and customization guide
-- **[CLAUDE.md](CLAUDE.md)** - Project-specific rules and protocols for Claude
+**Start Here (User Docs):**
+- **[user-docs/HOW_TO_USE.md](user-docs/HOW_TO_USE.md)** - Complete guide to creating and verifying study guides
+- **[user-docs/MAINTENANCE.md](user-docs/MAINTENANCE.md)** - Customization and troubleshooting
+- **[templates-and-examples/README.md](templates-and-examples/README.md)** - Template reference guide
+
+**Technical/Infrastructure (Advanced):**
+- **[PHASE_5_COMPLETION.md](PHASE_5_COMPLETION.md)** - Latest infrastructure status and features
+- **[COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md](COMPREHENSIVE_INFRASTRUCTURE_ANALYSIS.md)** - Research and design decisions
+- **[CLAUDE.md](CLAUDE.md)** - Instructions for Claude Code (not for users)
 
 ## Emergency Override
 
