@@ -10,7 +10,7 @@ description: |
 skill_type: domain
 enforcement_level: suggest
 priority: high
-version: 2.0.0
+version: 2.1.0
 tools_required:
   - Task
   - WebSearch
@@ -295,11 +295,19 @@ I'll use the medical-mnemonic-researcher agent to find mnemonics for heart failu
 ## Progressive Disclosure
 
 **This skill is lightweight:**
-- Main instructions: This file (~200 lines)
+- Main instructions: This file (~300 lines)
 - Agent file: Loaded only when agent launched
-- No additional resources needed
+- Deep-dive resources: Loaded on-demand when needed
 
 **Performance:** Agent call takes 30-60 seconds, but provides comprehensive mnemonic research that would take 5-10 minutes manually.
+
+### Deep-Dive Resources
+
+For comprehensive guidance on mnemonic research:
+
+**[Research Methodology](resources/research-methodology.md)** - Detailed guide to the agent's research sources (r/medicalschool, First Aid, SDN), evaluation criteria, and reliability ranking system
+
+**Note:** Resources provide deep-dive into how the agent finds and validates mnemonics. Load when you need to understand the research methodology.
 
 ---
 

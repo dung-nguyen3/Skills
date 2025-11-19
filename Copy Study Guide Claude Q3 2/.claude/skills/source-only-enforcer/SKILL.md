@@ -13,7 +13,7 @@ description: |
 skill_type: guardrail
 enforcement_level: block
 priority: critical
-version: 2.0.0
+version: 2.1.0
 tools_required:
   - Read
   - Write
@@ -146,3 +146,29 @@ Then state: "Post-creation verification complete"
 💡 Session-aware: Once verified this session, create multiple study guides without repeated blocking
 
 💡 Source-only policy protects you from inaccurate study materials
+
+---
+
+## Deep-Dive Resources
+
+For comprehensive guidance on specific topics, see the resources/ directory:
+
+### Source Validation
+**[Source Validation Guide](resources/source-validation-guide.md)** - Complete guide to validating source files, checking content coverage, and ensuring source quality before creation
+
+### Preventing Hallucinations
+**[Hallucination Prevention](resources/hallucination-prevention.md)** - Strategies to avoid adding external medical facts, recognizing common hallucination patterns, and maintaining source fidelity
+
+### Marking External Information
+**[External Info Marking](resources/external-info-marking.md)** - How to properly mark researched mnemonics with (*) and source attribution, using the mnemonic-researcher agent
+
+### Citation Best Practices
+**[Citation Patterns](resources/citation-patterns.md)** - Methods for citing source material (page numbers, section headers) to enable verification
+
+### Complete Examples
+**[Complete Examples](resources/complete-examples.md)** - Real-world examples of correct vs. incorrect source-only enforcement across different template types
+
+### Verification Checklists
+**[Verification Checklists](resources/verification-checklists.md)** - Step-by-step checklists for pre-creation, during-creation, and post-creation verification
+
+**Note:** Resources are loaded on-demand when you need detailed guidance on specific topics. The main skill provides the essential workflow; resources provide deep-dive documentation.

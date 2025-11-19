@@ -11,7 +11,7 @@ description: |
 skill_type: domain
 enforcement_level: suggest
 priority: critical
-version: 2.0.0
+version: 2.1.0
 tools_required:
   - Task
   - Read
@@ -335,11 +335,21 @@ The `/verify-accuracy` slash command automatically invokes this skill and agent:
 ## Progressive Disclosure
 
 **This skill is lightweight:**
-- Main instructions: This file (~300 lines)
+- Main instructions: This file (~360 lines)
 - Agent file: Loaded only when agent launched
-- No additional resources needed
+- Deep-dive resources: Loaded on-demand when needed
 
 **Performance:** Agent analysis takes 1-2 minutes, but provides comprehensive verification that would take 10-15 minutes manually and catches issues that might be missed.
+
+### Deep-Dive Resources
+
+For comprehensive guidance on verification methodology:
+
+**[6-Step Protocol Detailed](resources/6-step-protocol-detailed.md)** - Complete walkthrough of the study-guide-analyzer agent's systematic verification methodology, with examples for each step
+
+**[Common Errors Guide](resources/common-errors.md)** - Reference for the top 10 most common errors in study guides, with detection and prevention strategies
+
+**Note:** Resources provide detailed methodology that complements the agent's automated verification. Load these if you need to understand the verification process in depth.
 
 ---
 
