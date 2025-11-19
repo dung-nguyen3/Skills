@@ -7,12 +7,29 @@ This folder contains all documentation for **using** the study guide creation sy
 ## Quick Start
 
 **New user? Start here:**
-1. Read **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete guide to creating study guides
-2. Refer to **[MAINTENANCE.md](MAINTENANCE.md)** when you need to customize or troubleshoot
+1. **[START_HERE.md](START_HERE.md)** ⭐ - 3-step quick start guide (read this first!)
+2. **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete guide with all features
+3. **[MAINTENANCE.md](MAINTENANCE.md)** - Customization and troubleshooting
 
 ---
 
 ## Documentation Files
+
+### START_HERE.md ⭐
+**3-step quick start guide**
+
+**What's inside:**
+- What the system does
+- 3-step quick start
+- Format selection guide
+- Common questions
+- Support resources
+
+**Who it's for:** First-time users who need to create their first study guide
+
+**Read this first!**
+
+---
 
 ### HOW_TO_USE.md
 **Complete user guide for creating and verifying study guides**
