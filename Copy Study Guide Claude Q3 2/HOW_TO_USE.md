@@ -245,6 +245,121 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 ---
 
+## Using Specialized Agents (Phase 4 - NEW!)
+
+The infrastructure now includes **two specialized agents** that provide deep automation for complex tasks:
+
+### Agent 1: medical-mnemonic-researcher
+
+**Purpose:** Finds PROVEN, ESTABLISHED medical mnemonics from medical education sources
+
+**When it activates:**
+- Automatically during study guide creation (when mnemonics are needed)
+- When you ask: "Find mnemonics for [topic]"
+- When creating any study guide with memory aids
+
+**What it does:**
+1. Generates 5-10 search query variations
+2. Searches medical education sources (Reddit r/medicalschool, SDN, USMLE forums, First Aid, Sketchy, Pathoma)
+3. Finds top 3 mnemonics with reliability scores (1-5 stars)
+4. Provides source links for each mnemonic
+5. Includes user feedback from medical students
+6. Recommends best mnemonics for different use cases
+
+**Output:** Comprehensive research report with established mnemonics, sources, and recommendations
+
+**Example:**
+```
+You: "Find mnemonics for cranial nerves"
+Claude: "I'll use the medical-mnemonic-researcher agent to find established mnemonics."
+Agent: Returns top 3 mnemonics with 5-star reliability, source links, user feedback
+Result: Add to study guide with attribution
+```
+
+**Performance:** 30-60 seconds (vs. 5-10 minutes manual research)
+
+---
+
+### Agent 2: study-guide-analyzer
+
+**Purpose:** Comprehensive 6-step verification of study guides against source files
+
+**When it activates:**
+- Automatically after study guide creation (post-creation verification)
+- When you ask: "Verify accuracy of [filename]"
+- When using `/verify-accuracy` command
+- When checking completeness or quality
+
+**What it does:**
+1. **Step 1:** Reads source file completely
+2. **Step 2:** Reads study guide completely
+3. **Step 3:** Systematic verification (source accuracy, names, merged cells, format, completeness)
+4. **Step 4:** Documents all issues (Critical/Important/Minor)
+5. **Step 5:** Saves detailed analysis report to file
+6. **Step 6:** Returns summary and requests approval before fixes
+
+**Output:** Comprehensive analysis report saved to `[filename]-analysis-report.md`
+
+**Report includes:**
+- Executive summary with overall assessment
+- Critical/Important/Minor issues categorized
+- Statistics (coverage %, issue counts)
+- Specific fix recommendations
+- Approval request before changes
+
+**Example:**
+```
+You: "Verify accuracy of HIV_Drug_Chart.xlsx"
+Claude: "I'll use the study-guide-analyzer agent to perform 6-step verification."
+Agent: Analyzes completely, finds 0 critical issues, 2 minor suggestions
+Result: Analysis report saved, study guide approved for use
+```
+
+**Performance:** 1-2 minutes (vs. 10-15 minutes manual verification)
+
+---
+
+### How Agents Work
+
+**Agents are autonomous:**
+- Run as separate sub-tasks
+- Work independently with specialized instructions
+- Return comprehensive reports when complete
+- Save results to files
+
+**You don't launch agents manually:**
+- Skills automatically invoke agents when needed
+- Just request the task (create study guide, verify accuracy)
+- Claude handles agent invocation automatically
+
+**Agent workflow:**
+1. Skill activates (e.g., mnemonic-researcher skill)
+2. Skill launches agent (e.g., medical-mnemonic-researcher agent)
+3. Agent performs specialized task autonomously
+4. Agent returns comprehensive report
+5. Claude uses agent results to complete your request
+
+---
+
+### Benefits of Phase 4 Agents
+
+**Time savings:**
+- Mnemonic research: 5-10 minutes → 30-60 seconds
+- Study guide verification: 10-15 minutes → 1-2 minutes
+
+**Quality improvements:**
+- Only established mnemonics (not invented)
+- Systematic 6-step verification (catches issues)
+- Source validation and reliability scores
+- Statistical analysis of coverage
+
+**Consistency:**
+- Same verification protocol every time
+- Reproducible analysis
+- Documented findings in reports
+
+---
+
 ## How Skill Auto-Activation Works
 
 ### What Are Skills?

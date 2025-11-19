@@ -60,6 +60,12 @@ Creates comprehensive study guides from source material with:
 - Native SKILL.md files for better activation rates
 - TypeScript support for hooks
 
+### Phase 4: Specialized Agents (NEW!)
+- **medical-mnemonic-researcher agent** - Finds established USMLE mnemonics from medical education sources
+- **study-guide-analyzer agent** - Comprehensive 6-step verification with detailed analysis reports
+- Automatic agent invocation by skills
+- Time savings: Mnemonic research (5-10 min → 30-60 sec), Verification (10-15 min → 1-2 min)
+
 ## Documentation
 
 - **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete user guide for creating and verifying study guides
