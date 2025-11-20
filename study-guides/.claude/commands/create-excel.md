@@ -21,13 +21,18 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-### Step 2: Load Template
+### Step 2: Load Resources
 
-Read and understand the complete template:
-- **File**: `Example claude study guides/Excel Drug Chart/Excel Drugs Chart 11-1.txt`
-- Read ALL 1,144 lines before starting
-- Note soft pastel color codes, structure, formatting rules
-- Review Python implementation examples
+Read these files in order:
+1. **Template**: `templates-and-examples/Excel_Drugs_Chart_11-1_REVISED.txt`
+   - Main instructions and requirements (~550 lines)
+
+2. **Example Code**: `templates-and-examples/Python_Examples/Excel_Drug_Example.py`
+   - Complete 4-tab implementation with all helper functions
+   - Shows Drug Details, Key Comparisons, Master Chart, High-Yield tabs
+
+3. **Color Reference**: `templates-and-examples/Excel_Color_Reference.txt`
+   - Shared color palette and styling specifications
 
 ### Step 3: Analyze Source File
 

@@ -34,8 +34,14 @@ Output: `[Topic]_Study_Guide.html`
 
 The command uses the template at:
 ```
-Example claude study guides/HTML LO/HTML LO with Master Chart 10-30.txt
+templates-and-examples/HTML_LO_REVISED.txt
 ```
+
+Before starting, read the template to understand:
+- 4-tab structure (Learning Objectives, Key Comparisons, Master Tables, Summary)
+- Emergency color-coding system (red/orange/white)
+- Clinical decision support formatting
+- HTML-specific requirements
 
 ## Best For
 

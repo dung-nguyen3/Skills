@@ -22,23 +22,13 @@ This repository contains Claude Code infrastructure examples and study guide mat
 
 ## Repository Architecture
 
-This repository contains **two sophisticated systems** plus supporting materials (197 files across 6 major directories).
+**`infrastructure-examples/`**
+- Examples of skills, hooks, commands, and agents
+- Reference material for creating Claude Code automation
+- Study these before building new skills/hooks
 
-### Two Main Systems
-
-**`claude-infrastructure-showcase/`** (68 files)
-- Production-tested Claude Code reference library
-- 5 skills, 10 agents, 3 slash commands, 6+ hooks
-- Auto-activation breakthrough (UserPromptSubmit + skill-rules.json)
-- Progressive disclosure pattern (500-line rule)
-- 6 months real-world testing on complex TypeScript projects
-- **Purpose:** Copy patterns into your own Claude Code projects
-
-**`Copy Study Guide Claude Q3 2/`** (68 files)
-- Medical study guide automation system (5-phase implementation complete)
-- 3 skills, 2 agents, 6 slash commands, 12+ hooks
-- Source-only enforcement + mandatory verification workflows
-- Multi-format output: Word, Excel, HTML
+**`study-guides/`**
+- Study guide materials
 - Has its own CLAUDE.md with detailed study guide protocols
 - **Purpose:** Create pharmacy study guides from source materials
 
@@ -149,6 +139,15 @@ git push -u origin claude/claude-md-example
 - `TEMPLATE_TYPES.md` - 4 study guide template types
 - `Copy Study Guide Claude Q3 2/HOW_TO_USE.md` - User guide for study system
 - `Copy Study Guide Claude Q3 2/MAINTENANCE.md` - Maintenance procedures
+
+**`analysis-docs/`**
+- Analysis and planning documents
+- Template improvement documentation
+- Historical record of decisions and changes
+
+**`scripts/`**
+- Standalone utility scripts
+- One-off automation tools
 
 ## When Working in Subdirectories
 

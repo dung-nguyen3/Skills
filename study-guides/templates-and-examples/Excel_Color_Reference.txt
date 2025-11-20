@@ -1,0 +1,168 @@
+# Excel Color Scheme Reference
+
+**Shared by:** Excel Drugs Chart & Excel Master Chart templates
+
+---
+
+## Header Row (Row 1)
+
+```python
+HEADER_BG = '4472C4'  # Dark blue
+HEADER_FONT = 'FFFFFF'  # White
+HEADER_SIZE = 12
+HEADER_BOLD = True
+HEADER_ALIGNMENT = 'center'
+ROW_HEIGHT = 25
+```
+
+**Implementation:**
+```python
+from openpyxl.styles import Font, PatternFill, Alignment
+
+header_fill = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
+header_font = Font(bold=True, size=12, color='FFFFFF')
+header_alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+```
+
+---
+
+## Data Row Colors (Rotate by Group/Class)
+
+Use these colors for drug classes, condition groups, or topic categories. Assign ONE color per group and rotate through in order.
+
+```python
+ROW_COLORS = [
+    'D9E2F3',  # 0: Ice Blue 40%
+    'C8E6C9',  # 1: Seafoam
+    'D1C4E9',  # 2: Light Orchid
+    'F7E7CE',  # 3: Champagne
+    'BDD7EE',  # 4: Sky Blue 60%
+    'F0F8FF',  # 5: Pale Azure
+    'FCE4EC',  # 6: Blush Pink
+    'EDE7F6',  # 7: Soft Lilac
+    'FFE8D6',  # 8: Soft Tangerine
+    'BBDEFB',  # 9: Powder Blue
+]
+```
+
+**Color Assignment Example:**
+- Drug Class 1 (NRTIs) → Ice Blue (#D9E2F3)
+- Drug Class 2 (NNRTIs) → Seafoam (#C8E6C9)
+- Drug Class 3 (Integrase Inhibitors) → Light Orchid (#D1C4E9)
+- Drug Class 4 (Protease Inhibitors) → Champagne (#F7E7CE)
+- Continue rotating: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, then repeat from 0
+
+**Usage:**
+```python
+# Get color for drug class
+class_index = 0  # First class
+color = ROW_COLORS[class_index % len(ROW_COLORS)]
+
+# Apply to all rows in that class
+fill = PatternFill(start_color=color, end_color=color, fill_type='solid')
+cell.fill = fill
+```
+
+---
+
+## Text Formatting
+
+### Header Text
+- Font: Calibri, Bold, Size 12
+- Color: White (#FFFFFF)
+- Alignment: Center horizontal, center vertical
+- Wrap text: Enabled
+
+### Data Text
+- Font: Calibri, Size 11
+- Color: Black (#000000) - default, always readable
+- Alignment: Left horizontal, top vertical (wrap text enabled)
+- Bold: First column only (group/class name)
+
+---
+
+## Border Style
+
+```python
+from openpyxl.styles import Border, Side
+
+# White borders (invisible, blends with pastels)
+thin_white_border = Border(
+    left=Side(style='thin', color='FFFFFF'),
+    right=Side(style='thin', color='FFFFFF'),
+    top=Side(style='thin', color='FFFFFF'),
+    bottom=Side(style='thin', color='FFFFFF')
+)
+```
+
+---
+
+## Column Width Guidelines
+
+- **Short text** (Route, Status): 12-15
+- **Medium text** (Drug Class, Condition): 20-25
+- **Long text** (Mechanism, Clinical Features): 30-40
+- **Name columns** (Drug Name, Condition): 25-30
+
+---
+
+## Complete Implementation Example
+
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
+# Colors
+HEADER_BG = '4472C4'
+ROW_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
+              'F0F8FF', 'FCE4EC', 'EDE7F6', 'FFE8D6', 'BBDEFB']
+
+# Styles
+header_fill = PatternFill(start_color=HEADER_BG, end_color=HEADER_BG, fill_type='solid')
+header_font = Font(bold=True, size=12, color='FFFFFF')
+header_alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+
+data_font = Font(size=11, color='000000')
+data_alignment = Alignment(horizontal='left', vertical='top', wrap_text=True)
+
+thin_border = Border(
+    left=Side(style='thin', color='FFFFFF'),
+    right=Side(style='thin', color='FFFFFF'),
+    top=Side(style='thin', color='FFFFFF'),
+    bottom=Side(style='thin', color='FFFFFF')
+)
+
+# Create workbook
+wb = Workbook()
+ws = wb.active
+
+# Apply header style
+for col in range(1, 11):  # Columns A-J
+    cell = ws.cell(1, col)
+    cell.fill = header_fill
+    cell.font = header_font
+    cell.alignment = header_alignment
+    cell.border = thin_border
+
+ws.row_dimensions[1].height = 25
+
+# Freeze header
+ws.freeze_panes = 'A2'
+
+# Apply data row colors
+class_index = 0
+for row in range(2, 10):  # Example rows
+    color = ROW_COLORS[class_index % len(ROW_COLORS)]
+    row_fill = PatternFill(start_color=color, end_color=color, fill_type='solid')
+
+    for col in range(1, 11):
+        cell = ws.cell(row, col)
+        cell.fill = row_fill
+        cell.font = data_font if col > 1 else Font(bold=True, size=11, color='000000')
+        cell.alignment = data_alignment
+        cell.border = thin_border
+```
+
+---
+
+**End of Color Reference**

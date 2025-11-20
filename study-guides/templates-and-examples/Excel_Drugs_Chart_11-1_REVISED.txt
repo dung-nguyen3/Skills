@@ -1,0 +1,383 @@
+# Excel Drug Chart Template - Instructions
+
+## Purpose
+Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology source material.
+
+---
+
+## Core Requirements
+
+**See parent CLAUDE.md for:**
+- Source-only policy (use ONLY source file information)
+- MANDATORY WebSearch for mnemonics/analogies
+- Verification checklists
+- File organization
+
+**Excel-specific requirements:**
+- 4 tabs: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
+- Soft pastel color scheme (see Excel_Color_Reference.txt)
+- Include page references in cells for verification
+- Research analogies for ALL drug mechanisms
+
+---
+
+## Reference Files
+
+**Color scheme & formatting:**
+- `Excel_Color_Reference.txt` - Complete color palette and styling specs
+
+**Complete working example:**
+- `Python_Examples/Excel_Drug_Example.py` - Full 4-tab implementation with all code
+
+---
+
+## FILE STRUCTURE: 4 TABS
+
+### Tab 1: Drug Details
+- Sheet name: "Drug Details"
+- Drug class comparison tables
+- Each drug class = its own table with drugs as columns
+- Merged cells for properties shared across ALL drugs in class
+- **Analogy column (Column G):** 2-4 sentence analogy for EACH drug's mechanism
+- **Memory tricks row** after EACH drug class table
+- Color-coded by drug class (rotate through color palette)
+
+### Tab 2: Key Comparisons
+- Sheet name: "Key Comparisons"
+- Side-by-side comparisons ACROSS drug classes
+- Categories: Mechanisms, Toxicities, Uses, Drug Interactions
+- Research analogies for mechanism comparisons
+- Helps differentiate between similar classes
+
+### Tab 3: Master Chart
+- Sheet name: "Master Chart"
+- ALL drugs in ONE comprehensive table
+- Rows = individual drugs
+- Columns = key characteristics
+- Frozen header row for scrolling
+- Quick reference chart
+
+### Tab 4: High-Yield & Pearls
+- Sheet name: "High-Yield & Pearls"
+- Clinical pearls (using medical reasoning)
+- Researched mnemonics
+- "If X Think Y" associations
+- Must-know facts
+- Organized by category
+
+---
+
+## DATA EXTRACTION REQUIREMENTS
+
+### Critical Rule: Drug-Specific vs Class-Wide Information
+
+**Correctly identify what applies to:**
+
+**Class-wide (merge cells across all drugs):**
+- "All NRTIs can cause lactic acidosis" → Merged cell for entire class
+
+**Drug-specific (individual cells):**
+- "Tenofovir causes nephrotoxicity" → ONLY Tenofovir cell
+- "Abacavir requires HLA-B*5701 screening" → ONLY Abacavir cell
+
+**Verify each extraction:**
+- If source says "Drug A and Drug B are first-line" → ONLY those 2 get 🟢
+- If source says "Drug C is safe in pregnancy" → ONLY Drug C gets that note
+- Don't assume - extract EXACTLY as stated
+
+### For EACH Drug, Extract:
+
+**1. Basic Information**
+- Generic name
+- Brand name (if provided)
+- Drug class/subclass
+- Route of administration
+
+**2. Mechanism of Action**
+- Class mechanism (if shared)
+- Drug-specific mechanism
+- Target receptors/enzymes
+- **REQUIRED:** Research 2-4 sentence analogy explaining mechanism
+
+**3. Clinical Uses**
+- Primary indications
+- Secondary uses
+- 🟢 Mark first-line ONLY if source explicitly states
+- Off-label uses (if mentioned)
+
+**4. Combination Therapies**
+- Which drugs combine
+- Combination product names
+- Rationale (if provided)
+
+**5. Adverse Effects**
+- **Class-wide AE** (merge if all drugs share)
+- **Drug-specific AE** (individual cells)
+- ⚠️ Mark serious/life-threatening effects
+- Black box warnings
+- Dose-limiting toxicities
+
+**6. Contraindications**
+- Absolute contraindications
+- 🚫 Mark critical ones
+- Pregnancy warnings (if specified)
+- Disease states to avoid
+
+**7. Drug Interactions**
+- Major interactions
+- CYP450 interactions
+- Food/herb interactions
+
+**8. Resistance** (if applicable)
+- How resistance develops
+- Cross-resistance patterns
+
+**9. Special Considerations**
+- Monitoring requirements
+- Dosing adjustments
+- ❗ Critical information (e.g., "Screen HLA-B*5701 BEFORE use")
+- ✅ Positive notes (e.g., "Safe in pregnancy")
+
+---
+
+## FORMATTING REQUIREMENTS
+
+### Colors & Styling
+- See `Excel_Color_Reference.txt` for complete specifications
+- Header row: Dark blue (#4472C4), white bold text
+- Data rows: Rotate through 10 pastel colors by drug class
+- All cells: White borders (#FFFFFF)
+- Text: Black, Calibri, size 11 (size 12 for headers)
+
+### Row Heights
+- Header row: 25
+- Data rows: Auto-expand to fit content (no over/under expansion)
+- Mnemonic rows: 40-50 (needs space for full text)
+
+### Column Widths
+- Property names: 30
+- Drug names: 25
+- Long text (mechanism, uses, AE): 35-40
+- Analogy column: 40
+
+### Borders
+- Use white borders (#FFFFFF) - invisible, blends with pastels
+- Creates clean, modern look
+
+---
+
+## TAB 1: DRUG DETAILS STRUCTURE
+
+### Pattern for Each Drug Class:
+
+```
+Row 1: [Merged] DRUG CLASS NAME (bold, header color, centered)
+Row 2: Property | Drug 1 | Drug 2 | Drug 3 | Drug 4 | Analogy
+Row 3: Drug Class | [Merged across drugs] | Analogy text (for mechanism)
+Row 4: Mechanism | [Merged if same] | Analogy (2-4 sentences)
+Row 5: Route | [Merged if same] |
+Row 6: Uses | Individual | Individual | Individual | Individual |
+Row 7: Adverse Effects | [Merge if class-wide, separate if drug-specific] |
+Row 8: Contraindications | Individual | Individual | Individual | Individual |
+Row 9: Special Considerations | Individual | Individual | Individual | Individual |
+Row N: [Merged] 💡 MEMORY TRICKS: [Researched mnemonic]
+
+[Space row]
+
+Next Drug Class...
+```
+
+### Analogy Requirements
+- **MANDATORY:** Research analogies using WebSearch
+- 2-4 sentences explaining how the mechanism works
+- Use real-world comparisons
+- Place in Column G (or last column) adjacent to mechanism
+- Examples: "Like cutting assembly line belt", "Acts as bouncer blocking door"
+
+### Memory Tricks Row
+- After each drug class table
+- Merged across all columns
+- Orange background (#FFF3E0)
+- 💡 prefix
+- Research mnemonics - NEVER invent
+
+---
+
+## TAB 2: KEY COMPARISONS STRUCTURE
+
+Create comparison tables for:
+- **Mechanisms** across classes (with analogies)
+- **Toxicity profiles** comparison
+- **Clinical uses** comparison
+- **Drug interactions** comparison
+- **When to use which class** (clinical decision-making)
+
+### Table Format:
+```
+Header Row: Category | Class 1 | Class 2 | Class 3 | Class 4
+Row 1: Feature 1 | Value | Value | Value | Value
+Row 2: Feature 2 | Value | Value | Value | Value
+...
+```
+
+---
+
+## TAB 3: MASTER CHART STRUCTURE
+
+Single comprehensive table with ALL drugs:
+
+```
+Headers: Drug Class | Drug Name (Brand) | Route | Mechanism | Uses | Adverse Effects | Contraindications | Special Considerations
+
+Row 1: Class A | Drug 1 | ... | ... | ... | ... | ... | ...
+Row 2: Class A | Drug 2 | ... | ... | ... | ... | ... | ...
+Row 3: Class B | Drug 3 | ... | ... | ... | ... | ... | ...
+...
+```
+
+- Frozen header row (freeze panes at A2)
+- Color-code rows by drug class
+- All information condensed to one row per drug
+
+---
+
+## TAB 4: HIGH-YIELD & PEARLS STRUCTURE
+
+Organize by sections:
+
+### Clinical Pearls
+- Use medical reasoning and clinical context
+- "If X think Y" associations
+- Board-relevant information
+- Teal background (#E0F2F1)
+
+### Memory Tricks & Mnemonics
+- Researched mnemonics only
+- Complete phrases/stories (not just letters)
+- Orange background (#FFF3E0)
+
+### Must-Know Facts
+- Critical information
+- Purple background (#F3E5F5)
+
+### Drug Selection Guide
+- When to choose which drug
+- Patient-specific considerations
+- Green background (#E8F5E9)
+
+---
+
+## PYTHON IMPLEMENTATION
+
+### Essential Helper Functions
+
+Keep these in your script:
+
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
+# See Excel_Color_Reference.txt for complete color definitions
+HEADER_BG = '4472C4'
+ROW_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
+              'F0F8FF', 'FCE4EC', 'EDE7F6', 'FFE8D6', 'BBDEFB']
+
+def apply_cell_style(cell, text='', bold=False, font_size=11,
+                     bg_color=None, alignment='left'):
+    """Apply cell styling - see Excel_Drug_Example.py for full implementation"""
+    cell.value = text
+    cell.font = Font(name='Calibri', size=font_size, bold=bold, color='000000')
+    cell.alignment = Alignment(horizontal=alignment, vertical='top', wrap_text=True)
+    if bg_color:
+        cell.fill = PatternFill(start_color=bg_color, end_color=bg_color, fill_type='solid')
+    # White borders
+    cell.border = Border(
+        left=Side(style='thin', color='FFFFFF'),
+        right=Side(style='thin', color='FFFFFF'),
+        top=Side(style='thin', color='FFFFFF'),
+        bottom=Side(style='thin', color='FFFFFF')
+    )
+```
+
+### Complete Working Example
+
+**For full 4-tab implementation, see:**
+`Python_Examples/Excel_Drug_Example.py`
+
+The example includes:
+- Complete Tab 1 with comparison tables, analogy column, mnemonic rows
+- Complete Tab 2 with key comparisons across classes
+- Complete Tab 3 with master chart of all drugs
+- Complete Tab 4 with clinical pearls and mnemonics
+- All helper functions and styling
+- Row merging logic
+- Color rotation by drug class
+
+---
+
+## QUALITY CHECKLIST
+
+Before finalizing:
+
+### Content Accuracy
+- [ ] ALL drugs from source included
+- [ ] Drug-specific vs class-wide information correctly identified
+- [ ] No information applied to wrong drug
+- [ ] First-line designations ONLY where source explicitly states
+- [ ] Analogies researched for ALL drug mechanisms
+- [ ] Mnemonics researched (not invented)
+
+### Structure Compliance
+- [ ] All 4 tabs present with correct names
+- [ ] Tab 1: Comparison tables for each drug class
+- [ ] Tab 1: Analogy column for all mechanisms
+- [ ] Tab 1: Memory tricks row after each class
+- [ ] Tab 2: Key comparisons across classes
+- [ ] Tab 3: Master chart with ALL drugs
+- [ ] Tab 4: Organized clinical pearls and mnemonics
+
+### Formatting
+- [ ] Colors match Excel_Color_Reference.txt
+- [ ] Header row: Dark blue, white bold text
+- [ ] Data rows: Pastel colors, black text
+- [ ] White borders throughout
+- [ ] Row heights fit content
+- [ ] Frozen header on Tab 3
+
+---
+
+## COMMON MISTAKES TO AVOID
+
+**DON'T:**
+- ❌ Invent mnemonics - MUST research via WebSearch
+- ❌ Apply drug-specific info to entire class
+- ❌ Mark drugs as "first-line" without source confirmation
+- ❌ Skip analogy column or memory tricks rows
+- ❌ Use harsh colors instead of soft pastels
+- ❌ Forget to freeze header row on Master Chart
+- ❌ Add external medical knowledge without * marking
+
+**DO:**
+- ✅ Research mnemonics and analogies via WebSearch
+- ✅ Verify drug-specific vs class-wide information
+- ✅ Include page references in cells
+- ✅ Use soft pastel colors consistently
+- ✅ Add analogy explanations for ALL mechanisms
+- ✅ Create memory tricks row after each drug class
+
+---
+
+## FILE SAVING
+
+```python
+wb.save('[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Chart.xlsx')
+```
+
+Example: `Pharmacology/Exam 3/Claude Study Tools/HIV_Drugs_Chart.xlsx`
+
+---
+
+**End of Instructions**
+
+**For complete working code example:** `Python_Examples/Excel_Drug_Example.py`
+**For color specifications:** `Excel_Color_Reference.txt`
