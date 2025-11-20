@@ -29,6 +29,11 @@
 /create-clinical-guide "path/to/source.txt" "Chief Complaint"
 ```
 
+### Drug Biography Stories
+```
+/create-drug-biography "path/to/drugs.txt"
+```
+
 ---
 
 ## Verification & Analysis
@@ -70,7 +75,9 @@ Mnemonics are automatically researched when creating study guides.
 
 ## Which Command Should I Use?
 
-**For drugs:** `/create-excel` or `/create-drug-html`
+**For drugs:** `/create-excel` or `/create-drug-html` or `/create-drug-biography`
+
+**For drug stories (creative/memorable):** `/create-drug-biography`
 
 **For any medical topic:** `/create-lo-guide`
 
