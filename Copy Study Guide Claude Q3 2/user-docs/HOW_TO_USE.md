@@ -914,7 +914,7 @@ The study guide is now accurate and ready to use.
 **Check 1:** Are you in the correct folder?
 ```bash
 pwd
-# Should show: /home/user/Skills/Copy Study Guide Claude Q3 2
+# Should show: /Users/kimnguyen/Documents/Github/Study Guide Creator
 ```
 
 **Check 2:** Files exist?

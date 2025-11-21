@@ -699,7 +699,7 @@ Hooks are shell scripts or TypeScript files that run at specific lifecycle event
 
 5. **Test the hook:**
    ```bash
-   cd "/home/user/Skills/Copy Study Guide Claude Q3 2"
+   cd "/Users/kimnguyen/Documents/Github/Study Guide Creator"
    CLAUDE_PROJECT_DIR="$(pwd)" bash -c 'echo "{\"prompt\":\"create excel\"}" | .claude/hooks/skill-activation-prompt.sh'
    ```
 

@@ -49,7 +49,7 @@ Before touching any files, Claude MUST state the verification checklist:
 
 ```
 VERIFICATION CHECKLIST:
-☑ Source file: /Users/kimnguyen/Documents/Study Guide Claude Q3/[exact path]
+☑ Source file: /Users/kimnguyen/Documents/Github/Study Guide Creator/[exact path]
 ☑ Instruction template: Excel Master Chart Only.txt
 ☑ Source-only policy: I will ONLY use information from source file
 ☑ MANDATORY: I will use WebSearch to research mnemonics (not for data extraction)
@@ -60,7 +60,7 @@ VERIFICATION CHECKLIST:
 
 Read the CLAUDE_GENERATOR template:
 ```
-/Users/kimnguyen/Documents/Study Guide Claude Q3/Claude Templates/excel_master_chart_CLAUDE_GENERATOR.py
+/Users/kimnguyen/Documents/Github/Study Guide Creator/Claude Templates/excel_master_chart_CLAUDE_GENERATOR.py
 ```
 
 ### Step 3: Read the Source File
@@ -260,7 +260,7 @@ DATA = [
 
 See the file you created earlier for reference:
 ```
-/Users/kimnguyen/Documents/Study Guide Claude Q3/HIV_Master_Chart_Generator.py
+/Users/kimnguyen/Documents/Github/Study Guide Creator/HIV_Master_Chart_Generator.py
 ```
 
 This shows a complete example with:
@@ -274,7 +274,7 @@ This shows a complete example with:
 
 **Template Location:**
 ```
-/Users/kimnguyen/Documents/Study Guide Claude Q3/Claude Templates/excel_master_chart_CLAUDE_GENERATOR.py
+/Users/kimnguyen/Documents/Github/Study Guide Creator/Claude Templates/excel_master_chart_CLAUDE_GENERATOR.py
 ```
 
 **Typical User Request:**
@@ -296,7 +296,7 @@ This shows a complete example with:
 After creating the script, you can verify it works:
 ```bash
 # Navigate to directory
-cd "/Users/kimnguyen/Documents/Study Guide Claude Q3/"
+cd "/Users/kimnguyen/Documents/Github/Study Guide Creator/"
 
 # Run the script
 python3 24_HIV_Master_Chart_Generator.py
@@ -336,7 +336,7 @@ Before touching any files, Claude MUST state the verification checklist:
 
 ```
 VERIFICATION CHECKLIST:
-☑ Source file: /Users/kimnguyen/Documents/Study Guide Claude Q3/[exact path]
+☑ Source file: /Users/kimnguyen/Documents/Github/Study Guide Creator/[exact path]
 ☑ Instruction template: HTML LO with Master Chart 10-30.txt
 ☑ Source-only policy: I will ONLY use information from source file
 ☑ MANDATORY: I will use WebSearch to research mnemonics (not for data extraction)
@@ -347,7 +347,7 @@ VERIFICATION CHECKLIST:
 
 Read the HTML_LO_CLAUDE_GENERATOR template:
 ```
-/Users/kimnguyen/Documents/Study Guide Claude Q3/Claude Templates/Py for Claude/HTML_LO_CLAUDE_GENERATOR.py
+/Users/kimnguyen/Documents/Github/Study Guide Creator/Claude Templates/Py for Claude/HTML_LO_CLAUDE_GENERATOR.py
 ```
 
 ### Step 3: Read the Source File
@@ -723,7 +723,7 @@ answer: '''
 
 **Template Location:**
 ```
-/Users/kimnguyen/Documents/Study Guide Claude Q3/Claude Templates/Py for Claude/HTML_LO_CLAUDE_GENERATOR.py
+/Users/kimnguyen/Documents/Github/Study Guide Creator/Claude Templates/Py for Claude/HTML_LO_CLAUDE_GENERATOR.py
 ```
 
 **Typical User Request:**

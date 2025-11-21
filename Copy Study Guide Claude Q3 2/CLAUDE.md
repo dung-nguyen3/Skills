@@ -177,12 +177,12 @@ Detailed protocol includes:
 **ALWAYS prefix git commands with `cd` to the project directory:**
 
 ```bash
-cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git [command]
+cd "/Users/kimnguyen/Documents/Github/Study Guide Creator" && git [command]
 ```
 
 **Examples:**
-- ✅ `cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git status`
-- ✅ `cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git add . && git commit -m "message"`
+- ✅ `cd "/Users/kimnguyen/Documents/Github/Study Guide Creator" && git status`
+- ✅ `cd "/Users/kimnguyen/Documents/Github/Study Guide Creator" && git add . && git commit -m "message"`
 - ❌ `git status` (may run in wrong directory)
 
 **Why:** Ensures git commands always operate on the correct repository, regardless of current working directory.
