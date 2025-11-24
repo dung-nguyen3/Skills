@@ -191,72 +191,6 @@ Location: `.claude/commands/`
 
 ---
 
-## Infrastructure Example Commands
-
-Location: `infrastructure-examples/.claude/commands/`
-
-### /dev-docs
-**Purpose:** Create comprehensive strategic plan with structured task breakdown
-**Arguments:** Describe what you need planned (e.g., "refactor authentication system", "implement microservices")
-**Output:** Three markdown files:
-- `[task]-plan.md` - Strategic plan
-- `[task]-context.md` - Key decisions and files
-- `[task]-tasks.md` - Checklist format
-
-**Best For:** Complex development tasks, feature planning, refactoring strategies
-
-**What it creates:**
-- Executive summary
-- Phase breakdown with tasks
-- Technical decisions and rationale
-- File locations and key code sections
-- Actionable checklist format
-
-**Example:**
-```
-/dev-docs refactor authentication system
-```
-
----
-
-### /dev-docs-update
-**Purpose:** Update development documentation before context reset
-**Arguments:** Task name or description
-**Output:** Updated plan, context, and task files
-**Best For:** Updating docs mid-project, capturing progress before session ends
-
-**What it does:**
-- Updates existing plan with current progress
-- Adds new decisions to context
-- Updates task checklist completion status
-- Captures current state for next session
-
-**Example:**
-```
-/dev-docs-update authentication refactor
-```
-
----
-
-### /route-research-for-testing
-**Purpose:** Research route patterns for API testing
-**Arguments:** None (analyzes current codebase)
-**Output:** Comprehensive route analysis report
-**Best For:** Understanding API structure, preparing for route testing
-
-**What it creates:**
-- List of all API routes
-- Authentication requirements
-- Request/response patterns
-- Test data recommendations
-
-**Example:**
-```
-/route-research-for-testing
-```
-
----
-
 ## Quick Command Selection Guide
 
 ### For Study Guides:
@@ -333,22 +267,14 @@ Location: `infrastructure-examples/.claude/commands/`
 └── verify-accuracy.md
 ```
 
-**Infrastructure commands:**
-```
-infrastructure-examples/.claude/commands/
-├── dev-docs.md
-├── dev-docs-update.md
-└── route-research-for-testing.md
-```
-
 ---
 
 ## Related Documentation
 
 - **How to Use Study Guides:** `study-guides/user-docs/HOW_TO_USE.md`
 - **Study Guide System Overview:** `study-guides/README.md`
-- **Infrastructure Integration Guide:** `infrastructure-examples/CLAUDE_INTEGRATION_GUIDE.md`
 - **Repository Structure:** `CLAUDE.md`
+- **Templates:** `study-guides/templates-and-examples/`
 
 ---
 

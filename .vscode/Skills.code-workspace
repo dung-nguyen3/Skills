@@ -1,20 +1,12 @@
 {
   "folders": [
     {
-      "name": "📁 Skills Repository (Root)",
+      "name": "Skills Repository (Root)",
       "path": ".."
     },
     {
-      "name": "🏗️ Infrastructure Examples",
-      "path": "../infrastructure-examples"
-    },
-    {
-      "name": "📚 Study Guides",
+      "name": "Study Guides",
       "path": "../study-guides"
-    },
-    {
-      "name": "📊 Analysis Documents",
-      "path": "../analysis-docs"
     }
   ],
   "settings": {

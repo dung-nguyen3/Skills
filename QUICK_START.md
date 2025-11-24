@@ -244,15 +244,12 @@ Type these in Command Palette:
 - [Study Guide System](study-guides/README.md) - System overview
 
 **Infrastructure:**
-- [Skills Documentation](infrastructure-examples/.claude/skills/README.md)
-- [Hooks Documentation](infrastructure-examples/.claude/hooks/README.md)
-- [Agents Documentation](infrastructure-examples/.claude/agents/README.md)
-- [Integration Guide](infrastructure-examples/CLAUDE_INTEGRATION_GUIDE.md)
+- Skills: `.claude/skills/`
+- Hooks: `.claude/hooks/`
+- Commands: `.claude/commands/`
 
-**Analysis:**
-- [Token Usage Analysis](analysis-docs/INFRASTRUCTURE_TOKEN_ANALYSIS.md)
-- [Template Analysis](analysis-docs/Template_Analysis_All_Templates.md)
-- [Workspace Setup](WORKSPACE_SETUP.md)
+**Templates:**
+- All templates: `study-guides/templates-and-examples/`
 
 ---
 

@@ -122,8 +122,8 @@ To modify templates:
 
 ## Related Folders
 
-- **infrastructure-examples/** - Reference for creating your own slash commands/skills
-- **analysis-docs/** - Documentation of template analysis and improvements
+- **`.claude/`** - Claude infrastructure (commands, skills, hooks, agents)
+- **`templates-and-examples/`** - All templates and Python examples
 
 ## Best Practices
 
