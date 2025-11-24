@@ -1,6 +1,6 @@
 # Skills Repository - Global Settings
 
-This repository contains Claude Code infrastructure examples and study guide materials.
+This repository contains Claude Code infrastructure and study guide materials for pharmacy education.
 
 ## Personal Context
 
@@ -22,46 +22,35 @@ This repository contains Claude Code infrastructure examples and study guide mat
 
 ## Repository Architecture
 
-**`infrastructure-examples/`**
-- Examples of skills, hooks, commands, and agents
-- Reference material for creating Claude Code automation
-- Study these before building new skills/hooks
+### Main Directories
 
-**`study-guides/`**
-- Study guide materials
-- Has its own CLAUDE.md with detailed study guide protocols
-- **Purpose:** Create pharmacy study guides from source materials
+**`.claude/`** - Claude Code Infrastructure
+- `commands/` - Slash commands for study guide creation
+- `skills/` - Skills for source verification and mnemonics
+- `hooks/` - Automation hooks for quality control
+- `agents/` - Specialized agents
 
-### Supporting Directories
+**`study-guides/`** - Study Guide System
+- `templates-and-examples/` - All templates and Python examples
+- `user-docs/` - User documentation (HOW_TO_USE, START_HERE, etc.)
+- `infrastructure-docs/` - Technical documentation
+- `CLAUDE.md` - Study guide specific protocols
 
-**`Example claude study guides/`** (43 files)
-- 12 subdirectories with completed study guide examples
-- Reference for various output formats (HTML, Excel, Word, PDF)
-- Template instructions and real examples
+### Root Files
 
-**`Py for Claude/`** (5 files)
-- Python utilities for study guide generation
-- Template generators for Excel, HTML, and Word formats
-
-**`Study Templates auto/`** (6 files)
-- Template and example documents
-- Text-based template instructions
-
-**Root Documentation** (9 markdown files)
-- CLAUDE_INFRASTRUCTURE_ANALYSIS.md (1,307 lines - comprehensive technical analysis)
-- QUICK_REFERENCE_GUIDE.md (350 lines - quick lookup)
-- INFRASTRUCTURE_ANALYSIS_INDEX.md (navigation guide)
-- GIT_WORKFLOW.md (git operations protocol)
-- TEMPLATE_TYPES.md (study guide template reference)
-- Other planning and analysis documents
+| File | Purpose |
+|------|---------|
+| `CLAUDE.md` | Global settings (this file) |
+| `COMMANDS.md` | Quick command reference |
+| `QUICK_START.md` | Getting started guide |
+| `README.md` | Repository overview |
+| `SLASH_COMMANDS_REFERENCE.md` | Detailed command documentation |
 
 ## Git Operations Protocol
 
-### CRITICAL: Branch Naming Requirements
+### Branch Naming Requirements
 
 **Format:** `claude/claude-md-{session-id}-{unique-id}`
-
-**Example:** `claude/claude-md-mi7tfcycz4m95d0u-01Qu3uxnpnhuQf82Kr6iE6YS`
 
 **IMPORTANT:**
 - Branch MUST start with `claude/` and end with matching session ID
@@ -80,68 +69,52 @@ This repository contains Claude Code infrastructure examples and study guide mat
 - On network failures, retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s)
 - For pulls: `git pull origin <branch-name>`
 
-**Example with retry:**
-```bash
-# First attempt
-git push -u origin claude/claude-md-example
-
-# If fails, wait 2s and retry
-# If fails, wait 4s and retry
-# If fails, wait 8s and retry
-# If fails, wait 16s and retry (final attempt)
-```
-
 ## Navigation Guide
 
 ### Finding Infrastructure Components
 
 **Skills:** `.claude/skills/`
-- Root level: `skill-rules.json` for study guide verification triggers
+- `skill-rules.json` - Study guide verification triggers
+- `source-only-enforcer/` - Source accuracy enforcement
+- `study-guide-verifier/` - Verification protocols
+- `mnemonic-researcher/` - Mnemonic research methodology
 
-**Hooks:** `.claude/hooks/*.sh`
-- Study guide verification hooks (pre/post creation, session end)
-- Quality gates for source-only policy
+**Hooks:** `.claude/hooks/`
+- Session start/end hooks
+- Verification guard hooks
+- Quality gate enforcement
 
-**Commands:** `.claude/commands/*.md`
-- Study guide commands: `/excel`, `/word`, `/html`, `/clinical`, `/anki`, `/biography`, `/lo-guide`
-- Verification: `/verify-accuracy`
+**Commands:** `.claude/commands/`
+- `/excel` - Excel drug charts
+- `/word` - Word learning objectives
+- `/html-drug` - HTML drug reference charts
+- `/html-LO` - HTML learning objectives
+- `/clinical` - Clinical assessment guides
+- `/anki` - Anki flashcard decks
+- `/biography` - Drug autobiography stories
+- `/verify-accuracy` - Accuracy verification
 
-### Finding Templates and Examples
+### Finding Templates
 
-**Study Guide Templates:**
-- `study-guides/templates-and-examples/` - Complete templates and examples
-
-**Study Guide Examples:**
-- `Example claude study guides/` - 12 subdirectories organized by format
-- Shows HTML, Excel, Word, PDF outputs
-
-**Python Generators:**
-- `Py for Claude/` - Automated template generators
+**All templates:** `study-guides/templates-and-examples/`
+- `Excel_Drugs_Chart_11-1_REVISED.txt` - Excel drug chart template
+- `Excel_Master_Chart_Only_REVISED.txt` - Excel master chart template
+- `Word_LO_11-5_REVISED.txt` - Word LO template
+- `HTML_LO_REVISED.txt` - HTML LO template
+- `Clinical_Physical_Assessment_REVISED.txt` - Clinical template
+- `Autobiography_Drug_Stories_REVISED.txt` - Biography template
+- `Python_Examples/` - Python generation scripts
 
 ### Finding Documentation
 
-**Comprehensive Analysis:**
-- `CLAUDE_INFRASTRUCTURE_ANALYSIS.md` - Deep technical dive (1,307 lines)
-- Covers: skills, hooks, agents, patterns, integration, troubleshooting
+**User Guides:**
+- `study-guides/user-docs/START_HERE.md` - Getting started
+- `study-guides/user-docs/HOW_TO_USE.md` - Detailed usage guide
+- `study-guides/user-docs/MAINTENANCE.md` - Maintenance procedures
 
-**Quick Reference:**
-- `QUICK_REFERENCE_GUIDE.md` - Fast lookup (350 lines)
-- Copy-paste configurations, troubleshooting, common patterns
-
-**Specific Protocols:**
-- `GIT_WORKFLOW.md` - Clone, pull, push procedures
-- `TEMPLATE_TYPES.md` - 4 study guide template types
-- `study-guides/HOW_TO_USE.md` - User guide for study system
-- `study-guides/MAINTENANCE.md` - Maintenance procedures
-
-**`analysis-docs/`**
-- Analysis and planning documents
-- Template improvement documentation
-- Historical record of decisions and changes
-
-**`scripts/`**
-- Standalone utility scripts
-- One-off automation tools
+**Command Reference:**
+- `SLASH_COMMANDS_REFERENCE.md` - Complete command documentation
+- `QUICK_START.md` - Quick reference with examples
 
 ## When Working in Subdirectories
 
