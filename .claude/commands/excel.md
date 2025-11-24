@@ -1,36 +1,41 @@
 ---
 description: Create comprehensive 4-tab Excel drug chart from pharmacology source material
-argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt;file3.txt")
+argument-hint: Single file OR batch files separated by semicolon. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "--merge f1.txt;f2.txt")
 ---
 
 Create Excel drug chart from: $ARGUMENTS
 
 ## Instructions
 
-### Step 0: Detect Mode (Single vs Batch)
+### Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Parse arguments to detect batch mode:**
+**Parse arguments to detect mode:**
 
-If $ARGUMENTS contains semicolons (`;`):
-- **BATCH MODE**: Multiple source files
+**Check for --merge flag:**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
+
+**Check for semicolons:**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
-- Each file will create a separate Excel chart
-- Example: `"HIV.txt;COVID.txt;Antibiotics.txt"` → 3 Excel files
 
-If $ARGUMENTS does NOT contain semicolons:
-- **SINGLE MODE**: One source file (existing behavior)
-- Example: `"HIV.txt"` → 1 Excel file
+**Otherwise: SINGLE MODE**
 
 **State which mode detected:**
 ```
-MODE DETECTED: [SINGLE or BATCH]
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
 ```
 
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 Excel chart (inline processing)
+- **BATCH SEPARATE**: N files → N Excel charts (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged Excel chart (orchestrator agent, intelligent merge)
+
 ---
 
-### Step 1: Pre-Creation Verification
+### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
 
@@ -46,28 +51,86 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-#### For BATCH MODE:
+**Then proceed with Step 2 (inline processing).**
 
-**MANDATORY - State this checklist FIRST:**
+---
+
+#### For BATCH SEPARATE MODE:
+
+**MANDATORY - State this checklist:**
 
 ```
-BATCH INITIAL VALIDATION:
-☐ Source files: [list all files from $ARGUMENTS]
+BATCH SEPARATE VALIDATION:
+☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
-☐ Homogeneity check: All files are drug lectures (same template applies)
-☐ Instruction template: Excel Drugs Chart 11-1.txt (applies to ALL files)
-☐ Output: ONE Excel file will be created per source file
+☐ Homogeneity check: All files are drug lectures
+☐ Template: Excel Drugs Chart 11-1.txt (per file)
+☐ Output: N files → N Excel charts
+☐ Agent: batch-separate-processor (launched N times)
+☐ Architectural isolation: Each file processed in separate agent context
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
-
-BATCH PROCESSING RULES:
-☐ Each file will get complete verification (not just once)
-☐ Each file will be processed independently
-☐ Context isolation: I will explicitly clear data between files
-☐ Source-only policy applies per-file
-☐ Mnemonics researched per-file via WebSearch
 ```
 
-**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Step 10).
+**Then invoke batch-separate-processor agent:**
+
+```
+I'll use the batch-separate-processor agent to process your files with architectural isolation.
+
+Launching agent [X] times:
+- File 1: batch-separate-processor → [Output1.xlsx]
+- File 2: batch-separate-processor → [Output2.xlsx]
+...
+- File N: batch-separate-processor → [OutputN.xlsx]
+
+Each agent invocation is architecturally isolated (zero cross-contamination).
+```
+
+**STOP HERE - Do NOT continue with Steps 2-10. The agent handles all processing.**
+
+---
+
+#### For BATCH MERGE MODE:
+
+**MANDATORY - State this checklist:**
+
+```
+BATCH MERGE VALIDATION:
+☐ Source files: [list all files]
+☐ File validation: All files exist and are readable
+☐ Files are related/compatible for merging
+☐ Template: Excel Drugs Chart 11-1.txt (unified)
+☐ Output: N files → 1 merged Excel chart
+☐ Agent: batch-merge-orchestrator (launched once)
+☐ Merge features: Content matrix, overlap resolution, source traceability
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+**Then invoke batch-merge-orchestrator agent:**
+
+```
+I'll use the batch-merge-orchestrator agent to intelligently merge your files.
+
+Agent will:
+1. Read all N files completely
+2. Create content matrix (which drugs in which files)
+3. Identify overlaps and gaps
+4. Resolve conflicts with source traceability
+5. Merge into ONE comprehensive Excel chart
+6. Create merge report with traceability map
+
+Output:
+- 1 merged Excel chart: [filename.xlsx]
+- 1 merge report: [filename_merge_report.md]
+```
+
+**STOP HERE - Do NOT continue with Steps 2-10. The agent handles all processing.**
+
+---
+
+**IMPORTANT FOR BATCH MODES:**
+- Batch separate/merge use agents (subagent architecture)
+- Single mode uses inline processing (Steps 2-10)
+- Do NOT mix - if agent is launched, STOP and let agent complete the work
 
 ### Step 2: Load Resources
 
@@ -191,94 +254,6 @@ Track your progress:
 
 ---
 
-### Step 10: Batch Processing (BATCH MODE ONLY)
-
-**If BATCH MODE, repeat Steps 1-9 for EACH file:**
-
-For each source file in the batch:
-1. **Announce file**: "Processing file X of Y: [filename]"
-
-2. **CRITICAL - Context Isolation Check**:
-   ```
-   CONTEXT ISOLATION VERIFICATION:
-   ☐ I will FORGET all drugs from previous files
-   ☐ I will ONLY extract information from THIS source file: [filename]
-   ☐ I will verify drug list is ONLY from THIS file (not previous files)
-   ☐ This Excel will contain ZERO drugs from previous files
-   ```
-
-3. **Per-File Verification** (Step 1) - Run complete verification checklist for THIS file
-
-4. **Load resources** (Step 2) - templates already loaded, reuse
-
-5. **Analyze source file** (Step 3) - read THIS file completely, extract THIS file's drugs only
-
-6. **MANDATORY - State drug list**: "Drugs found in [filename]: [list all drugs]"
-   - This proves you're only using THIS file's drugs
-   - If you see drugs from previous files, STOP and re-read source
-
-7. **Create 4-tab Excel** (Step 4-6) - for THIS file only, using ONLY drugs from step 6
-
-8. **WebSearch mnemonics** (Step 5) - for THIS file's drugs only
-
-9. **Use TodoWrite** (Step 7) - track THIS file's progress
-
-10. **Post-creation verification** (Step 8) - verify THIS file contains ONLY THIS file's drugs
-
-11. **Save file** (Step 9) - with unique filename based on source
-
-12. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
-
-**Critical for Batch:**
-- Each file gets complete verification (not once at start)
-- Explicitly state drug list from each file before creating Excel
-- Verify no drugs from previous files contaminated output
-- Clear all drug data between files
-- Each file gets its own Excel output
-- Track which source created which Excel file
-
-**Progress Tracking:**
-```
-[BATCH PROGRESS]
-✅ File 1/3: HIV_Drug_Chart.xlsx (45 drugs)
-✅ File 2/3: COVID_Drug_Chart.xlsx (28 drugs)
-🔄 File 3/3: Antibiotics_Drug_Chart.xlsx (in progress...)
-```
-
----
-
-### Step 11: Batch Summary (BATCH MODE ONLY)
-
-**After all files processed, provide summary:**
-
-```
-BATCH CREATION COMPLETE
-═══════════════════════════════════════
-
-Files Created Successfully:
-✅ [filename1]_Drug_Chart.xlsx ([#] drugs from [source1])
-✅ [filename2]_Drug_Chart.xlsx ([#] drugs from [source2])
-✅ [filename3]_Drug_Chart.xlsx ([#] drugs from [source3])
-
-Failed Files (if any):
-❌ [filename]: [error reason]
-
-Statistics:
-- Total files processed: [#]
-- Successful: [#]
-- Failed: [#]
-- Total drugs across all files: [#]
-- All verifications: [PASS/NEEDS WORK]
-
-Location: [Class]/[Exam]/Claude Study Tools/
-
-Next Steps:
-- Review each file for accuracy
-- Use /verify-accuracy for deep analysis if needed
-```
-
----
-
 ## Common Mistakes to Avoid
 
 ❌ Marking all drugs as first-line when only specific ones are
@@ -296,13 +271,23 @@ Next Steps:
 ```
 Creates: `HIV_Antivirals_Drug_Chart.xlsx`
 
-### Batch Files:
+### Batch Separate (N files → N outputs):
 ```
-/excel "Pharmacology/Exam 3/Extract/HIV.txt;Pharmacology/Exam 3/Extract/COVID.txt;Pharmacology/Exam 3/Extract/Antibiotics.txt"
+/excel "HIV.txt;COVID.txt;Antibiotics.txt"
 ```
 Creates 3 separate Excel files:
-- `HIV_Drug_Chart.xlsx`
-- `COVID_Drug_Chart.xlsx`
-- `Antibiotics_Drug_Chart.xlsx`
+- `HIV_Drug_Chart.xlsx` (only HIV drugs)
+- `COVID_Drug_Chart.xlsx` (only COVID drugs)
+- `Antibiotics_Drug_Chart.xlsx` (only antibiotic drugs)
 
-Each file will be comprehensive 4-tab Excel drug chart with all drugs, comparisons, and researched mnemonics.
+Uses batch-separate-processor agent with architectural isolation (zero contamination).
+
+### Batch Merge (N files → 1 merged output):
+```
+/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+```
+Creates 1 merged Excel file:
+- `HIV_Comprehensive_Drug_Chart.xlsx` (all HIV drug classes merged)
+- `HIV_Comprehensive_Drug_Chart_merge_report.md` (source traceability)
+
+Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, and source traceability.
