@@ -51,19 +51,23 @@ VERIFICATION CHECKLIST:
 **MANDATORY - State this checklist FIRST:**
 
 ```
-BATCH VERIFICATION CHECKLIST:
+BATCH INITIAL VALIDATION:
 ☐ Source files: [list all files from $ARGUMENTS]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files are drug lectures (same template applies)
 ☐ Instruction template: Excel Drugs Chart 11-1.txt (applies to ALL files)
-☐ Source-only policy: I will ONLY use information from source files
-☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
-☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Output: ONE Excel file will be created per source file
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ Mnemonics researched per-file via WebSearch
 ```
 
-**After user confirms batch, create verification marker for session.**
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Step 10).
 
 ### Step 2: Load Resources
 
@@ -189,20 +193,46 @@ Track your progress:
 
 ### Step 10: Batch Processing (BATCH MODE ONLY)
 
-**If BATCH MODE, repeat Steps 2-9 for EACH file:**
+**If BATCH MODE, repeat Steps 1-9 for EACH file:**
 
 For each source file in the batch:
 1. **Announce file**: "Processing file X of Y: [filename]"
-2. **Load resources** (Step 2) - templates already loaded, reuse
-3. **Analyze source file** (Step 3) - read THIS file completely
-4. **Create 4-tab Excel** (Step 4-6) - for THIS file only
-5. **WebSearch mnemonics** (Step 5) - for THIS file's drugs
-6. **Use TodoWrite** (Step 7) - track THIS file's progress
-7. **Post-creation verification** (Step 8) - verify THIS file
-8. **Save file** (Step 9) - with unique filename based on source
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all drugs from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify drug list is ONLY from THIS file (not previous files)
+   ☐ This Excel will contain ZERO drugs from previous files
+   ```
+
+3. **Per-File Verification** (Step 1) - Run complete verification checklist for THIS file
+
+4. **Load resources** (Step 2) - templates already loaded, reuse
+
+5. **Analyze source file** (Step 3) - read THIS file completely, extract THIS file's drugs only
+
+6. **MANDATORY - State drug list**: "Drugs found in [filename]: [list all drugs]"
+   - This proves you're only using THIS file's drugs
+   - If you see drugs from previous files, STOP and re-read source
+
+7. **Create 4-tab Excel** (Step 4-6) - for THIS file only, using ONLY drugs from step 6
+
+8. **WebSearch mnemonics** (Step 5) - for THIS file's drugs only
+
+9. **Use TodoWrite** (Step 7) - track THIS file's progress
+
+10. **Post-creation verification** (Step 8) - verify THIS file contains ONLY THIS file's drugs
+
+11. **Save file** (Step 9) - with unique filename based on source
+
+12. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
 
 **Critical for Batch:**
-- Process each file independently (no information contamination)
+- Each file gets complete verification (not once at start)
+- Explicitly state drug list from each file before creating Excel
+- Verify no drugs from previous files contaminated output
 - Clear all drug data between files
 - Each file gets its own Excel output
 - Track which source created which Excel file

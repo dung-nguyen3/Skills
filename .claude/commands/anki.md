@@ -18,6 +18,8 @@ Create an Anki flashcard deck from source file: $ARGUMENTS
 
 ### Step 1: Pre-Creation Verification
 
+#### For SINGLE MODE:
+
 **MANDATORY - State this checklist FIRST:**
 
 ```
@@ -27,6 +29,26 @@ VERIFICATION CHECKLIST:
 ☐ No external facts will be added
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files use same source-only policy
+☐ Output: ONE Anki deck will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ No external facts will be added to any deck
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
 
 ### Step 2: Load Resources
 
@@ -184,7 +206,44 @@ genanki.Package(deck).write_to_file('output.apkg')
 
 ### Batch Processing (BATCH MODE ONLY)
 
-If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all flashcards from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify flashcards are ONLY from THIS file (not previous files)
+   ☐ This deck will contain ZERO flashcards from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's content only
+
+5. **MANDATORY - State content scope**: "Topics in [filename]: [list main topics]"
+   - This proves you're only using THIS file's content
+   - If you see topics from previous files, STOP and re-read source
+
+6. **Generate flashcards** - Create cards for THIS file only, using ONLY content from step 5
+
+7. **Create CSV and APKG files** - For THIS file only
+
+8. **Post-creation verification** - Verify THIS deck contains ONLY THIS file's content
+
+9. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state topic scope from each file before generating cards
+- Verify no content from previous files contaminated output
+- Clear all data between files
+- Each file gets its own Anki deck
+
+**Batch Summary**: After all files, provide summary of decks created, card counts, and any issues.
 
 ---
 

@@ -18,6 +18,8 @@ Create a clinical assessment guide from source file: $ARGUMENTS
 
 ### Step 1: Pre-Creation Verification
 
+#### For SINGLE MODE:
+
 **MANDATORY - State this checklist FIRST:**
 
 ```
@@ -30,6 +32,27 @@ VERIFICATION CHECKLIST:
 ☐ Output format: Interactive HTML with 5 tabs
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are clinical assessment content
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (apply to ALL)
+☐ Output: ONE HTML file will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ No external medical facts added to any file
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
 
 ### Step 2: Load Resources
 
@@ -208,7 +231,42 @@ Track your progress:
 
 ### Batch Processing (BATCH MODE ONLY)
 
-If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all clinical content from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify clinical content is ONLY from THIS file (not previous files)
+   ☐ This guide will contain ZERO content from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's clinical content only
+
+5. **MANDATORY - State clinical scope**: "Clinical topics in [filename]: [list main conditions/complaints]"
+   - This proves you're only using THIS file's content
+   - If you see topics from previous files, STOP and re-read source
+
+6. **Create clinical guide** - For THIS file only, using ONLY content from step 5
+
+7. **Post-creation verification** - Verify THIS guide contains ONLY THIS file's content
+
+8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state clinical scope from each file before creating guide
+- Verify no content from previous files contaminated output
+- Clear all data between files
+- Each file gets its own HTML output
+
+**Batch Summary**: After all files, provide summary of guides created, conditions covered, and any issues.
 
 ---
 

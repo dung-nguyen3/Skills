@@ -18,6 +18,8 @@ Create drug autobiography stories from source file: $ARGUMENTS
 
 ### Step 1: Pre-Creation Verification
 
+#### For SINGLE MODE:
+
 **MANDATORY - State this checklist FIRST:**
 
 ```
@@ -29,6 +31,27 @@ VERIFICATION CHECKLIST:
 ☐ MANDATORY: I will WebSearch for storytelling devices and memory techniques
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are drug-related content
+☐ Template: Autobiography_Drug_Stories_REVISED.txt (applies to ALL)
+☐ Output: ONE biography document will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ Creative analogies researched per-file via WebSearch
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
 
 ### Step 2: Load Resources
 
@@ -147,7 +170,42 @@ Antibiotic_Drug_Biographies.docx
 
 ### Batch Processing (BATCH MODE ONLY)
 
-If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all drugs/characters from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify drug list is ONLY from THIS file (not previous files)
+   ☐ This biography will contain ZERO drugs from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's drugs only
+
+5. **MANDATORY - State drug list**: "Drugs in [filename]: [list all drugs]"
+   - This proves you're only using THIS file's drugs
+   - If you see drugs from previous files, STOP and re-read source
+
+6. **Create drug biographies** - For THIS file only, using ONLY drugs from step 5
+
+7. **Post-creation verification** - Verify THIS document contains ONLY THIS file's drugs
+
+8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state drug list from each file before creating biographies
+- Verify no drugs from previous files contaminated output
+- Clear all data between files
+- Each file gets its own Word output
+
+**Batch Summary**: After all files, provide summary of files created, drug counts, and any issues.
 
 ---
 
