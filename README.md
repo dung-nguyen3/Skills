@@ -1,8 +1,10 @@
-# Quick Commands Reference
+# Skills Repository - Quick Commands Reference
+
+Pharmacy study guide generation system using Claude Code.
 
 ---
 
-## Study Guides
+## Study Guide Commands
 
 ### Word Study Guide
 ```
@@ -29,9 +31,19 @@
 /clinical "path/to/source.txt" "Chief Complaint"
 ```
 
+### Drug Biography Stories
+```
+/biography "path/to/drugs.txt"
+```
+
+### Anki Flashcard Deck
+```
+/anki "path/to/source.txt"
+```
+
 ---
 
-## Verification & Analysis
+## Verification
 
 ### Verify Study Guide Accuracy
 ```
@@ -40,45 +52,26 @@
 
 ---
 
-## Mnemonics
+## Which Command Should I Use?
 
-### Research Medical Mnemonics
-Just ask: "Find mnemonics for [topic]"
+| Content Type | Command |
+|--------------|---------|
+| Pharmacology drugs (Excel) | `/excel` |
+| Pharmacology drugs (HTML/mobile) | `/html-drug` |
+| Drug stories (creative/memorable) | `/biography` |
+| Any medical topic (HTML) | `/html-LO` |
+| Any medical topic (Word) | `/word` |
+| Clinical exams | `/clinical` |
+| Flashcards | `/anki` |
+| Verify existing guide | `/verify-accuracy` |
+
+---
+
+## Mnemonics
 
 Mnemonics are automatically researched when creating study guides.
 
----
-
-## Development Tools
-
-### Create Development Plan
-```
-/dev-docs describe your task here
-```
-
-### Update Documentation
-```
-/dev-docs-update task name
-```
-
-### Research API Routes
-```
-/route-research-for-testing
-```
-
----
-
-## Which Command Should I Use?
-
-**For drugs:** `/excel` or `/html-drug`
-
-**For any medical topic:** `/html-LO`
-
-**For clinical exams:** `/clinical`
-
-**For Word format:** `/word`
-
-**To verify existing guide:** `/verify-accuracy`
+To research mnemonics manually: "Find mnemonics for [topic]"
 
 ---
 
@@ -87,3 +80,14 @@ Mnemonics are automatically researched when creating study guides.
 - [QUICK_START.md](QUICK_START.md) - Complete interactive guide
 - [SLASH_COMMANDS_REFERENCE.md](SLASH_COMMANDS_REFERENCE.md) - Detailed command docs
 - [study-guides/user-docs/HOW_TO_USE.md](study-guides/user-docs/HOW_TO_USE.md) - Full usage guide
+
+---
+
+## Repository Structure
+
+```
+.claude/           # Claude infrastructure (commands, skills, hooks)
+study-guides/      # Templates and documentation
+```
+
+See [CLAUDE.md](CLAUDE.md) for full repository details.
