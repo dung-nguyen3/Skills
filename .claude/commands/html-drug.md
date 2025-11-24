@@ -1,13 +1,24 @@
 ---
 description: Create interactive HTML drug reference chart (pharmacology)
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/HIV Drugs.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create an HTML drug reference chart from source file: $ARGUMENTS
 
 ## Instructions
 
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
+
 ### Step 1: Pre-Creation Verification
+
+#### For SINGLE MODE:
 
 **MANDATORY - State this checklist FIRST:**
 
@@ -20,6 +31,27 @@ VERIFICATION CHECKLIST:
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are drug lectures (same template applies)
+☐ Template: HTML_LO_REVISED.txt (applies to ALL)
+☐ Output: ONE HTML file will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ Mnemonics researched per-file via WebSearch
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
 
 ### Step 2: Load Resources
 
@@ -141,6 +173,50 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all drugs from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify drug list is ONLY from THIS file (not previous files)
+   ☐ This HTML will contain ZERO drugs from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's drugs only
+
+5. **MANDATORY - State drug list**: "Drugs found in [filename]: [list all drugs]"
+   - This proves you're only using THIS file's drugs
+   - If you see drugs from previous files, STOP and re-read source
+
+6. **Create HTML file** - For THIS file only, using ONLY drugs from step 5
+
+7. **Post-creation verification** - Verify THIS HTML contains ONLY THIS file's drugs
+
+8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state drug list from each file before creating HTML
+- Verify no drugs from previous files contaminated output
+- Clear all data between files
+- Each file gets its own HTML output
+
+**Batch Summary**: After all files, provide summary of files created, drug counts, and any issues.
+
+---
+
 ## Common Mistakes to Avoid
 
 ❌ Marking all drugs as first-line when only specific ones are
@@ -152,9 +228,7 @@ Track your progress:
 
 ## Example Usage
 
-```
-/html-drug Pharmacology/Exam 3/Extract/HIV Antivirals.txt
-/html-drug sources/24-HIV-drugs.txt
-```
+**Single:** Command with one file
 
-This will create a comprehensive interactive HTML drug reference chart with all drugs, comparisons, and researched mnemonics.
+**Batch:** Command with semicolon-separated files → Creates separate output files
+

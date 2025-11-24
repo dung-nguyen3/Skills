@@ -1,13 +1,24 @@
 ---
 description: Create clinical assessment guide for history and physical exam
-argument-hint: Source file path and chief complaint (e.g., "sources/Lower-Extremity.txt" "Leg Pain")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create a clinical assessment guide from source file: $ARGUMENTS
 
 ## Instructions
 
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
+
 ### Step 1: Pre-Creation Verification
+
+#### For SINGLE MODE:
 
 **MANDATORY - State this checklist FIRST:**
 
@@ -21,6 +32,27 @@ VERIFICATION CHECKLIST:
 ☐ Output format: Interactive HTML with 5 tabs
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are clinical assessment content
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (apply to ALL)
+☐ Output: ONE HTML file will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ No external medical facts added to any file
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
 
 ### Step 2: Load Resources
 
@@ -194,6 +226,50 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all clinical content from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify clinical content is ONLY from THIS file (not previous files)
+   ☐ This guide will contain ZERO content from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's clinical content only
+
+5. **MANDATORY - State clinical scope**: "Clinical topics in [filename]: [list main conditions/complaints]"
+   - This proves you're only using THIS file's content
+   - If you see topics from previous files, STOP and re-read source
+
+6. **Create clinical guide** - For THIS file only, using ONLY content from step 5
+
+7. **Post-creation verification** - Verify THIS guide contains ONLY THIS file's content
+
+8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state clinical scope from each file before creating guide
+- Verify no content from previous files contaminated output
+- Clear all data between files
+- Each file gets its own HTML output
+
+**Batch Summary**: After all files, provide summary of guides created, conditions covered, and any issues.
+
+---
+
 ## Common Mistakes to Avoid
 
 ❌ Asking for specific medications instead of open-ended "What medications do you take?"
@@ -206,10 +282,7 @@ Track your progress:
 
 ## Example Usage
 
-```
-/clinical sources/Lower-Extremity.txt "Leg Pain"
-/clinical sources/Headache-Workup.txt "Headache"
-/clinical sources/Chest-Pain.txt "Chest Pain"
-```
+**Single:** Command with one file
 
-This will create a comprehensive clinical assessment guide with all history, ROS, physical exam, and decision support organized by onset pattern.
+**Batch:** Command with semicolon-separated files → Creates separate output files
+

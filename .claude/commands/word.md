@@ -1,16 +1,23 @@
 ---
 description: Create comprehensive Word study guide from source material following template
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/Lecture 42.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
-Create a Word study guide from source file: $ARGUMENTS
+Create Word study guide from: $ARGUMENTS
 
 ## Instructions
 
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 ### Step 1: Pre-Creation Verification
 
-**MANDATORY - State this checklist FIRST:**
-
+#### For SINGLE MODE:
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
@@ -20,6 +27,26 @@ VERIFICATION CHECKLIST:
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+```
+BATCH INITIAL VALIDATION:
+☐ Source files: [list all]
+☐ File validation: All exist and readable
+☐ Homogeneity: All are learning objective-based lectures
+☐ Template: Word LO 11-5.txt (applies to ALL)
+☐ Output: ONE Word file per source
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+
+BATCH PROCESSING RULES:
+☐ Each file will get complete verification (not just once)
+☐ Each file will be processed independently
+☐ Context isolation: I will explicitly clear data between files
+☐ Source-only policy applies per-file
+☐ Mnemonics researched per-file via WebSearch
+```
+
+**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Step 8).
 
 ### Step 2: Load Resources
 
@@ -103,10 +130,53 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+---
+
+### Step 8: Batch Processing (BATCH MODE ONLY)
+
+**If BATCH MODE, repeat Steps 1-7 for EACH file:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all content from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify content is ONLY from THIS file (not previous files)
+   ☐ This Word doc will contain ZERO content from previous files
+   ```
+
+3. **Per-File Verification** (Step 1) - Run complete verification checklist for THIS file
+
+4. **Load resources** (Step 2) - templates already loaded, reuse
+
+5. **Read source file** (Step 3) - read THIS file completely, extract THIS file's content only
+
+6. **MANDATORY - State content summary**: "Content found in [filename]: [brief summary]"
+   - This proves you're only using THIS file's content
+   - If you see content from previous files, STOP and re-read source
+
+7. **Create Word doc** (Step 4-5) - for THIS file only, using ONLY content from step 6
+
+8. **Post-creation verification** (Step 6) - verify THIS file contains ONLY THIS file's content
+
+9. **Save file** (Step 7) - with unique filename based on source
+
+10. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state content summary from each file before creating Word doc
+- Verify no content from previous files contaminated output
+- Clear all data between files
+- Each file gets its own Word output
+
+**Batch Summary**: After all files, provide summary of files created, statistics, and any issues.
+
 ## Example Usage
 
-```
-/word Pharmacology/Exam 3/Extract/Lecture 42.txt
-```
+**Single:** `/word "Pharmacology/Exam 3/Extract/Lecture 42.txt"`
 
-This will create a comprehensive Word study guide with all learning objectives, comparisons, master chart, and high-yield summary.
+**Batch:** `/word "Lecture42.txt;Lecture43.txt;Lecture44.txt"` → Creates 3 separate Word files.

@@ -246,7 +246,15 @@ Location: `.claude/commands/`
 - All include post-creation verification
 - `/verify-accuracy` does deep 6-step analysis
 
-### 5. Use Tab Completion
+### 5. Batch Processing with Context Isolation
+- All study guide commands support batch mode (semicolon-separated files)
+- Each file is processed independently with explicit context isolation
+- Verification runs for EACH file (not just once at start)
+- Prevents information contamination between files
+- Example: `/excel "HIV.txt;COVID.txt;Antibiotics.txt"` creates 3 separate Excel files
+- Each file gets complete verification and post-creation checks
+
+### 6. Use Tab Completion
 - Type `/` then press Tab
 - VS Code will show available commands
 

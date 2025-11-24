@@ -1,6 +1,6 @@
 ---
 description: Create HTML learning objectives guide (any medical topic)
-argument-hint: Source file path (e.g., "sources/Cardiovascular-Disease.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 # Create Learning Objectives Guide
@@ -21,15 +21,12 @@ Creates a comprehensive 4-tab HTML study guide:
 - **Tab 3: Master Comparison Tables** - Complete differential diagnosis tables
 - **Tab 4: Summary** - High-yield pearls, mnemonics, "If X Think Y" associations
 
-## Example
+## Example Usage
 
-```
-/html-LO sources/Cardiovascular-Disease.txt
-/html-LO sources/Hematology-II.txt
-/html-LO sources/Respiratory-Physiology.txt
-```
+**Single:** Command with one file
 
-Output: `[Topic]_Study_Guide.html`
+**Batch:** Command with semicolon-separated files → Creates separate output files
+
 
 ## Template Location
 
@@ -84,6 +81,45 @@ After creation, Claude automatically:
 - ✓ Confirms all comparison tables present
 - ✓ Checks master tables include ALL topics
 - ✓ Reports "Post-creation verification complete"
+
+## Batch Processing (BATCH MODE ONLY)
+
+**If BATCH MODE, process each file independently:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+
+2. **CRITICAL - Context Isolation Check**:
+   ```
+   CONTEXT ISOLATION VERIFICATION:
+   ☐ I will FORGET all content from previous files
+   ☐ I will ONLY extract information from THIS source file: [filename]
+   ☐ I will verify content is ONLY from THIS file (not previous files)
+   ☐ This HTML will contain ZERO content from previous files
+   ```
+
+3. **Per-File Verification** - Run complete verification checklist for THIS file
+
+4. **Read source file** - Read THIS file completely, extract THIS file's content only
+
+5. **MANDATORY - State content scope**: "Learning objectives in [filename]: [list main topics]"
+   - This proves you're only using THIS file's content
+   - If you see content from previous files, STOP and re-read source
+
+6. **Create HTML file** - For THIS file only, using ONLY content from step 5
+
+7. **Post-creation verification** - Verify THIS HTML contains ONLY THIS file's content
+
+8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+
+**Critical for Batch:**
+- Each file gets complete verification (not once at start)
+- Explicitly state learning objectives from each file before creating HTML
+- Verify no content from previous files contaminated output
+- Clear all data between files
+- Each file gets its own HTML output
+
+**Batch Summary**: After all files, provide summary of files created, topics covered, and any issues.
 
 ## Related Commands
 
