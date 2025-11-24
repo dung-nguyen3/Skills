@@ -298,7 +298,7 @@ ls "path/to/source.txt"
 
 1. **Command Palette** (`Cmd+Shift+P`) → Type "Claude"
 2. **Read full docs** in links above
-3. **Check settings**: `study-guides/.claude/settings.json`
+3. **Check settings**: `.claude/settings.json`
 
 ---
 
