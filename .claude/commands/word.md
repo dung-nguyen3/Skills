@@ -1,23 +1,46 @@
 ---
 description: Create comprehensive Word study guide from source material following template
-argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
+argument-hint: Single file OR batch files separated by semicolon. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "--merge f1.txt;f2.txt")
 ---
 
 Create Word study guide from: $ARGUMENTS
 
 ## Instructions
 
-### Step 0: Detect Mode (Single vs Batch)
+### Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+**Check for --merge flag:**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
+
+**Check for semicolons:**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
+
+**Otherwise: SINGLE MODE**
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 Word guide (inline processing)
+- **BATCH SEPARATE**: N files → N Word guides (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged Word guide (orchestrator agent, intelligent merge)
 
 ---
 
-### Step 1: Pre-Creation Verification
+### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
+
+**MANDATORY - State this checklist FIRST:**
+
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
@@ -28,25 +51,86 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-#### For BATCH MODE:
+**Then proceed with Step 2 (inline processing).**
+
+---
+
+#### For BATCH SEPARATE MODE:
+
+**MANDATORY - State this checklist:**
+
 ```
-BATCH INITIAL VALIDATION:
-☐ Source files: [list all]
-☐ File validation: All exist and readable
-☐ Homogeneity: All are learning objective-based lectures
-☐ Template: Word LO 11-5.txt (applies to ALL)
-☐ Output: ONE Word file per source
+BATCH SEPARATE VALIDATION:
+☐ Source files: [list all files]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are learning objective lectures
+☐ Template: Word LO 11-5.txt (per file)
+☐ Output: N files → N Word guides
+☐ Agent: batch-separate-processor (launched N times)
+☐ Architectural isolation: Each file processed in separate agent context
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
-
-BATCH PROCESSING RULES:
-☐ Each file will get complete verification (not just once)
-☐ Each file will be processed independently
-☐ Context isolation: I will explicitly clear data between files
-☐ Source-only policy applies per-file
-☐ Mnemonics researched per-file via WebSearch
 ```
 
-**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Step 8).
+**Then invoke batch-separate-processor agent:**
+
+```
+I'll use the batch-separate-processor agent to process your files with architectural isolation.
+
+Launching agent [X] times:
+- File 1: batch-separate-processor → [Output1.docx]
+- File 2: batch-separate-processor → [Output2.docx]
+...
+- File N: batch-separate-processor → [OutputN.docx]
+
+Each agent invocation is architecturally isolated (zero cross-contamination).
+```
+
+**STOP HERE - Do NOT continue with Steps 2-7. The agent handles all processing.**
+
+---
+
+#### For BATCH MERGE MODE:
+
+**MANDATORY - State this checklist:**
+
+```
+BATCH MERGE VALIDATION:
+☐ Source files: [list all files]
+☐ File validation: All files exist and are readable
+☐ Files are related/compatible for merging
+☐ Template: Word LO 11-5.txt (unified)
+☐ Output: N files → 1 merged Word guide
+☐ Agent: batch-merge-orchestrator (launched once)
+☐ Merge features: Content matrix, overlap resolution, source traceability
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+**Then invoke batch-merge-orchestrator agent:**
+
+```
+I'll use the batch-merge-orchestrator agent to intelligently merge your files.
+
+Agent will:
+1. Read all N files completely
+2. Create content matrix (which topics/LOs in which files)
+3. Identify overlaps and gaps
+4. Resolve conflicts with source traceability
+5. Merge into ONE comprehensive Word guide
+6. Create merge report with traceability map
+
+Output:
+- 1 merged Word guide: [filename.docx]
+- 1 merge report: [filename_merge_report.md]
+```
+
+**STOP HERE - Do NOT continue with Steps 2-7. The agent handles all processing.**
+
+---
+
+**IMPORTANT FOR BATCH MODES:**
+- Batch separate/merge use agents (subagent architecture)
+- Single mode uses inline processing (Steps 2-7)
+- Do NOT mix - if agent is launched, STOP and let agent complete the work
 
 ### Step 2: Load Resources
 
@@ -177,6 +261,29 @@ For each source file in the batch:
 
 ## Example Usage
 
-**Single:** `/word "Pharmacology/Exam 3/Extract/Lecture 42.txt"`
+### Single File:
+```
+/word "Pharmacology/Exam 3/Extract/Lecture 42.txt"
+```
+Creates: `Lecture_42_LO_Guide.docx`
 
-**Batch:** `/word "Lecture42.txt;Lecture43.txt;Lecture44.txt"` → Creates 3 separate Word files.
+### Batch Separate (N files → N outputs):
+```
+/word "Lecture42.txt;Lecture43.txt;Lecture44.txt"
+```
+Creates 3 separate Word files:
+- `Lecture_42_LO_Guide.docx` (only Lecture 42 content)
+- `Lecture_43_LO_Guide.docx` (only Lecture 43 content)
+- `Lecture_44_LO_Guide.docx` (only Lecture 44 content)
+
+Uses batch-separate-processor agent with architectural isolation.
+
+### Batch Merge (N files → 1 merged output):
+```
+/word --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+```
+Creates 1 merged Word file:
+- `Cardiovascular_Comprehensive_LO_Guide.docx` (all 3 lectures merged)
+- `Cardiovascular_Comprehensive_LO_Guide_merge_report.md` (source traceability)
+
+Uses batch-merge-orchestrator agent with intelligent merge and overlap resolution.

@@ -1,6 +1,6 @@
 ---
 description: Create HTML learning objectives guide (any medical topic)
-argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
+argument-hint: Single file OR batch files separated by semicolon. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "--merge f1.txt;f2.txt")
 ---
 
 # Create Learning Objectives Guide
@@ -9,23 +9,69 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 
 ## Usage
 
+**Single Mode:**
 ```
-/html-LO [source_file.txt]
+/html-LO "source_file.txt"
 ```
 
-## What This Does
+**Batch Separate Mode (N files → N outputs):**
+```
+/html-LO "file1.txt;file2.txt;file3.txt"
+```
 
-Creates a comprehensive 4-tab HTML study guide:
+**Batch Merge Mode (N files → 1 merged output):**
+```
+/html-LO --merge "file1.txt;file2.txt;file3.txt"
+```
+
+## Mode Detection
+
+**Check for --merge flag:**
+- If arguments start with `--merge`: **BATCH MERGE MODE** (N files → 1 merged HTML)
+- Strip `--merge` to get file list
+
+**Check for semicolons:**
+- If arguments contain `;`: **BATCH SEPARATE MODE** (N files → N HTML files)
+
+**Otherwise: SINGLE MODE** (1 file → 1 HTML file)
+
+**For BATCH SEPARATE:** Launch batch-separate-processor agent N times (architectural isolation)
+
+**For BATCH MERGE:** Launch batch-merge-orchestrator agent once (intelligent merge with overlap resolution)
+
+**For SINGLE:** Process inline (read Steps below)
+
+---
+
+## What This Creates
+
+Comprehensive 4-tab HTML study guide:
 - **Tab 1: Learning Objectives** - Q&A format answering each LO in detail
 - **Tab 2: Key Comparisons** - Focused 2-3 way comparison tables
 - **Tab 3: Master Comparison Tables** - Complete differential diagnosis tables
 - **Tab 4: Summary** - High-yield pearls, mnemonics, "If X Think Y" associations
 
+---
+
 ## Example Usage
 
-**Single:** Command with one file
+### Single File:
+```
+/html-LO "Pharmacology/Exam 3/Extract/Cardiovascular_Disease.txt"
+```
+Creates: `Cardiovascular_Disease_LO_Guide.html`
 
-**Batch:** Command with semicolon-separated files → Creates separate output files
+### Batch Separate (N files → N outputs):
+```
+/html-LO "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+```
+Creates 3 separate HTML files (architectural isolation via agent)
+
+### Batch Merge (N files → 1 merged output):
+```
+/html-LO --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+```
+Creates 1 comprehensive HTML file with all content merged + merge report
 
 
 ## Template Location

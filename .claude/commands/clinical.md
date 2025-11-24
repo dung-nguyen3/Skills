@@ -1,22 +1,47 @@
 ---
 description: Create clinical assessment guide for history and physical exam
-argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
+argument-hint: Source file(s) and chief complaint. Use --merge for combined output (e.g., "file.txt" "Chief Complaint" OR "f1.txt;f2.txt" "Chief Complaint" OR "--merge f1.txt;f2.txt" "Chief Complaint")
 ---
 
-Create a clinical assessment guide from source file: $ARGUMENTS
+Create a clinical assessment guide from: $ARGUMENTS
 
 ## Instructions
 
-### Step 0: Detect Mode (Single vs Batch)
+### Step 0: Detect Mode & Parse Arguments (Single / Batch Separate / Batch Merge)
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+**Arguments format:** `[files] "Chief Complaint"`
+- Last argument is always the chief complaint (quoted string)
+- Everything before it is the file path(s)
+
+**Check for --merge flag:**
+- If first argument is `--merge`: **BATCH MERGE MODE**
+- Strip `--merge`, extract file list and chief complaint
+
+**Check for semicolons in file argument:**
+- If file argument contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
+
+**Otherwise: SINGLE MODE**
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+Chief Complaint: [extract from last argument]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 clinical guide (inline processing)
+- **BATCH SEPARATE**: N files → N clinical guides (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged clinical guide (orchestrator agent, filters relevant content from all files)
 
 ---
 
 
-### Step 1: Pre-Creation Verification
+### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
 
@@ -24,8 +49,8 @@ Create a clinical assessment guide from source file: $ARGUMENTS
 
 ```
 VERIFICATION CHECKLIST:
-☐ Source file: [identified from $ARGUMENTS]
-☐ Chief complaint: [identified from $ARGUMENTS or source]
+☐ Source file: [file path]
+☐ Chief complaint: [chief complaint from arguments]
 ☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ No external medical facts will be added
@@ -33,26 +58,101 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-#### For BATCH MODE:
+**Then proceed with Step 2 (inline processing).**
+
+---
+
+#### For BATCH SEPARATE MODE:
+
+**MANDATORY - State this checklist:**
 
 ```
-BATCH INITIAL VALIDATION:
-☐ Source files: [list all files from $ARGUMENTS]
+BATCH SEPARATE VALIDATION:
+☐ Source files: [list all files]
+☐ Chief complaint: [from arguments - applies to ALL files]
 ☐ File validation: All files exist and are readable
-☐ Homogeneity check: All files are clinical assessment content
-☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (apply to ALL)
-☐ Output: ONE HTML file will be created per source file
+☐ Homogeneity check: All files are clinical content
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (per file)
+☐ Output: N files → N clinical guides
+☐ Agent: batch-separate-processor (launched N times)
+☐ Architectural isolation: Each file processed in separate agent context
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
-
-BATCH PROCESSING RULES:
-☐ Each file will get complete verification (not just once)
-☐ Each file will be processed independently
-☐ Context isolation: I will explicitly clear data between files
-☐ Source-only policy applies per-file
-☐ No external medical facts added to any file
 ```
 
-**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
+**Then invoke batch-separate-processor agent:**
+
+```
+I'll use the batch-separate-processor agent to process your files with architectural isolation.
+
+Chief Complaint: [chief complaint]
+
+Launching agent [X] times:
+- File 1: batch-separate-processor → [Output1_ChiefComplaint.html]
+- File 2: batch-separate-processor → [Output2_ChiefComplaint.html]
+...
+- File N: batch-separate-processor → [OutputN_ChiefComplaint.html]
+
+Each agent invocation is architecturally isolated (zero cross-contamination).
+```
+
+**STOP HERE - Do NOT continue with Steps 2-7. The agent handles all processing.**
+
+---
+
+#### For BATCH MERGE MODE:
+
+**MANDATORY - State this checklist:**
+
+```
+BATCH MERGE VALIDATION:
+☐ Source files: [list all files]
+☐ Chief complaint: [from arguments - filters content from ALL files]
+☐ File validation: All files exist and are readable
+☐ Files contain clinical content (conditions, presentations, workups)
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (unified)
+☐ Output: N files → 1 merged clinical guide (filtered by chief complaint)
+☐ Agent: batch-merge-orchestrator (launched once)
+☐ Merge features: Extracts ONLY chief complaint relevant info from each file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+**Then invoke batch-merge-orchestrator agent:**
+
+```
+I'll use the batch-merge-orchestrator agent to intelligently merge relevant content.
+
+Chief Complaint: [chief complaint]
+
+Agent will:
+1. Read all N files completely
+2. Extract ONLY content relevant to "[chief complaint]" from each file
+3. Create content matrix (which conditions/findings in which files)
+4. Identify overlaps and gaps
+5. Resolve conflicts with source traceability
+6. Merge into ONE comprehensive clinical guide for "[chief complaint]"
+7. Create merge report with traceability map
+
+Output:
+- 1 merged clinical guide: [ChiefComplaint]_Clinical_Guide.html
+- 1 merge report: [ChiefComplaint]_Clinical_Guide_merge_report.md
+
+Example: For chief complaint "Back Pain"
+- Extracts back pain info from Lower-Back.txt
+- Extracts spinal disorder info from Spine-Disorders.txt
+- Extracts radiculopathy info from Neurology.txt
+- Skips unrelated conditions
+- Merges all back pain content into one guide
+```
+
+**STOP HERE - Do NOT continue with Steps 2-7. The agent handles all processing.**
+
+---
+
+**IMPORTANT FOR BATCH MODES:**
+- Batch separate/merge use agents (subagent architecture)
+- Single mode uses inline processing (Steps 2-7)
+- Do NOT mix - if agent is launched, STOP and let agent complete the work
+- Chief complaint parameter is preserved and passed to agents
 
 ### Step 2: Load Resources
 
