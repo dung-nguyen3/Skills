@@ -249,6 +249,47 @@
           "DOC"
         ]
       }
+    },
+    "batch-coordinator": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Validates and coordinates batch study guide operations (separate and merge modes)",
+      "promptTriggers": {
+        "keywords": [
+          "batch",
+          "multiple files",
+          "combine",
+          "merge",
+          "batch mode",
+          "batch processing",
+          "--merge",
+          "batch separate",
+          "batch merge",
+          "multiple sources",
+          "N files"
+        ],
+        "intentPatterns": [
+          "(batch|multiple).*?(files|sources)",
+          "(combine|merge).*?(files|sources|lectures)",
+          "(process|create).*?(multiple|batch)",
+          "\\-\\-merge",
+          "semicolon.*?separated",
+          "N.*?files.*?N.*?outputs",
+          "N.*?files.*?1.*?output"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/Extract/**/*.txt;*",
+          "**/Pharmacology/**/*.txt;*"
+        ],
+        "contentPatterns": [
+          "file1.txt;file2.txt",
+          ";",
+          "--merge"
+        ]
+      }
     }
   },
   "notes": {
@@ -265,6 +306,7 @@
     },
     "workflow": {
       "creation": "source-only-enforcer blocks until verification checklist stated",
+      "batch": "batch-coordinator validates prerequisites and suggests appropriate agent",
       "research": "mnemonic-researcher suggests when mnemonics needed",
       "verification": "study-guide-verifier suggests during accuracy checks",
       "compliance": "template-compliance-checker suggests for format issues"
