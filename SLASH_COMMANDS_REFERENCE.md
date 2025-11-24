@@ -6,9 +6,9 @@ Complete list of all available slash commands in the Skills repository.
 
 ## Study Guide Commands
 
-Location: `study-guides/.claude/commands/`
+Location: `.claude/commands/`
 
-### /create-word
+### /word
 **Purpose:** Create comprehensive Word study guide from source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/Lecture 42.txt`)
 **Output:** `.docx` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -22,12 +22,12 @@ Location: `study-guides/.claude/commands/`
 
 **Example:**
 ```
-/create-word Pharmacology/Exam 3/Extract/Lecture 42.txt
+/word Pharmacology/Exam 3/Extract/Lecture 42.txt
 ```
 
 ---
 
-### /create-excel
+### /excel
 **Purpose:** Create comprehensive 4-tab Excel drug chart from pharmacology source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
 **Output:** `.xlsx` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -41,12 +41,12 @@ Location: `study-guides/.claude/commands/`
 
 **Example:**
 ```
-/create-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
 
-### /create-lo-guide
+### /html-LO
 **Purpose:** Create interactive HTML learning objectives guide (works for ANY medical topic)
 **Arguments:** Source file path (e.g., `Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -68,12 +68,12 @@ Location: `study-guides/.claude/commands/`
 
 **Example:**
 ```
-/create-lo-guide Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
+/html-LO Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
 ```
 
 ---
 
-### /create-drug-html
+### /html-drug
 **Purpose:** Create interactive single-page HTML drug reference chart (pharmacology)
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Antivirals.txt`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -92,12 +92,12 @@ Location: `study-guides/.claude/commands/`
 
 **Example:**
 ```
-/create-drug-html Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/html-drug Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
 
-### /create-clinical-guide
+### /clinical
 **Purpose:** Create clinical assessment guide for history-taking and physical examination
 **Arguments:** Source file path and chief complaint (e.g., `"Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -115,7 +115,50 @@ Location: `study-guides/.claude/commands/`
 
 **Example:**
 ```
-/create-clinical-guide "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
+/clinical "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
+```
+
+---
+
+### /biography
+**Purpose:** Create memorable drug biography stories for easier memorization
+**Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
+**Output:** Creative narrative study material
+**Best For:** Making drug information memorable through storytelling
+
+**Example:**
+```
+/biography Pharmacology/Exam 3/Extract/HIV Drugs.txt
+```
+
+---
+
+### /anki
+**Purpose:** Create comprehensive Anki flashcard deck (.apkg) from source material
+**Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
+**Output:** `.csv` and `.apkg` files in `[Class]/[Exam]/Claude Study Tools/`
+**Best For:** Spaced repetition study, active recall practice, exam preparation
+
+**What it creates:**
+- CSV file with Question,Answer format
+- APKG file ready to import into Anki
+
+**Flashcard Guidelines:**
+- Simple, specific, unambiguous questions
+- Single concept answers (3-15 words)
+- Varied question types (What/Where/Which/How/Define/Describe)
+- Comprehensive coverage of all source material
+- Source-only content (no external information)
+
+**Features:**
+- Uses genanki library for native .apkg generation
+- Preserves exact medical/technical terminology
+- One fact per card for optimal learning
+- Import directly into Anki via File -> Import
+
+**Example:**
+```
+/anki Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
@@ -220,11 +263,13 @@ Location: `infrastructure-examples/.claude/commands/`
 
 | Your Content Type | Use This Command |
 |-------------------|------------------|
-| Pharmacology drugs (need Excel) | `/create-excel` |
-| Pharmacology drugs (need HTML for mobile) | `/create-drug-html` |
-| ANY medical topic with learning objectives | `/create-lo-guide` |
-| Clinical history & physical exam | `/create-clinical-guide` |
-| Need Word document format | `/create-word` |
+| Pharmacology drugs (need Excel) | `/excel` |
+| Pharmacology drugs (need HTML for mobile) | `/html-drug` |
+| ANY medical topic with learning objectives | `/html-LO` |
+| Clinical history & physical exam | `/clinical` |
+| Need Word document format | `/word` |
+| Drug stories (memorable narratives) | `/biography` |
+| Anki flashcards for spaced repetition | `/anki` |
 | Verify existing study guide | `/verify-accuracy` |
 
 ### For Development Work:
@@ -241,20 +286,20 @@ Location: `infrastructure-examples/.claude/commands/`
 
 ### 1. Always Use Absolute or Relative Paths
 ```bash
-# ✓ Good:
-/create-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+# Good:
+/excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
-# ✗ Bad:
-/create-excel HIV Drugs.txt  # Might not find file
+# Bad:
+/excel HIV Drugs.txt  # Might not find file
 ```
 
 ### 2. Quote Paths with Spaces
 ```bash
-# ✓ Good:
-/create-clinical-guide "Clinical Medicine/Exam 1/Extract/Lower Extremity.txt" "Leg Pain"
+# Good:
+/clinical "Clinical Medicine/Exam 1/Extract/Lower Extremity.txt" "Leg Pain"
 
-# ✗ Bad:
-/create-clinical-guide Clinical Medicine/Exam 1/Extract/Lower Extremity.txt Leg Pain
+# Bad:
+/clinical Clinical Medicine/Exam 1/Extract/Lower Extremity.txt Leg Pain
 ```
 
 ### 3. Let Commands Handle Templates
@@ -268,7 +313,7 @@ Location: `infrastructure-examples/.claude/commands/`
 - `/verify-accuracy` does deep 6-step analysis
 
 ### 5. Use Tab Completion
-- Type `/create` then press Tab
+- Type `/` then press Tab
 - VS Code will show available commands
 
 ---
@@ -277,12 +322,14 @@ Location: `infrastructure-examples/.claude/commands/`
 
 **Study guide commands:**
 ```
-study-guides/.claude/commands/
-├── create-word.md
-├── create-excel.md
-├── create-lo-guide.md
-├── create-drug-html.md
-├── create-clinical-guide.md
+.claude/commands/
+├── word.md
+├── excel.md
+├── html-LO.md
+├── html-drug.md
+├── clinical.md
+├── biography.md
+├── anki.md
 └── verify-accuracy.md
 ```
 
@@ -310,7 +357,7 @@ infrastructure-examples/.claude/commands/
 **Command not working?**
 ```bash
 # Check if command file exists
-ls study-guides/.claude/commands/create-word.md
+ls .claude/commands/word.md
 
 # Verify you're in the right directory
 pwd
@@ -319,7 +366,7 @@ pwd
 **Need more detail on a specific command?**
 ```bash
 # Read the full command file
-cat study-guides/.claude/commands/create-excel.md
+cat .claude/commands/excel.md
 ```
 
 **Want to customize a command?**
@@ -329,5 +376,5 @@ cat study-guides/.claude/commands/create-excel.md
 
 ---
 
-**Last Updated:** 2025-11-19
-**Total Commands:** 9 (6 study guide + 3 infrastructure)
+**Last Updated:** 2025-11-21
+**Total Commands:** 11 (8 study guide + 3 infrastructure)

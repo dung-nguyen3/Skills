@@ -24,11 +24,11 @@ VERIFICATION CHECKLIST:
 ### Step 2: Load Resources
 
 Read these files in order:
-1. **Template**: `templates-and-examples/Word_LO_11-5_REVISED.txt`
+1. **Template**: `study-guides/templates-and-examples/Word_LO_11-5_REVISED.txt`
    - Main instructions and requirements (~450 lines)
    - Includes correct table formatting (black text on pastel backgrounds)
 
-2. **Example Code**: `templates-and-examples/Python_Examples/Word_LO_Example.py`
+2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Word_LO_Example.py`
    - Complete 4-section implementation with all helper functions
    - Shows Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
 
@@ -106,7 +106,7 @@ Track your progress:
 ## Example Usage
 
 ```
-/create-word Pharmacology/Exam 3/Extract/Lecture 42.txt
+/word Pharmacology/Exam 3/Extract/Lecture 42.txt
 ```
 
 This will create a comprehensive Word study guide with all learning objectives, comparisons, master chart, and high-yield summary.

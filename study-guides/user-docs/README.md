@@ -37,7 +37,7 @@ This folder contains all documentation for **using** the study guide creation sy
 **What's inside:**
 - Quick start guide
 - Template overview (Excel Drug Chart, HTML LO Guide, Clinical Assessment, Word LO)
-- Slash commands reference (/create-excel, /create-word, etc.)
+- Slash commands reference (/excel, /word, etc.)
 - Source-only enforcement explanation
 - Post-creation verification steps
 - Using specialized agents (mnemonic-researcher, study-guide-analyzer)

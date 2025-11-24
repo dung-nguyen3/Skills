@@ -24,14 +24,14 @@ VERIFICATION CHECKLIST:
 ### Step 2: Load Resources
 
 Read these files in order:
-1. **Template**: `templates-and-examples/Excel_Drugs_Chart_11-1_REVISED.txt`
+1. **Template**: `study-guides/templates-and-examples/Excel_Drugs_Chart_11-1_REVISED.txt`
    - Main instructions and requirements (~550 lines)
 
-2. **Example Code**: `templates-and-examples/Python_Examples/Excel_Drug_Example.py`
+2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Excel_Drug_Example.py`
    - Complete 4-tab implementation with all helper functions
    - Shows Drug Details, Key Comparisons, Master Chart, High-Yield tabs
 
-3. **Color Reference**: `templates-and-examples/Excel_Color_Reference.txt`
+3. **Color Reference**: `study-guides/templates-and-examples/Excel_Color_Reference.txt`
    - Shared color palette and styling specifications
 
 ### Step 3: Analyze Source File
@@ -153,7 +153,7 @@ Track your progress:
 ## Example Usage
 
 ```
-/create-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 This will create a comprehensive 4-tab Excel drug chart with all drugs, comparisons, and researched mnemonics.

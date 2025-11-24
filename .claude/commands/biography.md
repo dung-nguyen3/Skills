@@ -24,7 +24,7 @@ VERIFICATION CHECKLIST:
 ### Step 2: Load Resources
 
 Read these files in order:
-1. **Template**: `templates-and-examples/Autobiography_Drug_Stories_REVISED.txt`
+1. **Template**: `study-guides/templates-and-examples/Autobiography_Drug_Stories_REVISED.txt`
    - Storytelling guidelines and character development
    - Narrative structure requirements
    - Creative metaphor examples
@@ -136,9 +136,9 @@ Antibiotic_Drug_Biographies.docx
 ## Example Usage
 
 ```
-/create-drug-biography "Pharmacology/Exam 3/Extract/Beta-Blockers.txt"
-/create-drug-biography "Cardiology/Drug-List.txt"
-/create-drug-biography sources/HIV-Drugs.txt
+/biography "Pharmacology/Exam 3/Extract/Beta-Blockers.txt"
+/biography "Cardiology/Drug-List.txt"
+/biography sources/HIV-Drugs.txt
 ```
 
 ## Best For
@@ -148,13 +148,6 @@ Antibiotic_Drug_Biographies.docx
 - **Complex mechanisms** - Explain through creative stories
 - **Exam preparation** - Engaging review material
 - **Visual/creative learners** - Story-based memory
-
-## Related Commands
-
-- `/create-excel` - For structured drug chart (4-tab format)
-- `/create-drug-html` - For mobile-friendly drug reference
-- `/create-word` - For traditional learning objectives format
-- `/verify-accuracy` - Verify accuracy of created biography
 
 ## Important Notes
 
@@ -167,6 +160,6 @@ Antibiotic_Drug_Biographies.docx
 ## Template Customization
 
 To modify the drug biography template:
-1. Edit: `templates-and-examples/Autobiography_Drug_Stories_REVISED.txt`
-2. Changes apply automatically to next `/create-drug-biography` use
+1. Edit: `study-guides/templates-and-examples/Autobiography_Drug_Stories_REVISED.txt`
+2. Changes apply automatically to next `/biography` use
 3. Update this command file if workflow changes

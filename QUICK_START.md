@@ -33,19 +33,19 @@
 
 ```bash
 # Word Study Guide
-/create-word "path/to/lecture.txt"
+/word "path/to/lecture.txt"
 
 # Excel Drug Chart
-/create-excel "path/to/drugs.txt"
+/excel "path/to/drugs.txt"
 
 # HTML Learning Objectives (any medical topic)
-/create-lo-guide "path/to/lecture.txt"
+/html-LO "path/to/lecture.txt"
 
 # HTML Drug Reference (mobile-friendly)
-/create-drug-html "path/to/drugs.txt"
+/html-drug "path/to/drugs.txt"
 
 # Clinical Assessment Guide
-/create-clinical-guide "path/to/source.txt" "Chief Complaint"
+/clinical "path/to/source.txt" "Chief Complaint"
 
 # Verify Accuracy
 /verify-accuracy "path/to/study-guide.xlsx" "path/to/source.txt"
@@ -73,22 +73,22 @@
 **START HERE:**
 1. **Is it about drugs?** → YES: Go to #2 | NO: Go to #4
 2. **Do you want Excel or HTML?**
-   - Excel (comprehensive tables): `/create-excel`
-   - HTML (mobile reference): `/create-drug-html`
+   - Excel (comprehensive tables): `/excel`
+   - HTML (mobile reference): `/html-drug`
 3. **DONE!**
 
-4. **Is it about clinical exams (history & physical)?** → YES: `/create-clinical-guide` | NO: Go to #5
-5. **Do you need Word format?** → YES: `/create-word` | NO: Go to #6
-6. **Use:** `/create-lo-guide` (works for ANY medical topic)
+4. **Is it about clinical exams (history & physical)?** → YES: `/clinical` | NO: Go to #5
+5. **Do you need Word format?** → YES: `/word` | NO: Go to #6
+6. **Use:** `/html-LO` (works for ANY medical topic)
 
 ### Quick Reference Table
 
 | I Have... | Use This Command |
 |-----------|------------------|
-| Drug lecture notes | `/create-excel` OR `/create-drug-html` |
-| Non-drug lecture with LOs | `/create-lo-guide` |
-| Clinical exam notes | `/create-clinical-guide` |
-| Need Word format | `/create-word` |
+| Drug lecture notes | `/excel` OR `/html-drug` |
+| Non-drug lecture with LOs | `/html-LO` |
+| Clinical exam notes | `/clinical` |
+| Need Word format | `/word` |
 | Existing study guide to check | `/verify-accuracy` |
 
 ---
@@ -101,7 +101,7 @@
 
 ### Step 2: Run Slash Command
 ```bash
-/create-excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
+/excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
 ```
 **On Mac:** Press `Cmd + V` to paste the command
 
@@ -263,10 +263,10 @@ Type these in Command Palette:
 **Check 1:** Did you include the slash?
 ```bash
 # ✓ Correct
-/create-excel path.txt
+/excel path.txt
 
 # ✗ Wrong
-create-excel path.txt
+excel path.txt
 ```
 
 **Check 2:** Does the file exist?
@@ -277,18 +277,18 @@ ls "path/to/source.txt"
 **Check 3:** Did you quote paths with spaces?
 ```bash
 # ✓ Correct
-/create-word "Clinical Medicine/Exam 1/Lecture.txt"
+/word "Clinical Medicine/Exam 1/Lecture.txt"
 
 # ✗ Wrong
-/create-word Clinical Medicine/Exam 1/Lecture.txt
+/word Clinical Medicine/Exam 1/Lecture.txt
 ```
 
 ### Skills Not Activating?
 
 **Solution:** Start a new Claude Code session
 - Skills activate at session start
-- Check: `study-guides/.claude/settings.json` exists
-- Check: `study-guides/.claude/skills/skill-rules.json` exists
+- Check: `.claude/settings.json` exists
+- Check: `.claude/skills/skill-rules.json` exists
 
 ### Claude Not Following Template?
 

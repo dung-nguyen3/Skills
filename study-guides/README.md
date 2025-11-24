@@ -15,13 +15,13 @@ Creates comprehensive study guides in multiple formats from source lecture notes
 
 ```bash
 # Word study guide from lecture notes
-/create-word "source-files/Lecture_42.txt"
+/word "source-files/Lecture_42.txt"
 
 # Excel drug chart
-/create-excel "source-files/HIV_Antivirals.txt"
+/excel "source-files/HIV_Antivirals.txt"
 
 # HTML interactive guide
-/create-lo-guide "source-files/Cardiovascular_Disease.txt"
+/html-LO "source-files/Cardiovascular_Disease.txt"
 ```
 
 ## Folder Structure
@@ -29,7 +29,7 @@ Creates comprehensive study guides in multiple formats from source lecture notes
 ```
 study-guides/
 ├── .claude/
-│   └── commands/          # Slash commands (/create-word, /create-excel, etc.)
+│   └── commands/          # Slash commands (/word, /excel, etc.)
 ├── CLAUDE.md              # Study guide specific settings
 ├── templates-and-examples/
 │   ├── *_REVISED.txt      # Cleaned instruction templates
@@ -42,21 +42,21 @@ study-guides/
 
 ## Available Commands
 
-### /create-word
+### /word
 Creates 4-section Word document:
 1. Learning Objectives (with tables and clinical pearls)
 2. Key Comparisons (side-by-side tables)
 3. Master Chart (comprehensive overview)
 4. High-Yield Summary (color-coded boxes)
 
-### /create-excel
+### /excel
 Creates 4-tab Excel drug chart:
 1. Drug Details (by class with comparison tables)
 2. Key Comparisons (mechanisms, toxicities, uses)
 3. Master Chart (all drugs in one table)
 4. High-Yield & Pearls (mnemonics and clinical tips)
 
-### /create-lo-guide
+### /html-LO
 Creates interactive HTML with tabs:
 - Learning Objectives Q&A
 - Comparison tables

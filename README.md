@@ -6,27 +6,27 @@
 
 ### Word Study Guide
 ```
-/create-word "path/to/lecture.txt"
+/word "path/to/lecture.txt"
 ```
 
 ### Excel Drug Chart
 ```
-/create-excel "path/to/drugs.txt"
+/excel "path/to/drugs.txt"
 ```
 
 ### HTML Learning Objectives Guide
 ```
-/create-lo-guide "path/to/lecture.txt"
+/html-LO "path/to/lecture.txt"
 ```
 
 ### HTML Drug Reference (Mobile)
 ```
-/create-drug-html "path/to/drugs.txt"
+/html-drug "path/to/drugs.txt"
 ```
 
 ### Clinical Assessment Guide
 ```
-/create-clinical-guide "path/to/source.txt" "Chief Complaint"
+/clinical "path/to/source.txt" "Chief Complaint"
 ```
 
 ---
@@ -70,13 +70,13 @@ Mnemonics are automatically researched when creating study guides.
 
 ## Which Command Should I Use?
 
-**For drugs:** `/create-excel` or `/create-drug-html`
+**For drugs:** `/excel` or `/html-drug`
 
-**For any medical topic:** `/create-lo-guide`
+**For any medical topic:** `/html-LO`
 
-**For clinical exams:** `/create-clinical-guide`
+**For clinical exams:** `/clinical`
 
-**For Word format:** `/create-word`
+**For Word format:** `/word`
 
 **To verify existing guide:** `/verify-accuracy`
 

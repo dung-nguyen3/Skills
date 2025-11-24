@@ -95,27 +95,21 @@ git push -u origin claude/claude-md-example
 
 ### Finding Infrastructure Components
 
-**Skills:** `.claude/skills/*/SKILL.md`
-- Infrastructure showcase: `claude-infrastructure-showcase/.claude/skills/`
-- Study guide system: `Copy Study Guide Claude Q3 2/.claude/skills/`
+**Skills:** `.claude/skills/`
+- Root level: `skill-rules.json` for study guide verification triggers
 
-**Agents:** `.claude/agents/*.md`
-- Infrastructure showcase: 10 general-purpose agents
-- Study guide system: 2 medical-specific agents
-
-**Hooks:** `.claude/hooks/*.sh` or `.claude/hooks/*.ts`
-- Essential hooks in both systems (auto-activation, tracking)
-- Study guide system has additional quality gates
+**Hooks:** `.claude/hooks/*.sh`
+- Study guide verification hooks (pre/post creation, session end)
+- Quality gates for source-only policy
 
 **Commands:** `.claude/commands/*.md`
-- Infrastructure showcase: 3 dev documentation commands
-- Study guide system: 6 study guide creation commands
+- Study guide commands: `/excel`, `/word`, `/html`, `/clinical`, `/anki`, `/biography`, `/lo-guide`
+- Verification: `/verify-accuracy`
 
 ### Finding Templates and Examples
 
 **Study Guide Templates:**
-- `Study Templates auto/` - Text-based template instructions
-- `Copy Study Guide Claude Q3 2/templates-and-examples/` - Complete templates
+- `study-guides/templates-and-examples/` - Complete templates and examples
 
 **Study Guide Examples:**
 - `Example claude study guides/` - 12 subdirectories organized by format
@@ -137,8 +131,8 @@ git push -u origin claude/claude-md-example
 **Specific Protocols:**
 - `GIT_WORKFLOW.md` - Clone, pull, push procedures
 - `TEMPLATE_TYPES.md` - 4 study guide template types
-- `Copy Study Guide Claude Q3 2/HOW_TO_USE.md` - User guide for study system
-- `Copy Study Guide Claude Q3 2/MAINTENANCE.md` - Maintenance procedures
+- `study-guides/HOW_TO_USE.md` - User guide for study system
+- `study-guides/MAINTENANCE.md` - Maintenance procedures
 
 **`analysis-docs/`**
 - Analysis and planning documents
@@ -155,7 +149,7 @@ Each subdirectory may have its own CLAUDE.md with project-specific rules that su
 
 **Hierarchy:**
 1. **Global CLAUDE.md** (this file) - applies everywhere
-2. **Subdirectory CLAUDE.md** (e.g., in Copy Study Guide Claude Q3 2/) - supplements global rules
+2. **Subdirectory CLAUDE.md** (e.g., in study-guides/) - supplements global rules
 3. **README.md files** - documentation, not instructions
 
 When working in a subdirectory, Claude loads both the global settings and the subdirectory-specific CLAUDE.md automatically.

@@ -5,11 +5,11 @@
 Your study guide folder now has automated quality controls and shortcuts:
 
 ### 1. Slash Commands (Quick Actions)
-- `/create-word` - Create Word study guide from source file
-- `/create-excel` - Create 4-tab Excel drug chart (pharmacology)
-- `/create-drug-html` - Create interactive HTML drug reference (pharmacology)
-- `/create-lo-guide` - Create HTML learning objectives guide (ANY medical topic)
-- `/create-clinical-guide` - Create clinical assessment guide (history & physical exam)
+- `/word` - Create Word study guide from source file
+- `/excel` - Create 4-tab Excel drug chart (pharmacology)
+- `/html-drug` - Create interactive HTML drug reference (pharmacology)
+- `/html-LO` - Create HTML learning objectives guide (ANY medical topic)
+- `/clinical` - Create clinical assessment guide (history & physical exam)
 - `/verify-accuracy` - Deep accuracy analysis of existing study guide
 
 ### 2. Skill Auto-Activation System
@@ -37,7 +37,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/create-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 **What happens:**
@@ -61,7 +61,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/create-word Pharmacology/Exam 3/Extract/Lecture 42.txt
+/word Pharmacology/Exam 3/Extract/Lecture 42.txt
 ```
 
 **What happens:**
@@ -112,7 +112,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/create-drug-html Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/html-drug Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 **What happens:**
@@ -138,7 +138,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/create-lo-guide Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
+/html-LO Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
 ```
 
 **What happens:**
@@ -167,7 +167,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/create-clinical-guide "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
+/clinical "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
 ```
 
 **What happens:**
@@ -200,39 +200,39 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 | Content Type | Recommended Command | Output Format |
 |--------------|---------------------|---------------|
-| **Pharmacology (drugs)** | `/create-excel` OR `/create-drug-html` | Excel or HTML |
-| **Any medical topic with learning objectives** | `/create-lo-guide` | HTML |
-| **Clinical history & physical exam** | `/create-clinical-guide` | HTML |
-| **Word document needed** | `/create-word` | Word (any topic) |
+| **Pharmacology (drugs)** | `/excel` OR `/html-drug` | Excel or HTML |
+| **Any medical topic with learning objectives** | `/html-LO` | HTML |
+| **Clinical history & physical exam** | `/clinical` | HTML |
+| **Word document needed** | `/word` | Word (any topic) |
 
 ### Detailed Selection Guide
 
-**Use `/create-excel` when:**
+**Use `/excel` when:**
 - Creating comprehensive drug charts
 - Need 4-tab format (Details, Comparisons, Master Chart, Pearls)
 - Want print-friendly Excel for exam prep
 - Studying pharmacology: antibiotics, antivirals, antineoplastics, cardiovascular drugs
 
-**Use `/create-drug-html` when:**
+**Use `/html-drug` when:**
 - Creating quick drug reference for mobile
 - Need offline-ready HTML file
 - Want sortable drug tables
 - Same content as Excel but more portable
 
-**Use `/create-lo-guide` when:**
+**Use `/html-LO` when:**
 - Source has learning objectives
 - ANY medical topic: pathophysiology, diseases, procedures, physiology
 - Examples: Cardiovascular disease, Hematology II, Immunology, Rheumatology, Respiratory physiology
 - Want 4-tab HTML with Q&A, comparisons, master tables, summary
 
-**Use `/create-clinical-guide` when:**
+**Use `/clinical` when:**
 - Learning history-taking and physical examination
 - Need chief complaint workup (e.g., "Leg Pain", "Headache", "Chest Pain")
 - Want OLDCAARTS format with exact patient questions
 - Preparing for OSCE or clinical rotations
 - Need differential diagnosis by onset (acute/subacute/chronic)
 
-**Use `/create-word` when:**
+**Use `/word` when:**
 - School requires Word document submission
 - Need print-friendly document
 - Works for any medical topic
@@ -240,8 +240,8 @@ Your study guide folder now has automated quality controls and shortcuts:
 ### Can I Use Multiple Templates?
 
 **Yes!** For pharmacology, consider creating BOTH:
-- `/create-excel` - Comprehensive study (detailed tables, comparisons)
-- `/create-drug-html` - Quick mobile reference (same content, different format)
+- `/excel` - Comprehensive study (detailed tables, comparisons)
+- `/html-drug` - Quick mobile reference (same content, different format)
 
 ---
 
@@ -546,7 +546,7 @@ Recommended actions for next session:
 ### How They Work Together:
 
 **Normal workflow:**
-1. 📝 You: `/create-excel source.txt`
+1. 📝 You: `/excel source.txt`
 2. ✅ Claude states verification checklist (automatic)
 3. ⛔ PreToolUse hook: Checks verification → ALLOWS
 4. 📝 Claude creates Excel file
@@ -737,7 +737,7 @@ Session cache: .claude/study-guide-cache/abc123
 1. Session starts
    └─ Cache directory created automatically
 
-2. You: /create-excel source.txt
+2. You: /excel source.txt
    └─ UserPromptSubmit: Skill activation check
 
 3. Claude: States verification checklist
@@ -808,7 +808,7 @@ Pharmacology/Exam 3/Extract/Lecture 42.txt
 
 **Step 2:** Use slash command
 ```
-/create-word Pharmacology/Exam 3/Extract/Lecture 42.txt
+/word Pharmacology/Exam 3/Extract/Lecture 42.txt
 ```
 
 **Step 3:** Wait for completion
@@ -837,7 +837,7 @@ Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 **Step 2:** Use slash command
 ```
-/create-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 ```
 
 **Step 3:** Claude creates 4-tab chart
@@ -951,11 +951,11 @@ ls .claude/commands/
 **Check 2:** Correct syntax?
 ```
 # ✓ Correct:
-/create-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 # ✗ Wrong:
 create-excel (missing slash)
-/create-excel (missing file path)
+/excel (missing file path)
 ```
 
 **Check 3:** File path correct?
@@ -982,8 +982,8 @@ ls "Claude Templates/Excel Drugs Chart 11-1.txt"
 
 **Fix:** Always use slash commands for template compliance:
 ```
-/create-word [source]
-/create-excel [source]
+/word [source]
+/excel [source]
 ```
 
 ---
@@ -1036,7 +1036,7 @@ Or use detailed verification:
 "Create an Excel drug chart from HIV drugs"
 
 # ✓ Slash command (reliable):
-/create-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 ```
 
 ---
@@ -1082,7 +1082,7 @@ Pharmacology/
 
 **Instead:** Let the slash commands handle it:
 ```
-/create-excel Extract/Beta_Blockers.txt
+/excel Extract/Beta_Blockers.txt
 ```
 
 Claude will automatically:
@@ -1117,8 +1117,8 @@ Claude will automatically:
 
 | Command | Purpose | Arguments | Output |
 |---------|---------|-----------|--------|
-| `/create-word` | Create Word study guide | Source file path | .docx in Claude Study Tools/ |
-| `/create-excel` | Create Excel drug chart | Source file path | .xlsx in Claude Study Tools/ |
+| `/word` | Create Word study guide | Source file path | .docx in Claude Study Tools/ |
+| `/excel` | Create Excel drug chart | Source file path | .xlsx in Claude Study Tools/ |
 | `/verify-accuracy` | Deep accuracy analysis | Study guide path, Source path | Fixed file with report |
 
 ### Skill Triggers Summary

@@ -1,5 +1,6 @@
 ---
 description: Create HTML learning objectives guide (any medical topic)
+argument-hint: Source file path (e.g., "sources/Cardiovascular-Disease.txt")
 ---
 
 # Create Learning Objectives Guide
@@ -9,7 +10,7 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 ## Usage
 
 ```
-/create-lo-guide [source_file.txt]
+/html-LO [source_file.txt]
 ```
 
 ## What This Does
@@ -23,9 +24,9 @@ Creates a comprehensive 4-tab HTML study guide:
 ## Example
 
 ```
-/create-lo-guide sources/Cardiovascular-Disease.txt
-/create-lo-guide sources/Hematology-II.txt
-/create-lo-guide sources/Respiratory-Physiology.txt
+/html-LO sources/Cardiovascular-Disease.txt
+/html-LO sources/Hematology-II.txt
+/html-LO sources/Respiratory-Physiology.txt
 ```
 
 Output: `[Topic]_Study_Guide.html`
@@ -34,7 +35,7 @@ Output: `[Topic]_Study_Guide.html`
 
 The command uses the template at:
 ```
-templates-and-examples/HTML_LO_REVISED.txt
+study-guides/templates-and-examples/HTML_LO_REVISED.txt
 ```
 
 Before starting, read the template to understand:
@@ -86,14 +87,14 @@ After creation, Claude automatically:
 
 ## Related Commands
 
-- `/create-drug-html` - For pharmacology topics (drug-focused template)
-- `/create-excel` - For comprehensive drug charts (Excel format)
-- `/create-clinical-guide` - For history-taking and physical exam guides
+- `/html-drug` - For pharmacology topics (drug-focused template)
+- `/excel` - For comprehensive drug charts (Excel format)
+- `/clinical` - For history-taking and physical exam guides
 - `/verify-accuracy` - Verify accuracy of created study guide
 
 ## Template Customization
 
 To modify the HTML template:
-1. Edit: `Example claude study guides/HTML LO/HTML LO with Master Chart 10-30.txt`
-2. Changes apply automatically to next `/create-lo-guide` use
+1. Edit: `study-guides/templates-and-examples/HTML_LO_REVISED.txt`
+2. Changes apply automatically to next `/html-LO` use
 3. Update `HOW_TO_USE.md` if workflow changes

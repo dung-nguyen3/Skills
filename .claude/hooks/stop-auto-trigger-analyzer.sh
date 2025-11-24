@@ -136,7 +136,7 @@ REQUIRED ACTION FOR NEXT SESSION:
 
 💡 PREVENTION:
    - Always create study guides WITH source files in same directory
-   - Use slash commands (/create-excel, /create-word, etc.)
+   - Use slash commands (/excel, /word, etc.)
    - Complete post-verification before ending session
 
 Session cache: $cache_dir

@@ -142,7 +142,7 @@ fi
 cat <<EOF
 💡 PREVENTION:
    - Always complete post-verification before ending session
-   - Use slash commands (/create-excel, /create-word) for automatic verification
+   - Use slash commands (/excel, /word) for automatic verification
    - State "Post-creation verification complete" after checks
 
 Session cache: $cache_dir

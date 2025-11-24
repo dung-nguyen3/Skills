@@ -23,8 +23,8 @@ cat <<'EOF'
    - Quality check
 
 💡 Use slash commands for automatic compliance:
-   /create-excel [source-file]
-   /create-word [source-file]
+   /excel [source-file]
+   /word [source-file]
    /verify-accuracy [file] [source]
 
 🔒 Quality gates are ACTIVE and will enforce these requirements.

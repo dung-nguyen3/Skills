@@ -232,7 +232,7 @@ cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git [command]
 - ✅ No configuration changes needed
 - ✅ Slash commands automatically use updated templates
 - ✅ Changes take effect immediately on next use
-- **Example:** Add new section to Excel template → `/create-excel` uses new section automatically
+- **Example:** Add new section to Excel template → `/excel` uses new section automatically
 
 **If you RENAME or MOVE template files:**
 - ⚠️ Must update slash command files (`.claude/commands/*.md`)
@@ -240,8 +240,8 @@ cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git [command]
 - **Example:** Renamed `Word LO 11-5.txt` → Update `create-word.md` line 17
 
 **Slash commands reference templates by path:**
-- `/create-word` → reads `Claude Templates/Word LO 11-5.txt` at runtime
-- `/create-excel` → reads `Claude Templates/Excel Drugs Chart 11-1.txt` at runtime
+- `/word` → reads `Claude Templates/Word LO 11-5.txt` at runtime
+- `/excel` → reads `Claude Templates/Excel Drugs Chart 11-1.txt` at runtime
 - `/verify-accuracy` → contains verification protocol (no template dependency)
 
 **Best practice:**
