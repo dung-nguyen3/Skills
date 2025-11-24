@@ -1,11 +1,20 @@
 ---
 description: Create comprehensive Anki flashcard deck (.apkg) from source material
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/HIV Drugs.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create an Anki flashcard deck from source file: $ARGUMENTS
 
 ## Instructions
+
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 
 ### Step 1: Pre-Creation Verification
 
@@ -170,6 +179,15 @@ genanki.Package(deck).write_to_file('output.apkg')
 - Create Claude Study Tools folder if doesn't exist
 - Confirm files saved successfully
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+
+---
+
 ## Common Mistakes to Avoid
 
 - Creating vague or ambiguous questions
@@ -182,8 +200,7 @@ genanki.Package(deck).write_to_file('output.apkg')
 
 ## Example Usage
 
-```
-/anki Pharmacology/Exam 3/Extract/HIV Antivirals.txt
-```
+**Single:** Command with one file
 
-This will create a comprehensive Anki deck with flashcards covering all content from the source file.
+**Batch:** Command with semicolon-separated files → Creates separate output files
+

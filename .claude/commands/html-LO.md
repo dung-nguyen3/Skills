@@ -1,6 +1,6 @@
 ---
 description: Create HTML learning objectives guide (any medical topic)
-argument-hint: Source file path (e.g., "sources/Cardiovascular-Disease.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 # Create Learning Objectives Guide
@@ -21,15 +21,12 @@ Creates a comprehensive 4-tab HTML study guide:
 - **Tab 3: Master Comparison Tables** - Complete differential diagnosis tables
 - **Tab 4: Summary** - High-yield pearls, mnemonics, "If X Think Y" associations
 
-## Example
+## Example Usage
 
-```
-/html-LO sources/Cardiovascular-Disease.txt
-/html-LO sources/Hematology-II.txt
-/html-LO sources/Respiratory-Physiology.txt
-```
+**Single:** Command with one file
 
-Output: `[Topic]_Study_Guide.html`
+**Batch:** Command with semicolon-separated files → Creates separate output files
+
 
 ## Template Location
 

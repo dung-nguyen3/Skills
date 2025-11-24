@@ -1,16 +1,23 @@
 ---
 description: Create comprehensive Word study guide from source material following template
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/Lecture 42.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
-Create a Word study guide from source file: $ARGUMENTS
+Create Word study guide from: $ARGUMENTS
 
 ## Instructions
 
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 ### Step 1: Pre-Creation Verification
 
-**MANDATORY - State this checklist FIRST:**
-
+#### For SINGLE MODE:
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
@@ -18,6 +25,19 @@ VERIFICATION CHECKLIST:
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+#### For BATCH MODE:
+```
+BATCH VERIFICATION CHECKLIST:
+☐ Source files: [list all]
+☐ File validation: All exist and readable
+☐ Homogeneity: All are learning objective-based lectures
+☐ Template: Word LO 11-5.txt (applies to ALL)
+☐ Source-only policy confirmed
+☐ WebSearch for mnemonics (mandatory)
+☐ Output: ONE Word file per source
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -103,10 +123,14 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+---
+
+### Step 8: Batch Processing (BATCH MODE ONLY)
+
+If BATCH MODE, repeat Steps 2-7 for EACH file with progress tracking and batch summary at end.
+
 ## Example Usage
 
-```
-/word Pharmacology/Exam 3/Extract/Lecture 42.txt
-```
+**Single:** `/word "Pharmacology/Exam 3/Extract/Lecture 42.txt"`
 
-This will create a comprehensive Word study guide with all learning objectives, comparisons, master chart, and high-yield summary.
+**Batch:** `/word "Lecture42.txt;Lecture43.txt;Lecture44.txt"` → Creates 3 separate Word files.

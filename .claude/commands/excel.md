@@ -1,13 +1,38 @@
 ---
 description: Create comprehensive 4-tab Excel drug chart from pharmacology source material
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/HIV Drugs.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt;file3.txt")
 ---
 
-Create an Excel drug chart from source file: $ARGUMENTS
+Create Excel drug chart from: $ARGUMENTS
 
 ## Instructions
 
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments to detect batch mode:**
+
+If $ARGUMENTS contains semicolons (`;`):
+- **BATCH MODE**: Multiple source files
+- Split by semicolon to get file list
+- Each file will create a separate Excel chart
+- Example: `"HIV.txt;COVID.txt;Antibiotics.txt"` → 3 Excel files
+
+If $ARGUMENTS does NOT contain semicolons:
+- **SINGLE MODE**: One source file (existing behavior)
+- Example: `"HIV.txt"` → 1 Excel file
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE or BATCH]
+File count: [#]
+Files: [list]
+```
+
+---
+
 ### Step 1: Pre-Creation Verification
+
+#### For SINGLE MODE:
 
 **MANDATORY - State this checklist FIRST:**
 
@@ -20,6 +45,25 @@ VERIFICATION CHECKLIST:
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
+
+#### For BATCH MODE:
+
+**MANDATORY - State this checklist FIRST:**
+
+```
+BATCH VERIFICATION CHECKLIST:
+☐ Source files: [list all files from $ARGUMENTS]
+☐ File validation: All files exist and are readable
+☐ Homogeneity check: All files are drug lectures (same template applies)
+☐ Instruction template: Excel Drugs Chart 11-1.txt (applies to ALL files)
+☐ Source-only policy: I will ONLY use information from source files
+☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
+☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
+☐ Output: ONE Excel file will be created per source file
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+**After user confirms batch, create verification marker for session.**
 
 ### Step 2: Load Resources
 
@@ -141,6 +185,70 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+---
+
+### Step 10: Batch Processing (BATCH MODE ONLY)
+
+**If BATCH MODE, repeat Steps 2-9 for EACH file:**
+
+For each source file in the batch:
+1. **Announce file**: "Processing file X of Y: [filename]"
+2. **Load resources** (Step 2) - templates already loaded, reuse
+3. **Analyze source file** (Step 3) - read THIS file completely
+4. **Create 4-tab Excel** (Step 4-6) - for THIS file only
+5. **WebSearch mnemonics** (Step 5) - for THIS file's drugs
+6. **Use TodoWrite** (Step 7) - track THIS file's progress
+7. **Post-creation verification** (Step 8) - verify THIS file
+8. **Save file** (Step 9) - with unique filename based on source
+
+**Critical for Batch:**
+- Process each file independently (no information contamination)
+- Clear all drug data between files
+- Each file gets its own Excel output
+- Track which source created which Excel file
+
+**Progress Tracking:**
+```
+[BATCH PROGRESS]
+✅ File 1/3: HIV_Drug_Chart.xlsx (45 drugs)
+✅ File 2/3: COVID_Drug_Chart.xlsx (28 drugs)
+🔄 File 3/3: Antibiotics_Drug_Chart.xlsx (in progress...)
+```
+
+---
+
+### Step 11: Batch Summary (BATCH MODE ONLY)
+
+**After all files processed, provide summary:**
+
+```
+BATCH CREATION COMPLETE
+═══════════════════════════════════════
+
+Files Created Successfully:
+✅ [filename1]_Drug_Chart.xlsx ([#] drugs from [source1])
+✅ [filename2]_Drug_Chart.xlsx ([#] drugs from [source2])
+✅ [filename3]_Drug_Chart.xlsx ([#] drugs from [source3])
+
+Failed Files (if any):
+❌ [filename]: [error reason]
+
+Statistics:
+- Total files processed: [#]
+- Successful: [#]
+- Failed: [#]
+- Total drugs across all files: [#]
+- All verifications: [PASS/NEEDS WORK]
+
+Location: [Class]/[Exam]/Claude Study Tools/
+
+Next Steps:
+- Review each file for accuracy
+- Use /verify-accuracy for deep analysis if needed
+```
+
+---
+
 ## Common Mistakes to Avoid
 
 ❌ Marking all drugs as first-line when only specific ones are
@@ -152,8 +260,19 @@ Track your progress:
 
 ## Example Usage
 
+### Single File:
 ```
-/excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/excel "Pharmacology/Exam 3/Extract/HIV Antivirals.txt"
 ```
+Creates: `HIV_Antivirals_Drug_Chart.xlsx`
 
-This will create a comprehensive 4-tab Excel drug chart with all drugs, comparisons, and researched mnemonics.
+### Batch Files:
+```
+/excel "Pharmacology/Exam 3/Extract/HIV.txt;Pharmacology/Exam 3/Extract/COVID.txt;Pharmacology/Exam 3/Extract/Antibiotics.txt"
+```
+Creates 3 separate Excel files:
+- `HIV_Drug_Chart.xlsx`
+- `COVID_Drug_Chart.xlsx`
+- `Antibiotics_Drug_Chart.xlsx`
+
+Each file will be comprehensive 4-tab Excel drug chart with all drugs, comparisons, and researched mnemonics.

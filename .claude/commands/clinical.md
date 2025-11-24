@@ -1,11 +1,20 @@
 ---
 description: Create clinical assessment guide for history and physical exam
-argument-hint: Source file path and chief complaint (e.g., "sources/Lower-Extremity.txt" "Leg Pain")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create a clinical assessment guide from source file: $ARGUMENTS
 
 ## Instructions
+
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 
 ### Step 1: Pre-Creation Verification
 
@@ -194,6 +203,15 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+
+---
+
 ## Common Mistakes to Avoid
 
 ❌ Asking for specific medications instead of open-ended "What medications do you take?"
@@ -206,10 +224,7 @@ Track your progress:
 
 ## Example Usage
 
-```
-/clinical sources/Lower-Extremity.txt "Leg Pain"
-/clinical sources/Headache-Workup.txt "Headache"
-/clinical sources/Chest-Pain.txt "Chest Pain"
-```
+**Single:** Command with one file
 
-This will create a comprehensive clinical assessment guide with all history, ROS, physical exam, and decision support organized by onset pattern.
+**Batch:** Command with semicolon-separated files → Creates separate output files
+

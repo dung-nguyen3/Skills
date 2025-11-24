@@ -1,11 +1,20 @@
 ---
 description: Create interactive HTML drug reference chart (pharmacology)
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/HIV Drugs.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create an HTML drug reference chart from source file: $ARGUMENTS
 
 ## Instructions
+
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 
 ### Step 1: Pre-Creation Verification
 
@@ -141,6 +150,15 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+
+---
+
 ## Common Mistakes to Avoid
 
 ❌ Marking all drugs as first-line when only specific ones are
@@ -152,9 +170,7 @@ Track your progress:
 
 ## Example Usage
 
-```
-/html-drug Pharmacology/Exam 3/Extract/HIV Antivirals.txt
-/html-drug sources/24-HIV-drugs.txt
-```
+**Single:** Command with one file
 
-This will create a comprehensive interactive HTML drug reference chart with all drugs, comparisons, and researched mnemonics.
+**Batch:** Command with semicolon-separated files → Creates separate output files
+

@@ -119,13 +119,23 @@
           "/clinical",
           "/html-LO",
           "/html-drug",
-          "/biography"
+          "/biography",
+          "batch create",
+          "batch mode",
+          "multiple files",
+          "multiple sources",
+          "create from multiple",
+          "batch files",
+          "create batch"
         ],
         "intentPatterns": [
           "(create|make|generate|build).*?(study guide|drug chart|excel|word|html|anki|flashcard|clinical|H&P|OSCE)",
           "(start|begin).*?(creating|making).*?(study guide|drug chart|flashcard|clinical guide)",
           "create.*?from.*?(source|lecture|extract)",
-          "(create|make).*?(history|physical).*?(guide|exam)"
+          "(create|make).*?(history|physical).*?(guide|exam)",
+          "(batch|multiple).*(create|generate|make).*?(excel|study guide|word|html)",
+          "(create|generate|make).*(from multiple|multiple files|multiple sources|batch)",
+          "(batch|combined|merged).*(files|sources)"
         ]
       },
       "fileTriggers": {

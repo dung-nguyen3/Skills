@@ -1,11 +1,20 @@
 ---
 description: Create engaging drug autobiography stories with personified characters
-argument-hint: Source file path (e.g., "Pharmacology/Exam 3/Extract/Drug-List.txt")
+argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
 ---
 
 Create drug autobiography stories from source file: $ARGUMENTS
 
 ## Instructions
+
+### Step 0: Detect Mode (Single vs Batch)
+
+**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+
+**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
 
 ### Step 1: Pre-Creation Verification
 
@@ -133,13 +142,21 @@ HIV_Antiretroviral_Drug_Biographies.docx
 Antibiotic_Drug_Biographies.docx
 ```
 
+
+---
+
+### Batch Processing (BATCH MODE ONLY)
+
+If BATCH MODE, repeat previous steps for EACH file with progress tracking and batch summary at end.
+
+---
+
 ## Example Usage
 
-```
-/biography "Pharmacology/Exam 3/Extract/Beta-Blockers.txt"
-/biography "Cardiology/Drug-List.txt"
-/biography sources/HIV-Drugs.txt
-```
+**Single:** Command with one file
+
+**Batch:** Command with semicolon-separated files → Creates separate output files
+
 
 ## Best For
 
