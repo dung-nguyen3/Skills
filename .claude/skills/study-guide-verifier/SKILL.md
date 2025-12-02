@@ -59,10 +59,13 @@ When verification is needed, this skill automatically:
 2. **Agent performs systematic 6-step analysis:**
    - Step 1: Read source file completely
    - Step 2: Read study guide completely
-   - Step 3: Systematic verification checks (source accuracy, names, merged cells, info accuracy, format, completeness)
+   - Step 3: Systematic verification checks (source accuracy, names, merged cells, info accuracy, format, completeness, **LO text fidelity**)
    - Step 4: Document all issues (categorized by severity)
    - Step 5: Save analysis report to file
    - Step 6: Return to parent with summary and request approval
+
+**CRITICAL - LO Text Fidelity Check (Check 3.7):**
+Learning objective STATEMENTS must be verbatim from source. For every LO, compare character-by-character with source. Flag ANY rewording as CRITICAL issue. (Answers/explanations CAN be paraphrased.)
 
 3. **Agent returns comprehensive report:**
    - Executive summary with overall assessment
@@ -193,6 +196,7 @@ Before accepting verification results:
 - ✓ Analysis report saved to correct location
 - ✓ Executive summary includes overall assessment
 - ✓ Issues categorized by severity (Critical/Important/Minor)
+- ✓ **LO text fidelity checked** (LO statements verbatim from source)
 - ✓ Statistics calculated (coverage %, issue counts)
 - ✓ Specific fix recommendations provided
 - ✓ Approval requested before changes

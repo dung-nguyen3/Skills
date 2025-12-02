@@ -1,0 +1,288 @@
+# EXCEL COMPARISON CHART TEMPLATE
+# For ANY medical topic comparisons (conditions, mechanisms, concepts)
+
+## CRITICAL REQUIREMENTS
+
+1. **Source-Only Policy**: Only use information from the source file. Do not add external medical knowledge.
+2. **Mnemonic Research**: All mnemonics MUST be researched via WebSearch - never invent them.
+3. **3-Tab Structure**: Key Comparisons, Master Chart, Summary (in that order)
+
+---
+
+## OBJECTIVE
+
+Create comprehensive medical comparison Excel files with:
+1. **Key Comparison Sheet** - Multiple side-by-side comparison tables (one category per table)
+2. **Master Chart Sheet** - Comprehensive overview of all topics in one table
+3. **Summary Sheet** - Mnemonics, "If X Think Y", critical values, high-yield pearls
+
+---
+
+## TAB 1: KEY COMPARISONS
+
+### Purpose
+Compare similar items side-by-side (e.g., Type I vs Type II vs Type III vs Type IV hypersensitivity)
+
+### Structure
+- **COLUMNS** = Items being compared (e.g., Type I, Type II, Type III, Type IV)
+- **ROWS** = Comparison categories (e.g., Mechanism, Mediators, Examples, Treatment)
+
+### Layout Rules
+```
+Row 1: [COMPARISON TITLE - merged across all columns]
+Row 2: [Column headers - items being compared]
+Row 3+: [Comparison category rows]
+[blank row]
+[MNEMONIC row - if applicable]
+[2-3 blank rows before next comparison table]
+```
+
+### Critical Rules
+1. **One comparison per table** - Don't mix different comparisons in one table
+2. **Multiple tables** - Create separate tables for each category being compared
+   - Example: If comparing Clinical Presentation, Diagnosis, and Treatment for Conditions A, B, C:
+     - Table 1: Compare Clinical Presentation across A, B, C
+     - Table 2: Compare Diagnosis across A, B, C
+     - Table 3: Compare Treatment across A, B, C
+3. **Mnemonics directly below** - Place relevant mnemonic immediately after each table
+4. **Consistent categories** - Use same rows for all compared items within a table
+5. **Column width**: Column A = 25, others = 35-40
+6. **Text wrapping**: Enable for all cells
+
+### Comparison Focus Areas
+When creating comparisons, prioritize:
+1. Items students frequently confuse
+2. Actionable clinical decisions (not just theory)
+3. SPECIFIC treatments with EXACT dosing (never vague)
+4. Treatment-focused tables (what to prescribe in each scenario)
+5. Age-based and severity-based algorithms
+6. Hallmark/pathognomonic findings
+7. "If-then" clinical decision rules
+8. Urgency levels for referrals/complications
+
+---
+
+## TAB 2: MASTER CHART
+
+### Purpose
+Comprehensive overview of ALL conditions/concepts in one searchable table
+
+### Structure
+- **ROWS** = Individual conditions/topics (one per row)
+- **COLUMNS** = Key characteristics
+
+### Standard Columns (adapt based on content)
+- Condition/Disease/Concept
+- Definition
+- Etiology/Causes
+- Clinical Presentation/Symptoms
+- Pathophysiology/Mechanism
+- Diagnosis/Labs
+- Treatment (First-line)
+- Treatment (Alternatives)
+- Complications
+- Key Differentiators
+
+### Layout Rules
+```
+Row 1: [Column Headers - frozen]
+Row 2+: [One condition per row]
+```
+
+### Critical Rules
+1. **Freeze first row** - Always freeze header row
+2. **Text wrapping** - Enable for all cells
+3. **Color coding** - Rotate pastel colors by category/group
+4. **Column widths**:
+   - Column A (Condition): 25
+   - Other columns: 30-40
+
+---
+
+## TAB 3: SUMMARY
+
+### Purpose
+Quick-reference high-yield information for rapid review
+
+### Required Sections
+
+#### 1. Mnemonics
+```
+MNEMONIC: "[Acronym or Phrase]"
+
+[Letter] = [Meaning]
+[Letter] = [Meaning]
+...
+
+[Optional: Additional context or tip]
+```
+
+#### 2. "If You See X, Think Y" Associations
+```
+If you see [finding/symptom] → Think [diagnosis/condition]
+```
+
+#### 3. Critical Values
+```
+[Parameter]: [Critical threshold] → [Action required]
+```
+
+#### 4. Key Definitions
+```
+[Term]: [Definition from source]
+```
+
+#### 5. High-Yield Pearls
+- Board-relevant facts
+- Clinical decision points
+- Must-know associations
+
+### Formatting Rules
+- Blue bold label for section headers (color='0000FF')
+- Light blue background for mnemonic boxes (E6F3FF)
+- Text wrapping enabled
+- Adequate row heights (60-100 for multiline content)
+
+---
+
+## MNEMONIC RESEARCH PROTOCOL
+
+### Search Strategy
+```
+Search queries to use:
+- "medical mnemonics [specific topic]"
+- "[concept] memory tricks medical students"
+- "[topic] mnemonic USMLE"
+- "how to remember [concept] medical school"
+```
+
+### Sources to Prioritize
+1. Medical education websites (Knowmedge, Pixorize)
+2. Quizlet medical mnemonics
+3. Medical student blogs/forums
+4. USMLE prep resources
+
+### Rules
+- ONLY use mnemonics found through research
+- NEVER invent new mnemonics
+- Include full breakdown of each letter/word
+- Place mnemonics directly below relevant comparison tables
+
+---
+
+## COLOR REFERENCE (from Excel_Color_Reference.txt)
+
+### Soft Pastel Palette
+- Light Blue — Header: #8CA4BE, Main: #A8BFD8, Row Labels: #9BB5CE
+- Light Green — Header: #8FB89C, Main: #A8CCBA, Row Labels: #9DC4AC
+- Light Purple — Header: #B4A4C8, Main: #C8B8DC, Row Labels: #BEAED2
+- Light Tan — Header: #C8B088, Main: #DBC8A0, Row Labels: #D1BC94
+- Light Teal — Header: #8FB8B8, Main: #A8CCCC, Row Labels: #9DC4C4
+- Light Peach — Header: #C89F88, Main: #DCB8A0, Row Labels: #D2AC94
+- Light Gray-Blue — Header: #9CABBE, Main: #B8C8D8, Row Labels: #A8B5CE
+- Light Sage — Header: #9CBCAA, Main: #B8D8C8, Row Labels: #A8CEB5
+
+### Usage
+- Header row: Dark blue (#4472C4) with white text
+- Data rows: Rotate through pastel palette by category/group
+- Mnemonic rows: Light blue background (#E6F3FF) with blue text
+- Borders: White (#FFFFFF) - invisible, blends with pastels
+
+---
+
+## PYTHON IMPLEMENTATION NOTES
+
+### Required Imports
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+```
+
+### Key Functions to Implement
+1. `apply_cell_style()` - Universal cell formatting
+2. `create_header_row()` - Formatted header with freeze
+3. `add_mnemonic_row()` - Styled mnemonic section
+4. `set_column_widths()` - Appropriate widths per tab
+
+### Tab Creation Order
+1. Create "Key Comparisons" tab first (set as active)
+2. Create "Master Chart" tab
+3. Create "Summary" tab
+4. Remove default empty sheet if created
+
+---
+
+## SAVE LOCATION
+
+Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Comparison_Chart.xlsx`
+
+Example: `Clinical Medicine/Exam 2/Claude Study Tools/Hypersensitivity_Comparison_Chart.xlsx`
+
+---
+
+## FINAL CHECKLIST
+
+### Content Verification
+- [ ] All information from source files is included
+- [ ] No external information added (except researched mnemonics)
+- [ ] Medical terminology matches source exactly
+- [ ] All learning objectives are addressed
+
+### Tab 1: Key Comparisons
+- [ ] Multiple comparison tables (not one giant table)
+- [ ] One category per table
+- [ ] Clear column headers (items being compared)
+- [ ] Mnemonics placed directly below relevant tables
+- [ ] Adequate spacing between tables (2-3 blank rows)
+
+### Tab 2: Master Chart
+- [ ] One row per condition/topic
+- [ ] All relevant columns included
+- [ ] First row frozen
+- [ ] Text wrapping enabled
+- [ ] Color-coded by category
+
+### Tab 3: Summary
+- [ ] Mnemonics with full breakdowns
+- [ ] "If X Think Y" associations
+- [ ] Critical values (if applicable)
+- [ ] Key definitions
+- [ ] High-yield pearls
+
+### Formatting
+- [ ] Column widths set appropriately (25-45)
+- [ ] Row heights adjusted for wrapped text
+- [ ] Consistent fonts and colors
+- [ ] No formula errors
+- [ ] File saved to correct location
+
+---
+
+## EXAMPLE OUTPUT STRUCTURE
+
+```
+Sheet 1: Key Comparisons
+├── Comparison Table 1: Clinical Presentation (rows 1-10)
+├── MNEMONIC (rows 11-12) ← Directly below
+├── [blank rows 13-14]
+├── Comparison Table 2: Diagnosis (rows 15-24)
+├── MNEMONIC (rows 25-26) ← Directly below
+├── [blank rows 27-28]
+├── Comparison Table 3: Treatment (rows 29-38)
+└── ...
+
+Sheet 2: Master Chart
+├── Header Row (row 1) ← Frozen
+├── Condition 1 (row 2)
+├── Condition 2 (row 3)
+├── ...
+└── Condition N (row N)
+
+Sheet 3: Summary
+├── MNEMONICS section
+├── IF X THINK Y section
+├── CRITICAL VALUES section
+├── KEY DEFINITIONS section
+└── HIGH-YIELD PEARLS section
+```

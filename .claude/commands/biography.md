@@ -1,6 +1,6 @@
 ---
 description: Create engaging drug autobiography stories with personified characters
-argument-hint: Single file OR batch files separated by semicolon (e.g., "file1.txt" OR "file1.txt;file2.txt")
+argument-hint: Single file, batch files separated by semicolon, or directory path (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir")
 ---
 
 Create drug autobiography stories from source file: $ARGUMENTS
@@ -12,6 +12,13 @@ Create drug autobiography stories from source file: $ARGUMENTS
 **Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
 
 **State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+
+---
+
+### Step 0.5: Handle Directory Input
+
+If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
+If batch (semicolon-separated), process each path independently.
 
 ---
 
@@ -168,44 +175,10 @@ Antibiotic_Drug_Biographies.docx
 
 ---
 
-### Batch Processing (BATCH MODE ONLY)
+## Batch Processing
 
-**If BATCH MODE, process each file independently:**
-
-For each source file in the batch:
-1. **Announce file**: "Processing file X of Y: [filename]"
-
-2. **CRITICAL - Context Isolation Check**:
-   ```
-   CONTEXT ISOLATION VERIFICATION:
-   ☐ I will FORGET all drugs/characters from previous files
-   ☐ I will ONLY extract information from THIS source file: [filename]
-   ☐ I will verify drug list is ONLY from THIS file (not previous files)
-   ☐ This biography will contain ZERO drugs from previous files
-   ```
-
-3. **Per-File Verification** - Run complete verification checklist for THIS file
-
-4. **Read source file** - Read THIS file completely, extract THIS file's drugs only
-
-5. **MANDATORY - State drug list**: "Drugs in [filename]: [list all drugs]"
-   - This proves you're only using THIS file's drugs
-   - If you see drugs from previous files, STOP and re-read source
-
-6. **Create drug biographies** - For THIS file only, using ONLY drugs from step 5
-
-7. **Post-creation verification** - Verify THIS document contains ONLY THIS file's drugs
-
-8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
-
-**Critical for Batch:**
-- Each file gets complete verification (not once at start)
-- Explicitly state drug list from each file before creating biographies
-- Verify no drugs from previous files contaminated output
-- Clear all data between files
-- Each file gets its own Word output
-
-**Batch Summary**: After all files, provide summary of files created, drug counts, and any issues.
+For batch operations (semicolon-separated files):
+@.claude/skills/batch-coordinator/SKILL.md
 
 ---
 

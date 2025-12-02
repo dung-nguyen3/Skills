@@ -1,6 +1,6 @@
 # Template Compliance Checker
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Type:** Domain Knowledge (Suggest)
 **Priority:** HIGH
 **Status:** Active
@@ -28,6 +28,8 @@ I automatically suggest myself when you:
 - compliance, structure
 - tabs, sections
 - styling, fonts
+- comparison table, compare, comparison
+- inventory, item count, completeness
 
 ---
 
@@ -103,6 +105,89 @@ I automatically suggest myself when you:
 - Clinical pearls (where applicable)
 - Master chart with ALL topics from source
 - High-yield summary section
+
+### 5. Comparison Item Inventory Protocol (MANDATORY)
+
+**Purpose:** Prevents skipping items in comparison tables by requiring explicit inventory before creation.
+
+#### Before Creating ANY Comparison Table:
+
+**Step 1: Extract ALL Comparable Items**
+
+Read source file and list EVERY item that should be compared:
+- Diagnostic tools/tests mentioned for the topic
+- Drugs in same class or treating same condition
+- Conditions with similar presentations
+- Treatments for same condition
+- Any items the learning objective asks to compare
+
+**Step 2: Handle Different LO Styles**
+
+| LO Style | Example | Action |
+|----------|---------|--------|
+| **General category** | "Compare the diagnostic tools for PE" | Find ALL diagnostic tools mentioned in source for this topic |
+| **Specific items listed** | "Compare D-dimer, CT angiography, and V/Q scan" | Include exactly those specific items |
+| **Class/group reference** | "Describe the mechanism of NRTIs" | Find ALL individual drug names in NRTI class from source |
+
+**Key Principle:** When an LO says "drug class", "conditions", "diagnostic tools", etc. without listing specifics, Claude must extract ALL individual items from the source that belong to that category.
+
+**Step 3: Create Item Checklist**
+
+Before creating table, explicitly state:
+```
+COMPARISON INVENTORY for [Category]:
+Items to compare: [list all items from source]
+Total count: [N items]
+```
+
+**Step 4: Post-Table Verification**
+
+After creating each comparison table, verify:
+- [ ] All [N] items from inventory appear in table
+- [ ] No items from inventory were skipped
+- [ ] Items match source names exactly
+- [ ] Each item has all relevant properties filled in
+
+#### Common Omission Patterns to Avoid
+
+| What Gets Skipped | Why It Happens | Prevention |
+|-------------------|----------------|------------|
+| Less common diagnostic tests | Only main tests seem "important" | Count ALL tests mentioned in source |
+| Drugs that are "similar" | Seem redundant | Each drug listed separately in source gets own column |
+| Conditions with fewer details | Less info available | Include even if some cells sparse |
+| Items mentioned only once | Easy to miss | Systematic source scan catches all |
+| Secondary/alternative treatments | Focus on first-line only | LO may ask for ALL treatments |
+
+#### Example: Diagnostic Tools Inventory
+
+**Source mentions 5 diagnostic tests for pulmonary embolism:**
+1. Chest X-ray
+2. CT angiography
+3. V/Q scan
+4. D-dimer
+5. ECG
+
+**WRONG (common mistake):**
+- Creates table with only CT angiography, D-dimer, ECG
+- Skips Chest X-ray and V/Q scan
+- No mechanism catches the omission
+
+**CORRECT (with inventory):**
+```
+COMPARISON INVENTORY for Diagnostic Tests:
+Items to compare: Chest X-ray, CT angiography, V/Q scan, D-dimer, ECG
+Total count: 5 items
+
+[Creates table with all 5]
+
+POST-TABLE VERIFICATION:
+☑ Chest X-ray - present
+☑ CT angiography - present
+☑ V/Q scan - present
+☑ D-dimer - present
+☑ ECG - present
+All 5 items present - PASS
+```
 
 ---
 
@@ -239,6 +324,6 @@ This disables template compliance suggestions (use sparingly).
 
 ---
 
-**Last Updated:** 2025-11-19
+**Last Updated:** 2025-12-01
 **Activation Type:** Suggest (non-blocking)
 **Customization:** Modify trigger keywords in `.claude/skills/skill-rules.json`

@@ -1,6 +1,6 @@
 ---
 description: Create HTML learning objectives guide (any medical topic)
-argument-hint: Single file OR batch files separated by semicolon. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "--merge f1.txt;f2.txt")
+argument-hint: Single file, batch files separated by semicolon, or directory paths. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
 # Create Learning Objectives Guide
@@ -14,6 +14,11 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 /html-LO "source_file.txt"
 ```
 
+**Directory Mode:**
+```
+/html-LO "/path/to/directory"
+```
+
 **Batch Separate Mode (N files → N outputs):**
 ```
 /html-LO "file1.txt;file2.txt;file3.txt"
@@ -24,16 +29,28 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 /html-LO --merge "file1.txt;file2.txt;file3.txt"
 ```
 
-## Mode Detection
+**Batch Merge with Directories:**
+```
+/html-LO --merge "/path/to/dir1;/path/to/dir2"
+```
 
-**Check for --merge flag:**
+## Mode Detection & Directory Expansion
+
+**Step 1: Check for --merge flag:**
 - If arguments start with `--merge`: **BATCH MERGE MODE** (N files → 1 merged HTML)
 - Strip `--merge` to get file list
 
-**Check for semicolons:**
+**Step 2: Check for semicolons:**
 - If arguments contain `;`: **BATCH SEPARATE MODE** (N files → N HTML files)
 
-**Otherwise: SINGLE MODE** (1 file → 1 HTML file)
+**Step 3: Handle Directory Input:**
+If path is a directory, process all .txt/.pdf files within it.
+If batch (semicolon-separated), process each path independently.
+
+**Step 4: Update mode if needed:**
+- If 1 file: SINGLE MODE
+- If multiple files AND no --merge: BATCH SEPARATE MODE
+- If multiple files AND --merge: BATCH MERGE MODE
 
 **For BATCH SEPARATE:** Launch batch-separate-processor agent N times (architectural isolation)
 
@@ -116,56 +133,158 @@ Before creating, Claude will verify:
 - ☐ Source file identified
 - ☐ Template loaded from correct location
 - ☐ Source-only policy confirmed
+- ☐ Learning objectives: Extract LO statements EXACTLY as written (NO paraphrasing)
 - ☐ WebSearch for mnemonics/analogies (mandatory)
-- ☐ All learning objectives extracted verbatim
 - ☐ Save location: `[Class]/[Exam]/Claude Study Tools/`
 
-## Post-Creation
+<verbatim-requirement>
+CRITICAL: Learning objective STATEMENTS must be copied EXACTLY as they appear in the source.
+- Copy word-for-word, character-for-character
+- Do NOT rephrase, summarize, or "improve" wording
+- Preserve original numbering and sequence
+- If an LO is long, still copy it completely
+Note: Answers/explanations CAN be paraphrased from source content.
+</verbatim-requirement>
 
-After creation, Claude automatically:
-- ✓ Verifies all learning objectives answered (all parts)
-- ✓ Confirms all comparison tables present
-- ✓ Checks master tables include ALL topics
-- ✓ Reports "Post-creation verification complete"
+<template-compliance>
+MANDATORY TEMPLATE REQUIREMENTS - HTML Learning Objectives (4 tabs):
 
-## Batch Processing (BATCH MODE ONLY)
+STRUCTURE:
+- Tab 1 "Learning Objectives": Q&A format answering each LO in detail
+  - LO statement verbatim from source
+  - Comprehensive answer with tables, boxes, pearls
+- Tab 2 "Key Comparisons": Focused 2-3 way comparison tables
+  - One comparison table per category
+  - Columns = items compared, Rows = features
+- Tab 3 "Master Comparison Tables": Complete differential diagnosis tables
+  - ALL conditions/topics in comprehensive tables
+  - Color-coded by category
+- Tab 4 "Summary": High-yield pearls, mnemonics, "If X Think Y" associations
+  - Mnemonics (researched via WebSearch)
+  - Clinical pearls boxes
+  - Quick reference associations
 
-**If BATCH MODE, process each file independently:**
+FORMATTING (MANDATORY):
+- Tab navigation: .nav-tabs with aria-selected states
+- Tab content: .tab-content with proper show/hide
+- Tables: table-bordered, header row with background color
+- Color scheme:
+  - Emergency/Critical: Red (#FFEBEE border, #FFCDD2 background)
+  - Warning: Orange (#FFF3E0 border, #FFE0B2 background)
+  - Normal/Info: Blue (#E3F2FD border, #BBDEFB background)
+  - Clinical Pearls: Teal (#E0F2F1 background)
+  - Memory Tricks: Orange (#FFF3E0 background)
+  - High-Yield: Purple (#F3E5F5 background)
+- Responsive design: Works on mobile and desktop
+- Self-contained: No external dependencies (all CSS inline)
+</template-compliance>
 
-For each source file in the batch:
-1. **Announce file**: "Processing file X of Y: [filename]"
+## Post-Creation Template Compliance Verification
 
-2. **CRITICAL - Context Isolation Check**:
-   ```
-   CONTEXT ISOLATION VERIFICATION:
-   ☐ I will FORGET all content from previous files
-   ☐ I will ONLY extract information from THIS source file: [filename]
-   ☐ I will verify content is ONLY from THIS file (not previous files)
-   ☐ This HTML will contain ZERO content from previous files
-   ```
+**MANDATORY - Verify EACH requirement before reporting complete:**
 
-3. **Per-File Verification** - Run complete verification checklist for THIS file
+**Structure Compliance:**
+☐ EXACTLY 4 tabs present: Learning Objectives, Key Comparisons, Master Comparison Tables, Summary
+☐ Tab names correct
+☐ Tab 1: Each LO has Q&A format with verbatim statement + comprehensive answer
+☐ Tab 1: Answers include tables, boxes, and pearls where appropriate
+☐ Tab 2: Focused 2-3 way comparison tables (one category per table)
+☐ Tab 2: Columns = items compared, Rows = features
+☐ Tab 3: ALL conditions/topics in comprehensive tables
+☐ Tab 3: Color-coded by category
+☐ Tab 4: Mnemonics, Clinical Pearls, "If X Think Y" sections
 
-4. **Read source file** - Read THIS file completely, extract THIS file's content only
+**Formatting Compliance:**
+☐ Tab navigation uses .nav-tabs with proper aria states
+☐ Tab content uses .tab-content with show/hide
+☐ Tables: table-bordered with header row backgrounds
+☐ Color scheme correct:
+  - Emergency/Critical: Red (#FFEBEE border, #FFCDD2 background)
+  - Warning: Orange (#FFF3E0 border, #FFE0B2 background)
+  - Normal/Info: Blue (#E3F2FD border, #BBDEFB background)
+  - Clinical Pearls: Teal (#E0F2F1 background)
+  - Memory Tricks: Orange (#FFF3E0 background)
+  - High-Yield: Purple (#F3E5F5 background)
+☐ Responsive design (works on mobile)
+☐ Self-contained (no external dependencies)
 
-5. **MANDATORY - State content scope**: "Learning objectives in [filename]: [list main topics]"
-   - This proves you're only using THIS file's content
-   - If you see content from previous files, STOP and re-read source
+**Source Accuracy:**
+☐ All info from source only (except researched mnemonics)
+☐ External additions marked with asterisk (*)
+☐ Learning objective STATEMENTS verbatim (not paraphrased)
 
-6. **Create HTML file** - For THIS file only, using ONLY content from step 5
+**Completeness:**
+☐ ALL learning objectives from source included
+☐ All LOs answered (all parts)
+☐ All comparison tables created for similar items
+☐ Master tables complete with all topics
+☐ Mnemonics researched via WebSearch (not invented)
 
-7. **Post-creation verification** - Verify THIS HTML contains ONLY THIS file's content
+**CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
-8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+**State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
 
-**Critical for Batch:**
-- Each file gets complete verification (not once at start)
-- Explicitly state learning objectives from each file before creating HTML
-- Verify no content from previous files contaminated output
-- Clear all data between files
-- Each file gets its own HTML output
+## Batch Processing
 
-**Batch Summary**: After all files, provide summary of files created, topics covered, and any issues.
+For batch operations (semicolon-separated files or --merge flag):
+@.claude/skills/batch-coordinator/SKILL.md
+
+---
+
+## Common Mistakes to Avoid
+
+❌ Paraphrasing learning objective statements (must be verbatim)
+❌ Using wrong box colors (e.g., using red for normal info)
+❌ Inventing mnemonics instead of researching via WebSearch
+❌ Missing tabs (must have all 4 tabs)
+❌ Adding external medical information not in source
+❌ Using external CSS/JS dependencies (must be self-contained)
+❌ Combining multiple categories in one comparison table
+
+---
+
+## Template Compliance Examples
+
+### CORRECT Implementation:
+
+**Structure:**
+✓ 4 tabs: Learning Objectives, Key Comparisons, Master Comparison Tables, Summary
+✓ Each LO has verbatim statement + comprehensive Q&A answer
+✓ Separate comparison tables per category (one for Mechanism, one for Clinical)
+✓ Master tables include ALL conditions from source
+
+**Formatting:**
+✓ Clinical Pearls box: Teal (#E0F2F1) background
+✓ Memory Tricks box: Orange (#FFF3E0) background
+✓ High-Yield box: Purple (#F3E5F5) background
+✓ Emergency items: Red (#FFEBEE) border
+✓ All CSS inline (self-contained HTML)
+
+**Learning Objective Statements:**
+✓ Source: "1. Compare and contrast the four types of hypersensitivity reactions"
+✓ Guide:  "1. Compare and contrast the four types of hypersensitivity reactions"
+✓ Status: VERBATIM - correct
+
+### INCORRECT Implementation:
+
+**Structure:**
+✗ Only 3 tabs (missing Summary)
+✗ LO statements paraphrased instead of verbatim
+✗ All comparisons in ONE giant table instead of separate tables
+✗ Missing conditions from master tables
+
+**Formatting:**
+✗ Clinical Pearls using purple instead of teal ← WRONG
+✗ All boxes same color ← WRONG
+✗ Emergency items not highlighted in red ← WRONG
+✗ External Bootstrap CSS linked ← WRONG (must be self-contained)
+
+**Learning Objective Statements:**
+✗ Source: "1. Compare and contrast the four types of hypersensitivity reactions"
+✗ Guide:  "1. Differentiate between hypersensitivity reaction types"
+✗ Status: PARAPHRASED - must use exact wording from source
+
+---
 
 ## Related Commands
 

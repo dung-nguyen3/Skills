@@ -1,6 +1,6 @@
 ---
 description: Create clinical assessment guide for history and physical exam
-argument-hint: Source file(s) and chief complaint. Use --merge for combined output (e.g., "file.txt" "Chief Complaint" OR "f1.txt;f2.txt" "Chief Complaint" OR "--merge f1.txt;f2.txt" "Chief Complaint")
+argument-hint: Source file(s)/directory(ies) and chief complaint. Use --merge for combined output (e.g., "file.txt" "Chief Complaint" OR "/path/to/dir" "CC" OR "--merge /dir1;/dir2" "CC")
 ---
 
 Create a clinical assessment guide from: $ARGUMENTS
@@ -11,9 +11,9 @@ Create a clinical assessment guide from: $ARGUMENTS
 
 **Parse arguments to detect mode:**
 
-**Arguments format:** `[files] "Chief Complaint"`
+**Arguments format:** `[files/directories] "Chief Complaint"`
 - Last argument is always the chief complaint (quoted string)
-- Everything before it is the file path(s)
+- Everything before it is the file/directory path(s)
 
 **Check for --merge flag:**
 - If first argument is `--merge`: **BATCH MERGE MODE**
@@ -40,6 +40,13 @@ Chief Complaint: [extract from last argument]
 
 ---
 
+### Step 0.5: Handle Directory Input
+
+If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
+If batch (semicolon-separated), process each path independently.
+
+---
+
 
 ### Step 1: Pre-Creation Verification & Agent Invocation
 
@@ -51,10 +58,12 @@ Chief Complaint: [extract from last argument]
 VERIFICATION CHECKLIST:
 ☐ Source file: [file path]
 ☐ Chief complaint: [chief complaint from arguments]
-☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Complete_Medical_History_Card.txt
+☐ Physical exam resources: CloudDocs Practicals directory + source file
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ No external medical facts will be added
-☐ Output format: Interactive HTML with 5 tabs
+☐ Output format: Interactive HTML with 6 tabs (including Patient Education)
+☐ UI pattern: Accordion-based collapsible sections for conditions
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -72,7 +81,8 @@ BATCH SEPARATE VALIDATION:
 ☐ Chief complaint: [from arguments - applies to ALL files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files are clinical content
-☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (per file)
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Complete_Medical_History_Card.txt
+☐ Physical exam resources: CloudDocs Practicals directory + source file (per file)
 ☐ Output: N files → N clinical guides
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
@@ -109,7 +119,8 @@ BATCH MERGE VALIDATION:
 ☐ Chief complaint: [from arguments - filters content from ALL files]
 ☐ File validation: All files exist and are readable
 ☐ Files contain clinical content (conditions, presentations, workups)
-☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Clinical_Medical_History_Card.txt (unified)
+☐ Template files: Clinical_Physical_Assessment_REVISED.txt, Complete_Medical_History_Card.txt
+☐ Physical exam resources: CloudDocs Practicals directory + source file (unified)
 ☐ Output: N files → 1 merged clinical guide (filtered by chief complaint)
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Extracts ONLY chief complaint relevant info from each file
@@ -162,49 +173,88 @@ Read these files in order:
    - Tab organization requirements
    - Example HTML code
 
-2. **Medical History Card**: `study-guides/templates-and-examples/Clinical_Medical_History_Card.txt`
+2. **Medical History Card**: `study-guides/templates-and-examples/Complete_Medical_History_Card.txt`
    - Complete HPI (OLDCAARTS) components
    - PMH, FH, SH elements
    - Full ROS by system
 
-3. **Source File**: $ARGUMENTS
-   - Extract all conditions/differentials
-   - Note physical exam findings
-   - Identify specialized tests
+3. **Physical Exam Resources** (CloudDocs):
+   - Protocol: `/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Practicals/Protocol for Complete Physical Exam.pdf`
+   - Specialized Exams: `/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Practicals/Specialized Exams update.xlsx`
+   - Extract comprehensive PE protocol and specialized exam maneuvers
 
-### Step 3: Analyze Source File
+4. **Source File**: $ARGUMENTS
+   - Extract all conditions/differentials
+   - Note condition-specific physical exam findings
+   - Identify specialized tests
+   - **Combine PE findings**: Use BOTH CloudDocs resources AND source file exams
+
+### Step 3: Load Physical Exam Resources from CloudDocs
+
+**Read CloudDocs Practicals directory resources:**
+
+1. **Protocol for Complete Physical Exam.pdf**:
+   - Read the comprehensive PE protocol
+   - Extract systematic exam approach (Inspection, Palpation, Percussion, Auscultation, ROM)
+   - Note general physical exam maneuvers
+
+2. **Specialized Exams update.xlsx**:
+   - Read specialized exam database
+   - Extract condition-specific maneuvers
+   - Note special tests and techniques
+
+**Purpose**: These provide the comprehensive PE foundation that will be combined with condition-specific exams from the source file.
+
+### Step 4: Analyze Source File
 
 **CRITICAL - Read ENTIRE source file:**
 - Identify ALL conditions mentioned
 - Group by onset pattern (acute, subacute, chronic)
-- Extract physical exam maneuvers
+- Extract condition-specific physical exam maneuvers
 - Note specialized tests
 - Document decision points
 
-### Step 4: Create 5-Tab HTML Guide
+**Physical Exam Integration**:
+- **Combine** CloudDocs PE protocol (comprehensive baseline) + Source file PE findings (condition-specific)
+- For each condition, include BOTH general PE approach AND specialized maneuvers
+- Example: For knee pain → General MSK exam (from CloudDocs) + McMurray test, Lachman test (from source)
+
+### Step 5: Create 6-Tab HTML Guide
 
 **Required Tabs:**
 
+**IMPORTANT - UI Structure:**
+- Use accordion-based collapsible sections for condition-specific content (Tabs 1-3, Tab 6)
+- Place general OLDCAARTS box OUTSIDE accordions (always visible) at top of Tabs 1-3
+- Place general Patient Education box OUTSIDE accordions at top of Tab 6
+- Use compact styling (13px font, tighter spacing) per template specifications
+
 **Tab 1: Acute Onset (Hours to Days)**
-- Top differentials for acute presentation
-- Complete HPI (OLDCAARTS) with exact questions in quotes
-- Essential PMH, FH, SH
-- Focused ROS with checkboxes
-- Physical Exam Focus (Inspection, Palpation, ROM, Special Tests)
+- General OLDCAARTS box at top (OUTSIDE accordion - always visible)
+- Condition accordions with:
+  - Top differentials for acute presentation
+  - Complete HPI (OLDCAARTS) with exact questions in quotes
+  - Essential PMH, FH, SH
+  - Focused ROS with checkboxes
+  - Physical Exam Focus (Inspection, Palpation, ROM, Special Tests)
+- Color: Red (#dc2626) for emergency, Orange (#f97316) for acute
 
 **Tab 2: Subacute Onset (Days to Weeks)**
-- Top differentials for subacute presentation
-- Same structure as acute with condition-specific questions
+- Same structure as Tab 1 with condition-specific questions
+- Color: Yellow (#eab308) for subacute conditions
 
 **Tab 3: Chronic Onset (Weeks to Months)**
-- Top differentials for chronic presentation
 - Same structure with chronic-specific considerations
+- Color: Green (#22c55e) for chronic conditions
 
 **Tab 4: Focused Physical Exam**
 - Detailed physical examination by anatomical region
+- **Use combined PE approach**: CloudDocs protocol + source file maneuvers
 - Inspection: What to look for (be specific)
 - Palpation: What to feel for
-- Special tests: Named maneuvers with technique
+- Percussion/Auscultation: When applicable (from CloudDocs protocol)
+- ROM: Range of motion testing (from CloudDocs)
+- Special tests: Named maneuvers with technique (from BOTH CloudDocs Specialized Exams + source file)
 - Group conditions with same physical exam together
 
 **Tab 5: Quick Reference Chart**
@@ -213,7 +263,18 @@ Read these files in order:
 - Red flags requiring immediate action
 - Decision support tables
 
-### Step 5: HPI Format (OLDCAARTS)
+**Tab 6: Patient Education (NEW)**
+- **General Patient Education Box (at top, NOT in accordion):**
+  - Medication information with risks/side effects (NSAIDs, Muscle Relaxants, Corticosteroids, Opioids)
+  - Smoking Cessation section (paragraph form)
+  - When to Seek Immediate Emergency Care (red flag symptoms)
+  - Follow-Up Care expectations
+- **Condition-Specific Patient Education (in accordions):**
+  - Each condition in collapsible accordion
+  - Format: "What It Is", "What to Expect", "Treatment" in paragraph form
+  - Color coding matches condition urgency (red=emergency, orange=acute, green=chronic)
+
+### Step 6: HPI Format (OLDCAARTS)
 
 **All questions must be in quotes for direct patient use:**
 - **O**nset: "When exactly did this start?"
@@ -227,7 +288,7 @@ Read these files in order:
 - **T**iming: "Any pattern? Time of day? After activities?"
 - **S**etting: "What were you doing when it started?"
 
-### Step 6: Essential History (from Medical History Card)
+### Step 7: Essential History (from Medical History Card)
 
 **PMH:**
 - Allergies: "Any allergies to medications, latex, food?"
@@ -249,7 +310,7 @@ Read these files in order:
 - Drugs: "Any recreational drugs?"
 - Exercise: "Do you exercise?"
 
-### Step 7: Focused ROS
+### Step 8: Focused ROS
 
 Use checkbox format (☐) for each system:
 - **General**: Fever, chills, weight change, fatigue, night sweats
@@ -259,7 +320,7 @@ Use checkbox format (☐) for each system:
 - **CV**: Chest pain, palpitations, edema
 - **Other systems as relevant to chief complaint**
 
-### Step 8: Physical Exam Specificity
+### Step 9: Physical Exam Specificity
 
 **Be specific about what to examine FOR:**
 - ✅ "Inspect skin for erythema, edema, ecchymosis, deformity"
@@ -271,19 +332,23 @@ Use checkbox format (☐) for each system:
 - ✅ "Test ROM: flexion (0-140°), extension (0°), internal rotation (0-40°)"
 - ❌ "Test ROM"
 
-### Step 9: HTML Formatting
+### Step 10: HTML Formatting
 
 **Required:**
 - Inline CSS styles (no external stylesheets)
-- Interactive tabs with onclick navigation
+- Interactive tabs with onclick navigation (6 tabs)
+- Accordion UI for condition-specific content (see template for CSS/JS)
+- Compact styling (13px base font, tighter spacing)
 - Responsive grid layouts
 - Color-coded sections:
   - Red (#dc2626): Acute/Emergency
   - Orange (#f97316): Subacute/Urgent
+  - Yellow (#eab308): Subacute
   - Green (#22c55e): Chronic
   - Blue (#3b82f6): Information sections
+- Mobile responsiveness (@media queries for smaller screens)
 
-### Step 10: Use TodoWrite
+### Step 11: Use TodoWrite
 
 Track your progress:
 - Create todo for each tab
@@ -291,7 +356,7 @@ Track your progress:
 - Mark completed as you finish
 - Keep user informed
 
-### Step 11: Post-Creation Verification
+### Step 12: Post-Creation Verification
 
 **Automatically verify the completed file:**
 
@@ -301,10 +366,14 @@ Track your progress:
    - Terminology matches source exactly
 
 2. **Template Compliance**
-   - All 5 tabs present (Acute, Subacute, Chronic, Focused PE, Quick Reference)
+   - All 6 tabs present (Acute, Subacute, Chronic, Focused PE, Quick Reference, Patient Education)
+   - Accordion UI implemented for condition-specific content (Tabs 1-3, Tab 6)
+   - General OLDCAARTS box outside accordions (Tabs 1-3)
+   - General Patient Education box outside accordions (Tab 6)
    - OLDCAARTS complete with all 10 elements (in quotes)
    - PMH/FH/SH/ROS following Medical History Card format
    - Physical exam following Assessment template structure
+   - Patient Education with "What It Is", "What to Expect", "Treatment" format
 
 3. **Completeness**
    - All conditions from source included
@@ -316,11 +385,14 @@ Track your progress:
    - All patient questions in quotes
    - Specific exam findings (what to inspect FOR)
    - Color-coded sections by urgency
-   - Interactive tabs functional
+   - Interactive tabs functional (6 tabs)
+   - Accordion toggles working (expand/collapse)
+   - Compact styling applied (13px font)
+   - Patient Education complete with condition-specific accordions
 
 **CRITICAL: State "Post-creation verification complete" and report any issues. Fix immediately.**
 
-### Step 12: Save File
+### Step 13: Save File
 
 - Save to: `[Class]/[Exam]/Claude Study Tools/[Chief_Complaint]_Clinical_Assessment_Guide.html`
 - Create Claude Study Tools folder if doesn't exist
@@ -329,44 +401,10 @@ Track your progress:
 
 ---
 
-### Batch Processing (BATCH MODE ONLY)
+## Batch Processing
 
-**If BATCH MODE, process each file independently:**
-
-For each source file in the batch:
-1. **Announce file**: "Processing file X of Y: [filename]"
-
-2. **CRITICAL - Context Isolation Check**:
-   ```
-   CONTEXT ISOLATION VERIFICATION:
-   ☐ I will FORGET all clinical content from previous files
-   ☐ I will ONLY extract information from THIS source file: [filename]
-   ☐ I will verify clinical content is ONLY from THIS file (not previous files)
-   ☐ This guide will contain ZERO content from previous files
-   ```
-
-3. **Per-File Verification** - Run complete verification checklist for THIS file
-
-4. **Read source file** - Read THIS file completely, extract THIS file's clinical content only
-
-5. **MANDATORY - State clinical scope**: "Clinical topics in [filename]: [list main conditions/complaints]"
-   - This proves you're only using THIS file's content
-   - If you see topics from previous files, STOP and re-read source
-
-6. **Create clinical guide** - For THIS file only, using ONLY content from step 5
-
-7. **Post-creation verification** - Verify THIS guide contains ONLY THIS file's content
-
-8. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
-
-**Critical for Batch:**
-- Each file gets complete verification (not once at start)
-- Explicitly state clinical scope from each file before creating guide
-- Verify no content from previous files contaminated output
-- Clear all data between files
-- Each file gets its own HTML output
-
-**Batch Summary**: After all files, provide summary of guides created, conditions covered, and any issues.
+For batch operations (semicolon-separated files or --merge flag):
+@.claude/skills/batch-coordinator/SKILL.md
 
 ---
 

@@ -1,3 +1,27 @@
+## COMPLETE MEDICAL HISTORY CARD
+## Purpose: Comprehensive history-taking checklist for clinical encounters
+##
+## PHYSICAL EXAM RESOURCES:
+## - Physical Exam Protocol: /Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Practicals/Protocol for Complete Physical Exam.pdf
+## - Specialized Exams Database: /Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Practicals/Specialized Exams update.xlsx
+##
+## INTEGRATION:
+## - Used by /clinical command for medical history components
+## - Physical exam findings: Combined from CloudDocs Practicals directory + source file
+## - HTML structure: Clinical_Physical_Assessment_REVISED.txt template
+##
+## WORKFLOW:
+## When creating clinical assessment guides:
+## 1. This file provides medical history checklist structure
+## 2. Physical exams selected from BOTH:
+##    a) CloudDocs Practicals directory (comprehensive PE protocol + specialized exams)
+##    b) Source file provided by user (condition-specific exams)
+## 3. Clinical_Physical_Assessment_REVISED.txt provides HTML formatting
+##
+## NOTE: This template contains medical history components only.
+## Physical examination protocols are referenced from CloudDocs directory above.
+##
+
 ##HPI: (OLD CAARTS)##
 ___ Onset
 ___ Location 

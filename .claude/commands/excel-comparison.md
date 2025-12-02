@@ -1,9 +1,9 @@
 ---
-description: Create comprehensive 4-tab Excel drug chart from pharmacology source material
+description: Create 3-tab Excel comparison chart for any medical topic (conditions, mechanisms, concepts)
 argument-hint: Single file, batch files separated by semicolon, or directory paths. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
-Create Excel drug chart from: $ARGUMENTS
+Create Excel comparison chart from: $ARGUMENTS
 
 ## Instructions
 
@@ -29,9 +29,9 @@ Files: [list]
 ```
 
 **Mode Descriptions:**
-- **SINGLE**: 1 file → 1 Excel chart (inline processing)
-- **BATCH SEPARATE**: N files → N Excel charts (agent per file, isolated contexts)
-- **BATCH MERGE**: N files → 1 merged Excel chart (orchestrator agent, intelligent merge)
+- **SINGLE**: 1 file → 1 comparison chart (inline processing)
+- **BATCH SEPARATE**: N files → N comparison charts (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged comparison chart (orchestrator agent, intelligent merge)
 
 ---
 
@@ -51,7 +51,7 @@ If batch (semicolon-separated), process each path independently.
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
-☐ Instruction template: Excel Drugs Chart 11-1.txt
+☐ Instruction template: Excel_Comparison_Chart_REVISED.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
@@ -71,9 +71,9 @@ VERIFICATION CHECKLIST:
 BATCH SEPARATE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
-☐ Homogeneity check: All files are drug lectures
-☐ Template: Excel Drugs Chart 11-1.txt (per file)
-☐ Output: N files → N Excel charts
+☐ Homogeneity check: All files are medical content suitable for comparison
+☐ Template: Excel_Comparison_Chart_REVISED.txt (per file)
+☐ Output: N files → N comparison charts
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
@@ -93,7 +93,7 @@ Launching agent [X] times:
 Each agent invocation is architecturally isolated (zero cross-contamination).
 ```
 
-**STOP HERE - Do NOT continue with Steps 2-10. The agent handles all processing.**
+**STOP HERE - Do NOT continue with Steps 2-9. The agent handles all processing.**
 
 ---
 
@@ -106,8 +106,8 @@ BATCH MERGE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Files are related/compatible for merging
-☐ Template: Excel Drugs Chart 11-1.txt (unified)
-☐ Output: N files → 1 merged Excel chart
+☐ Template: Excel_Comparison_Chart_REVISED.txt (unified)
+☐ Output: N files → 1 merged comparison chart
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Content matrix, overlap resolution, source traceability
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
@@ -120,35 +120,35 @@ I'll use the batch-merge-orchestrator agent to intelligently merge your files.
 
 Agent will:
 1. Read all N files completely
-2. Create content matrix (which drugs in which files)
+2. Create content matrix (which topics in which files)
 3. Identify overlaps and gaps
 4. Resolve conflicts with source traceability
-5. Merge into ONE comprehensive Excel chart
+5. Merge into ONE comprehensive comparison chart
 6. Create merge report with traceability map
 
 Output:
-- 1 merged Excel chart: [filename.xlsx]
+- 1 merged comparison chart: [filename.xlsx]
 - 1 merge report: [filename_merge_report.md]
 ```
 
-**STOP HERE - Do NOT continue with Steps 2-10. The agent handles all processing.**
+**STOP HERE - Do NOT continue with Steps 2-9. The agent handles all processing.**
 
 ---
 
 **IMPORTANT FOR BATCH MODES:**
 - Batch separate/merge use agents (subagent architecture)
-- Single mode uses inline processing (Steps 2-10)
+- Single mode uses inline processing (Steps 2-9)
 - Do NOT mix - if agent is launched, STOP and let agent complete the work
 
 ### Step 2: Load Resources
 
 Read these files in order:
-1. **Template**: `study-guides/templates-and-examples/Excel_Drugs_Chart_11-1_REVISED.txt`
-   - Main instructions and requirements (~550 lines)
+1. **Template**: `study-guides/templates-and-examples/Excel_Comparison_Chart_REVISED.txt`
+   - Main instructions and requirements
 
-2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Excel_Drug_Example.py`
-   - Complete 4-tab implementation with all helper functions
-   - Shows Drug Details, Key Comparisons, Master Chart, High-Yield tabs
+2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Excel_Comparison_Example.py`
+   - Complete 3-tab implementation with all helper functions
+   - Shows Key Comparisons, Master Chart, Summary tabs
 
 3. **Color Reference**: `study-guides/templates-and-examples/Excel_Color_Reference.txt`
    - Shared color palette and styling specifications
@@ -156,72 +156,61 @@ Read these files in order:
 ### Step 3: Analyze Source File
 
 **CRITICAL - Read ENTIRE source file:**
-- Identify ALL drugs mentioned (don't skip any)
-- Note drug classes and classifications
-- Extract drug-specific vs class-wide information
-- Verify first-line designations
-- Document combination therapies
+- Identify ALL conditions/concepts/mechanisms mentioned (don't skip any)
+- Note categories suitable for comparison tables
+- Identify items that need side-by-side comparison
+- Look for clinical presentation, diagnosis, treatment patterns
+- Note any existing mnemonics or memory aids mentioned
 
-### Step 4: Create 4-Tab Excel Chart
+### Step 4: Create 3-Tab Excel Chart
 
 **Required Tabs:**
 
-**Tab 1: Drug Details**
-- Drug class comparison tables
-- Drugs as columns, properties as rows
-- Merged cells for class-wide properties
-- Memory tricks row after EACH drug class
-- Analogy boxes for mechanisms
+**Tab 1: Key Comparisons**
+- Multiple side-by-side comparison tables
+- ONE category per table (don't combine)
+  - Example: Separate tables for Mechanism, Clinical Presentation, Treatment
+- Columns = items being compared (e.g., Type I, Type II, Type III, Type IV)
+- Rows = comparison categories within that topic
+- Mnemonics placed directly BELOW relevant tables
+- 2-3 blank rows between different comparison tables
 
-**Tab 2: Key Comparisons**
-- Side-by-side comparison tables
-- Mechanisms, toxicities, uses, interactions
-- Analogies for drug mechanisms (researched)
-- One category per comparison
-
-**Tab 3: Master Chart**
-- ALL drugs in one table
-- Rows = drugs, Columns = characteristics
+**Tab 2: Master Chart**
+- ALL items in one comprehensive table
+- Rows = individual conditions/types
+- Columns = key characteristics
 - Frozen header row
-- Color-coded by drug class
+- Color-coded by category
 
-**Tab 4: High-Yield & Pearls**
-- Clinical pearls
-- Mnemonics (researched)
+**Tab 3: Summary**
+- Mnemonics (researched, with full breakdown)
 - "If X Think Y" associations
-- Must-know facts
+- Critical values (if applicable)
+- Key definitions
+- High-yield pearls
 
 **Critical Requirements:**
 - Use ONLY source file information
 - ALL data cells have soft pastel backgrounds
-- Mark first-line drugs only if source states it
-- Verify before merging cells (identical info only)
 - Research mnemonics via WebSearch (mandatory)
-- Use emojis sparingly: 🟢 (DOC), ⚠️ (critical warnings)
-
-<verbatim-requirement>
-CRITICAL: If source contains learning objectives, they must be copied EXACTLY.
-- Copy word-for-word, character-for-character
-- Do NOT rephrase, summarize, or "improve" wording
-- Preserve original numbering and sequence
-Note: Drug details/explanations CAN be paraphrased from source content.
-</verbatim-requirement>
+- Multiple comparison tables (one category per table)
+- Mnemonics directly below relevant tables (not on separate sheet)
 
 <template-compliance>
-MANDATORY TEMPLATE REQUIREMENTS - Excel Drug Chart (4 tabs):
+MANDATORY TEMPLATE REQUIREMENTS - Excel Comparison Chart (3 tabs):
 
 STRUCTURE:
-- Tab 1 "Drug Details": One table per drug class, columns=drugs, rows=properties
-  - Analogy column (Column G) with 2-4 sentence analogies
-  - Memory tricks row after EACH drug class table
-  - Merged cells ONLY for class-wide info (not drug-specific)
-- Tab 2 "Key Comparisons": Comparisons ACROSS drug classes
-- Tab 3 "Master Chart": ALL drugs in ONE table, header frozen
-- Tab 4 "High-Yield & Pearls": Clinical pearls, mnemonics, must-know facts
+- Tab 1 "Key Comparisons": MULTIPLE tables (one category per table)
+  - NOT one giant table combining all categories
+  - Columns = items compared, Rows = features
+  - Mnemonics placed DIRECTLY BELOW relevant tables
+  - 2-3 blank rows between different comparison tables
+- Tab 2 "Master Chart": ALL items in ONE comprehensive table, header frozen
+- Tab 3 "Summary": Mnemonics, "If X Think Y", critical values, key definitions
 
 FORMATTING (MANDATORY):
 - Header row: #4472C4 (dark blue), white bold text, size 12
-- Data rows: Rotate through pastel palette BY DRUG CLASS:
+- Data rows: Rotate through pastel palette BY CATEGORY:
   1. #D9E2F3 (Ice Blue)
   2. #C8E6C9 (Seafoam)
   3. #D1C4E9 (Light Orchid)
@@ -233,7 +222,7 @@ FORMATTING (MANDATORY):
   9. #FFE8D6 (Soft Tangerine)
   10. #BBDEFB (Powder Blue)
 - ALL data cells MUST have pastel background (NOT white)
-- Same drug class = same color throughout
+- Same category = same color throughout
 - White borders (#FFFFFF) on all cells
 - Text: Black (#000000), Calibri, size 11
 - Column widths: 25-40 based on content
@@ -243,10 +232,10 @@ FORMATTING (MANDATORY):
 ### Step 5: WebSearch for Mnemonics
 
 **MANDATORY - Research established mnemonics:**
-- Search: "medical mnemonics [drug class]"
-- Search: "[drug name] mnemonic USMLE"
+- Search: "medical mnemonics [topic]"
+- Search: "[concept] mnemonic USMLE"
 - Find PROVEN mnemonics only - never invent
-- Add mnemonic row after each drug class table
+- Add mnemonic row after each comparison table
 - Include full breakdown/explanation
 
 ### Step 6: Python Implementation
@@ -261,7 +250,7 @@ Use openpyxl to create the Excel file:
 ### Step 7: Use TodoWrite
 
 Track your progress:
-- Create todo for each drug class
+- Create todo for each comparison table
 - Create todo for each tab
 - Mark completed as you finish
 - Keep user informed
@@ -271,20 +260,20 @@ Track your progress:
 **MANDATORY - Verify EACH requirement before reporting complete:**
 
 **Structure Compliance:**
-☐ EXACTLY 4 tabs present: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
+☐ EXACTLY 3 tabs present: Key Comparisons, Master Chart, Summary
 ☐ Tab names correct
-☐ Tab 1: One table per drug class (NOT all classes in one table)
-☐ Tab 1: Analogy column present with 2-4 sentence analogies
-☐ Tab 1: Memory tricks row after EACH drug class table
-☐ Tab 2: Comparisons ACROSS drug classes
-☐ Tab 3: ALL drugs in ONE table, header frozen
-☐ Tab 4: Clinical pearls, mnemonics, must-know facts sections
+☐ Tab 1: MULTIPLE comparison tables (one category per table)
+☐ Tab 1: NOT one giant table combining all categories
+☐ Tab 1: Mnemonics DIRECTLY BELOW relevant tables
+☐ Tab 1: 2-3 blank rows between different comparison tables
+☐ Tab 2: ALL items in ONE table, header frozen
+☐ Tab 3: Mnemonics, "If X Think Y", critical values, key definitions
 
 **Formatting Compliance:**
 ☐ Header row: Dark blue (#4472C4), white bold text, size 12
 ☐ ALL data cells have pastel background (NOT white/no fill)
-☐ Each drug class uses ONE consistent color
-☐ Colors rotate when drug class changes
+☐ Each category uses ONE consistent color
+☐ Colors rotate when category changes
 ☐ White borders (#FFFFFF) on all cells
 ☐ Text wrapping enabled on all cells
 ☐ Column widths appropriate (25-40)
@@ -292,15 +281,14 @@ Track your progress:
 ☐ Font: Calibri, size 11 (headers 12)
 
 **Source Accuracy:**
-☐ Drug-specific info NOT applied to entire class
-☐ First-line designation only where source explicitly states
-☐ No external info (except researched mnemonics)
-☐ Merged cells only for truly class-wide information
+☐ All information from source file only
+☐ No external medical facts added
+☐ Terminology matches source exactly
 
 **Completeness:**
-☐ ALL drugs from source included
-☐ All drug classes covered
-☐ Master chart has every drug
+☐ ALL conditions/concepts from source included
+☐ All comparison categories covered
+☐ Master chart has all items
 ☐ Mnemonics researched via WebSearch (not invented)
 
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
@@ -309,7 +297,7 @@ Track your progress:
 
 ### Step 9: Save File
 
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Comparison_Chart.xlsx`
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
@@ -317,12 +305,12 @@ Track your progress:
 
 ## Common Mistakes to Avoid
 
-❌ Marking all drugs as first-line when only specific ones are
-❌ Merging cells without verifying identical information
-❌ Applying drug-specific info to entire class
+❌ Combining multiple categories in one comparison table
+❌ Putting mnemonics only in Summary (should be below relevant tables too)
 ❌ Inventing mnemonics instead of researching
 ❌ White backgrounds on data cells (should be pastel)
-❌ Missing memory tricks row after drug classes
+❌ Using 4 tabs instead of 3
+❌ Adding external medical information not in source
 
 ---
 
@@ -331,30 +319,31 @@ Track your progress:
 ### CORRECT Implementation:
 
 **Structure:**
-✓ 4 tabs: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
-✓ Tab 1 has separate table for each drug class (NRTIs, NNRTIs, PIs, etc.)
-✓ Memory tricks row after each drug class table
-✓ Analogy column (Column G) explaining mechanisms
+✓ 3 tabs: Key Comparisons, Master Chart, Summary
+✓ Tab 1 has MULTIPLE tables (one for Mechanism, one for Clinical, one for Treatment)
+✓ Mnemonic directly below each comparison table
+✓ 2-3 blank rows between comparison tables
 
 **Formatting:**
-✓ "NRTIs" (5 drugs): All rows #D9E2F3 (Ice Blue)
-✓ "NNRTIs" (3 drugs): All rows #C8E6C9 (Seafoam)
-✓ "Protease Inhibitors" (4 drugs): All rows #D1C4E9 (Light Orchid)
+✓ "Type I Hypersensitivity" rows: All #D9E2F3 (Ice Blue)
+✓ "Type II Hypersensitivity" rows: All #C8E6C9 (Seafoam)
+✓ "Type III Hypersensitivity" rows: All #D1C4E9 (Light Orchid)
+✓ "Type IV Hypersensitivity" rows: All #F7E7CE (Champagne)
 ✓ Header row: #4472C4 with white bold text
 ✓ All data cells have background color
 
 ### INCORRECT Implementation:
 
 **Structure:**
-✗ Only 3 tabs (missing High-Yield & Pearls)
-✗ All drug classes in ONE giant table instead of separate tables
-✗ No memory tricks row after drug classes
-✗ Missing analogy column
+✗ Only 2 tabs (missing Summary)
+✗ ONE giant comparison table combining Mechanism, Clinical, and Treatment
+✗ Mnemonics only in Summary tab (should be below relevant tables)
+✗ No spacing between different comparison sections
 
 **Formatting:**
-✗ "NRTIs": Some rows #D9E2F3, others white/no fill ← WRONG
-✗ All drug classes same color ← WRONG
-✗ Random colors per row instead of per class ← WRONG
+✗ "Type I": Some rows colored, others white/no fill ← WRONG
+✗ All hypersensitivity types same color ← WRONG
+✗ Random colors per row instead of per category ← WRONG
 ✗ Gray borders instead of white ← WRONG
 ✗ Data cells with no background color ← WRONG
 
@@ -364,45 +353,46 @@ Track your progress:
 
 ### Single File:
 ```
-/excel "Pharmacology/Exam 3/Extract/HIV Antivirals.txt"
+/excel comparison "Clinical Medicine/Exam 2/Extract/Hypersensitivity.txt"
 ```
-Creates: `HIV_Antivirals_Drug_Chart.xlsx`
+Creates: `Hypersensitivity_Comparison_Chart.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
-/excel "/Users/name/Documents/Pharmacology/Exam 2/Extract"
+/excel comparison "/Users/name/Documents/ClinMed/Exam 2/Extract"
 ```
 Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/excel "HIV.txt;COVID.txt;Antibiotics.txt"
+/excel comparison "TypeI.txt;TypeII.txt;TypeIII.txt;TypeIV.txt"
 ```
-Creates 3 separate Excel files:
-- `HIV_Drug_Chart.xlsx` (only HIV drugs)
-- `COVID_Drug_Chart.xlsx` (only COVID drugs)
-- `Antibiotics_Drug_Chart.xlsx` (only antibiotic drugs)
+Creates 4 separate comparison charts:
+- `TypeI_Comparison_Chart.xlsx`
+- `TypeII_Comparison_Chart.xlsx`
+- `TypeIII_Comparison_Chart.xlsx`
+- `TypeIV_Comparison_Chart.xlsx`
 
 Uses batch-separate-processor agent with architectural isolation (zero contamination).
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+/excel comparison --merge "Hypersensitivity-Mechanisms.txt;Hypersensitivity-Clinical.txt;Hypersensitivity-Treatment.txt"
 ```
-Creates 1 merged Excel file:
-- `HIV_Comprehensive_Drug_Chart.xlsx` (all HIV drug classes merged)
-- `HIV_Comprehensive_Drug_Chart_merge_report.md` (source traceability)
+Creates 1 merged comparison chart:
+- `Hypersensitivity_Comprehensive_Comparison_Chart.xlsx` (all content merged)
+- `Hypersensitivity_Comprehensive_merge_report.md` (source traceability)
 
 Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, and source traceability.
 
 ### Batch Merge with Directories (N directories → 1 merged output):
 ```
-/excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/excel comparison --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
-Finds all files from both directories, merges into 1 comprehensive Excel chart.
+Finds all files from both directories, merges into 1 comprehensive comparison chart.
 
 ### Mixed Files and Directories:
 ```
-/excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
+/excel comparison --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
 ```
-Expands directories, keeps specific files, merges all into 1 Excel chart.
+Expands directories, keeps specific files, merges all into 1 comparison chart.

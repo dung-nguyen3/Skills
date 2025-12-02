@@ -83,6 +83,16 @@ The 6-step protocol ensures systematic verification of every study guide against
 
 **Goal:** Compare study guide against source fact-by-fact
 
+**Checks in this step:**
+- 3.1: Source Accuracy
+- 3.2: Completeness
+- 3.3: Template Compliance (Comprehensive)
+- 3.4: Mnemonic Verification
+- 3.5: Citation Verification
+- 3.6: Quality Checks
+- 3.7: Learning Objective Text Fidelity (CRITICAL)
+- 3.8: Comparison Table Completeness (CRITICAL)
+
 ### Check 3.1: Source Accuracy
 
 **For EVERY fact in study guide:**
@@ -95,15 +105,16 @@ The 6-step protocol ensures systematic verification of every study guide against
 ```
 
 **Acceptable variations:**
-- Paraphrasing (same meaning, different words)
 - Reorganization (facts in different order)
 - Formatting (tables vs. paragraphs)
+- Paraphrasing of ANSWERS/CONTENT (same meaning, different words)
 
 **NOT acceptable:**
 - Adding facts not in source
 - Changing meaning
 - Inferring unstated information
 - Extrapolating from source
+- **Paraphrasing learning objective STATEMENTS** (see Check 3.7)
 
 ### Check 3.2: Completeness
 
@@ -120,29 +131,175 @@ The 6-step protocol ensures systematic verification of every study guide against
 - User requested specific topics only
 - Marked as "Not covered in source"
 
-### Check 3.3: Template Compliance
+### Check 3.3: Template Compliance (COMPREHENSIVE)
 
-**Verify template structure followed:**
+**CRITICAL: Verify ALL template requirements, not just tab existence.**
 
-**Excel Drug Chart:**
-- [ ] All 4 tabs present (Drug Details, Key Comparisons, Master Chart, High-Yield)
-- [ ] Drug Details tab has all columns
-- [ ] Key Comparisons has comparison tables
-- [ ] Master Chart has ALL drugs
-- [ ] High-Yield has summary
+---
 
-**HTML Learning Objectives:**
-- [ ] All 4 tabs present (LO Q&A, Key Comparisons, Master Tables, Summary)
-- [ ] LO Q&A has questions AND answers
-- [ ] Key Comparisons has comparison tables
-- [ ] Master Tables has organized reference tables
-- [ ] Summary has high-yield review
+#### Excel Drug Chart (4 tabs)
 
-**Clinical Assessment:**
+**Tab Structure:**
+- [ ] Tab 1: "Drug Details" exists
+- [ ] Tab 2: "Key Comparisons" exists
+- [ ] Tab 3: "Master Chart" exists
+- [ ] Tab 4: "High-Yield & Pearls" exists
+
+**Tab 1 (Drug Details) Requirements:**
+- [ ] One comparison table per drug class (NOT all classes in one table)
+- [ ] Columns = drugs, Rows = properties
+- [ ] Analogy column (Column G) present with 2-4 sentence analogies
+- [ ] Memory tricks row after EACH drug class table
+- [ ] Merged cells ONLY for class-wide information (not drug-specific)
+
+**Tab 2 (Key Comparisons) Requirements:**
+- [ ] Comparisons ACROSS drug classes (not within single class)
+- [ ] Categories: Mechanisms, Toxicities, Uses, Interactions
+
+**Tab 3 (Master Chart) Requirements:**
+- [ ] ALL drugs in ONE table (no missing drugs)
+- [ ] Header row frozen
+- [ ] Rows = individual drugs, Columns = characteristics
+
+**Tab 4 (High-Yield) Requirements:**
+- [ ] Clinical pearls section (teal background #E0F2F1)
+- [ ] Memory tricks section (orange background #FFF3E0)
+- [ ] Must-know facts section (purple background #F3E5F5)
+
+---
+
+#### Excel Comparison Chart (3 tabs)
+
+**Tab Structure:**
+- [ ] Tab 1: "Key Comparisons" exists
+- [ ] Tab 2: "Master Chart" exists
+- [ ] Tab 3: "Summary" exists
+
+**Tab 1 (Key Comparisons) Requirements:**
+- [ ] MULTIPLE comparison tables (one category per table)
+- [ ] NOT one giant table combining all categories
+- [ ] Columns = items compared, Rows = features
+- [ ] Mnemonics placed DIRECTLY BELOW relevant tables
+- [ ] 2-3 blank rows between different comparison tables
+
+**Tab 2 (Master Chart) Requirements:**
+- [ ] ALL items in one comprehensive table
+- [ ] Header row frozen
+- [ ] Color-coded by category
+
+**Tab 3 (Summary) Requirements:**
+- [ ] Mnemonics section (with full breakdown)
+- [ ] "If X Think Y" associations
+- [ ] Critical values (if applicable)
+- [ ] Key definitions
+- [ ] High-yield pearls
+
+---
+
+#### Excel Master Chart (1 tab)
+
+**Tab Structure:**
+- [ ] Single sheet named "Master Chart"
+
+**Requirements:**
+- [ ] ALL items from source in one table
+- [ ] Header row frozen
+- [ ] User-specified columns (or defaults)
+- [ ] Color-coded by class/group
+- [ ] First column (class/group) bold
+
+---
+
+#### Word Learning Objectives (4 sections)
+
+**Section Structure:**
+- [ ] Section 1: Learning Objectives
+- [ ] Section 2: Key Comparisons
+- [ ] Section 3: Master Chart
+- [ ] Section 4: High-Yield Summary
+
+**Section 1 (Learning Objectives) Requirements:**
+- [ ] Each LO has: Summary + Tables + Pearls Box + Mnemonics Box + Analogy Box
+- [ ] Page break after each LO
+
+**Section 2 (Key Comparisons) Requirements:**
+- [ ] Comparison tables for 2+ similar items
+- [ ] Analogy column for drug mechanisms
+
+**Section 3 (Master Chart) Requirements:**
+- [ ] ALL conditions/topics from source
+- [ ] Color-coded rows
+
+**Section 4 (High-Yield Summary) Requirements:**
+- [ ] Color-coded boxes grouped by category
+
+**Word Formatting:**
+- [ ] Font: Calibri size 12 (11 for dense tables)
+- [ ] Table style: 'Table Grid'
+- [ ] Headers: Bold, colored background (pastel)
+- [ ] Data cells: Black text, white background
+- [ ] Margins: 0.8 inches all sides
+- [ ] Headings: Purple (118, 75, 162)
+
+---
+
+#### HTML Learning Objectives (4 tabs)
+
+**Tab Structure:**
+- [ ] Tab 1: "LO Q&A" exists
+- [ ] Tab 2: "Key Comparisons" exists
+- [ ] Tab 3: "Master Tables" exists
+- [ ] Tab 4: "Summary" exists
+
+**Requirements per tab:** Similar to Word structure
+**Formatting:** CSS styles matching color scheme
+
+---
+
+#### Clinical Assessment Guide
+
 - [ ] Organized by chief complaint
-- [ ] History-taking sections present
+- [ ] History-taking sections present (OLDCAARTS)
 - [ ] Physical exam sections present
-- [ ] OLDCAARTS format if applicable
+- [ ] Color-coded sections
+- [ ] Decision support ("If X, Think Y")
+
+---
+
+#### Formatting Requirements (ALL Excel Files)
+
+**CRITICAL - Verify EVERY formatting requirement:**
+
+**Colors:**
+- [ ] Header row: #4472C4 (dark blue), white bold text, size 12
+- [ ] Data rows: Pastel colors rotating by category
+- [ ] ALL data cells have background color (NOT white/no fill)
+- [ ] Same category = same color (one color per category)
+- [ ] Colors rotate when category changes
+
+**Color Palette (must use these exact hex codes):**
+```
+1. #D9E2F3 (Ice Blue)
+2. #C8E6C9 (Seafoam)
+3. #D1C4E9 (Light Orchid)
+4. #F7E7CE (Champagne)
+5. #BDD7EE (Sky Blue)
+6. #F0F8FF (Pale Azure)
+7. #FCE4EC (Blush Pink)
+8. #EDE7F6 (Soft Lilac)
+9. #FFE8D6 (Soft Tangerine)
+10. #BBDEFB (Powder Blue)
+```
+
+**Other Formatting:**
+- [ ] White borders (#FFFFFF) on all cells
+- [ ] Text: Black (#000000), Calibri, size 11
+- [ ] Column widths: 25-40 based on content type
+- [ ] Row heights: Auto-expand to fit content
+- [ ] Text wrapping enabled on all cells
+- [ ] Frozen header row on Master Chart tabs
+
+**CRITICAL: Flag as IMPORTANT issue if ANY formatting requirement is not met.**
 
 ### Check 3.4: Mnemonic Verification
 
@@ -184,6 +341,118 @@ The 6-step protocol ensures systematic verification of every study guide against
 - [ ] Formatting consistent throughout
 - [ ] No broken tables or missing data
 - [ ] No placeholder text left in guide
+
+### Check 3.7: Learning Objective Text Fidelity (CRITICAL)
+
+**Learning objective STATEMENTS must be VERBATIM from source.**
+
+<verbatim-requirement>
+CRITICAL: Learning objectives must be copied EXACTLY as they appear in the source.
+- Copy word-for-word, character-for-character
+- Do NOT rephrase, summarize, or "improve" wording
+- Preserve original numbering and sequence
+- If an LO is long, still copy it completely
+</verbatim-requirement>
+
+**For EVERY learning objective statement:**
+```
+1. Find exact LO text in source file
+2. Compare character-by-character with study guide
+3. Flag ANY rewording as CRITICAL issue
+4. Verify original numbering/order preserved
+```
+
+**CORRECT (verbatim):**
+```
+Source: "1. Describe the mechanism of action of beta-blockers"
+Guide:  "1. Describe the mechanism of action of beta-blockers"
+Status: ✓ PASS
+```
+
+**INCORRECT (paraphrased):**
+```
+Source: "1. Describe the mechanism of action of beta-blockers"
+Guide:  "1. Explain how beta-blockers work"
+Status: ✗ FAIL - Learning objective was paraphrased
+```
+
+**Note:** This check applies ONLY to LO statements themselves, NOT to answers/explanations. Answers can still be paraphrased from source content.
+
+### Check 3.8: Comparison Table Completeness (CRITICAL)
+
+**Ensure comparison tables include ALL comparable items from source.**
+
+**Purpose:** Prevents the common error of skipping items that should be compared.
+
+#### 3.8.A: Source Item Count
+
+For EACH comparison table in the study guide:
+```
+1. Identify the comparison category (diagnostics, treatments, mechanisms, etc.)
+2. Return to source file
+3. Count ALL items mentioned for that category
+4. Document: "Source contains [N] items for [category] comparison"
+```
+
+#### 3.8.B: Table Item Count
+
+```
+1. Count items actually present in the comparison table
+2. Document: "Table contains [M] items"
+```
+
+#### 3.8.C: Gap Analysis
+
+```
+If N ≠ M:
+- List EVERY missing item explicitly
+- Mark as ERROR: "Comparison table missing: [X, Y, Z]"
+- This is an IMPORTANT or CRITICAL issue depending on significance
+```
+
+#### 3.8.D: Common Omissions to Check
+
+| Category | Commonly Skipped Items | Verification Action |
+|----------|----------------------|---------------------|
+| Diagnostic tests | Lab tests, less common imaging, physical exam findings | Count ALL tests mentioned in source |
+| Treatments | Secondary options, adjunct therapies, alternatives | Verify ALL treatment options included |
+| Drug classes | "Similar" drugs, less common members of class | Each drug name from source gets own column |
+| Conditions | Rare differentials, conditions with sparse details | Include even if some table cells sparse |
+| Mechanisms | Items mentioned only briefly | Systematic source scan catches all |
+
+#### 3.8.E: LO Style Handling
+
+**When verifying, consider how the LO references items:**
+
+| LO Style | Example | Verification Action |
+|----------|---------|---------------------|
+| General category | "Compare the diagnostic tools for PE" | Count ALL diagnostic tools for PE in source |
+| Specific items | "Compare D-dimer, CT, and V/Q" | Verify exactly those 3 items present |
+| Class reference | "Describe NRTIs" | Count ALL individual NRTI drug names in source |
+
+**Key Principle:** If LO says "drug class", "conditions", "diagnostic tools", etc. without listing specifics, verify ALL individual items from that category in the source are included.
+
+#### 3.8.F: Documentation Format
+
+**For each comparison table, document:**
+```
+COMPARISON TABLE: [Category name]
+Source item count: [N]
+Table item count: [M]
+Status: [PASS if N=M / FAIL if N≠M]
+Missing items: [list if any]
+```
+
+**Example Issue:**
+```
+Category: IMPORTANT
+Location: Key Comparisons tab, Diagnostic Tests table
+Issue: Comparison table missing items from source
+Evidence: Table compares 3 tests (CT, D-dimer, ECG)
+Source Check: Source mentions 5 tests (CT, D-dimer, ECG, V/Q scan, Chest X-ray)
+Missing: V/Q scan, Chest X-ray
+Recommendation: Add V/Q scan and Chest X-ray columns to comparison table
+```
 
 ---
 
@@ -418,11 +687,11 @@ Recommendation: Remove "GI upset" from side effects list
 **Solution:** Approach skeptically, verify everything
 
 **Pitfall 2: False Positives**
-- Flagging acceptable paraphrasing as hallucination
+- Flagging acceptable paraphrasing of ANSWERS as hallucination
 - Marking reorganization as error
-- Being too strict on wording
+- Being too strict on wording of explanatory content
 
-**Solution:** Focus on meaning, not exact wording
+**Solution:** Focus on meaning for ANSWERS, but require exact wording for LEARNING OBJECTIVE STATEMENTS (see Check 3.7)
 
 **Pitfall 3: Missing Context**
 - Verifying facts in isolation

@@ -59,6 +59,7 @@ VERIFICATION CHECKLIST:
 ☐ Source file: [exact path to source file]
 ☐ Instruction template: [Drug Chart HTML / Excel Drug Chart / HTML LO / Clinical Assessment / Word LO]
 ☐ Source-only policy: I will ONLY use information from source file
+☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
@@ -91,6 +92,7 @@ This skill works with the `verification-guard.sh` hook:
 ❌ Inventing mnemonics without WebSearch research
 ❌ Skipping template file review
 ❌ Not specifying exact source file path
+❌ **Paraphrasing learning objective statements**
 
 ## What's ALLOWED
 
@@ -98,6 +100,34 @@ This skill works with the `verification-guard.sh` hook:
 ✅ Researched mnemonics via WebSearch (must cite source)
 ✅ External additions marked with asterisk (*) if absolutely necessary
 ✅ Page references from source file
+✅ Paraphrasing of answers/explanations (same meaning from source)
+✅ Formatting changes to content (bullets, tables, etc.)
+
+## Learning Objective Verbatim Requirement
+
+<verbatim-requirement>
+CRITICAL: Learning objective STATEMENTS must be copied EXACTLY as written in the source.
+- Copy word-for-word, character-for-character
+- Do NOT rephrase, summarize, or "improve" wording
+- Preserve original numbering and sequence
+- If an LO is long, still copy it completely
+</verbatim-requirement>
+
+**This applies to:** The LO statement text itself (e.g., "Describe the mechanism of action of beta-blockers")
+
+**This does NOT apply to:** Answers, explanations, or content that responds to the LO (these can be paraphrased from source)
+
+**Example - CORRECT:**
+```
+Source: "1. Describe the mechanism of action of beta-blockers"
+Guide:  "1. Describe the mechanism of action of beta-blockers"
+```
+
+**Example - INCORRECT:**
+```
+Source: "1. Describe the mechanism of action of beta-blockers"
+Guide:  "1. Explain how beta-blockers work"  ← WRONG: Paraphrased
+```
 
 ## Emergency Override
 
@@ -170,5 +200,8 @@ For comprehensive guidance on specific topics, see the resources/ directory:
 
 ### Verification Checklists
 **[Verification Checklists](resources/verification-checklists.md)** - Step-by-step checklists for pre-creation, during-creation, and post-creation verification
+
+### Learning Objective Preservation
+**[Learning Objective Preservation](resources/learning-objective-preservation.md)** - CRITICAL guide for extracting learning objectives verbatim (exact text, no paraphrasing), with examples of correct vs. incorrect extraction
 
 **Note:** Resources are loaded on-demand when you need detailed guidance on specific topics. The main skill provides the essential workflow; resources provide deep-dive documentation.

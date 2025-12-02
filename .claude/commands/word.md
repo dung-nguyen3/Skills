@@ -1,6 +1,6 @@
 ---
 description: Create comprehensive Word study guide from source material following template
-argument-hint: Single file OR batch files separated by semicolon. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "--merge f1.txt;f2.txt")
+argument-hint: Single file, batch files separated by semicolon, or directory paths. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
 Create Word study guide from: $ARGUMENTS
@@ -35,6 +35,13 @@ Files: [list]
 
 ---
 
+### Step 0.5: Handle Directory Input
+
+If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
+If batch (semicolon-separated), process each path independently.
+
+---
+
 ### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
@@ -46,6 +53,7 @@ VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
 ☐ Instruction template: Word LO 11-5.txt
 ☐ Source-only policy: I will ONLY use information from source file
+☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
@@ -168,6 +176,40 @@ Follow template instructions EXACTLY:
 - NO page references in Word docs
 - Font: Calibri size 12
 
+<verbatim-requirement>
+CRITICAL: Learning objective STATEMENTS must be copied EXACTLY as they appear in the source.
+- Copy word-for-word, character-for-character
+- Do NOT rephrase, summarize, or "improve" wording
+- Preserve original numbering and sequence
+- If an LO is long, still copy it completely
+Note: Answers/explanations CAN be paraphrased from source content.
+</verbatim-requirement>
+
+<template-compliance>
+MANDATORY TEMPLATE REQUIREMENTS - Word Learning Objectives (4 sections):
+
+STRUCTURE:
+- Section 1 "Learning Objectives": Each LO with Summary + Tables + Pearls Box + Mnemonics Box + Analogy Box
+  - Page break after each LO
+- Section 2 "Key Comparisons": Comparison tables for 2+ similar items
+- Section 3 "Master Chart": ALL conditions/topics from source, color-coded rows
+- Section 4 "High-Yield Summary": Color-coded boxes grouped by category
+
+FORMATTING (MANDATORY):
+- Font: Calibri size 12 (11 for dense tables)
+- Table style: 'Table Grid'
+- Margins: 0.8 inches all sides
+- Headings: Purple (118, 75, 162)
+- Table headers: Bold, colored background (pastel)
+- Table data cells: Black text, white background
+- Color-coded boxes:
+  - High-Yield Box: Purple title (118, 75, 162), #F3E5F5 background
+  - Clinical Pearls: Teal title (0, 77, 64), #E0F2F1 background
+  - Critical/Emergency: Red title (183, 28, 28), #FFEBEE background
+  - Memory Tricks: Orange title (230, 81, 0), #FFF3E0 background
+  - Normal Variants: Green title (27, 94, 32), #E8F5E9 background
+</template-compliance>
+
 **WebSearch Requirements (MANDATORY):**
 - Research mnemonics for each learning objective
 - Find analogies for drug mechanisms/complex concepts
@@ -182,31 +224,50 @@ Track your progress:
 - Mark completed when done
 - Keep user informed
 
-### Step 6: Post-Creation Verification
+### Step 6: Post-Creation Template Compliance Verification
 
-**Automatically verify the completed document:**
+**MANDATORY - Verify EACH requirement before reporting complete:**
 
-1. **Source Accuracy**
-   - All info from source only (except mnemonics)
-   - External additions marked with *
-   - No page references
+**Structure Compliance:**
+☐ EXACTLY 4 sections present: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+☐ Section names correct
+☐ Section 1: Each LO has Summary + Tables + Pearls Box + Mnemonics Box + Analogy Box
+☐ Section 1: Page break after each LO
+☐ Section 2: Comparison tables for 2+ similar items
+☐ Section 3: ALL conditions/topics from source in one table
+☐ Section 3: Color-coded rows by category
+☐ Section 4: Color-coded boxes grouped by category
 
-2. **Template Compliance**
-   - All 4 sections present
-   - Correct colors (soft pastels)
-   - All required elements included
+**Formatting Compliance:**
+☐ Font: Calibri size 12 (11 for dense tables)
+☐ Table style: 'Table Grid'
+☐ Margins: 0.8 inches all sides
+☐ Section headings: Purple (118, 75, 162)
+☐ Table headers: Bold, colored background (pastel)
+☐ Table data cells: Black text, white background
+☐ Color-coded boxes use correct colors:
+  - High-Yield: Purple title (118, 75, 162), #F3E5F5 background
+  - Clinical Pearls: Teal title (0, 77, 64), #E0F2F1 background
+  - Critical/Emergency: Red title (183, 28, 28), #FFEBEE background
+  - Memory Tricks: Orange title (230, 81, 0), #FFF3E0 background
+  - Normal Variants: Green title (27, 94, 32), #E8F5E9 background
 
-3. **Completeness**
-   - All LOs answered (all parts)
-   - All comparisons created
-   - Master chart complete
+**Source Accuracy:**
+☐ All info from source only (except researched mnemonics)
+☐ External additions marked with asterisk (*)
+☐ No page references in Word docs
+☐ Learning objective STATEMENTS verbatim (not paraphrased)
 
-4. **Quality**
-   - No incorrect groupings
-   - No spelling errors
-   - Proper formatting
+**Completeness:**
+☐ ALL learning objectives from source included
+☐ All LOs answered (all parts)
+☐ All comparisons created for 2+ similar items
+☐ Master chart complete with all conditions/topics
+☐ Mnemonics researched via WebSearch (not invented)
 
-**CRITICAL: State "Post-creation verification complete" and report any issues. Fix immediately.**
+**CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
+
+**State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
 
 ### Step 7: Save File
 
@@ -216,48 +277,67 @@ Track your progress:
 
 ---
 
-### Step 8: Batch Processing (BATCH MODE ONLY)
+## Batch Processing
 
-**If BATCH MODE, repeat Steps 1-7 for EACH file:**
+For batch operations (semicolon-separated files or --merge flag):
+@.claude/skills/batch-coordinator/SKILL.md
 
-For each source file in the batch:
-1. **Announce file**: "Processing file X of Y: [filename]"
+---
 
-2. **CRITICAL - Context Isolation Check**:
-   ```
-   CONTEXT ISOLATION VERIFICATION:
-   ☐ I will FORGET all content from previous files
-   ☐ I will ONLY extract information from THIS source file: [filename]
-   ☐ I will verify content is ONLY from THIS file (not previous files)
-   ☐ This Word doc will contain ZERO content from previous files
-   ```
+## Common Mistakes to Avoid
 
-3. **Per-File Verification** (Step 1) - Run complete verification checklist for THIS file
+❌ Paraphrasing learning objective statements (must be verbatim)
+❌ Missing page breaks between learning objectives
+❌ Using wrong box colors (e.g., using purple for Clinical Pearls)
+❌ Inventing mnemonics instead of researching via WebSearch
+❌ Missing sections (must have all 4 sections)
+❌ Adding external medical information not in source
 
-4. **Load resources** (Step 2) - templates already loaded, reuse
+---
 
-5. **Read source file** (Step 3) - read THIS file completely, extract THIS file's content only
+## Template Compliance Examples
 
-6. **MANDATORY - State content summary**: "Content found in [filename]: [brief summary]"
-   - This proves you're only using THIS file's content
-   - If you see content from previous files, STOP and re-read source
+### CORRECT Implementation:
 
-7. **Create Word doc** (Step 4-5) - for THIS file only, using ONLY content from step 6
+**Structure:**
+✓ 4 sections: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+✓ Each LO has Summary, Tables, Pearls Box, Mnemonics Box, Analogy Box
+✓ Page break after each learning objective
+✓ Comparison tables for similar conditions (Type I vs Type II diabetes)
 
-8. **Post-creation verification** (Step 6) - verify THIS file contains ONLY THIS file's content
+**Formatting:**
+✓ Clinical Pearls box: Teal title (0, 77, 64), #E0F2F1 background
+✓ Memory Tricks box: Orange title (230, 81, 0), #FFF3E0 background
+✓ High-Yield box: Purple title (118, 75, 162), #F3E5F5 background
+✓ Section headings: Purple (118, 75, 162)
+✓ Font: Calibri size 12
 
-9. **Save file** (Step 7) - with unique filename based on source
+**Learning Objective Statements:**
+✓ Source: "1. Describe the mechanism of action of beta-blockers"
+✓ Guide:  "1. Describe the mechanism of action of beta-blockers"
+✓ Status: VERBATIM - correct
 
-10. **MANDATORY - Isolation Confirmation**: "File [X] complete. Cleared all data. Ready for next file."
+### INCORRECT Implementation:
 
-**Critical for Batch:**
-- Each file gets complete verification (not once at start)
-- Explicitly state content summary from each file before creating Word doc
-- Verify no content from previous files contaminated output
-- Clear all data between files
-- Each file gets its own Word output
+**Structure:**
+✗ Only 3 sections (missing High-Yield Summary)
+✗ No page breaks between learning objectives
+✗ Missing Analogy boxes
+✗ No comparison tables for similar items
 
-**Batch Summary**: After all files, provide summary of files created, statistics, and any issues.
+**Formatting:**
+✗ Clinical Pearls box using purple instead of teal ← WRONG
+✗ All boxes same color ← WRONG
+✗ Random colors not matching template ← WRONG
+✗ Section headings in black instead of purple ← WRONG
+✗ Font: Arial instead of Calibri ← WRONG
+
+**Learning Objective Statements:**
+✗ Source: "1. Describe the mechanism of action of beta-blockers"
+✗ Guide:  "1. Explain how beta-blockers work"
+✗ Status: PARAPHRASED - must use exact wording from source
+
+---
 
 ## Example Usage
 
