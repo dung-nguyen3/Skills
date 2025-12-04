@@ -105,26 +105,62 @@ Quick reference for all important paths in your setup.
 
 ## Quick Copy/Paste Templates
 
-### For Commands
+### For Commands (Copy exactly as shown)
 
-**Process source file:**
-```bash
+**Create all formats from source file:**
+```
 /create-all "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
 ```
 
-**Process directory:**
-```bash
+**Create all formats from directory:**
+```
 /create-all "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/"
 ```
 
-**Check batch status:**
-```bash
+**Check batch status for specific directory:**
+```
 /batch-status "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/"
 ```
 
-**Verify accuracy:**
-```bash
+**Check batch status for all courses:**
+```
+/batch-status --all
+```
+
+**View mnemonic cache statistics:**
+```
+/mnemonic-cache stats
+```
+
+**List cached mnemonics:**
+```
+/mnemonic-cache list
+```
+
+**Clean expired cache entries:**
+```
+/mnemonic-cache clean
+```
+
+**Resume failed batch:**
+```
+/error-recovery-resume
+```
+
+**Verify study guide accuracy:**
+```
 /verify-accuracy "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Claude Study Tools/HIV_Drug_Chart.xlsx" "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
+```
+
+**Individual format commands:**
+```
+/4-tab-excel "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
+
+/LO-word "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
+
+/anki "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
+
+/word-excel-anki "/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3/Pharmacology 3/Exam 1/Extract/HIV_Drugs.txt"
 ```
 
 ### For Terminal (Python Scripts)
