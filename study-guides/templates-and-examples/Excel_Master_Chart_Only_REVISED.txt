@@ -127,7 +127,7 @@ ROW_COLORS = [
 - Row height: 25
 
 **Data rows:**
-- Font: Calibri, Size 11, Black
+- Font: Calibri, Size 10, Black
 - Column A (category/class): Bold
 - Other columns: Regular weight
 - Alignment: Left horizontal, top vertical
@@ -138,6 +138,12 @@ ROW_COLORS = [
 - White borders (#FFFFFF) on all cells
 - Invisible borders that blend with pastel backgrounds
 - Creates clean, modern look
+
+### Text Formatting Within Cells:
+- Use bullet points (•) for lists
+- Use line breaks (\n) for readability
+- Bold critical warnings (but keep black color)
+- UPPERCASE for emphasis (FATAL, NEVER, etc.)
 
 ---
 
@@ -182,7 +188,7 @@ ROW_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
 def set_cell_style(cell, text, bold=False, bg_color=None):
     """Apply cell styling - black text always for readability"""
     cell.value = text
-    cell.font = Font(name='Calibri', size=11, bold=bold, color='000000')
+    cell.font = Font(name='Calibri', size=10, bold=bold, color='000000')
     cell.alignment = Alignment(horizontal='left', vertical='top', wrap_text=True)
 
     if bg_color:
@@ -292,7 +298,7 @@ Before finalizing:
 
 **Formatting:**
 - [ ] Header row: Dark blue, white bold text, size 12, frozen
-- [ ] Data rows: Size 11, black text
+- [ ] Data rows: Size 10, black text
 - [ ] First column bold (category/class)
 - [ ] All cells have white borders
 - [ ] Word wrap enabled

@@ -22,20 +22,47 @@ from openpyxl.utils import get_column_letter
 # COLOR SCHEME (See Excel_Color_Reference.txt for details)
 # =============================================================================
 
-HEADER_BG = '4472C4'  # Dark blue
-MNEMONIC_BG = 'E6F3FF'  # Light blue for mnemonics
-ROW_COLORS = [
-    'D9E2F3',  # Ice Blue
-    'C8E6C9',  # Seafoam
-    'D1C4E9',  # Light Orchid
-    'F7E7CE',  # Champagne
-    'BDD7EE',  # Sky Blue
-    'F0F8FF',  # Pale Azure
-    'FCE4EC',  # Blush Pink
-    'EDE7F6',  # Soft Lilac
-    'FFE8D6',  # Soft Tangerine
-    'BBDEFB',  # Powder Blue
+# Two-shade system: Each color has HEADER (25% darker) and MAIN (lighter) variants
+# - HEADER shade: Table title rows, column headers
+# - MAIN shade: Data rows
+
+MAIN_TITLE_BG = '4472C4'  # Dark blue - ONLY for sheet titles
+MNEMONIC_BG = 'E6F3FF'    # Light blue for mnemonics
+CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
+
+# HEADER_COLORS: 25% darker shades for table titles and column headers
+HEADER_COLORS = [
+    'B4C6E7',  # Ice Blue HEADER
+    'A8CCA8',  # Seafoam HEADER
+    'B8A4D0',  # Light Orchid HEADER
+    'E0D0B0',  # Champagne HEADER
+    '9DC3E6',  # Sky Blue HEADER
+    'D0E8FF',  # Pale Azure HEADER
+    'E8C4CC',  # Blush Pink HEADER
+    'D0C8DC',  # Soft Lilac HEADER
+    'E0C8B0',  # Soft Tangerine HEADER
+    'A0C4E8',  # Powder Blue HEADER
 ]
+
+# MAIN_COLORS: Lighter shades for data rows
+MAIN_COLORS = [
+    'D9E2F3',  # Ice Blue MAIN
+    'C8E6C9',  # Seafoam MAIN
+    'D1C4E9',  # Light Orchid MAIN
+    'F7E7CE',  # Champagne MAIN
+    'BDD7EE',  # Sky Blue MAIN
+    'F0F8FF',  # Pale Azure MAIN
+    'FCE4EC',  # Blush Pink MAIN
+    'EDE7F6',  # Soft Lilac MAIN
+    'FFE8D6',  # Soft Tangerine MAIN
+    'BBDEFB',  # Powder Blue MAIN
+]
+
+# COLOR RULE: Same table/category = same color set
+# - Table title row: HEADER_COLORS[index]
+# - Column headers: HEADER_COLORS[index]
+# - Data rows: MAIN_COLORS[index]
+# Rotate to next color SET only when starting a NEW table/category
 
 # =============================================================================
 # HELPER FUNCTIONS
@@ -63,30 +90,44 @@ def apply_cell_style(cell, text='', bold=False, font_size=11, bg_color=None,
             bottom=Side(style='thin', color='FFFFFF')
         )
 
-def create_comparison_header(ws, title, row, span_cols=5):
-    """Create merged title row for a comparison table"""
+def create_comparison_header(ws, title, row, span_cols=5, table_index=0):
+    """Create merged title row for a comparison table
+
+    Args:
+        table_index: Index for color selection (uses HEADER_COLORS[table_index])
+    """
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
     cell = ws.cell(row, 1)
+    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
     apply_cell_style(cell, text=title, bold=True, font_size=14,
-                    bg_color=HEADER_BG, alignment='center', font_color='FFFFFF')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
+                    bg_color=header_color, alignment='center', font_color='000000')
+    cell.font = Font(name='Calibri', size=14, bold=True, color='000000')
     ws.row_dimensions[row].height = 30
 
-def create_column_headers(ws, headers, row, start_col=1):
-    """Create column headers for comparison table"""
+def create_column_headers(ws, headers, row, start_col=1, table_index=0):
+    """Create column headers for comparison table
+
+    Args:
+        table_index: Index for color selection (uses HEADER_COLORS[table_index])
+    """
+    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
     for col_idx, header in enumerate(headers, start=start_col):
         cell = ws.cell(row, col_idx)
         apply_cell_style(cell, text=header, bold=True, font_size=11,
-                        bg_color='8CA4BE', alignment='center', font_color='FFFFFF')
+                        bg_color=header_color, alignment='center', font_color='000000')
     ws.row_dimensions[row].height = 25
 
 def create_master_header_row(ws, headers, row=1):
-    """Create formatted header row with freeze for Master Chart"""
+    """Create formatted header row with freeze for Master Chart
+
+    Uses dark blue (#4472C4) with white text - NOT the two-shade system.
+    Master Chart header is always dark blue, data rows use MAIN_COLORS.
+    """
     for col_idx, header in enumerate(headers, start=1):
         cell = ws.cell(row, col_idx)
         apply_cell_style(
             cell, text=header, bold=True, font_size=12,
-            bg_color=HEADER_BG, alignment='center', font_color='FFFFFF'
+            bg_color=MAIN_TITLE_BG, alignment='center', font_color='FFFFFF'
         )
         cell.font = Font(name='Calibri', size=12, bold=True, color='FFFFFF')
 
@@ -112,10 +153,13 @@ def add_mnemonic_row(ws, row, mnemonic_text, span_cols=5):
     ws.row_dimensions[row].height = 60
 
 def add_section_header(ws, row, title):
-    """Add section header in Summary tab"""
+    """Add section header in Summary tab
+
+    Uses MAIN_TITLE_BG (dark blue) for sheet-level section headers
+    """
     cell = ws.cell(row, 1)
     apply_cell_style(cell, text=title, bold=True, font_size=14,
-                    bg_color=HEADER_BG, alignment='center', font_color='FFFFFF')
+                    bg_color=MAIN_TITLE_BG, alignment='center', font_color='FFFFFF')
     cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
     ws.row_dimensions[row].height = 30
 
@@ -145,16 +189,18 @@ def create_key_comparisons_tab(wb):
     current_row = 1
 
     # =========================================================================
-    # COMPARISON TABLE 1: Mechanism
+    # COMPARISON TABLE 1: Mechanism (uses color set 0 = Ice Blue)
     # =========================================================================
+    table_index = 0
 
-    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: MECHANISM", current_row, span_cols=5)
+    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: MECHANISM", current_row,
+                            span_cols=5, table_index=table_index)
     current_row += 1
 
     # Column headers (items being compared)
     headers = ['Category', 'Type I (Immediate)', 'Type II (Cytotoxic)',
                'Type III (Immune Complex)', 'Type IV (Delayed)']
-    create_column_headers(ws, headers, current_row)
+    create_column_headers(ws, headers, current_row, table_index=table_index)
     current_row += 1
 
     # Comparison data for Mechanism table
@@ -167,12 +213,13 @@ def create_key_comparisons_tab(wb):
          'Complement, neutrophils', 'Cytokines (IFN-γ, TNF)'),
     ]
 
-    for idx, row_data in enumerate(mechanism_data):
-        color = ROW_COLORS[idx % len(ROW_COLORS)]
+    # Table 1 uses ONE color SET: HEADER for title/headers, MAIN for data rows
+    table_1_main = MAIN_COLORS[table_index]
+    for row_data in mechanism_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
             bold = (col_idx == 1)  # First column bold
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
+            apply_cell_style(cell, text=value, bold=bold, bg_color=table_1_main)
         current_row += 1
 
     # Mnemonic directly below Mechanism table
@@ -183,13 +230,15 @@ def create_key_comparisons_tab(wb):
     current_row += 3  # Space before next table
 
     # =========================================================================
-    # COMPARISON TABLE 2: Clinical Presentation
+    # COMPARISON TABLE 2: Clinical Presentation (uses color set 1 = Seafoam)
     # =========================================================================
+    table_index = 1
 
-    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: CLINICAL PRESENTATION", current_row, span_cols=5)
+    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: CLINICAL PRESENTATION", current_row,
+                            span_cols=5, table_index=table_index)
     current_row += 1
 
-    create_column_headers(ws, headers, current_row)
+    create_column_headers(ws, headers, current_row, table_index=table_index)
     current_row += 1
 
     clinical_data = [
@@ -203,24 +252,27 @@ def create_key_comparisons_tab(wb):
         ('Severity', 'Can be life-threatening', 'Variable', 'Chronic inflammation', 'Usually localized'),
     ]
 
-    for idx, row_data in enumerate(clinical_data):
-        color = ROW_COLORS[(idx + 4) % len(ROW_COLORS)]  # Different colors from first table
+    # Table 2 uses ONE color SET: HEADER for title/headers, MAIN for data rows
+    table_2_main = MAIN_COLORS[table_index]
+    for row_data in clinical_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
             bold = (col_idx == 1)
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
+            apply_cell_style(cell, text=value, bold=bold, bg_color=table_2_main)
         current_row += 1
 
     current_row += 3  # Space before next table
 
     # =========================================================================
-    # COMPARISON TABLE 3: Treatment
+    # COMPARISON TABLE 3: Treatment (uses color set 2 = Light Orchid)
     # =========================================================================
+    table_index = 2
 
-    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: TREATMENT", current_row, span_cols=5)
+    create_comparison_header(ws, "HYPERSENSITIVITY REACTIONS: TREATMENT", current_row,
+                            span_cols=5, table_index=table_index)
     current_row += 1
 
-    create_column_headers(ws, headers, current_row)
+    create_column_headers(ws, headers, current_row, table_index=table_index)
     current_row += 1
 
     treatment_data = [
@@ -233,12 +285,13 @@ def create_key_comparisons_tab(wb):
          'Treat underlying condition', 'Avoid known antigens'),
     ]
 
-    for idx, row_data in enumerate(treatment_data):
-        color = ROW_COLORS[(idx + 2) % len(ROW_COLORS)]
+    # Table 3 uses ONE color SET: HEADER for title/headers, MAIN for data rows
+    table_3_main = MAIN_COLORS[table_index]
+    for row_data in treatment_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
             bold = (col_idx == 1)
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
+            apply_cell_style(cell, text=value, bold=bold, bg_color=table_3_main)
         current_row += 1
 
     # Mnemonic for Treatment
@@ -293,12 +346,15 @@ def create_master_chart_tab(wb):
     ]
 
     current_row = 2
+    # Master Chart: Each row is a different TYPE/CATEGORY, so each gets its own color
+    # If multiple items were in same category, they would share the same MAIN color
+    # Data rows use font size 10 (not 11) per iCloud source spec
     for idx, row_data in enumerate(master_data):
-        color = ROW_COLORS[idx % len(ROW_COLORS)]
+        color = MAIN_COLORS[idx % len(MAIN_COLORS)]
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
             bold = (col_idx == 1)  # First column bold
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
+            apply_cell_style(cell, text=value, bold=bold, font_size=10, bg_color=color)
         ws.row_dimensions[current_row].height = 50  # Taller rows for content
         current_row += 1
 

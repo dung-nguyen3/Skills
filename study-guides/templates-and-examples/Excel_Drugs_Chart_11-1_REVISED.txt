@@ -147,7 +147,7 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 - Header row: Dark blue (#4472C4), white bold text
 - Data rows: Rotate through 10 pastel colors by drug class
 - All cells: White borders (#FFFFFF)
-- Text: Black, Calibri, size 11 (size 12 for headers)
+- Text: Black, Calibri, size 10 (size 12 for headers)
 
 ### Row Heights
 - Header row: 25
@@ -163,6 +163,12 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 ### Borders
 - Use white borders (#FFFFFF) - invisible, blends with pastels
 - Creates clean, modern look
+
+### Text Formatting Within Cells
+- Use bullet points (•) for lists
+- Use line breaks (\n) for readability
+- Bold critical warnings (but keep black color)
+- UPPERCASE for emphasis (FATAL, NEVER, etc.)
 
 ---
 
@@ -282,7 +288,7 @@ HEADER_BG = '4472C4'
 ROW_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
               'F0F8FF', 'FCE4EC', 'EDE7F6', 'FFE8D6', 'BBDEFB']
 
-def apply_cell_style(cell, text='', bold=False, font_size=11,
+def apply_cell_style(cell, text='', bold=False, font_size=10,
                      bg_color=None, alignment='left'):
     """Apply cell styling - see Excel_Drug_Example.py for full implementation"""
     cell.value = text

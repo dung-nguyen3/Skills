@@ -1,0 +1,567 @@
+# EXCEL CLINICAL ASSESSMENT CHART TEMPLATE
+# For clinical conditions requiring H&P-focused study (diseases, syndromes)
+
+## CRITICAL REQUIREMENTS
+
+1. **Source-Only Policy**: Only use information from the source file. Do not add external medical knowledge.
+2. **Mnemonic Research**: All mnemonics MUST be researched via WebSearch - never invent them.
+3. **4-Tab Structure**: Key Comparisons, Master Chart, H&P Guide, Summary (in that order)
+4. **Onset-Based Categorization**: Group conditions by onset pattern, not just category
+5. **H&P Guide**: Comprehensive guide including OLDCAARTS history, PMH/FH/SH, ROS, Physical Exam with verbalizations, Patient Education, and Red Flags
+
+---
+
+## COLOR RULES (CRITICAL - READ CAREFULLY)
+
+**See:** `Excel_Color_Reference.txt` for complete color palette with HEADER and MAIN shades.
+
+### Master Chart: Onset-Based Color Coding
+
+| Onset Category | Color | Hex Code | Use For |
+|----------------|-------|----------|---------|
+| Acute | Blush Pink | #FCE4EC | Emergencies, immediate onset |
+| Acute/Subacute | Soft Tangerine | #FFE8D6 | Days to weeks onset |
+| Subacute | Champagne | #F7E7CE | Weeks onset |
+| Chronic | Seafoam | #C8E6C9 | Months to years, degenerative |
+| Chronic Inflammatory | Sky Blue | #BDD7EE | Chronic with inflammatory component |
+
+### Key Comparisons Tab
+- Each comparison TABLE gets ONE color SET (both HEADER and MAIN shades)
+- Table title row and column headers = HEADER shade (25% darker)
+- Data rows = MAIN shade (lighter)
+- Change color SET when starting a NEW table
+
+### Master Chart Tab
+- Header row: Dark blue #4472C4 with white text, size 12
+- Data rows: MAIN pastel colors based on ONSET category
+- All conditions with same onset = same color
+
+### Summary Tab
+- Sheet title: Dark blue (#4472C4) with white text
+- Mnemonic boxes: Light blue (#E6F3FF)
+- Clinical pearl boxes: Light green (#E8F5E9)
+- Red flags: Light red/pink background
+
+---
+
+## OBJECTIVE
+
+Create comprehensive clinical assessment Excel files with:
+1. **Key Comparison Sheet** - Side-by-side clinical differentials
+2. **Master Chart Sheet** - All conditions with H&P-focused columns
+3. **H&P Guide Sheet** - Comprehensive clinical encounter guide (OLDCAARTS, PMH/FH/SH, ROS, Physical Exam, Patient Education, Red Flags)
+4. **Summary Sheet** - Mnemonics, "If X Think Y", Red Flags, High-Yield Pearls
+
+---
+
+## TAB 1: KEY COMPARISONS
+
+### Purpose
+Compare clinically similar conditions side-by-side for differential diagnosis
+
+### Common Clinical Comparison Types
+- Inflammatory vs Mechanical patterns
+- Acute vs Chronic presentations
+- LMN vs UMN signs
+- Morning stiffness duration comparisons
+- Physical exam test interpretations
+- Dermatome/myotome quick reference
+
+### Structure
+- **COLUMNS** = Conditions being compared
+- **ROWS** = Clinical comparison categories
+
+### Layout Rules
+```
+Row 1: [COMPARISON TITLE - merged across all columns]
+Row 2: [Column headers - conditions being compared]
+Row 3+: [Comparison category rows]
+[blank row]
+[MNEMONIC row - if applicable]
+[2-3 blank rows before next comparison table]
+```
+
+### Critical Rules
+1. **One comparison per table** - Don't mix different comparisons
+2. **Multiple tables** - Create separate tables for each comparison type
+3. **Mnemonics directly below** - Place relevant mnemonic after each table
+4. **Clinical focus** - Emphasize findings that differentiate conditions
+5. **Column width**: Column A = 25, others = 35-40
+
+---
+
+## TAB 2: MASTER CHART (Clinical Assessment Focus)
+
+### Purpose
+Comprehensive clinical reference for all conditions with H&P-oriented information
+
+### REQUIRED COLUMNS (7 columns)
+
+| Column | Width | Content Focus |
+|--------|-------|---------------|
+| A: Condition | 28 | Condition name (bold) |
+| B: Category/Onset | 18 | Onset pattern (Acute, Chronic, etc.) |
+| C: Clinical Presentation | 45 | Symptoms, history, chief complaint patterns |
+| D: Physical Exam Findings | 45 | Specific PE maneuvers, signs, what to look for |
+| E: Diagnosis/Imaging | 38 | Labs, imaging, diagnostic criteria |
+| F: Treatment | 42 | First-line, alternatives, referral criteria |
+| G: Patient Education | 45 | Prognosis, lifestyle, red flags to watch |
+
+### Layout Rules
+```
+Row 1: [Column Headers - frozen]
+Row 2+: [One condition per row, grouped by onset]
+```
+
+### Onset Grouping Order
+1. Acute (emergencies first)
+2. Acute/Subacute
+3. Subacute
+4. Chronic
+5. Chronic Inflammatory
+
+### Text Formatting Within Cells
+- Use bullet points or line breaks for lists
+- ⭐ = Hallmark/pathognomonic finding
+- ⚠️ = Warning/red flag
+- 🟢 = First-line treatment
+- ❗ = Critical point
+- ✅ = Positive finding/expected result
+
+---
+
+## TAB 3: H&P GUIDE (Comprehensive Clinical Encounter Guide)
+
+### Purpose
+Comprehensive clinical encounter guide covering full H&P from history through physical exam to patient education. Provides a complete framework for clinical encounters and practical exams.
+
+### Sources
+- **History Template**: Complete Medical History Card
+  File path: `/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Claude instructions/Templates claude/Physical Assessment Template/Complete Medical History Card.txt`
+- **Physical Exam Verbalizations**: Protocol for Complete Physical Exam (Midwestern University)
+  File path: `/Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Claude instructions/Templates claude/Physical Assessment Template/Protocol for Complete Physical Exam.pdf`
+
+### REQUIRED SECTIONS
+
+#### SECTION 1: HISTORY - OLDCAARTS
+```
+HISTORY: OLDCAARTS - [Chief Complaint] Focused Assessment
+
+| Element | Question to Ask | [Chief Complaint] Focus |
+|---------|-----------------|-------------------------|
+| Onset | "When did this start?" | Acute vs gradual onset |
+| Location | "Where exactly does it hurt?" | Specific anatomical location |
+| Duration | "How long does it last?" | Continuous vs intermittent |
+| Character | "What does it feel like?" | Sharp, dull, burning, aching |
+| Alleviating | "What makes it better?" | Rest, activity, medications |
+| Aggravating | "What makes it worse?" | Movement, position, time of day |
+| Radiation | "Does it spread anywhere?" | Pattern of radiation |
+| Timing | "When does it occur?" | Time of day, with activity |
+| Severity | "Rate your pain 0-10?" | Baseline and worst |
+```
+
+#### SECTION 2: PMH/FH/SH
+```
+PAST MEDICAL HISTORY (PMH)
+- Previous episodes of similar symptoms?
+- Chronic conditions (diabetes, HTN, etc.)?
+- Previous surgeries?
+- Current medications?
+- Allergies?
+
+FAMILY HISTORY (FH)
+- Relevant family conditions?
+- Autoimmune diseases?
+- Cancer history?
+
+SOCIAL HISTORY (SH)
+- Occupation (physical demands)?
+- Tobacco/alcohol/drug use?
+- Exercise habits?
+- Living situation?
+```
+
+#### SECTION 3: REVIEW OF SYSTEMS (ROS)
+```
+CONSTITUTIONAL: Fever, chills, night sweats, weight changes, fatigue
+MUSCULOSKELETAL: Joint pain, stiffness, swelling, weakness
+NEUROLOGIC: Numbness, tingling, weakness, balance issues
+CARDIOVASCULAR: Chest pain, palpitations, edema
+GI: Bowel/bladder changes (red flag for some conditions)
+SKIN: Rashes, lesions, changes
+```
+
+#### SECTION 4: PHYSICAL EXAM
+
+##### 4a. SPINE - INSPECTION
+```
+Patient Position: Patient standing, back to examiner with gown open
+
+VERBALIZATION: "I am inspecting for spinal alignment, lateral curvature, and shoulder and iliac crest symmetry."
+
+Items to inspect:
+- Skin: lesions, ecchymosis, rashes
+- Spine: alignment, lateral curvature, hyper/hypolordosis, kyphosis
+- Shoulders: asymmetry
+- Iliac crests: asymmetry
+- Forward bend test: abnormal spinal curvature
+```
+
+##### 4b. SPINE - PALPATION
+```
+VERBALIZATION: "I am palpating the cervical spine, thoracic spine, lumbar spine, and paraspinal musculature for tenderness and deformity."
+
+Technique: Palpate vertebral processes and spinal musculature starting at base of skull to top of sacrum
+
+What to palpate:
+- Cervical spine (C1-C7)
+- Thoracic spine (T1-T12)
+- Lumbar spine (L1-L5)
+- Paraspinal musculature
+```
+
+##### 4c. SPINE - RANGE OF MOTION
+```
+VERBALIZATION: "I am assessing range of motion of the cervical and thoracolumbar spine."
+
+CERVICAL SPINE:
+- Flexion: "Bend head forward with chin to chest"
+- Extension: "Bend head backward"
+- Lateral bending: "Bend head to one side, trying to touch ear to shoulder"
+- Rotation: "Rotate head to look over shoulder while keeping rest of spine straight"
+
+THORACOLUMBAR SPINE (stabilize pelvis):
+- Flexion: "Bend forward at the hips"
+- Extension: "Bend backward at the hips"
+- Lateral bending: "Bend to the side like picking up a suitcase"
+- Rotation: "Rotate to look behind you using your entire back"
+```
+
+##### 4d. LOWER EXTREMITY - INSPECTION
+```
+VERBALIZATION: "I am assessing the hips, knees, ankles and toes for asymmetry, malalignment, deformities, leg length discrepancy, varicosities, swelling, discoloration, and hair distribution."
+```
+
+##### 4e. LOWER EXTREMITY - PALPATION
+```
+Verbalize landmarks for each body part:
+
+Pelvis/Hips: "I am palpating the anterior superior iliac spine and greater trochanter."
+Upper Leg: "I am palpating the quadriceps and hamstrings."
+Knee: "I am palpating the patella and the medial and lateral joint lines."
+Knee (tendons): "I am palpating the patellar tendon and the quadriceps tendon."
+Popliteal fossa: "I am palpating the popliteal fossa for the popliteal pulse, swelling, aneurysm, cyst, and lymphadenopathy."
+Lower Leg: "I am palpating the tibia and fibula."
+Gastrocnemius: "I am palpating the gastrocnemius for palpable cords and asymmetry."
+Soft tissues: "I am palpating the lower extremity for edema."
+Ankle: "I am palpating the Achilles tendon and calcaneus." / "I am palpating the medial and lateral malleoli."
+Foot: "I am palpating the metatarsals and phalanges." / "I am palpating the MTP joints and IP joints."
+```
+
+##### 4f. NEUROLOGIC EXAM
+```
+GAIT:
+VERBALIZATION: "I am observing the patient's gait for asymmetry, weakness and foot drop."
+- Casual walk: Observe gait and posture
+- Walk on heels: Assesses L4-L5 (dorsiflexion)
+- Walk on toes: Assesses S1 (plantar flexion)
+- Heel-to-toe (tandem): Balance assessment
+
+STRENGTH TESTING:
+VERBALIZATION: "I am assessing strength bilaterally."
+- Hip flexion (L1-L2): "Lift your knee up as I try to press it down"
+- Hip abduction: "Push your legs outward against my resistance"
+- Hip adduction: "Push your legs inward against my resistance"
+- Knee flexion (L5-S1): "Pull your leg in against my resistance"
+- Knee extension (L3-L4): "Kick your leg out against my resistance"
+- Ankle dorsiflexion (L4-L5): "Pull your foot up towards the ceiling against my hand"
+- Ankle plantar flexion (S1-S2): "Push down against my hand like your foot is on the accelerator"
+
+REFLEXES (compare bilaterally, assess for hyper/hyporeflexia):
+- Patellar (L3-L4): Strike patellar tendon, observe knee extension
+- Achilles (S1-S2): Strike Achilles tendon, observe plantar flexion
+- Babinski (UMN): Stroke heel to 5th toe then across ball of foot (makes "7")
+  - Normal: flexion of toes
+  - Abnormal (positive): fanning of toes
+```
+
+##### 4g. SPECIALIZED TESTS
+```
+STRAIGHT LEG RAISE (SLR):
+With pt supine, lift leg off table until pain elicited. Note angle. May dorsiflex foot.
+SEATED OPTION: Extend knee, evaluate for backward movement, pain, paresthesia into LE.
+POSITIVE: Radiating pain down leg → lumbosacral/sciatic radiculopathy
+
+CROSSED SLR:
+Perform SLR on asymptomatic leg.
+POSITIVE: Pain in symptomatic leg when raising contralateral leg = highly specific for disc herniation
+
+SPURLING MANEUVER:
+With pt seated/standing, position pt to rotate and extend head. Apply mild compression at top of head.
+POSITIVE: Pain/paresthesia into upper extremity → cervical radiculopathy
+
+FABER/PATRICK TEST:
+Pt supine, position leg in figure-four (flexion, abduction, external rotation of hip).
+Place one hand at contralateral ASIS and other hand on ipsilateral knee.
+POSITIVE: Reproduced pain → hip or SI joint pathology
+```
+
+##### 4h. SENSORY DERMATOMES
+```
+VERBALIZATION: "Close your eyes. Tell me when you feel me touch you and if it feels sharp or dull."
+
+L4: Knee, medial shin (anterior leg)
+L5: Anterolateral shin, dorsal foot, great toe
+S1: Posterior leg, lateral/plantar foot
+Saddle area (S2-S4): EMERGENCY - perineal sensory changes suggest Cauda Equina Syndrome
+```
+
+#### SECTION 5: PATIENT EDUCATION
+```
+DISEASE PROCESS & EXPECTED COURSE
+- Explain the condition in patient-friendly terms
+- Expected timeline for improvement
+- Natural history of the condition
+
+MANAGEMENT
+- First-line treatments
+- Activity modifications
+- When to use medications
+
+PHYSICAL THERAPY & LIFESTYLE MODIFICATIONS
+- Exercise recommendations
+- Posture/ergonomic advice
+- Weight management if applicable
+
+POTENTIAL MEDICATION RISKS/SIDE EFFECTS
+- Common side effects of prescribed medications
+- Drug interactions to watch for
+- When to contact provider about side effects
+```
+
+#### SECTION 6: RED FLAGS / WHEN TO RETURN
+```
+⚠️ RED FLAGS - EMERGENCY SIGNS
+Cauda Equina Syndrome: Saddle paresthesia, bowel/bladder dysfunction, bilateral LE weakness, decreased anal sphincter tone
+Myelopathy (UMN signs): Hyperreflexia, Babinski (up-going toes), clonus, hypertonia/spasticity, Lhermitte sign
+Infection/Cancer: Fever, night sweats, unexplained weight loss, immunosuppression, IV drug use, recent infection
+
+WHEN TO RETURN
+- If symptoms worsen or don't improve within expected timeframe
+- New neurologic symptoms (weakness, numbness, bowel/bladder changes)
+- Fever or other systemic symptoms
+```
+
+### Formatting Rules
+- Three columns: Column A (Element), Column B (Question/Component), Column C (Focus/Details)
+- Merge cells A:C for section headers and content rows
+- Section headers: Dark blue (#4472C4) with white text
+- History sections: Light green (#C8E6C9)
+- ROS section: Light purple (#D1C4E9)
+- Physical Exam section: Peach (#F7E7CE) with verbalizations in parentheses
+- Patient Education: Light blue (#BDD7EE)
+- Red Flags: Pink (#FCE4EC)
+
+---
+
+## TAB 4: SUMMARY
+
+### Purpose
+Quick-reference high-yield information for rapid clinical review
+
+### REQUIRED SECTIONS
+
+#### 1. Mnemonics
+```
+MNEMONIC: "[Acronym or Phrase]"
+
+[Letter] = [Meaning]
+...
+```
+
+#### 2. "If You See X, Think Y" Clinical Associations
+```
+If you see [finding/symptom] → Think [diagnosis/condition]
+```
+
+#### 3. RED FLAGS - Urgent Evaluation (REQUIRED for clinical charts)
+```
+⚠️ [Red flag finding] → [Required action/urgency]
+```
+
+This section lists findings that require immediate evaluation or referral.
+
+#### 4. High-Yield Pearls
+- Board-relevant facts
+- Clinical decision points
+- Key differentiating features
+
+### Formatting
+- Blue bold label for section headers
+- Light blue background for mnemonic boxes (#E6F3FF)
+- Light green for clinical pearls (#E8F5E9)
+- Light pink/red for red flags
+
+---
+
+## MNEMONIC RESEARCH PROTOCOL
+
+### Search Strategy
+```
+Search queries to use:
+- "medical mnemonics [specific topic]"
+- "[condition] mnemonic USMLE"
+- "how to remember [finding] medical school"
+- "[differential] memory trick"
+```
+
+### Rules
+- ONLY use mnemonics found through research
+- NEVER invent new mnemonics
+- Include full breakdown of each letter/word
+- Place mnemonics directly below relevant comparison tables
+
+---
+
+## PYTHON IMPLEMENTATION NOTES
+
+### Required Imports
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+```
+
+### Onset-Based Color Dictionary
+```python
+ONSET_COLORS = {
+    'Acute': 'FCE4EC',           # Blush Pink
+    'Acute/Subacute': 'FFE8D6',  # Soft Tangerine
+    'Subacute': 'F7E7CE',        # Champagne
+    'Chronic': 'C8E6C9',         # Seafoam
+    'Chronic Inflammatory': 'BDD7EE',  # Sky Blue
+}
+```
+
+### Key Functions to Implement
+1. `apply_cell_style()` - Universal cell formatting
+2. `create_comparison_table()` - For Key Comparisons tab
+3. `create_master_chart_tab()` - With 7 clinical columns
+4. `create_hp_guide_tab()` - Comprehensive H&P guide (history, PE, education, red flags)
+5. `create_summary_tab()` - With Red Flags section
+6. `get_onset_color()` - Returns color based on onset category
+
+---
+
+## SAVE LOCATION
+
+Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Clinical_Assessment_Chart.xlsx`
+
+Example: `Clinical Medicine/Exam 2/Claude Study Tools/Back_Pain_Clinical_Assessment_Chart.xlsx`
+
+---
+
+## FINAL CHECKLIST
+
+### Content Verification
+- [ ] All information from source files is included
+- [ ] No external information added (except researched mnemonics)
+- [ ] Medical terminology matches source exactly
+- [ ] All conditions categorized by onset pattern
+
+### Tab 1: Key Comparisons
+- [ ] Multiple comparison tables (one comparison per table)
+- [ ] Clinically relevant comparisons (differentials, not just facts)
+- [ ] Mnemonics placed directly below relevant tables
+- [ ] Adequate spacing between tables (2-3 blank rows)
+
+### Tab 2: Master Chart
+- [ ] All 7 columns present (Condition, Category, Presentation, PE, Dx, Tx, Education)
+- [ ] Conditions grouped by onset category
+- [ ] First row frozen
+- [ ] Color-coded by onset (not random)
+- [ ] Text wrapping enabled
+
+### Tab 3: H&P Guide
+- [ ] HISTORY: OLDCAARTS section with questions and focus areas
+- [ ] PMH/FH/SH section
+- [ ] ROS section (relevant systems)
+- [ ] Physical Exam sections with verbalizations (Inspection, Palpation, ROM, Neuro, Special Tests)
+- [ ] Patient Education section (Disease Process, Management, Lifestyle, Medication Risks)
+- [ ] Red Flags / When to Return section
+
+### Tab 4: Summary
+- [ ] Mnemonics with full breakdowns
+- [ ] "If X Think Y" clinical associations
+- [ ] RED FLAGS section (required for clinical charts)
+- [ ] High-yield pearls
+
+### Formatting
+- [ ] Column widths set appropriately (25-45)
+- [ ] Consistent fonts and colors
+- [ ] Each onset category = same color
+- [ ] Emojis used appropriately (⭐, ⚠️, 🟢, ❗, ✅)
+
+---
+
+## EXAMPLE OUTPUT STRUCTURE
+
+```
+Sheet 1: Key Comparisons
+├── Comparison Table 1: Inflammatory vs Mechanical (rows 1-10)
+├── MNEMONIC (rows 11-12)
+├── [blank rows 13-14]
+├── Comparison Table 2: LMN vs UMN Signs (rows 15-24)
+├── [blank rows 25-26]
+├── Comparison Table 3: Condition A vs B vs C (rows 27-36)
+└── ...
+
+Sheet 2: Master Chart
+├── Header Row (row 1) ← Frozen
+├── [ACUTE CONDITIONS - Blush Pink]
+│   ├── Emergency Condition 1 (row 2)
+│   └── Emergency Condition 2 (row 3)
+├── [ACUTE/SUBACUTE - Soft Tangerine]
+│   ├── Condition 3 (row 4)
+│   └── ...
+├── [CHRONIC - Seafoam]
+│   └── ...
+└── [CHRONIC INFLAMMATORY - Sky Blue]
+    └── ...
+
+Sheet 3: H&P Guide
+├── HISTORY: OLDCAARTS (questions and focus areas)
+├── PMH/FH/SH
+├── ROS (relevant systems)
+├── PHYSICAL EXAM
+│   ├── Inspection (with verbalization)
+│   ├── Palpation (with verbalization)
+│   ├── Range of Motion
+│   ├── Neurologic Exam (Gait, Strength, Reflexes)
+│   └── Specialized Tests
+├── PATIENT EDUCATION
+│   ├── Disease Process & Expected Course
+│   ├── Management
+│   ├── Physical Therapy & Lifestyle Modifications
+│   └── Medication Risks
+└── RED FLAGS / WHEN TO RETURN
+
+Sheet 4: Summary
+├── MNEMONICS section
+├── IF X THINK Y section
+├── RED FLAGS section (required)
+└── HIGH-YIELD PEARLS section
+```
+
+---
+
+## DIFFERENCE FROM EXCEL COMPARISON CHART
+
+| Feature | Excel Comparison | Excel Clinical Assessment |
+|---------|------------------|---------------------------|
+| Focus | Any medical topic | Clinical conditions (H&P focus) |
+| Categorization | Generic category | Onset-based (Acute, Chronic, etc.) |
+| Master Chart Columns | Flexible | 7 fixed clinical columns |
+| Summary | Standard sections | Includes RED FLAGS section |
+| Color Logic | Category-based | Onset-based |
+| Use Case | Mechanisms, concepts, pharmacology | Clinical conditions for patient encounters |

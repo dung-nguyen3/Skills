@@ -235,7 +235,7 @@ FORMATTING (MANDATORY):
 - ALL data cells MUST have pastel background (NOT white)
 - Same drug class = same color throughout
 - White borders (#FFFFFF) on all cells
-- Text: Black (#000000), Calibri, size 11
+- Text: Black (#000000), Calibri, size 10
 - Column widths: 25-40 based on content
 - Text wrapping enabled on all cells
 </template-compliance>

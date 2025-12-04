@@ -39,7 +39,7 @@ ROW_COLORS = [
 # HELPER FUNCTIONS
 # =============================================================================
 
-def apply_cell_style(cell, text='', bold=False, font_size=11, bg_color=None,
+def apply_cell_style(cell, text='', bold=False, font_size=10, bg_color=None,
                      border=True, alignment='left', wrap=True):
     """Apply comprehensive cell styling"""
     cell.value = text
@@ -87,7 +87,7 @@ def add_mnemonic_row(ws, row, mnemonic_text, color, span_cols=10):
         cell,
         text=f"💡 MEMORY TRICKS: {mnemonic_text}",
         bold=True,
-        font_size=11,
+        font_size=10,
         bg_color='FFF3E0',  # Orange background
         alignment='left'
     )

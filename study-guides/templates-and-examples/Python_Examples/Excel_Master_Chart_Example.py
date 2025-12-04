@@ -41,7 +41,7 @@ ROW_COLORS = [
 def set_cell_style(cell, text, bold=False, bg_color=None):
     """Apply cell styling"""
     cell.value = text
-    cell.font = Font(name='Calibri', size=11, bold=bold, color='000000')
+    cell.font = Font(name='Calibri', size=10, bold=bold, color='000000')
     cell.alignment = Alignment(horizontal='left', vertical='top', wrap_text=True)
 
     if bg_color:

@@ -26,23 +26,53 @@ header_alignment = Alignment(horizontal='center', vertical='center', wrap_text=T
 
 ---
 
-## Data Row Colors (Rotate by Group/Class)
+## Color Sets (10 Colors with HEADER and MAIN Shades)
 
-Use these colors for drug classes, condition groups, or topic categories. Assign ONE color per group and rotate through in order.
+Each color set has TWO shades:
+- **HEADER** = 25% darker shade (for table titles, column headers)
+- **MAIN** = Lighter shade (for data rows)
 
 ```python
-ROW_COLORS = [
-    'D9E2F3',  # 0: Ice Blue 40%
-    'C8E6C9',  # 1: Seafoam
-    'D1C4E9',  # 2: Light Orchid
-    'F7E7CE',  # 3: Champagne
-    'BDD7EE',  # 4: Sky Blue 60%
-    'F0F8FF',  # 5: Pale Azure
-    'FCE4EC',  # 6: Blush Pink
-    'EDE7F6',  # 7: Soft Lilac
-    'FFE8D6',  # 8: Soft Tangerine
-    'BBDEFB',  # 9: Powder Blue
+# Complete Color Sets - HEADER (25% darker) and MAIN (lighter)
+COLOR_SETS = [
+    {'name': 'Ice Blue',       'header': 'B4C6E7', 'main': 'D9E2F3'},
+    {'name': 'Seafoam',        'header': 'A8CCA8', 'main': 'C8E6C9'},
+    {'name': 'Light Orchid',   'header': 'B8A4D0', 'main': 'D1C4E9'},
+    {'name': 'Champagne',      'header': 'E0D0B0', 'main': 'F7E7CE'},
+    {'name': 'Sky Blue',       'header': '9DC3E6', 'main': 'BDD7EE'},
+    {'name': 'Pale Azure',     'header': 'D0E8FF', 'main': 'F0F8FF'},
+    {'name': 'Blush Pink',     'header': 'E8C4CC', 'main': 'FCE4EC'},
+    {'name': 'Soft Lilac',     'header': 'D0C8DC', 'main': 'EDE7F6'},
+    {'name': 'Soft Tangerine', 'header': 'E0C8B0', 'main': 'FFE8D6'},
+    {'name': 'Powder Blue',    'header': 'A0C4E8', 'main': 'BBDEFB'},
 ]
+
+# Shorthand arrays for quick access
+HEADER_COLORS = ['B4C6E7', 'A8CCA8', 'B8A4D0', 'E0D0B0', '9DC3E6',
+                 'D0E8FF', 'E8C4CC', 'D0C8DC', 'E0C8B0', 'A0C4E8']
+
+MAIN_COLORS = ['D9E2F3', 'C8E6C9', 'D1C4E9', 'F7E7CE', 'BDD7EE',
+               'F0F8FF', 'FCE4EC', 'EDE7F6', 'FFE8D6', 'BBDEFB']
+
+# Special box colors
+MNEMONIC_BG = 'E6F3FF'        # Light blue for mnemonics
+CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
+
+# Main title color (for sheet titles only)
+MAIN_TITLE_COLOR = '4472C4'   # Dark blue
+```
+
+### How to Use Header vs Main Colors
+
+**Table Title Row:** Use HEADER shade (25% darker)
+**Column Headers:** Use HEADER shade (25% darker)
+**Data Rows:** Use MAIN shade (lighter)
+
+```python
+# Example: Get colors for table index 0 (Ice Blue)
+table_index = 0
+header_color = HEADER_COLORS[table_index]  # B4C6E7 (darker)
+main_color = MAIN_COLORS[table_index]      # D9E2F3 (lighter)
 ```
 
 **Color Assignment Example:**
@@ -74,7 +104,7 @@ cell.fill = fill
 - Wrap text: Enabled
 
 ### Data Text
-- Font: Calibri, Size 11
+- Font: Calibri, Size 10
 - Color: Black (#000000) - default, always readable
 - Alignment: Left horizontal, top vertical (wrap text enabled)
 - Bold: First column only (group/class name)
@@ -122,7 +152,7 @@ header_fill = PatternFill(start_color=HEADER_BG, end_color=HEADER_BG, fill_type=
 header_font = Font(bold=True, size=12, color='FFFFFF')
 header_alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
-data_font = Font(size=11, color='000000')
+data_font = Font(size=10, color='000000')
 data_alignment = Alignment(horizontal='left', vertical='top', wrap_text=True)
 
 thin_border = Border(
@@ -158,7 +188,7 @@ for row in range(2, 10):  # Example rows
     for col in range(1, 11):
         cell = ws.cell(row, col)
         cell.fill = row_fill
-        cell.font = data_font if col > 1 else Font(bold=True, size=11, color='000000')
+        cell.font = data_font if col > 1 else Font(bold=True, size=10, color='000000')
         cell.alignment = data_alignment
         cell.border = thin_border
 ```

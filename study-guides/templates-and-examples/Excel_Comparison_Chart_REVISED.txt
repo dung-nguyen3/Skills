@@ -9,6 +9,82 @@
 
 ---
 
+## COLOR RULES (CRITICAL - READ CAREFULLY)
+
+**See:** `Excel_Color_Reference.txt` for complete color palette with HEADER and MAIN shades.
+
+**Core Principle:** Same category = same color. Change color only when category changes.
+
+### Two-Shade System (HEADER vs MAIN)
+Each color has TWO shades:
+- **HEADER shade** (25% darker) = Table title rows, column headers
+- **MAIN shade** (lighter) = Data rows
+
+```
+Example using Ice Blue:
+- Table Title Row: #B4C6E7 (HEADER - darker)
+- Column Headers: #B4C6E7 (HEADER - darker)
+- Data Rows: #D9E2F3 (MAIN - lighter)
+```
+
+### Tab 1: Key Comparisons
+- Each comparison TABLE gets ONE color SET (both HEADER and MAIN shades)
+- Table title row and column headers = HEADER shade (25% darker)
+- Data rows = MAIN shade (lighter)
+- Change color SET when starting a NEW table
+
+**Example:**
+| Table | Content | Title/Headers | Data Rows |
+|-------|---------|---------------|-----------|
+| Table 1 | Mechanism comparison | #B4C6E7 (Ice Blue HEADER) | #D9E2F3 (Ice Blue MAIN) |
+| Table 2 | Clinical comparison | #A8CCA8 (Seafoam HEADER) | #C8E6C9 (Seafoam MAIN) |
+| Table 3 | Treatment comparison | #B8A4D0 (Light Orchid HEADER) | #D1C4E9 (Light Orchid MAIN) |
+
+### Tab 2: Master Chart
+**NOTE:** Master Chart does NOT use the two-shade system. It uses:
+- Header row = Dark blue #4472C4 with white text, size 12
+- Data rows = MAIN pastel colors only, size 10
+- All items in same CATEGORY/CLASS = same MAIN color
+- Change color when category/class changes
+
+**Example (Drug Chart):**
+| Row Type | Drug | Class | Color |
+|----------|------|-------|-------|
+| Header Row | - | - | #4472C4 (Dark Blue, white text) |
+| Data Row | Metoprolol | Beta Blocker | #D9E2F3 (Ice Blue MAIN) |
+| Data Row | Atenolol | Beta Blocker | #D9E2F3 (Ice Blue MAIN) |
+| Data Row | Lisinopril | ACE Inhibitor | #C8E6C9 (Seafoam MAIN) |
+| Data Row | Enalapril | ACE Inhibitor | #C8E6C9 (Seafoam MAIN) |
+
+**Example (Condition Chart):**
+| Row Type | Condition | Category | Color |
+|----------|-----------|----------|-------|
+| Header Row | - | - | #4472C4 (Dark Blue, white text) |
+| Data Row | Type I Hypersensitivity | Hypersensitivity | #D9E2F3 (Ice Blue MAIN) |
+| Data Row | Type II Hypersensitivity | Hypersensitivity | #D9E2F3 (Ice Blue MAIN) |
+| Data Row | Type III Hypersensitivity | Hypersensitivity | #D9E2F3 (Ice Blue MAIN) |
+| Data Row | Type IV Hypersensitivity | Hypersensitivity | #D9E2F3 (Ice Blue MAIN) |
+
+### Tab 3: Summary
+- Sheet title only: Dark blue (#4472C4) with white text
+- Section headers within sheet: Use HEADER shade of that section's color
+- Mnemonic boxes: Light blue (#E6F3FF)
+- Clinical pearl boxes: Light green (#E8F5E9)
+- Other content: Rotate pastels by section type
+
+### WRONG vs RIGHT
+
+**WRONG:** Alternating row colors within one table/category
+**RIGHT:** One solid color for entire table/category
+
+### Text Formatting Within Cells:
+- Use bullet points (•) for lists
+- Use line breaks (\n) for readability
+- Bold critical warnings (but keep black color)
+- UPPERCASE for emphasis (FATAL, NEVER, etc.)
+
+---
+
 ## OBJECTIVE
 
 Create comprehensive medical comparison Excel files with:
@@ -170,26 +246,6 @@ Search queries to use:
 
 ---
 
-## COLOR REFERENCE (from Excel_Color_Reference.txt)
-
-### Soft Pastel Palette
-- Light Blue — Header: #8CA4BE, Main: #A8BFD8, Row Labels: #9BB5CE
-- Light Green — Header: #8FB89C, Main: #A8CCBA, Row Labels: #9DC4AC
-- Light Purple — Header: #B4A4C8, Main: #C8B8DC, Row Labels: #BEAED2
-- Light Tan — Header: #C8B088, Main: #DBC8A0, Row Labels: #D1BC94
-- Light Teal — Header: #8FB8B8, Main: #A8CCCC, Row Labels: #9DC4C4
-- Light Peach — Header: #C89F88, Main: #DCB8A0, Row Labels: #D2AC94
-- Light Gray-Blue — Header: #9CABBE, Main: #B8C8D8, Row Labels: #A8B5CE
-- Light Sage — Header: #9CBCAA, Main: #B8D8C8, Row Labels: #A8CEB5
-
-### Usage
-- Header row: Dark blue (#4472C4) with white text
-- Data rows: Rotate through pastel palette by category/group
-- Mnemonic rows: Light blue background (#E6F3FF) with blue text
-- Borders: White (#FFFFFF) - invisible, blends with pastels
-
----
-
 ## PYTHON IMPLEMENTATION NOTES
 
 ### Required Imports
@@ -254,6 +310,8 @@ Example: `Clinical Medicine/Exam 2/Claude Study Tools/Hypersensitivity_Compariso
 - [ ] Column widths set appropriately (25-45)
 - [ ] Row heights adjusted for wrapped text
 - [ ] Consistent fonts and colors
+- [ ] Each comparison table uses ONE consistent color (not alternating rows)
+- [ ] Master Chart: same category/class = same color
 - [ ] No formula errors
 - [ ] File saved to correct location
 

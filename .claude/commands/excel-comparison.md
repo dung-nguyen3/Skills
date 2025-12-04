@@ -210,19 +210,22 @@ STRUCTURE:
 
 FORMATTING (MANDATORY):
 - Header row: #4472C4 (dark blue), white bold text, size 12
-- Data rows: Rotate through pastel palette BY CATEGORY:
-  1. #D9E2F3 (Ice Blue)
-  2. #C8E6C9 (Seafoam)
-  3. #D1C4E9 (Light Orchid)
-  4. #F7E7CE (Champagne)
-  5. #BDD7EE (Sky Blue)
-  6. #F0F8FF (Pale Azure)
-  7. #FCE4EC (Blush Pink)
-  8. #EDE7F6 (Soft Lilac)
-  9. #FFE8D6 (Soft Tangerine)
-  10. #BBDEFB (Powder Blue)
+- COLOR RULE: ONE color per table/category (NOT alternating rows)
+  - Tab 1: Each comparison TABLE = one color (all rows same)
+  - Tab 2: Each category/class = one color (all items in class same)
+  - Change color only when starting NEW table or NEW category
+- Pastel palette (use in order):
+  1. #D9E2F3 (Ice Blue) - Table/Category 1
+  2. #C8E6C9 (Seafoam) - Table/Category 2
+  3. #D1C4E9 (Light Orchid) - Table/Category 3
+  4. #F7E7CE (Champagne) - Table/Category 4
+  5. #BDD7EE (Sky Blue) - Table/Category 5
+  6. #F0F8FF (Pale Azure) - Table/Category 6
+  7. #FCE4EC (Blush Pink) - Table/Category 7
+  8. #EDE7F6 (Soft Lilac) - Table/Category 8
+  9. #FFE8D6 (Soft Tangerine) - Table/Category 9
+  10. #BBDEFB (Powder Blue) - Table/Category 10
 - ALL data cells MUST have pastel background (NOT white)
-- Same category = same color throughout
 - White borders (#FFFFFF) on all cells
 - Text: Black (#000000), Calibri, size 11
 - Column widths: 25-40 based on content
