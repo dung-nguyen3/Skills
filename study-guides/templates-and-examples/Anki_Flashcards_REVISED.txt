@@ -1,0 +1,615 @@
+# Anki Flashcard Deck Template - Instructions
+
+## Purpose
+Create comprehensive Anki flashcard decks from source material with EXACT terminology and source-only content for spaced repetition study.
+
+---
+
+## Core Requirements
+
+**See parent CLAUDE.md for:**
+- Source-only policy (use EXACT information from source)
+- Verification checklists
+- File organization
+
+**Anki-specific requirements:**
+- **EXACT WORDING from source** - Preserve medical terminology, drug names, classifications verbatim
+- **LO-filtering** - Only create cards for content that answers Learning Objectives
+- **Source-only policy** - No external medical facts
+- **Concise answers** - 3-15 words typical, single concept per card
+
+---
+
+## CRITICAL: Exact Wording Policy
+
+<exact-wording-requirement>
+**MANDATORY: Use EXACT wording from source file for:**
+- Medical terminology
+- Drug names (generic and brand)
+- Drug classifications
+- Receptor names (e.g., "alpha-1", "beta-2", "D2")
+- Mechanism descriptions
+- Side effect names
+- Contraindication statements
+- Anatomical terms
+- Disease names
+- Laboratory values
+- Treatment protocols
+
+**DO NOT:**
+- ❌ Paraphrase medical terms
+- ❌ Use synonyms for drug names
+- ❌ Simplify technical terminology
+- ❌ Reword mechanism descriptions
+- ❌ Change disease classifications
+
+**DO:**
+- ✅ Copy exact terminology from source
+- ✅ Preserve capitalization from source
+- ✅ Use source's abbreviations
+- ✅ Keep source's phrasing for complex concepts
+</exact-wording-requirement>
+
+---
+
+## Examples: Correct vs. Incorrect
+
+### Example 1: Drug Mechanism
+
+**Source states:** "Metoprolol selectively blocks beta-1 adrenergic receptors in the heart"
+
+**CORRECT Card:**
+```
+Q: What receptors does metoprolol block?
+A: Beta-1 adrenergic receptors
+```
+
+**INCORRECT Cards:**
+```
+Q: What does metoprolol target?
+A: Heart receptors  ← WRONG: Too vague, not exact wording
+
+Q: What receptors does metoprolol block?
+A: β1 receptors in cardiac tissue  ← WRONG: Changed terminology ("β1" vs "beta-1", "cardiac tissue" vs "heart")
+```
+
+---
+
+### Example 2: Side Effects
+
+**Source states:** "Common adverse effects include bradycardia, hypotension, and fatigue"
+
+**CORRECT Cards:**
+```
+Q: What are the common adverse effects of [drug]?
+A: Bradycardia, hypotension, and fatigue
+```
+
+**INCORRECT Cards:**
+```
+Q: What are the side effects?
+A: Low heart rate, low blood pressure, tiredness  ← WRONG: Paraphrased medical terms
+
+Q: What are the adverse effects?
+A: Bradycardia, hypotension, fatigue, and dizziness  ← WRONG: Added "dizziness" not in source
+```
+
+---
+
+### Example 3: Drug Classifications
+
+**Source states:** "Lisinopril is an ACE inhibitor"
+
+**CORRECT Card:**
+```
+Q: What drug class is lisinopril?
+A: ACE inhibitor
+```
+
+**INCORRECT Cards:**
+```
+Q: What type of drug is lisinopril?
+A: Blood pressure medication  ← WRONG: Too vague, not the classification from source
+
+Q: What drug class is lisinopril?
+A: Angiotensin-converting enzyme inhibitor  ← WRONG: Source used abbreviation "ACE inhibitor"
+```
+
+---
+
+## Learning Objective Filtering
+
+### Mandatory LO Extraction
+
+**BEFORE creating ANY flashcards:**
+
+1. **Extract all Learning Objectives from source**
+2. **List them verbatim** (no paraphrasing)
+3. **Map content to LOs** - identify which facts answer which LOs
+4. **Create cards ONLY for LO-mapped content**
+
+### LO Content Mapping Process
+
+**For EACH learning objective, identify:**
+- **Foundation facts:** Prerequisite knowledge needed to understand the answer
+- **Direct facts:** Facts that directly answer the LO
+- **Supporting context:** Context that leads to or supports the answer
+- **Exclude:** Content unrelated to any LO
+
+**Example LO Mapping:**
+```
+LO 1: "Describe the mechanism of action of beta-blockers"
+
+Foundation facts to include:
+- Beta-adrenergic receptors exist in heart (beta-1) and lungs (beta-2)
+- Sympathetic stimulation increases heart rate and contractility
+- Beta receptors mediate sympathetic effects
+
+Direct facts to include:
+- Beta-blockers block beta-adrenergic receptors
+- Blocking beta-1 reduces heart rate and contractility
+- Selective beta-blockers target beta-1 specifically
+
+Supporting context:
+- Clinical use: hypertension, angina, arrhythmias
+- Why selectivity matters: avoid bronchoconstriction
+
+EXCLUDE (not related to mechanism):
+- Pharmacokinetics (absorption, metabolism)
+- Drug-drug interactions
+- Dosing information
+```
+
+### LO-Relevance Test
+
+**Include content if:**
+- ✅ Directly answers the learning objective
+- ✅ Provides foundation needed to understand the answer
+- ✅ Supports or contextualizes the answer
+- ✅ Would help student answer exam question based on the LO
+
+**Exclude content if:**
+- ❌ No relationship to any learning objective
+- ❌ Tangential or off-topic information
+- ❌ Interesting but not required by LOs
+
+**When uncertain:** Include if it helps understanding, but note the LO it relates to
+
+---
+
+## Flashcard Creation Guidelines
+
+### Question Quality Standards
+
+**1. Clarity and Specificity**
+- Ask ONE specific concept per question
+- Make questions self-contained (no "it", "this", "they")
+- Use proper nouns (drug names, disease names) in questions
+- Avoid ambiguous pronouns
+
+**GOOD Questions:**
+```
+"What is the mechanism of action of metoprolol?"
+"Which drug class blocks ACE?"
+"What are the adverse effects of lisinopril?"
+"Where does penicillin act?"
+```
+
+**BAD Questions:**
+```
+"What does it do?"  ← "it" is ambiguous
+"How does this work?"  ← "this" unclear
+"What are the side effects?"  ← Which drug?
+"Mechanism?"  ← Of what?
+```
+
+**2. Question Type Variety**
+- **What:** "What is the mechanism of [drug]?"
+- **Which:** "Which drug class treats [condition]?"
+- **Where:** "Where does [drug] act?"
+- **How:** "How does [drug] cause [effect]?"
+- **Define:** "Define [term]"
+- **Describe:** "Describe [concept]"
+- **List:** "What are the adverse effects of [drug]?"
+
+**3. Avoid Yes/No Questions**
+- ❌ "Is metoprolol a beta-blocker?" (yes/no = poor retention)
+- ✅ "What drug class is metoprolol?" (requires recall)
+
+**4. Use Exact Terminology in Questions**
+- Use exact drug names from source
+- Use exact disease names from source
+- Use exact receptor names from source
+
+---
+
+### Answer Quality Standards
+
+**1. Conciseness**
+- **Typical length:** 3-15 words
+- **One concept per answer**
+- **Core fact only** - no lengthy explanations
+
+**GOOD Answers:**
+```
+"Beta-1 adrenergic receptors"  (4 words)
+"ACE inhibitor"  (2 words)
+"Bradycardia, hypotension, and fatigue"  (4 words)
+"Inhibits transpeptidase enzyme"  (3 words)
+```
+
+**BAD Answers:**
+```
+"Metoprolol blocks beta-1 receptors in the heart which reduces heart rate and blood pressure making it useful for treating hypertension and angina"  ← TOO LONG (multiple concepts)
+
+"The beta receptors"  ← TOO VAGUE (which type?)
+```
+
+**2. Exact Terminology**
+- **CRITICAL:** Use EXACT wording from source for medical terms
+- Preserve capitalization, abbreviations, hyphenation
+- Do NOT paraphrase or use synonyms
+
+**Example - CORRECT:**
+```
+Source: "Lisinopril inhibits angiotensin-converting enzyme"
+Card Answer: "Angiotensin-converting enzyme" or "ACE" (if source uses that abbreviation)
+```
+
+**Example - INCORRECT:**
+```
+Source: "Lisinopril inhibits angiotensin-converting enzyme"
+Card Answer: "The enzyme that converts angiotensin"  ← WRONG: Paraphrased
+```
+
+**3. Single Concept**
+- One fact per answer
+- Don't combine multiple mechanisms, uses, or effects
+- Create separate cards for separate concepts
+
+**GOOD (separate cards):**
+```
+Q: "What is the mechanism of metoprolol?"
+A: "Blocks beta-1 adrenergic receptors"
+
+Q: "What are the clinical uses of metoprolol?"
+A: "Hypertension, angina, arrhythmias"
+```
+
+**BAD (combined concepts):**
+```
+Q: "What is metoprolol?"
+A: "Beta-blocker that blocks beta-1 receptors and is used for hypertension, angina, and arrhythmias"  ← WRONG: Multiple concepts
+```
+
+**4. No External Information**
+- **ONLY use information from source file**
+- Do NOT add external medical facts
+- Do NOT supplement from your medical knowledge
+- If source doesn't mention it, don't include it
+
+---
+
+## Flashcard Coverage
+
+### What to Include
+
+**For drugs, create cards for:**
+- Drug class/classification (exact from source)
+- Mechanism of action (exact terminology)
+- Clinical uses (as stated in source)
+- Adverse effects (exact side effect names)
+- Contraindications (exact contraindication statements)
+- Drug interactions (if mentioned in source)
+- Special considerations (exact monitoring requirements, etc.)
+
+**For conditions, create cards for:**
+- Definition (exact from source)
+- Pathophysiology (exact mechanism)
+- Clinical presentation (exact symptoms/signs)
+- Diagnosis (exact diagnostic criteria from source)
+- Treatment (exact treatment protocols from source)
+- Complications (exact complication names)
+
+**For anatomy/physiology, create cards for:**
+- Structure names (exact anatomical terms)
+- Function (exact functional descriptions)
+- Location (exact anatomical locations)
+- Clinical relevance (exact clinical correlations from source)
+
+### What to Exclude
+
+**DO NOT create cards for:**
+- Content not mapped to any learning objective
+- Information not in the source file
+- External medical facts you know
+- Content that doesn't help answer any LO
+- Redundant information (same concept already covered)
+
+---
+
+## CSV Format Specifications
+
+### Basic Structure
+
+```csv
+Question,Answer
+"What is the mechanism of metoprolol?","Blocks beta-1 adrenergic receptors"
+"Which drug class is lisinopril?","ACE inhibitor"
+"What are the adverse effects of metoprolol?","Bradycardia, hypotension, and fatigue"
+```
+
+### Escaping Rules
+
+**1. Commas in text**
+- Wrap entire field in quotes: `"Bradycardia, hypotension, and fatigue"`
+
+**2. Quotes in text**
+- Double the quotes: `"He said ""test"" today"` → displays as: He said "test" today
+
+**3. Line breaks in text**
+- Use `\n` for line breaks within a field
+- Keep entire field in quotes
+
+**4. Special characters**
+- Greek letters: Use full names (alpha, beta) or Unicode (α, β)
+- Arrows: Use Unicode (→, ←) or text (->)
+- Superscripts: Use ^ notation (10^6) or Unicode
+
+---
+
+## Python Implementation (genanki)
+
+### Basic Structure
+
+```python
+import genanki
+import random
+
+# Create model (card template)
+model_id = random.randrange(1 << 30, 1 << 31)
+model = genanki.Model(
+    model_id,
+    'Basic Medical Card',
+    fields=[
+        {'name': 'Question'},
+        {'name': 'Answer'},
+    ],
+    templates=[
+        {
+            'name': 'Card 1',
+            'qfmt': '<div class="question">{{Question}}</div>',
+            'afmt': '{{FrontSide}}<hr><div class="answer">{{Answer}}</div>',
+        },
+    ],
+    css='''
+        .card {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px;
+        }
+        .question {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .answer {
+            color: #27ae60;
+            margin-top: 20px;
+        }
+    '''
+)
+
+# Create deck
+deck_id = random.randrange(1 << 30, 1 << 31)
+deck = genanki.Deck(deck_id, 'Pharmacology - Beta Blockers')
+
+# Add notes from CSV
+import csv
+with open('flashcards.csv', 'r', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        note = genanki.Note(
+            model=model,
+            fields=[row['Question'], row['Answer']]
+        )
+        deck.add_note(note)
+
+# Save to .apkg file
+genanki.Package(deck).write_to_file('Beta_Blockers.apkg')
+print(f"✅ Created deck with {len(deck.notes)} cards")
+```
+
+### Complete Example
+
+**See:** `study-guides/templates-and-examples/Python_Examples/Anki_APKG_Example.py`
+
+---
+
+## Quality Verification Checklist
+
+### Before Finalizing
+
+**Content Verification:**
+- [ ] ALL flashcards use EXACT wording from source for medical terminology
+- [ ] NO paraphrasing of drug names, classifications, mechanisms
+- [ ] ALL flashcards map to a specific learning objective
+- [ ] NO flashcards for content outside LO scope
+- [ ] NO external medical facts added
+
+**LO Coverage:**
+- [ ] ALL learning objectives have at least one flashcard
+- [ ] Each LO has adequate coverage (foundation + direct facts)
+- [ ] LO-content mapping documented and verified
+
+**Question Quality:**
+- [ ] Questions are clear and unambiguous
+- [ ] One concept per question
+- [ ] Questions are self-contained (no pronouns without referents)
+- [ ] Variety of question types used
+
+**Answer Quality:**
+- [ ] Answers are concise (3-15 words typical)
+- [ ] One concept per answer
+- [ ] EXACT terminology from source preserved
+- [ ] NO lengthy explanations in answers
+
+**Technical:**
+- [ ] CSV properly formatted (commas escaped, quotes doubled)
+- [ ] APKG file generated successfully
+- [ ] Deck imports into Anki without errors
+
+---
+
+## Common Mistakes to Avoid
+
+### Content Mistakes
+
+❌ **Paraphrasing medical terms**
+```
+Source: "Beta-1 adrenergic receptors"
+Wrong: "Heart beta receptors"
+Correct: "Beta-1 adrenergic receptors"
+```
+
+❌ **Adding external information**
+```
+Source mentions: "Bradycardia and hypotension"
+Wrong: "Bradycardia, hypotension, and fatigue" (added fatigue not in source)
+Correct: "Bradycardia and hypotension"
+```
+
+❌ **Creating cards for non-LO content**
+```
+LO: "Describe mechanism of beta-blockers"
+Wrong: Creating cards about pharmacokinetics (not in LO)
+Correct: Creating cards about receptor blocking mechanism
+```
+
+### Question Mistakes
+
+❌ **Ambiguous questions**
+```
+Wrong: "What does it do?"  (what is "it"?)
+Correct: "What is the mechanism of metoprolol?"
+```
+
+❌ **Multiple concepts in one question**
+```
+Wrong: "What is the mechanism and use of metoprolol?"
+Correct: Two separate cards - one for mechanism, one for uses
+```
+
+### Answer Mistakes
+
+❌ **Answers too long**
+```
+Wrong: "Metoprolol blocks beta-1 receptors which reduces heart rate and contractility leading to decreased blood pressure"
+Correct: "Blocks beta-1 adrenergic receptors"  (save other concepts for separate cards)
+```
+
+❌ **Multiple concepts in one answer**
+```
+Wrong: "ACE inhibitor used for hypertension and heart failure"
+Correct: "ACE inhibitor"  (create separate card for uses)
+```
+
+### Technical Mistakes
+
+❌ **CSV formatting errors**
+```
+Wrong: What are the uses?,Hypertension, angina  (comma not escaped)
+Correct: "What are the uses?","Hypertension, angina"
+```
+
+❌ **Not escaping quotes**
+```
+Wrong: "The "preferred" drug"  (quotes not doubled)
+Correct: "The ""preferred"" drug"
+```
+
+---
+
+## Workflow Summary
+
+### Step-by-Step Process
+
+1. **Read entire source file**
+2. **Extract all learning objectives verbatim**
+3. **Map content to LOs** (foundation, direct, supporting)
+4. **Create flashcards for LO-mapped content only**
+5. **Use EXACT wording from source**
+6. **Save to CSV** (proper escaping)
+7. **Generate APKG** using genanki
+8. **Verify quality** (content, LO coverage, questions, answers)
+
+### Time Estimates
+
+- **Small deck (20-50 cards):** ~30 minutes
+- **Medium deck (50-100 cards):** ~60 minutes
+- **Large deck (100+ cards):** ~90+ minutes
+
+---
+
+## File Naming
+
+```
+[Topic]_Flashcards.csv
+[Topic]_Flashcards.apkg
+```
+
+**Examples:**
+- Beta_Blockers_Flashcards.apkg
+- HIV_Drugs_Flashcards.apkg
+- Cardiovascular_Exam_Flashcards.apkg
+
+---
+
+## Save Location
+
+```
+[Class]/[Exam]/Claude Study Tools/[Filename]
+```
+
+**Example:**
+```
+Pharmacology/Exam 3/Claude Study Tools/Beta_Blockers_Flashcards.apkg
+```
+
+---
+
+## Integration with Other Tools
+
+**Complementary study guides:**
+- **/word** - Detailed learning objectives guide
+- **/excel** - Comprehensive drug charts
+- **/html-LO** - Interactive HTML learning objectives
+- **/study-bundle** - Creates Word LO + Excel Comparison + Anki in one pass
+
+**When to use /anki:**
+- You want spaced repetition flashcards
+- You need active recall practice
+- You're preparing for exams with factual recall
+- You want to memorize drug names, mechanisms, classifications
+
+---
+
+## Tips for Success
+
+💡 **Use exact wording** - Copy terminology directly from source
+
+💡 **Keep answers short** - 3-15 words, one concept per card
+
+💡 **Map to LOs first** - Don't create cards for non-LO content
+
+💡 **One concept per card** - Better retention than complex cards
+
+💡 **Variety in questions** - Use What/Which/Where/How/Define/Describe
+
+💡 **Test yourself** - Do the questions make sense without seeing the answer?
+
+---
+
+**End of Instructions**
+
+**Reference Example:** `Python_Examples/Anki_APKG_Example.py`
