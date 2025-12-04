@@ -356,19 +356,19 @@ Track your progress:
 
 ### Single File:
 ```
-/excel comparison "Clinical Medicine/Exam 2/Extract/Hypersensitivity.txt"
+/key-comparisons-excel "Clinical Medicine/Exam 2/Extract/Hypersensitivity.txt"
 ```
 Creates: `Hypersensitivity_Comparison_Chart.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
-/excel comparison "/Users/name/Documents/ClinMed/Exam 2/Extract"
+/key-comparisons-excel "/Users/name/Documents/ClinMed/Exam 2/Extract"
 ```
 Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/excel comparison "TypeI.txt;TypeII.txt;TypeIII.txt;TypeIV.txt"
+/key-comparisons-excel "TypeI.txt;TypeII.txt;TypeIII.txt;TypeIV.txt"
 ```
 Creates 4 separate comparison charts:
 - `TypeI_Comparison_Chart.xlsx`
@@ -380,7 +380,7 @@ Uses batch-separate-processor agent with architectural isolation (zero contamina
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/excel comparison --merge "Hypersensitivity-Mechanisms.txt;Hypersensitivity-Clinical.txt;Hypersensitivity-Treatment.txt"
+/key-comparisons-excel --merge "Hypersensitivity-Mechanisms.txt;Hypersensitivity-Clinical.txt;Hypersensitivity-Treatment.txt"
 ```
 Creates 1 merged comparison chart:
 - `Hypersensitivity_Comprehensive_Comparison_Chart.xlsx` (all content merged)
@@ -390,12 +390,12 @@ Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, 
 
 ### Batch Merge with Directories (N directories → 1 merged output):
 ```
-/excel comparison --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/key-comparisons-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 Finds all files from both directories, merges into 1 comprehensive comparison chart.
 
 ### Mixed Files and Directories:
 ```
-/excel comparison --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
+/key-comparisons-excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
 ```
 Expands directories, keeps specific files, merges all into 1 comparison chart.

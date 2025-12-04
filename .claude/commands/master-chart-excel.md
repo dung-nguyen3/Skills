@@ -348,19 +348,19 @@ Track your progress:
 
 ### Single File:
 ```
-/excel master "Pharmacology/Exam 2/Extract/HIV_Drugs.txt"
+/master-chart-excel "Pharmacology/Exam 2/Extract/HIV_Drugs.txt"
 ```
 Creates: `HIV_Drugs_Master_Chart.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
-/excel master "/Users/name/Documents/ClinMed/Exam 2/Extract"
+/master-chart-excel "/Users/name/Documents/ClinMed/Exam 2/Extract"
 ```
 Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/excel master "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/master-chart-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
 ```
 Creates 3 separate Master Charts:
 - `HIV_Master_Chart.xlsx`
@@ -371,7 +371,7 @@ Uses batch-separate-processor agent with architectural isolation (zero contamina
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/excel master --merge "HIV-Drugs.txt;Hepatitis-Drugs.txt;Herpes-Drugs.txt"
+/master-chart-excel --merge "HIV-Drugs.txt;Hepatitis-Drugs.txt;Herpes-Drugs.txt"
 ```
 Creates 1 merged Master Chart:
 - `Antiviral_Comprehensive_Master_Chart.xlsx` (all drug classes merged)
@@ -381,13 +381,13 @@ Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, 
 
 ### Batch Merge with Directories (N directories → 1 merged output):
 ```
-/excel master --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/master-chart-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 Finds all files from both directories, merges into 1 comprehensive Master Chart.
 
 ### Mixed Files and Directories:
 ```
-/excel master --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
+/master-chart-excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
 ```
 Expands directories, keeps specific files, merges all into 1 Master Chart.
 
@@ -397,11 +397,11 @@ Expands directories, keeps specific files, merges all into 1 Master Chart.
 
 | Command | Tabs | Purpose |
 |---------|------|---------|
-| `/excel` | 4 tabs | Drug pharmacology (detailed) |
-| `/excel comparison` | 3 tabs | Side-by-side comparisons |
-| `/excel master` | 1 tab | Quick reference chart (flexible columns) |
+| `/4-tab-excel` | 4 tabs | Drug pharmacology (detailed) |
+| `/key-comparisons-excel` | 3 tabs | Side-by-side comparisons |
+| `/master-chart-excel` | 1 tab | Quick reference chart (flexible columns) |
 
-**Use `/excel master` when:**
+**Use `/master-chart-excel` when:**
 - You want a simple, single-sheet reference
 - You need flexible columns (not drug-specific)
 - Content is conditions, labs, or mixed topics

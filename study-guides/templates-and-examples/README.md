@@ -41,10 +41,10 @@ This folder contains template files and example study guides.
 Claude Code has built-in commands that automatically use these templates:
 
 ```
-/excel [source-file]     - Creates Excel Drug Chart
-/word [source-file]      - Creates Word LO Guide
-/html-drug [source-file] - Creates HTML Drug Chart
-/html-LO [source-file]   - Creates HTML LO Guide
+/4-tab-excel [source-file]   - Creates Excel Drug Chart
+/LO-word [source-file]       - Creates Word LO Guide
+/drugs-html [source-file]    - Creates HTML Drug Chart
+/LO-html [source-file]       - Creates HTML LO Guide
 ```
 
 **The system handles template selection automatically!**

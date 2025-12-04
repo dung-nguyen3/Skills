@@ -31,19 +31,19 @@ Use a slash command based on your content type:
 
 **For drug information (pharmacology):**
 ```
-/excel HIV_Lecture_Notes.txt
+/4-tab-excel HIV_Lecture_Notes.txt
 ```
 → Creates 4-tab Excel drug chart
 
 **For learning objectives (any medical topic):**
 ```
-/html-LO HIV_Lecture_Notes.txt
+/LO-html HIV_Lecture_Notes.txt
 ```
 → Creates interactive HTML guide
 
 **For clinical scenarios:**
 ```
-/clinical Chest_Pain_History.txt
+/clinical-assessment-html Chest_Pain_History.txt
 ```
 → Creates history/physical exam guide
 
@@ -62,10 +62,10 @@ After creation, run verification:
 
 | Content Type | Recommended Format | Command |
 |--------------|-------------------|---------|
-| Drug classes, pharmacology | Excel Drug Chart | `/excel` |
-| Learning objectives (any topic) | HTML LO Guide | `/html-LO` |
-| History-taking, physical exam | Clinical Guide | `/clinical` |
-| General notes | Word Document | `/word` |
+| Drug classes, pharmacology | Excel Drug Chart | `/4-tab-excel` |
+| Learning objectives (any topic) | HTML LO Guide | `/LO-html` |
+| History-taking, physical exam | Clinical Guide | `/clinical-assessment-html` |
+| General notes | Word Document | `/LO-word` |
 
 ---
 
@@ -129,7 +129,7 @@ A: Use `/verify-accuracy` - the study-guide-analyzer agent performs comprehensiv
 **Ready to create your first study guide?**
 
 1. Prepare your source file
-2. Run `/excel [source-file]` (or your preferred format)
+2. Run `/4-tab-excel [source-file]` (or your preferred format)
 3. Follow the prompts
 4. Verify with `/verify-accuracy`
 

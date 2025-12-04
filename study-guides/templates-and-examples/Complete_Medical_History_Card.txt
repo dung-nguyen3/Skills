@@ -6,7 +6,7 @@
 ## - Specialized Exams Database: /Users/kimnguyen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Practicals/Specialized Exams update.xlsx
 ##
 ## INTEGRATION:
-## - Used by /clinical command for medical history components
+## - Used by /clinical-assessment-html command for medical history components
 ## - Physical exam findings: Combined from CloudDocs Practicals directory + source file
 ## - HTML structure: Clinical_Physical_Assessment_REVISED.txt template
 ##

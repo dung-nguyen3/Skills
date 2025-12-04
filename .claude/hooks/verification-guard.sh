@@ -90,8 +90,8 @@ VERIFICATION CHECKLIST:
 5. ONLY then proceed with creation
 
 💡 TIP: Use slash commands which automatically handle verification:
-   /excel [source-file]
-   /word [source-file]
+   /4-tab-excel [source-file]
+   /LO-word [source-file]
 
 ⚠️  This block ensures source-only policy and quality standards.
 

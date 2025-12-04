@@ -364,19 +364,19 @@ Track your progress:
 
 ### Single File:
 ```
-/excel "Pharmacology/Exam 3/Extract/HIV Antivirals.txt"
+/4-tab-excel "Pharmacology/Exam 3/Extract/HIV Antivirals.txt"
 ```
 Creates: `HIV_Antivirals_Drug_Chart.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
-/excel "/Users/name/Documents/Pharmacology/Exam 2/Extract"
+/4-tab-excel "/Users/name/Documents/Pharmacology/Exam 2/Extract"
 ```
 Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/excel "HIV.txt;COVID.txt;Antibiotics.txt"
+/4-tab-excel "HIV.txt;COVID.txt;Antibiotics.txt"
 ```
 Creates 3 separate Excel files:
 - `HIV_Drug_Chart.xlsx` (only HIV drugs)
@@ -387,7 +387,7 @@ Uses batch-separate-processor agent with architectural isolation (zero contamina
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
 ```
 Creates 1 merged Excel file:
 - `HIV_Comprehensive_Drug_Chart.xlsx` (all HIV drug classes merged)
@@ -397,12 +397,12 @@ Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, 
 
 ### Batch Merge with Directories (N directories → 1 merged output):
 ```
-/excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 Finds all files from both directories, merges into 1 comprehensive Excel chart.
 
 ### Mixed Files and Directories:
 ```
-/excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
+/4-tab-excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
 ```
 Expands directories, keeps specific files, merges all into 1 Excel chart.

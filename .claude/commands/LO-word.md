@@ -343,13 +343,13 @@ For batch operations (semicolon-separated files or --merge flag):
 
 ### Single File:
 ```
-/word "Pharmacology/Exam 3/Extract/Lecture 42.txt"
+/LO-word "Pharmacology/Exam 3/Extract/Lecture 42.txt"
 ```
 Creates: `Lecture_42_LO_Guide.docx`
 
 ### Batch Separate (N files → N outputs):
 ```
-/word "Lecture42.txt;Lecture43.txt;Lecture44.txt"
+/LO-word "Lecture42.txt;Lecture43.txt;Lecture44.txt"
 ```
 Creates 3 separate Word files:
 - `Lecture_42_LO_Guide.docx` (only Lecture 42 content)
@@ -360,7 +360,7 @@ Uses batch-separate-processor agent with architectural isolation.
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/word --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+/LO-word --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
 ```
 Creates 1 merged Word file:
 - `Cardiovascular_Comprehensive_LO_Guide.docx` (all 3 lectures merged)

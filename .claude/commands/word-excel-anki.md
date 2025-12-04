@@ -197,7 +197,7 @@ Exact Terminology: ✓ Consistent across all formats
 
 **Override with --formats flag:**
 ```bash
-/study-bundle --formats word,anki "source.txt"
+/word-excel-anki --formats word,anki "source.txt"
 ```
 
 ---
@@ -245,17 +245,17 @@ Before completing, agent verifies:
 
 **Single:**
 ```
-/study-bundle "Pharmacology/Exam 3/Extract/HIV_Drugs.txt"
+/word-excel-anki "Pharmacology/Exam 3/Extract/HIV_Drugs.txt"
 ```
 
 **Batch:**
 ```
-/study-bundle "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/word-excel-anki "HIV.txt;Antibiotics.txt;Antivirals.txt"
 ```
 
 **Directory:**
 ```
-/study-bundle "Pharmacology/Exam 3/Extract/"
+/word-excel-anki "Pharmacology/Exam 3/Extract/"
 ```
 
 ---

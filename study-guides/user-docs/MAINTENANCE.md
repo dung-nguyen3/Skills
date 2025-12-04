@@ -34,7 +34,7 @@ This guide covers how to customize, modify, and maintain your Claude Code study 
 2. **Update slash command reference:**
    ```bash
    # Edit the slash command file
-   open .claude/commands/excel.md
+   open .claude/commands/4-tab-excel.md
    ```
 
    Find line ~26:
@@ -68,7 +68,7 @@ This guide covers how to customize, modify, and maintain your Claude Code study 
 
 5. **Test the slash command:**
    ```
-   /excel path/to/test/file.txt
+   /4-tab-excel path/to/test/file.txt
    ```
 
 ---
@@ -87,12 +87,12 @@ This guide covers how to customize, modify, and maintain your Claude Code study 
 
 2. **Update ALL slash command files:**
 
-   **`.claude/commands/excel.md` (line ~26):**
+   **`.claude/commands/4-tab-excel.md` (line ~26):**
    ```markdown
    - **File**: `Copy Study Guide Claude Q3 2/Study Templates/Excel Drugs Chart 11-1.txt`
    ```
 
-   **`.claude/commands/word.md` (line ~24):**
+   **`.claude/commands/LO-word.md` (line ~24):**
    ```markdown
    - **File**: `Copy Study Guide Claude Q3 2/Study Templates/Word LO 11-5.txt`
    ```
@@ -111,22 +111,22 @@ This guide covers how to customize, modify, and maintain your Claude Code study 
 
 5. **Test all slash commands:**
    ```
-   /excel test.txt
-   /word test.txt
+   /4-tab-excel test.txt
+   /LO-word test.txt
    ```
 
 ---
 
 ### Renaming Slash Commands
 
-**Scenario:** You want to rename `/excel` to `/make-drugchart`
+**Scenario:** You want to rename `/4-tab-excel` to `/make-drugchart`
 
 **Steps:**
 
 1. **Rename the command file:**
    ```bash
    cd .claude/commands
-   mv excel.md make-drugchart.md
+   mv 4-tab-excel.md make-drugchart.md
    ```
 
 2. **Update the command file header:**
@@ -142,7 +142,7 @@ This guide covers how to customize, modify, and maintain your Claude Code study 
    Update any internal references to the command name.
 
 3. **Update HOW_TO_USE.md:**
-   - Replace all `/excel` with `/make-drugchart`
+   - Replace all `/4-tab-excel` with `/make-drugchart`
    - Update Quick Reference tables
    - Update usage examples
 
@@ -719,8 +719,8 @@ Copy Study Guide Claude Q3 2/
 ├── .claude/
 │   ├── settings.json              # Permissions and hook configuration
 │   ├── commands/                  # Slash commands
-│   │   ├── word.md         # /word command
-│   │   ├── excel.md        # /excel command
+│   │   ├── LO-word.md       # /LO-word command
+│   │   ├── 4-tab-excel.md   # /4-tab-excel command
 │   │   └── verify-accuracy.md     # /verify-accuracy command
 │   ├── skills/
 │   │   ├── skill-rules.json       # Skill trigger definitions
@@ -744,8 +744,8 @@ Copy Study Guide Claude Q3 2/
 
 ```
 Slash Command → Template File
-/word → Claude Templates/Word LO 11-5.txt
-/excel → Claude Templates/Excel Drugs Chart 11-1.txt
+/LO-word → Claude Templates/Word LO 11-5.txt
+/4-tab-excel → Claude Templates/Excel Drugs Chart 11-1.txt
 
 Skill Trigger → Skill Implementation
 skill-rules.json → .claude/skills/[skill-name]/SKILL.md
@@ -899,13 +899,13 @@ Claude Study Tools → My Study Files
 
 ### Slash Command Not Found
 
-**Problem:** `/excel` returns "command not found"
+**Problem:** `/4-tab-excel` returns "command not found"
 
 **Solutions:**
 
 1. **Check file exists:**
    ```bash
-   ls .claude/commands/excel.md
+   ls .claude/commands/4-tab-excel.md
    ```
 
 2. **Check file extension:**

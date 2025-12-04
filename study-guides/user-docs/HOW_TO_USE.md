@@ -546,7 +546,7 @@ Recommended actions for next session:
 ### How They Work Together:
 
 **Normal workflow:**
-1. 📝 You: `/excel source.txt`
+1. 📝 You: `/4-tab-excel source.txt`
 2. ✅ Claude states verification checklist (automatic)
 3. ⛔ PreToolUse hook: Checks verification → ALLOWS
 4. 📝 Claude creates Excel file
@@ -737,7 +737,7 @@ Session cache: .claude/study-guide-cache/abc123
 1. Session starts
    └─ Cache directory created automatically
 
-2. You: /excel source.txt
+2. You: /4-tab-excel source.txt
    └─ UserPromptSubmit: Skill activation check
 
 3. Claude: States verification checklist

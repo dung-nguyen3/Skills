@@ -1,38 +1,38 @@
 {
   "Create Excel Drug Chart": {
-    "prefix": ["excel", "/excel", "drug-excel"],
+    "prefix": ["excel", "/4-tab-excel", "drug-excel"],
     "body": [
-      "/create-excel \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
+      "/4-tab-excel \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
     ],
-    "description": "Insert /create-excel command for drug charts"
+    "description": "Insert /4-tab-excel command for drug charts"
   },
   "Create Word Study Guide": {
-    "prefix": ["word", "/word", "study-word"],
+    "prefix": ["word", "/LO-word", "study-word"],
     "body": [
-      "/create-word \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
+      "/LO-word \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
     ],
-    "description": "Insert /create-word command for Word study guides"
+    "description": "Insert /LO-word command for Word study guides"
   },
   "Create HTML LO Guide": {
-    "prefix": ["html", "/html", "lo-guide"],
+    "prefix": ["html", "/LO-html", "lo-guide"],
     "body": [
-      "/create-lo-guide \"${1:Clinical Medicine/Exam 2/Extract/}${2:filename}.txt\""
+      "/LO-html \"${1:Clinical Medicine/Exam 2/Extract/}${2:filename}.txt\""
     ],
-    "description": "Insert /create-lo-guide command for HTML learning objectives"
+    "description": "Insert /LO-html command for HTML learning objectives"
   },
   "Create HTML Drug Reference": {
-    "prefix": ["drug-html", "/drug-html"],
+    "prefix": ["drug-html", "/drugs-html"],
     "body": [
-      "/create-drug-html \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
+      "/drugs-html \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
     ],
-    "description": "Insert /create-drug-html command for HTML drug reference"
+    "description": "Insert /drugs-html command for HTML drug reference"
   },
   "Create Clinical Guide": {
-    "prefix": ["clinical", "/clinical"],
+    "prefix": ["clinical", "/clinical-assessment-html"],
     "body": [
-      "/create-clinical-guide \"${1:Clinical Medicine/Exam 1/Extract/}${2:filename}.txt\" \"${3:Chief Complaint}\""
+      "/clinical-assessment-html \"${1:Clinical Medicine/Exam 1/Extract/}${2:filename}.txt\" \"${3:Chief Complaint}\""
     ],
-    "description": "Insert /create-clinical-guide command for H&P guides"
+    "description": "Insert /clinical-assessment-html command for H&P guides"
   },
   "Verify Accuracy": {
     "prefix": ["verify", "/verify"],

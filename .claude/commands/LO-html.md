@@ -11,27 +11,27 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 
 **Single Mode:**
 ```
-/html-LO "source_file.txt"
+/LO-html "source_file.txt"
 ```
 
 **Directory Mode:**
 ```
-/html-LO "/path/to/directory"
+/LO-html "/path/to/directory"
 ```
 
 **Batch Separate Mode (N files → N outputs):**
 ```
-/html-LO "file1.txt;file2.txt;file3.txt"
+/LO-html "file1.txt;file2.txt;file3.txt"
 ```
 
 **Batch Merge Mode (N files → 1 merged output):**
 ```
-/html-LO --merge "file1.txt;file2.txt;file3.txt"
+/LO-html --merge "file1.txt;file2.txt;file3.txt"
 ```
 
 **Batch Merge with Directories:**
 ```
-/html-LO --merge "/path/to/dir1;/path/to/dir2"
+/LO-html --merge "/path/to/dir1;/path/to/dir2"
 ```
 
 ## Mode Detection & Directory Expansion
@@ -74,19 +74,19 @@ Comprehensive 4-tab HTML study guide:
 
 ### Single File:
 ```
-/html-LO "Pharmacology/Exam 3/Extract/Cardiovascular_Disease.txt"
+/LO-html "Pharmacology/Exam 3/Extract/Cardiovascular_Disease.txt"
 ```
 Creates: `Cardiovascular_Disease_LO_Guide.html`
 
 ### Batch Separate (N files → N outputs):
 ```
-/html-LO "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+/LO-html "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
 ```
 Creates 3 separate HTML files (architectural isolation via agent)
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/html-LO --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+/LO-html --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
 ```
 Creates 1 comprehensive HTML file with all content merged + merge report
 
@@ -288,14 +288,14 @@ For batch operations (semicolon-separated files or --merge flag):
 
 ## Related Commands
 
-- `/html-drug` - For pharmacology topics (drug-focused template)
-- `/excel` - For comprehensive drug charts (Excel format)
-- `/clinical` - For history-taking and physical exam guides
+- `/drugs-html` - For pharmacology topics (drug-focused template)
+- `/4-tab-excel` - For comprehensive drug charts (Excel format)
+- `/clinical-assessment-html` - For history-taking and physical exam guides
 - `/verify-accuracy` - Verify accuracy of created study guide
 
 ## Template Customization
 
 To modify the HTML template:
 1. Edit: `study-guides/templates-and-examples/HTML_LO_REVISED.txt`
-2. Changes apply automatically to next `/html-LO` use
+2. Changes apply automatically to next `/LO-html` use
 3. Update `HOW_TO_USE.md` if workflow changes

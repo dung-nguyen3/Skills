@@ -209,5 +209,5 @@ For batch operations (semicolon-separated files):
 
 To modify the drug biography template:
 1. Edit: `study-guides/templates-and-examples/Autobiography_Drug_Stories_REVISED.txt`
-2. Changes apply automatically to next `/biography` use
+2. Changes apply automatically to next `/autobiography-trick` use
 3. Update this command file if workflow changes
