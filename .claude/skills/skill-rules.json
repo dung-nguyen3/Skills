@@ -120,6 +120,7 @@
           "/html-LO",
           "/html-drug",
           "/biography",
+          "/study-bundle",
           "batch create",
           "batch mode",
           "multiple files",
@@ -135,7 +136,8 @@
           "(create|make).*?(history|physical).*?(guide|exam)",
           "(batch|multiple).*(create|generate|make).*?(excel|study guide|word|html)",
           "(create|generate|make).*(from multiple|multiple files|multiple sources|batch)",
-          "(batch|combined|merged).*(files|sources)"
+          "(batch|combined|merged).*(files|sources)",
+          "(create|make|generate).*?(study bundle|multi-format|multiple formats)"
         ]
       },
       "fileTriggers": {
