@@ -31,4 +31,38 @@ cat <<'EOF'
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
+# Weekly Batch Processing Reminder
+# Check if it's been 7+ days since last batch operation
+LAST_BATCH_FILE="$HOME/.claude/last_batch_date"
+CURRENT_DATE=$(date +%s)
+
+if [ -f "$LAST_BATCH_FILE" ]; then
+    LAST_BATCH=$(cat "$LAST_BATCH_FILE" 2>/dev/null || echo "0")
+    DAYS_DIFF=$(( (CURRENT_DATE - LAST_BATCH) / 86400 ))
+
+    if [ $DAYS_DIFF -ge 7 ]; then
+        cat <<'REMINDER'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 WEEKLY REMINDER: Batch Processing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+It's been 7+ days since your last batch operation.
+
+💡 Consider running batch processing on new source files:
+   /study-bundle "path/to/directory/"
+   /excel "path/to/directory/"
+
+📁 Check these locations for unprocessed files:
+   - [Course]/[Exam]/Extract/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REMINDER
+    fi
+else
+    # First time - create the file
+    mkdir -p "$HOME/.claude"
+    echo "$CURRENT_DATE" > "$LAST_BATCH_FILE"
+fi
+
 exit 0

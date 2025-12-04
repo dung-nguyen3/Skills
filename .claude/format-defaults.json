@@ -1,0 +1,99 @@
+{
+  "version": "1.0",
+  "description": "Course-specific default format bundles for /study-bundle command. Defines which formats are most useful for each type of course.",
+  "defaultBundle": ["word", "excel-comparison", "anki"],
+  "courses": {
+    "Pharmacology": {
+      "formats": ["word", "excel-comparison", "anki"],
+      "description": "Drug courses benefit from all 3 formats: Word for detailed LOs, Excel for drug comparisons, Anki for memorization",
+      "reasoning": "Pharmacology requires memorizing drug names, classes, mechanisms, and side effects - Anki essential for recall"
+    },
+    "Pathophysiology": {
+      "formats": ["word", "excel-comparison"],
+      "description": "Disease mechanism courses focus on understanding rather than rote memorization",
+      "reasoning": "Path emphasizes understanding disease processes, less need for flashcard memorization"
+    },
+    "Clinical Medicine": {
+      "formats": ["word", "html-LO"],
+      "description": "Clinical courses benefit from interactive HTML for quick reference during patient encounters",
+      "reasoning": "Clinical practice needs quick-access HTML format for rapid lookup during patient care"
+    },
+    "Anatomy": {
+      "formats": ["word", "anki"],
+      "description": "Anatomy requires memorization of structures, locations, and functions",
+      "reasoning": "Heavy memorization component makes Anki essential; less need for comparison tables"
+    },
+    "Physiology": {
+      "formats": ["word", "excel-comparison"],
+      "description": "Physiology focuses on understanding systems and mechanisms",
+      "reasoning": "Understanding-focused, comparison tables help differentiate similar processes"
+    },
+    "Biochemistry": {
+      "formats": ["word", "excel-comparison", "anki"],
+      "description": "Biochemistry requires both understanding pathways and memorizing enzymes/reactions",
+      "reasoning": "Complex pathways need comparison tables, enzyme names need memorization"
+    },
+    "Microbiology": {
+      "formats": ["word", "excel-comparison", "anki"],
+      "description": "Microbiology requires memorizing organism names, characteristics, and treatments",
+      "reasoning": "Organism identification and characteristics benefit from all 3 formats"
+    },
+    "Immunology": {
+      "formats": ["word", "excel-comparison"],
+      "description": "Immunology focuses on understanding immune mechanisms and pathways",
+      "reasoning": "Conceptual understanding primary; less memorization of discrete facts"
+    },
+    "Physical Diagnosis": {
+      "formats": ["word", "html-LO"],
+      "description": "Physical exam courses benefit from interactive HTML for clinical reference",
+      "reasoning": "Clinical exam techniques need quick-access format for practice sessions"
+    },
+    "OSCE Prep": {
+      "formats": ["clinical", "html-LO"],
+      "description": "OSCE preparation uses clinical assessment guides and HTML quick reference",
+      "reasoning": "Clinical scenarios require H&P guides and fast lookup formats"
+    }
+  },
+  "contentTypeDefaults": {
+    "drugs": {
+      "formats": ["word", "excel-comparison", "anki"],
+      "description": "Drug content always benefits from all 3 formats regardless of course"
+    },
+    "conditions": {
+      "formats": ["word", "excel-comparison"],
+      "description": "Disease/condition content focuses on understanding and comparison"
+    },
+    "procedures": {
+      "formats": ["word", "html-LO"],
+      "description": "Procedural content needs step-by-step guides and quick reference"
+    },
+    "anatomy": {
+      "formats": ["word", "anki"],
+      "description": "Anatomical content requires memorization of structures"
+    }
+  },
+  "userOverrides": {
+    "enabled": true,
+    "description": "Users can override defaults by specifying formats in command",
+    "examples": [
+      "/study-bundle --formats word,anki \"source.txt\"",
+      "/study-bundle --course Pharmacology \"source.txt\"",
+      "/study-bundle \"source.txt\" (uses defaultBundle)"
+    ]
+  },
+  "notes": {
+    "implementation": "When /study-bundle command is run without --formats flag, detect course type from directory path or use defaultBundle",
+    "detection_priority": [
+      "1. Explicit --formats flag (highest priority)",
+      "2. Explicit --course flag",
+      "3. Auto-detect from directory path (e.g., 'Pharmacology/Exam 3' → Pharmacology)",
+      "4. Auto-detect from content type (drugs vs conditions)",
+      "5. Use defaultBundle (fallback)"
+    ],
+    "future_enhancements": [
+      "User profile with preferred formats",
+      "Learning style preferences (visual vs memorization)",
+      "Exam-specific bundles (USMLE Step 1 vs COMLEX)"
+    ]
+  }
+}

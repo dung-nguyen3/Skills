@@ -163,6 +163,77 @@ Location: `.claude/commands/`
 
 ---
 
+### /study-bundle
+**Purpose:** Create multiple study guide formats from source in ONE efficient pass (Word LO + Excel Comparison + Anki)
+**Arguments:** Source file path or directory (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
+**Output:** 3 files per source: `.docx`, `.xlsx`, `.apkg` in `[Class]/[Exam]/Claude Study Tools/`
+**Best For:** Comprehensive study preparation, token-efficient multi-format generation
+
+**What it creates:**
+1. **Word LO Study Guide** - 4 sections with learning objectives, comparisons, master chart
+2. **Excel Comparison Chart** - Side-by-side comparison tables with soft pastel colors
+3. **Anki Flashcards** - Q&A cards with LO-filtering and exact terminology
+
+**Token Efficiency:**
+- Traditional: `/word` + `/excel-comparison` + `/anki` = ~97k tokens (reads source 3 times)
+- Study Bundle: Reads source ONCE = ~62k tokens
+- **Savings: ~35-40k tokens per source file**
+
+**Features:**
+- Uses multi-format-processor agent for true token efficiency
+- Maintains exact terminology consistency across all formats
+- Researches mnemonics once, uses in all formats
+- Source-only policy enforced across all outputs
+- Auto-consolidate master charts (optional)
+- QUICK_ACCESS.md index generation (optional)
+
+**Modes:**
+```bash
+# Single file (creates 3 outputs)
+/study-bundle "HIV_Drugs.txt"
+
+# Batch separate (N files → N×3 outputs)
+/study-bundle "HIV.txt;Antibiotics.txt;Antivirals.txt"
+
+# Batch merge (N files → 3 merged outputs)
+/study-bundle --merge "HIV-Lec1.txt;HIV-Lec2.txt;HIV-Lec3.txt"
+
+# Directory input (processes all .txt files)
+/study-bundle "Pharmacology/Exam 3/Extract/"
+```
+
+**When to use:**
+- ✅ Want Word + Excel + Anki from same source
+- ✅ Need comprehensive study materials for exams
+- ✅ Want to maximize token efficiency
+- ✅ Studying pharmacology (memorization + understanding + comparisons)
+
+**When NOT to use:**
+- ❌ Only need ONE format (use individual commands)
+- ❌ Need specialized formats (HTML, clinical guide, biography)
+- ❌ Need full 4-tab Excel drug chart (use `/excel` instead of comparison chart)
+
+**Course-Specific Defaults:**
+- Pharmacology: Word + Excel Comparison + Anki (default)
+- Pathophysiology: Word + Excel Comparison (no Anki)
+- Clinical Medicine: Word + HTML-LO (quick reference)
+- See `.claude/format-defaults.json` for all course mappings
+
+**Example:**
+```
+/study-bundle Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+```
+
+**Output:**
+```
+Claude Study Tools/
+├── HIV_Antivirals_Study_Guide.docx     (12 pages, 8 LOs)
+├── HIV_Antivirals_Comparison_Chart.xlsx (5 comparison tables)
+└── HIV_Antivirals_Flashcards.apkg       (47 cards)
+```
+
+---
+
 ### /verify-accuracy
 **Purpose:** Deep accuracy analysis of existing study guide against source file
 **Arguments:** Study guide file path, Source file path
