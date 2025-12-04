@@ -82,5 +82,15 @@ if [[ -f "$file_path" ]]; then
     echo "$file_path|$file_size|$timestamp" >> "$cache_dir/file-sizes.txt"
 fi
 
+# POST-PROCESSING AUTOMATION
+# Run consolidation and QUICK_ACCESS update for study guides
+post_processing_runner="$CLAUDE_PROJECT_DIR/.claude/agents/post-processing-automation-runner.py"
+
+if [[ -x "$post_processing_runner" ]] || [[ -f "$post_processing_runner" ]]; then
+    # Run post-processing in background (non-blocking)
+    # Output will be visible but won't block the hook
+    python3 "$post_processing_runner" "$file_path" 2>&1 || true
+fi
+
 # Exit silently - don't show output (other hook will show reminder)
 exit 0

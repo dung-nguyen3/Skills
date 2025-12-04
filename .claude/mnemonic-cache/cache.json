@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "description": "Mnemonic cache for study guide creation - stores researched mnemonics to avoid redundant WebSearch",
+  "created": "2025-01-04",
+  "entries": [],
+  "stats": {
+    "total_hits": 0,
+    "total_misses": 0,
+    "total_entries": 0,
+    "token_savings": 0
+  }
+}
