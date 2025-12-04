@@ -32,9 +32,9 @@ Validate batch study guide operations and coordinate appropriate agent invocatio
 
 **Examples:**
 ```bash
-/excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
-/excel --merge "HIV-Lec1.txt;HIV-Lec2.txt;HIV-Lec3.txt"
-/clinical --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
+/4-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/4-tab-excel --merge "HIV-Lec1.txt;HIV-Lec2.txt;HIV-Lec3.txt"
+/clinical-assessment-html --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
 ```
 
 ---
@@ -209,7 +209,7 @@ Action: Use batch separate mode OR separate commands
 Issue: Template incompatible with file content
 Template: Excel Drug Chart (expects drug list)
 Files contain: Learning objectives (not drugs)
-Action: Use /html-LO or /word instead of /excel
+Action: Use /LO-html or /LO-word instead of /4-tab-excel
 ```
 
 ### ❌ No Merge Flag with Merge Intent
@@ -222,10 +222,10 @@ Default behavior: Batch Separate (N files → N outputs)
 Did you mean: Batch Merge (N files → 1 output)?
 
 If you want ONE merged output, add --merge flag:
-/excel --merge "file1.txt;file2.txt;file3.txt"
+/4-tab-excel --merge "file1.txt;file2.txt;file3.txt"
 
 If you want separate outputs, proceed as-is:
-/excel "file1.txt;file2.txt;file3.txt"
+/4-tab-excel "file1.txt;file2.txt;file3.txt"
 ```
 
 ---
@@ -264,7 +264,7 @@ study-guide-analyzer (verifies output)
 
 ### Example 1: Batch Separate (N files → N outputs)
 
-**User:** `/excel "HIV.txt;Antibiotics.txt;Antivirals.txt"`
+**User:** `/4-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"`
 
 **batch-coordinator response:**
 ```
@@ -289,7 +289,7 @@ Ready to proceed?
 
 ### Example 2: Batch Merge (N files → 1 output)
 
-**User:** `/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"`
+**User:** `/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"`
 
 **batch-coordinator response:**
 ```
@@ -315,7 +315,7 @@ Ready to proceed?
 
 ### Example 3: Clinical Merge (Chief Complaint)
 
-**User:** `/clinical --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"`
+**User:** `/clinical-assessment-html --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"`
 
 **batch-coordinator response:**
 ```

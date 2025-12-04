@@ -12,57 +12,57 @@ All commands support **single**, **batch separate**, and **batch merge** modes:
 
 ```bash
 # Single file
-/word "lecture.txt"
+/LO-word "lecture.txt"
 
 # Single directory
-/word "/path/to/directory"
+/LO-word "/path/to/directory"
 
 # Batch separate (N files → N outputs)
-/word "lec1.txt;lec2.txt;lec3.txt"
+/LO-word "lec1.txt;lec2.txt;lec3.txt"
 
 # Batch merge (N files → 1 merged output)
-/word --merge "lec1.txt;lec2.txt;lec3.txt"
+/LO-word --merge "lec1.txt;lec2.txt;lec3.txt"
 
 # Batch merge with directories
-/word --merge "/path/to/dir1;/path/to/dir2"
+/LO-word --merge "/path/to/dir1;/path/to/dir2"
 ```
 
 ### Excel Drug Chart
 
 ```bash
 # Single file
-/excel "drugs.txt"
+/4-tab-excel "drugs.txt"
 
 # Single directory (auto-finds all .txt)
-/excel "/path/to/Extract"
+/4-tab-excel "/path/to/Extract"
 
 # Batch separate
-/excel "HIV.txt;Antibiotics.txt"
+/4-tab-excel "HIV.txt;Antibiotics.txt"
 
 # Batch merge (intelligent merge with overlap resolution)
-/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt"
+/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt"
 
 # Batch merge with directories
-/excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 
 ### Excel Comparison Chart (Any Medical Topic)
 
 ```bash
 # Single file
-/excel comparison "Hypersensitivity.txt"
+/key-comparisons-excel "Hypersensitivity.txt"
 
 # Single directory
-/excel comparison "/path/to/Extract"
+/key-comparisons-excel "/path/to/Extract"
 
 # Batch separate
-/excel comparison "TypeI.txt;TypeII.txt;TypeIII.txt"
+/key-comparisons-excel "TypeI.txt;TypeII.txt;TypeIII.txt"
 
 # Batch merge (creates comprehensive comparison)
-/excel comparison --merge "Mechanisms.txt;Clinical.txt;Treatment.txt"
+/key-comparisons-excel --merge "Mechanisms.txt;Clinical.txt;Treatment.txt"
 
 # Batch merge with directories
-/excel comparison --merge "/path/to/dir1;/path/to/dir2"
+/key-comparisons-excel --merge "/path/to/dir1;/path/to/dir2"
 ```
 
 Creates 3-tab comparison chart: Key Comparisons, Master Chart, Summary
@@ -71,16 +71,16 @@ Creates 3-tab comparison chart: Key Comparisons, Master Chart, Summary
 
 ```bash
 # Single file
-/excel master "drugs.txt"
+/master-chart-excel "drugs.txt"
 
 # Single directory
-/excel master "/path/to/Extract"
+/master-chart-excel "/path/to/Extract"
 
 # Batch separate
-/excel master "HIV.txt;Antibiotics.txt"
+/master-chart-excel "HIV.txt;Antibiotics.txt"
 
 # Batch merge
-/excel master --merge "HIV.txt;Hepatitis.txt;Herpes.txt"
+/master-chart-excel --merge "HIV.txt;Hepatitis.txt;Herpes.txt"
 ```
 
 Creates single-sheet Master Chart with user-defined columns. Flexible for drugs, conditions, or labs.
@@ -89,48 +89,48 @@ Creates single-sheet Master Chart with user-defined columns. Flexible for drugs,
 
 ```bash
 # Single file
-/html-LO "lecture.txt"
+/LO-html "lecture.txt"
 
 # Directory mode
-/html-LO "/path/to/directory"
+/LO-html "/path/to/directory"
 
 # Batch merge with directories
-/html-LO --merge "/path/to/dir1;/path/to/dir2"
+/LO-html --merge "/path/to/dir1;/path/to/dir2"
 ```
 
 ### HTML Drug Reference (Mobile)
 
 ```bash
 # Single file
-/html-drug "drugs.txt"
+/drugs-html "drugs.txt"
 
 # Directory mode
-/html-drug "/path/to/directory"
+/drugs-html "/path/to/directory"
 
 # Batch merge with directories
-/html-drug --merge "/path/to/dir1;/path/to/dir2"
+/drugs-html --merge "/path/to/dir1;/path/to/dir2"
 ```
 
 ### Clinical Assessment Guide
 
 ```bash
 # Single file
-/clinical "source.txt" "Chief Complaint"
+/clinical-assessment-html "source.txt" "Chief Complaint"
 
 # Single directory (auto-finds all .txt files)
-/clinical "/path/to/Extract" "Back Pain"
+/clinical-assessment-html "/path/to/Extract" "Back Pain"
 
 # Batch merge (analyzes multiple files for one chief complaint)
-/clinical --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
+/clinical-assessment-html --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
 
 # Batch merge with directories
-/clinical --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt" "Back Pain"
+/clinical-assessment-html --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt" "Back Pain"
 ```
 
 ### Drug Biography Stories
 
 ```bash
-/biography "path/to/drugs.txt"
+/autobiography-trick "path/to/drugs.txt"
 ```
 
 ### Anki Flashcard Deck
@@ -156,7 +156,7 @@ Creates single-sheet Master Chart with user-defined columns. Flexible for drugs,
 ### Single Mode (1 file → 1 output)
 
 ```bash
-/excel "HIV_Drugs.txt"
+/4-tab-excel "HIV_Drugs.txt"
 ```
 
 Standard single-file processing.
@@ -164,7 +164,7 @@ Standard single-file processing.
 ### Directory Mode (auto-finds all .txt files)
 
 ```bash
-/excel "/path/to/Extract"
+/4-tab-excel "/path/to/Extract"
 ```
 
 - Auto-discovers all `.txt` files in directory
@@ -174,7 +174,7 @@ Standard single-file processing.
 ### Batch Separate (N files → N outputs)
 
 ```bash
-/excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/4-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
 ```
 
 - Creates separate output for each file
@@ -184,7 +184,7 @@ Standard single-file processing.
 ### Batch Merge (N files → 1 merged output)
 
 ```bash
-/excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
 ```
 
 - Combines multiple files into one comprehensive output
@@ -196,7 +196,7 @@ Standard single-file processing.
 ### Batch Merge with Directories (N directories → 1 merged output)
 
 ```bash
-/excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 
 - Auto-discovers all `.txt` files from multiple directories
@@ -206,7 +206,7 @@ Standard single-file processing.
 **Clinical Example:**
 
 ```bash
-/clinical --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
+/clinical-assessment-html --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
 ```
 
 Analyzes all 3 files, extracts ONLY back pain info, creates 1 clinical guide.
@@ -214,7 +214,7 @@ Analyzes all 3 files, extracts ONLY back pain info, creates 1 clinical guide.
 **Clinical with Directories:**
 
 ```bash
-/clinical --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt" "Back Pain"
+/clinical-assessment-html --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt" "Back Pain"
 ```
 
 Auto-finds all .txt files from both directories, filters for back pain content, creates 1 guide.
@@ -225,14 +225,14 @@ Auto-finds all .txt files from both directories, filters for back pain content, 
 
 | Content Type | Command |
 |--------------|---------|
-| Pharmacology drugs (detailed Excel) | `/excel` |
-| Medical topic comparisons (Excel) | `/excel comparison` |
-| Quick reference chart (single sheet) | `/excel master` |
-| Pharmacology drugs (HTML/mobile) | `/html-drug` |
-| Drug stories (creative/memorable) | `/biography` |
-| Any medical topic (HTML) | `/html-LO` |
-| Any medical topic (Word) | `/word` |
-| Clinical exams | `/clinical` |
+| Pharmacology drugs (detailed Excel) | `/4-tab-excel` |
+| Medical topic comparisons (Excel) | `/key-comparisons-excel` |
+| Quick reference chart (single sheet) | `/master-chart-excel` |
+| Pharmacology drugs (HTML/mobile) | `/drugs-html` |
+| Drug stories (creative/memorable) | `/autobiography-trick` |
+| Any medical topic (HTML) | `/LO-html` |
+| Any medical topic (Word) | `/LO-word` |
+| Clinical exams | `/clinical-assessment-html` |
 | Flashcards | `/anki` |
 | Verify existing guide | `/verify-accuracy` |
 

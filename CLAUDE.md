@@ -20,6 +20,11 @@ This repository contains Claude Code infrastructure and study guide materials fo
 - Concise, clear explanations
 - Technical accuracy over validation
 
+### Research Before Guessing
+- When unsure about technical details, ALWAYS use WebSearch first
+- Do not guess or assume - verify with official documentation
+- Especially for: command syntax, best practices, tool behavior, Claude Code features
+
 ## Repository Architecture
 
 ### Main Directories
@@ -113,13 +118,17 @@ git checkout backup-YYYYMMDD-HHMM
 - Quality gate enforcement
 
 **Commands:** `.claude/commands/`
-- `/excel` - Excel drug charts
-- `/word` - Word learning objectives
-- `/html-drug` - HTML drug reference charts
-- `/html-LO` - HTML learning objectives
-- `/clinical` - Clinical assessment guides
+- `/4-tab-excel` - 4-tab Excel drug charts
+- `/master-chart-excel` - Single-sheet master chart
+- `/key-comparisons-excel` - Excel comparison tables
+- `/clinical-assessment-excel` - Clinical assessment Excel
+- `/LO-word` - Word learning objectives
+- `/LO-html` - HTML learning objectives
+- `/drugs-html` - HTML drug reference charts
+- `/clinical-assessment-html` - Clinical H&P guide (HTML)
 - `/anki` - Anki flashcard decks
-- `/biography` - Drug autobiography stories
+- `/autobiography-trick` - Drug autobiography stories
+- `/word-excel-anki` - Multi-format study bundle
 - `/verify-accuracy` - Accuracy verification
 
 ### Finding Templates

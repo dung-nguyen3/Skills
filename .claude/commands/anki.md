@@ -134,11 +134,6 @@ LO 2: [LO statement]
 
 **CRITICAL: Only create flashcards for LO-mapped content from Step 4**
 
-**CSV Format:**
-- First line: `Question,Answer`
-- One Q&A pair per line
-- Save intermediate as: `[topic]_Flashcards.csv`
-
 **LO-Aligned Flashcard Creation:**
 
 For each LO:
@@ -192,8 +187,7 @@ For each LO:
 Track your progress:
 - Create todo for analyzing source
 - Create todo for each major topic section
-- Create todo for CSV generation
-- Create todo for APKG conversion
+- Create todo for APKG generation
 - Mark completed as you finish
 
 ### Step 7: Generate APKG File
@@ -231,12 +225,11 @@ Track your progress:
 - Total flashcards: [#]
 - Cards per LO: [breakdown]
 
-### Step 9: Save Files
+### Step 9: Save File
 
-- CSV: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.csv`
 - APKG: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.apkg`
 - Create Claude Study Tools folder if doesn't exist
-- Confirm files saved successfully
+- Confirm file saved successfully
 
 
 ---
@@ -256,7 +249,7 @@ For batch operations (semicolon-separated files or --merge flag):
 - Using pronouns without clear referents
 - Making answers too long (should be 3-15 words)
 - Skipping important facts from source
-- Not escaping commas/quotes in CSV properly
+- Not escaping special characters in data properly
 
 ## Example Usage
 

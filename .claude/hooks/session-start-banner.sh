@@ -23,8 +23,8 @@ cat <<'EOF'
    - Quality check
 
 💡 Use slash commands for automatic compliance:
-   /excel [source-file]
-   /word [source-file]
+   /4-tab-excel [source-file]
+   /LO-word [source-file]
    /verify-accuracy [file] [source]
 
 🔒 Quality gates are ACTIVE and will enforce these requirements.
@@ -50,8 +50,8 @@ if [ -f "$LAST_BATCH_FILE" ]; then
 It's been 7+ days since your last batch operation.
 
 💡 Consider running batch processing on new source files:
-   /study-bundle "path/to/directory/"
-   /excel "path/to/directory/"
+   /word-excel-anki "path/to/directory/"
+   /4-tab-excel "path/to/directory/"
 
 📁 Check these locations for unprocessed files:
    - [Course]/[Exam]/Extract/

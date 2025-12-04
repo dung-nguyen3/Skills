@@ -33,19 +33,19 @@
 
 ```bash
 # Word Study Guide
-/word "path/to/lecture.txt"
+/LO-word "path/to/lecture.txt"
 
 # Excel Drug Chart
-/excel "path/to/drugs.txt"
+/4-tab-excel "path/to/drugs.txt"
 
 # HTML Learning Objectives (any medical topic)
-/html-LO "path/to/lecture.txt"
+/LO-html "path/to/lecture.txt"
 
 # HTML Drug Reference (mobile-friendly)
-/html-drug "path/to/drugs.txt"
+/drugs-html "path/to/drugs.txt"
 
 # Clinical Assessment Guide
-/clinical "path/to/source.txt" "Chief Complaint"
+/clinical-assessment-html "path/to/source.txt" "Chief Complaint"
 
 # Verify Accuracy
 /verify-accuracy "path/to/study-guide.xlsx" "path/to/source.txt"
@@ -73,22 +73,22 @@
 **START HERE:**
 1. **Is it about drugs?** → YES: Go to #2 | NO: Go to #4
 2. **Do you want Excel or HTML?**
-   - Excel (comprehensive tables): `/excel`
-   - HTML (mobile reference): `/html-drug`
+   - Excel (comprehensive tables): `/4-tab-excel`
+   - HTML (mobile reference): `/drugs-html`
 3. **DONE!**
 
-4. **Is it about clinical exams (history & physical)?** → YES: `/clinical` | NO: Go to #5
-5. **Do you need Word format?** → YES: `/word` | NO: Go to #6
-6. **Use:** `/html-LO` (works for ANY medical topic)
+4. **Is it about clinical exams (history & physical)?** → YES: `/clinical-assessment-html` | NO: Go to #5
+5. **Do you need Word format?** → YES: `/LO-word` | NO: Go to #6
+6. **Use:** `/LO-html` (works for ANY medical topic)
 
 ### Quick Reference Table
 
 | I Have... | Use This Command |
 |-----------|------------------|
-| Drug lecture notes | `/excel` OR `/html-drug` |
-| Non-drug lecture with LOs | `/html-LO` |
-| Clinical exam notes | `/clinical` |
-| Need Word format | `/word` |
+| Drug lecture notes | `/4-tab-excel` OR `/drugs-html` |
+| Non-drug lecture with LOs | `/LO-html` |
+| Clinical exam notes | `/clinical-assessment-html` |
+| Need Word format | `/LO-word` |
 | Existing study guide to check | `/verify-accuracy` |
 
 ---
@@ -101,7 +101,7 @@
 
 ### Step 2: Run Slash Command
 ```bash
-/excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
+/4-tab-excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
 ```
 **On Mac:** Press `Cmd + V` to paste the command
 
@@ -260,10 +260,10 @@ Type these in Command Palette:
 **Check 1:** Did you include the slash?
 ```bash
 # ✓ Correct
-/excel path.txt
+/4-tab-excel path.txt
 
 # ✗ Wrong
-excel path.txt
+4-tab-excel path.txt
 ```
 
 **Check 2:** Does the file exist?
@@ -274,10 +274,10 @@ ls "path/to/source.txt"
 **Check 3:** Did you quote paths with spaces?
 ```bash
 # ✓ Correct
-/word "Clinical Medicine/Exam 1/Lecture.txt"
+/LO-word "Clinical Medicine/Exam 1/Lecture.txt"
 
 # ✗ Wrong
-/word Clinical Medicine/Exam 1/Lecture.txt
+/LO-word Clinical Medicine/Exam 1/Lecture.txt
 ```
 
 ### Skills Not Activating?

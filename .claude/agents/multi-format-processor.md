@@ -6,7 +6,7 @@ description: |
 
   Use when: User wants multiple formats (Word + Excel + Anki) from same source file.
 examples:
-  - <example>User runs: /study-bundle "HIV_Drugs.txt"
+  - <example>User runs: /word-excel-anki "HIV_Drugs.txt"
     Main thread launches me ONCE with formats=["word", "excel-comparison", "anki"]
     I read HIV_Drugs.txt ONCE → generate:
       - HIV_Drugs_Study_Guide.docx (Word LO format)
@@ -292,8 +292,8 @@ Ready for next file (if batch operation).
 ## Token Efficiency Calculation
 
 **Traditional approach (separate commands):**
-- `/word`: Read source (20k) + generate (15k) = 35k
-- `/excel-comparison`: Read source (20k) + generate (12k) = 32k
+- `/LO-word`: Read source (20k) + generate (15k) = 35k
+- `/key-comparisons-excel`: Read source (20k) + generate (12k) = 32k
 - `/anki`: Read source (20k) + generate (10k) = 30k
 - **Total: ~97k tokens**
 
@@ -405,10 +405,10 @@ Status: PARTIAL (review failures)
 
 ---
 
-## Integration with /study-bundle Command
+## Integration with /word-excel-anki Command
 
 **Workflow:**
-1. User runs: `/study-bundle "HIV_Drugs.txt"`
+1. User runs: `/word-excel-anki "HIV_Drugs.txt"`
 2. Command detects single file, multi-format request
 3. Command launches YOU once with formats=["word", "excel-comparison", "anki"]
 4. You read source ONCE
@@ -416,7 +416,7 @@ Status: PARTIAL (review failures)
 6. You report completion with all outputs
 
 **For batch operations:**
-1. User runs: `/study-bundle "f1.txt;f2.txt;f3.txt"`
+1. User runs: `/word-excel-anki "f1.txt;f2.txt;f3.txt"`
 2. Command launches YOU 3 times (once per file)
 3. Each invocation: read 1 source → generate 3 formats
 4. Total: 3 source reads (not 9), 9 total outputs

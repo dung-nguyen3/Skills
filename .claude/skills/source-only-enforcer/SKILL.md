@@ -40,11 +40,11 @@ Ensure ALL medical study guides are created from source material only, with mand
 - "create clinical assessment guide" (HTML)
 - "make study guide from lecture"
 - "generate word/excel/html study guide"
-- "/excel [source-file]"
-- "/word [source-file]"
-- "/html-drug [source-file]"
-- "/html-LO [source-file]"
-- "/clinical [source-file]"
+- "/4-tab-excel [source-file]"
+- "/LO-word [source-file]"
+- "/drugs-html [source-file]"
+- "/LO-html [source-file]"
+- "/clinical-assessment-html [source-file]"
 
 **File triggers:**
 - Working with files in `Claude Study Tools/` directory
@@ -169,8 +169,8 @@ Then state: "Post-creation verification complete"
 ## Tips
 
 💡 Use slash commands for automatic verification:
-- `/excel [source-file]` - Automatically handles verification
-- `/word [source-file]` - Automatically handles verification
+- `/4-tab-excel [source-file]` - Automatically handles verification
+- `/LO-word [source-file]` - Automatically handles verification
 - `/verify-accuracy [file] [source]` - Deep accuracy check
 
 💡 Session-aware: Once verified this session, create multiple study guides without repeated blocking

@@ -8,7 +8,7 @@ Complete list of all available slash commands in the Skills repository.
 
 Location: `.claude/commands/`
 
-### /word
+### /LO-word
 **Purpose:** Create comprehensive Word study guide from source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/Lecture 42.txt`)
 **Output:** `.docx` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -22,12 +22,12 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/word Pharmacology/Exam 3/Extract/Lecture 42.txt
+/LO-word Pharmacology/Exam 3/Extract/Lecture 42.txt
 ```
 
 ---
 
-### /excel
+### /4-tab-excel
 **Purpose:** Create comprehensive 4-tab Excel drug chart from pharmacology source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
 **Output:** `.xlsx` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -41,12 +41,12 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/4-tab-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
 
-### /html-LO
+### /LO-html
 **Purpose:** Create interactive HTML learning objectives guide (works for ANY medical topic)
 **Arguments:** Source file path (e.g., `Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -68,12 +68,12 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/html-LO Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
+/LO-html Clinical Medicine/Exam 2/Extract/Cardiovascular-Disease.txt
 ```
 
 ---
 
-### /html-drug
+### /drugs-html
 **Purpose:** Create interactive single-page HTML drug reference chart (pharmacology)
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Antivirals.txt`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -92,12 +92,12 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/html-drug Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/drugs-html Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
 
-### /clinical
+### /clinical-assessment-html
 **Purpose:** Create clinical assessment guide for history-taking and physical examination
 **Arguments:** Source file path and chief complaint (e.g., `"Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"`)
 **Output:** `.html` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -115,12 +115,12 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/clinical "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
+/clinical-assessment-html "Clinical Medicine/Exam 1/Extract/Lower-Extremity.txt" "Leg Pain"
 ```
 
 ---
 
-### /biography
+### /autobiography-trick
 **Purpose:** Create memorable drug biography stories for easier memorization
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
 **Output:** Creative narrative study material
@@ -128,7 +128,7 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/biography Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/autobiography-trick Pharmacology/Exam 3/Extract/HIV Drugs.txt
 ```
 
 ---
@@ -136,11 +136,10 @@ Location: `.claude/commands/`
 ### /anki
 **Purpose:** Create comprehensive Anki flashcard deck (.apkg) from source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
-**Output:** `.csv` and `.apkg` files in `[Class]/[Exam]/Claude Study Tools/`
+**Output:** `.apkg` file in `[Class]/[Exam]/Claude Study Tools/`
 **Best For:** Spaced repetition study, active recall practice, exam preparation
 
 **What it creates:**
-- CSV file with Question,Answer format
 - APKG file ready to import into Anki
 
 **Flashcard Guidelines:**
@@ -163,7 +162,7 @@ Location: `.claude/commands/`
 
 ---
 
-### /study-bundle
+### /word-excel-anki
 **Purpose:** Create multiple study guide formats from source in ONE efficient pass (Word LO + Excel Comparison + Anki)
 **Arguments:** Source file path or directory (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
 **Output:** 3 files per source: `.docx`, `.xlsx`, `.apkg` in `[Class]/[Exam]/Claude Study Tools/`
@@ -175,7 +174,7 @@ Location: `.claude/commands/`
 3. **Anki Flashcards** - Q&A cards with LO-filtering and exact terminology
 
 **Token Efficiency:**
-- Traditional: `/word` + `/excel-comparison` + `/anki` = ~97k tokens (reads source 3 times)
+- Traditional: `/LO-word` + `/key-comparisons-excel` + `/anki` = ~97k tokens (reads source 3 times)
 - Study Bundle: Reads source ONCE = ~62k tokens
 - **Savings: ~35-40k tokens per source file**
 
@@ -190,16 +189,16 @@ Location: `.claude/commands/`
 **Modes:**
 ```bash
 # Single file (creates 3 outputs)
-/study-bundle "HIV_Drugs.txt"
+/word-excel-anki "HIV_Drugs.txt"
 
 # Batch separate (N files → N×3 outputs)
-/study-bundle "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/word-excel-anki "HIV.txt;Antibiotics.txt;Antivirals.txt"
 
 # Batch merge (N files → 3 merged outputs)
-/study-bundle --merge "HIV-Lec1.txt;HIV-Lec2.txt;HIV-Lec3.txt"
+/word-excel-anki --merge "HIV-Lec1.txt;HIV-Lec2.txt;HIV-Lec3.txt"
 
 # Directory input (processes all .txt files)
-/study-bundle "Pharmacology/Exam 3/Extract/"
+/word-excel-anki "Pharmacology/Exam 3/Extract/"
 ```
 
 **When to use:**
@@ -211,7 +210,7 @@ Location: `.claude/commands/`
 **When NOT to use:**
 - ❌ Only need ONE format (use individual commands)
 - ❌ Need specialized formats (HTML, clinical guide, biography)
-- ❌ Need full 4-tab Excel drug chart (use `/excel` instead of comparison chart)
+- ❌ Need full 4-tab Excel drug chart (use `/4-tab-excel` instead of comparison chart)
 
 **Course-Specific Defaults:**
 - Pharmacology: Word + Excel Comparison + Anki (default)
@@ -221,7 +220,7 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/study-bundle Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/word-excel-anki Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 **Output:**
@@ -268,13 +267,17 @@ Claude Study Tools/
 
 | Your Content Type | Use This Command |
 |-------------------|------------------|
-| Pharmacology drugs (need Excel) | `/excel` |
-| Pharmacology drugs (need HTML for mobile) | `/html-drug` |
-| ANY medical topic with learning objectives | `/html-LO` |
-| Clinical history & physical exam | `/clinical` |
-| Need Word document format | `/word` |
-| Drug stories (memorable narratives) | `/biography` |
+| Pharmacology drugs (need Excel) | `/4-tab-excel` |
+| Single-sheet master chart | `/master-chart-excel` |
+| Side-by-side comparisons | `/key-comparisons-excel` |
+| Clinical assessment Excel | `/clinical-assessment-excel` |
+| Pharmacology drugs (need HTML for mobile) | `/drugs-html` |
+| ANY medical topic with learning objectives | `/LO-html` |
+| Clinical history & physical exam | `/clinical-assessment-html` |
+| Need Word document format | `/LO-word` |
+| Drug stories (memorable narratives) | `/autobiography-trick` |
 | Anki flashcards for spaced repetition | `/anki` |
+| Word + Excel + Anki bundle | `/word-excel-anki` |
 | Verify existing study guide | `/verify-accuracy` |
 
 ### For Development Work:
@@ -292,19 +295,19 @@ Claude Study Tools/
 ### 1. Always Use Absolute or Relative Paths
 ```bash
 # Good:
-/excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/4-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 # Bad:
-/excel HIV Drugs.txt  # Might not find file
+/4-tab-excel HIV Drugs.txt  # Might not find file
 ```
 
 ### 2. Quote Paths with Spaces
 ```bash
 # Good:
-/clinical "Clinical Medicine/Exam 1/Extract/Lower Extremity.txt" "Leg Pain"
+/clinical-assessment-html "Clinical Medicine/Exam 1/Extract/Lower Extremity.txt" "Leg Pain"
 
 # Bad:
-/clinical Clinical Medicine/Exam 1/Extract/Lower Extremity.txt Leg Pain
+/clinical-assessment-html Clinical Medicine/Exam 1/Extract/Lower Extremity.txt Leg Pain
 ```
 
 ### 3. Let Commands Handle Templates
@@ -322,7 +325,7 @@ Claude Study Tools/
 - Each file is processed independently with explicit context isolation
 - Verification runs for EACH file (not just once at start)
 - Prevents information contamination between files
-- Example: `/excel "HIV.txt;COVID.txt;Antibiotics.txt"` creates 3 separate Excel files
+- Example: `/4-tab-excel "HIV.txt;COVID.txt;Antibiotics.txt"` creates 3 separate Excel files
 - Each file gets complete verification and post-creation checks
 
 ### 6. Use Tab Completion
@@ -336,13 +339,17 @@ Claude Study Tools/
 **Study guide commands:**
 ```
 .claude/commands/
-├── word.md
-├── excel.md
-├── html-LO.md
-├── html-drug.md
-├── clinical.md
-├── biography.md
+├── LO-word.md
+├── 4-tab-excel.md
+├── master-chart-excel.md
+├── key-comparisons-excel.md
+├── clinical-assessment-excel.md
+├── LO-html.md
+├── drugs-html.md
+├── clinical-assessment-html.md
+├── autobiography-trick.md
 ├── anki.md
+├── word-excel-anki.md
 └── verify-accuracy.md
 ```
 
@@ -362,7 +369,7 @@ Claude Study Tools/
 **Command not working?**
 ```bash
 # Check if command file exists
-ls .claude/commands/word.md
+ls .claude/commands/LO-word.md
 
 # Verify you're in the right directory
 pwd
@@ -371,7 +378,7 @@ pwd
 **Need more detail on a specific command?**
 ```bash
 # Read the full command file
-cat .claude/commands/excel.md
+cat .claude/commands/4-tab-excel.md
 ```
 
 **Want to customize a command?**

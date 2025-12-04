@@ -6,7 +6,7 @@ description: |
 
   Use when: Processing multiple files that should each create separate outputs.
 examples:
-  - <example>User runs: /excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
+  - <example>User runs: /4-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
     Main thread launches me 3 times (once per file) with isolated contexts.
     I process HIV.txt → create HIV_Drug_Chart.xlsx
     Second invocation processes Antibiotics.txt → create Antibiotics_Chart.xlsx
@@ -211,7 +211,7 @@ Action: Skipping this file, ready for next file in batch
 ## Integration with Batch Workflow
 
 **Main thread workflow:**
-1. User runs: `/excel "f1.txt;f2.txt;f3.txt"`
+1. User runs: `/4-tab-excel "f1.txt;f2.txt;f3.txt"`
 2. Main thread detects 3 files, batch separate mode
 3. Main thread launches YOU 3 times:
    - Invocation 1: Process f1.txt → create output1.xlsx

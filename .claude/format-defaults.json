@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "description": "Course-specific default format bundles for /study-bundle command. Defines which formats are most useful for each type of course.",
+  "description": "Course-specific default format bundles for /word-excel-anki command. Defines which formats are most useful for each type of course.",
   "defaultBundle": ["word", "excel-comparison", "anki"],
   "courses": {
     "Pharmacology": {
@@ -76,13 +76,13 @@
     "enabled": true,
     "description": "Users can override defaults by specifying formats in command",
     "examples": [
-      "/study-bundle --formats word,anki \"source.txt\"",
-      "/study-bundle --course Pharmacology \"source.txt\"",
-      "/study-bundle \"source.txt\" (uses defaultBundle)"
+      "/word-excel-anki --formats word,anki \"source.txt\"",
+      "/word-excel-anki --course Pharmacology \"source.txt\"",
+      "/word-excel-anki \"source.txt\" (uses defaultBundle)"
     ]
   },
   "notes": {
-    "implementation": "When /study-bundle command is run without --formats flag, detect course type from directory path or use defaultBundle",
+    "implementation": "When /word-excel-anki command is run without --formats flag, detect course type from directory path or use defaultBundle",
     "detection_priority": [
       "1. Explicit --formats flag (highest priority)",
       "2. Explicit --course flag",
