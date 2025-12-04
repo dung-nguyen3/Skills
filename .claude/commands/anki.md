@@ -163,7 +163,9 @@ For each LO:
 
 2. **Answer Quality**
    - Single key concept per answer (typically 3-15 words)
-   - Preserve exact medical/technical terminology
+   - **CRITICAL: Use EXACT wording from source** - Do NOT paraphrase medical terms
+     - Example: Source says "beta-1 adrenergic receptors" → Answer: "beta-1 adrenergic receptors" (NOT "heart beta receptors")
+     - Example: Source says "ACE inhibitor" → Answer: "ACE inhibitor" (NOT "angiotensin-converting enzyme inhibitor" unless source uses full form)
    - Preserve exact drug names, receptor names, classifications
    - No lengthy explanations - just the core fact
 
@@ -175,7 +177,7 @@ For each LO:
 
 4. **Source-Only Policy**
    - Use ONLY information from the source file
-   - Preserve exact terminology from source
+   - **Preserve exact terminology from source** - Copy word-for-word, do NOT paraphrase
    - Do NOT add external medical knowledge
 
 **Question Type Examples:**
