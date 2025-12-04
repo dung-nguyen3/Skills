@@ -69,6 +69,34 @@ This repository contains Claude Code infrastructure and study guide materials fo
 - On network failures, retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s)
 - For pulls: `git pull origin <branch-name>`
 
+### Automatic Backup Protocol
+
+**Before modifying infrastructure files, automatically create a local backup branch:**
+
+**Files that trigger backup:**
+- `.claude/commands/` (slash commands)
+- `.claude/skills/` (skills)
+- `.claude/hooks/` (hooks)
+- `study-guides/templates-and-examples/` (templates only, not output files)
+- Root config files (CLAUDE.md, etc.)
+
+**Do NOT backup for:**
+- Creating study guide output files (Excel, Word, HTML, Anki, etc.)
+
+**Backup commands to run:**
+```bash
+# Create timestamped backup branch
+git branch backup-$(date +%Y%m%d-%H%M)
+
+# Keep only 5 most recent backups, delete oldest
+git branch | grep "backup-" | sort | head -n -5 | xargs -r git branch -d
+```
+
+**Restore if needed:**
+```bash
+git checkout backup-YYYYMMDD-HHMM
+```
+
 ## Navigation Guide
 
 ### Finding Infrastructure Components
