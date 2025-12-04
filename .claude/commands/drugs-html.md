@@ -42,6 +42,28 @@ If batch (semicolon-separated), process each path independently.
 
 ---
 
+### Step 0.8: Drug Inventory (SINGLE MODE ONLY)
+
+**Skip this step for BATCH modes** (agents handle their own counting).
+
+**Before creating content, extract ALL drug names from source:**
+
+1. Scan source file for all drug names (generic and brand names)
+2. Create internal inventory list
+3. Document the count
+
+**Output format:**
+```
+DRUG INVENTORY
+Source: [filename]
+Total drugs found: [N]
+Drug list: [Drug A, Drug B, Drug C, ...]
+```
+
+**Keep this list for verification at end (Step 10).**
+
+---
+
 ### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
@@ -263,6 +285,29 @@ Track your progress:
 - Create Claude Study Tools folder if doesn't exist
 - Confirm file saved successfully
 
+### Step 10: Drug Coverage Report (SINGLE MODE ONLY)
+
+**Compare drugs included vs Drug Inventory from Step 0.8:**
+
+1. Count drugs actually included in the HTML chart
+2. Compare against inventory list from Step 0.8
+3. Calculate coverage percentage
+4. Identify any missing drugs
+
+**MANDATORY OUTPUT:**
+```
+---
+DRUG COVERAGE REPORT
+Source drugs: [N] (from inventory)
+Included drugs: [M]
+Coverage: [M/N] ([percentage]%)
+
+[If 100%]: All drugs from source included.
+[If <100%]: MISSING: [list missing drug names]
+---
+```
+
+**If coverage < 100%:** Fix immediately before completing. Add missing drugs to appropriate tabs.
 
 ---
 
