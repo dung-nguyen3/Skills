@@ -141,6 +141,129 @@ Creates single-sheet Master Chart with user-defined columns. Flexible for drugs,
 
 ---
 
+## Multi-Format Study Bundles
+
+### Word + Excel + Anki Bundle
+
+```bash
+# Single file (creates 3 formats)
+/word-excel-anki "HIV_Drugs.txt"
+
+# Directory mode (smart tracking - skips already-processed files)
+/word-excel-anki "/Users/kimnguyen/.../Clinical Medicine 3/Exam 1"
+
+# Batch separate (N files → N×3 study guides)
+/word-excel-anki "file1.txt;file2.txt;file3.txt"
+```
+
+Creates: Word LO Study Guide + Excel Comparison Chart + Anki Flashcards
+
+**Token efficiency:** ~35-40k tokens saved vs running 3 separate commands
+
+### Interactive Study Guide Creator
+
+```bash
+# Interactive mode - choose which formats to create
+/study-guides "HIV_Drugs.txt"
+
+# Directory mode with smart tracking
+/study-guides "/Users/kimnguyen/.../Pharmacology 3/Exam 2"
+
+# Batch mode with formats pre-specified
+/study-guides "file1.txt;file2.txt" "word,excel-comparison,anki"
+```
+
+**Available formats:**
+- `word` - Word LO study guide
+- `excel-4tab`, `excel-comparison`, `excel-master`, `excel-clinical` - Excel charts
+- `anki` - Anki flashcards
+- `html-lo`, `html-drugs`, `html-clinical` - HTML guides
+- `biography` - Drug autobiography stories
+
+**Quick bundles:**
+- `comprehensive` - All formats
+- `study-bundle` - Core 3 (word, excel-comparison, anki)
+- `quick-reference` - Fast lookup (excel-master, html-lo)
+- `memorization` - Memory-focused (anki, biography)
+
+### Full Workflow Orchestrator
+
+```bash
+# All default formats for the course (auto-detected from path)
+/create-all "HIV_Drugs.txt"
+
+# Custom format selection
+/create-all "Beta_Blockers.txt" --formats word,excel-4tab,anki,biography
+
+# With post-creation verification
+/create-all "ACE_Inhibitors.txt" --verify
+
+# Directory mode with smart tracking
+/create-all "/Users/kimnguyen/.../Pharmacology 3/Exam 2/Extract"
+```
+
+**Features:**
+- Auto-detects course from path (Pharmacology vs Clinical Medicine)
+- Uses course-specific format defaults
+- Auto-consolidates master charts per quarter
+- Auto-generates QUICK_ACCESS index
+- Optional accuracy verification (--verify)
+
+---
+
+## Automation & Utilities
+
+### Batch Status Tracker
+
+```bash
+# Check single directory
+/batch-status "/Users/kimnguyen/.../Pharmacology 3/Exam 2/Extract"
+
+# Check multiple directories
+/batch-status "Exam2/Extract;Exam3/Extract"
+
+# Check all directories
+/batch-status --all
+```
+
+Shows processed/pending/failed files with completion percentages.
+
+### Error Recovery
+
+```bash
+# Auto-resume from last checkpoint
+/error-recovery-resume
+
+# Retry specific files
+/error-recovery-resume "Beta_Blockers.txt;ACE_Inhibitors.txt"
+```
+
+**Features:**
+- Exponential backoff retry (2s, 4s, 8s delays)
+- Circuit breaker after 3 consecutive failures
+- Preserves completed work
+- Token savings: ~48k per skipped file
+
+### Mnemonic Cache
+
+```bash
+# View cache statistics
+/mnemonic-cache stats
+
+# Clean expired entries
+/mnemonic-cache clean
+
+# List cached mnemonics
+/mnemonic-cache list [topic]
+
+# Lookup specific mnemonic
+/mnemonic-cache lookup "ACE inhibitors" "toxicity"
+```
+
+**Token savings:** ~5k per cache hit after first WebSearch
+
+---
+
 ## Verification
 
 ### Verify Study Guide Accuracy
@@ -161,15 +284,32 @@ Creates single-sheet Master Chart with user-defined columns. Flexible for drugs,
 
 Standard single-file processing.
 
-### Directory Mode (auto-finds all .txt files)
+### Directory Mode (auto-finds all .txt files with smart tracking)
 
 ```bash
 /4-tab-excel "/path/to/Extract"
 ```
 
 - Auto-discovers all `.txt` files in directory
+- **Smart tracking:** Uses `.processed_files.txt` to skip already-processed files
+- **Re-run safe:** Only processes NEW files added to directory
 - Processes in batch separate mode (1 output per file)
 - Recursive search (finds files in subdirectories)
+
+**Example workflow:**
+```bash
+# First run - processes all 10 files
+/word-excel-anki "/Users/kimnguyen/.../Pharmacology 3/Exam 2/Extract"
+# Creates 30 study guides (10 files × 3 formats)
+
+# Add new file: Beta_Blockers.txt
+
+# Second run - only processes new file
+/word-excel-anki "/Users/kimnguyen/.../Pharmacology 3/Exam 2/Extract"
+# Creates 3 study guides (1 new file × 3 formats)
+# Skips 10 already-processed files
+# Token savings: ~480k tokens
+```
 
 ### Batch Separate (N files → N outputs)
 

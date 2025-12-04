@@ -20,6 +20,89 @@ Create study guides from: $ARGUMENTS
 
 ---
 
+### Step 1.5: Handle Directory Input with Tracking
+
+**If $ARGUMENTS is a directory path:**
+
+**Step 1.5.1: Scan directory for source files**
+```bash
+# Find all .txt and .pdf files in directory
+source_dir="$ARGUMENTS"
+source_files=$(find "$source_dir" -maxdepth 1 -type f \( -name "*.txt" -o -name "*.pdf" \) | sort)
+```
+
+**Step 1.5.2: Check for processed files tracker**
+```bash
+# Read .processed_files.txt to get already-processed files
+tracker_file="$source_dir/.processed_files.txt"
+
+if [[ -f "$tracker_file" ]]; then
+    mapfile -t processed_files < "$tracker_file"
+else
+    processed_files=()
+fi
+```
+
+**Step 1.5.3: Filter to get NEW files only**
+```bash
+# Compare source files vs processed files
+new_files=()
+
+for file in $source_files; do
+    basename=$(basename "$file")
+
+    # Check if this file was already processed
+    if ! printf '%s\n' "${processed_files[@]}" | grep -q "^$basename$"; then
+        new_files+=("$basename")
+    fi
+done
+```
+
+**Step 1.5.4: Display tracking status**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DIRECTORY MODE - SMART TRACKING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Directory: [source_dir]
+Total source files: [N total]
+
+Status:
+  ✓ Already processed: [M files] (will skip)
+  ⏳ New files to process: [K files]
+
+[If M > 0]:
+Previously processed files (skipping):
+  1. [file1.txt]
+  2. [file2.txt]
+  ...
+
+[If K > 0]:
+New files to process:
+  1. [new_file1.txt]
+  2. [new_file2.txt]
+  ...
+
+[If K == 0]:
+✅ All files already processed - nothing to do!
+Run /batch-status to verify completion.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**If no new files, exit early. Otherwise, continue with new files only.**
+
+**Step 1.5.5: Update file list**
+```python
+# Replace source file list with NEW files only
+source_files = new_files
+file_count = len(new_files)
+```
+
+**If not directory mode, skip to Step 2.**
+
+---
+
 ### Step 2: Interactive Format Selection (if not specified)
 
 **If formats NOT in arguments, ask user:**
@@ -210,6 +293,36 @@ POST-PROCESSING AUTOMATION
 Token cost: ~1,400 tokens (minimal overhead)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+---
+
+### Step 7.5: Update Tracker (Directory Mode Only)
+
+**If in directory mode, update `.processed_files.txt` after each file completes:**
+
+```bash
+# Append successfully processed file to tracker
+tracker_file="$source_dir/.processed_files.txt"
+
+# After each file completes successfully:
+echo "$filename" >> "$tracker_file"
+```
+
+**Tracker file format:**
+```
+HIV_Drugs.txt
+COVID_Drugs.txt
+Antibiotics.txt
+Beta_Blockers.txt
+```
+
+**Benefits:**
+- If batch fails mid-processing, restart will skip completed files
+- Run `/batch-status` to see processed vs pending
+- Run `/error-recovery-resume` to retry failed files only
+- Token savings: ~48k tokens per skipped file
+
+**If NOT directory mode, skip this step.**
 
 ---
 
