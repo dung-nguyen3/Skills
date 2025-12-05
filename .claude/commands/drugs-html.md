@@ -279,11 +279,17 @@ Track your progress:
 
 **CRITICAL: State "Post-creation verification complete" and report any issues. Fix immediately.**
 
-### Step 9: Save File
+### Step 9: Save Files
 
+**Study Guide Output:**
 - Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Reference_Chart.html`
 - Create Claude Study Tools folder if doesn't exist
-- Confirm file saved successfully
+
+**Python File:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Drug_Reference_Chart.py`
+- Create `py/` subfolder if doesn't exist
+
+- Confirm both files saved successfully
 
 ### Step 10: Drug Coverage Report (SINGLE MODE ONLY)
 

@@ -225,11 +225,17 @@ Track your progress:
 - Total flashcards: [#]
 - Cards per LO: [breakdown]
 
-### Step 9: Save File
+### Step 9: Save Files
 
-- APKG: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.apkg`
+**Study Guide Output:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.apkg`
 - Create Claude Study Tools folder if doesn't exist
-- Confirm file saved successfully
+
+**Python File:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Flashcards.py`
+- Create `py/` subfolder if doesn't exist
+
+- Confirm both files saved successfully
 
 
 ---

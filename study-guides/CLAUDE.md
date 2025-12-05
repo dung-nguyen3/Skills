@@ -83,8 +83,9 @@ VERIFICATION CHECKLIST:
 - Use specified colors, formatting, structure
 
 ### 6. File Organization
-- Save to: `[Class]/[Exam]/Claude Study Tools/`
-- Create folder if doesn't exist
+- Save study guides to: `[Class]/[Exam]/Claude Study Tools/`
+- Save Python files to: `[Class]/[Exam]/Claude Study Tools/py/`
+- Create folders if they don't exist
 - Never save to home directory
 
 ---

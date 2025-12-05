@@ -135,7 +135,8 @@ Before creating, Claude will verify:
 - ☐ Source-only policy confirmed
 - ☐ Learning objectives: Extract LO statements EXACTLY as written (NO paraphrasing)
 - ☐ WebSearch for mnemonics/analogies (mandatory)
-- ☐ Save location: `[Class]/[Exam]/Claude Study Tools/`
+- ☐ Save study guide to: `[Class]/[Exam]/Claude Study Tools/`
+- ☐ Save Python file to: `[Class]/[Exam]/Claude Study Tools/py/`
 
 <verbatim-requirement>
 CRITICAL: Learning objective STATEMENTS must be copied EXACTLY as they appear in the source.

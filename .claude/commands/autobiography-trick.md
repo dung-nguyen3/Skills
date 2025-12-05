@@ -160,12 +160,15 @@ Provide:
 
 ## Output Format
 
-**File naming:**
-```
-[Topic]_Drug_Biographies.docx
-```
+**Study Guide Output:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Biographies.docx`
+- Create Claude Study Tools folder if doesn't exist
 
-**Example:**
+**Python File:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Drug_Biographies.py`
+- Create `py/` subfolder if doesn't exist
+
+**Example filenames:**
 ```
 Cardiovascular_Drug_Biographies.docx
 HIV_Antiretroviral_Drug_Biographies.docx

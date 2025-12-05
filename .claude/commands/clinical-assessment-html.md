@@ -392,11 +392,17 @@ Track your progress:
 
 **CRITICAL: State "Post-creation verification complete" and report any issues. Fix immediately.**
 
-### Step 13: Save File
+### Step 13: Save Files
 
+**Study Guide Output:**
 - Save to: `[Class]/[Exam]/Claude Study Tools/[Chief_Complaint]_Clinical_Assessment_Guide.html`
 - Create Claude Study Tools folder if doesn't exist
-- Confirm file saved successfully
+
+**Python File:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Chief_Complaint]_Clinical_Assessment_Guide.py`
+- Create `py/` subfolder if doesn't exist
+
+- Confirm both files saved successfully
 
 
 ---

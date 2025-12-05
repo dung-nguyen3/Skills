@@ -298,11 +298,17 @@ Track your progress:
 
 **State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
 
-### Step 9: Save File
+### Step 9: Save Files
 
+**Study Guide Output:**
 - Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Comparison_Chart.xlsx`
 - Create Claude Study Tools folder if doesn't exist
-- Confirm file saved successfully
+
+**Python File:**
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Comparison_Chart.py`
+- Create `py/` subfolder if doesn't exist
+
+- Confirm both files saved successfully
 
 ---
 
