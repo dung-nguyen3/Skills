@@ -9,17 +9,17 @@ Create complete study guide workflow for: $ARGUMENTS
 
 **All formats (default):**
 ```
-/create-all "HIV_Drugs.txt"
+/create-all "Pharm_11 Beta Blockers_text.txt"
 ```
 
 **Specific formats:**
 ```
-/create-all "HIV_Drugs.txt" --formats word,excel-4tab,anki
+/create-all "Pharm_11 Beta Blockers_text.txt" --formats word,excel-4tab,anki
 ```
 
 **With post-verification:**
 ```
-/create-all "HIV_Drugs.txt" --verify
+/create-all "Pharm_11 Beta Blockers_text.txt" --verify
 ```
 
 **Directory (all files):**
@@ -123,7 +123,7 @@ def get_default_formats_for_course(source_path):
 ```
 [FULL WORKFLOW ORCHESTRATOR]
 
-Source: HIV_Drugs.txt
+Source: Pharm_11 Beta Blockers_text.txt
 Course detected: Pharmacology
 Formats: Word LO, Excel Comparison, Anki (default for Pharmacology)
 Verification: No
@@ -232,7 +232,7 @@ Creating Word LO study guide...
 
 [Executes /LO-word command inline]
 
-✓ Complete: HIV_Drugs_Study_Guide.docx
+✓ Complete: 11 Beta Blockers.docx
   Pages: 12
   Learning objectives: 8
   Comparison tables: 5
@@ -252,7 +252,7 @@ Creating Excel comparison chart...
 
 [Executes /key-comparisons-excel command inline]
 
-✓ Complete: HIV_Drugs_Comparison_Chart.xlsx
+✓ Complete: 11 Beta Blockers.xlsx
   Comparison tables: 5
   Categories: MOA, Toxicity, Uses, Interactions
 
@@ -270,7 +270,7 @@ Creating Anki flashcard deck...
 
 [Executes /anki command inline]
 
-✓ Complete: HIV_Drugs_Flashcards.apkg
+✓ Complete: 11 Beta Blockers.apkg
   Total cards: 127
   Learning objectives covered: 8
 
@@ -321,10 +321,10 @@ echo "$filename" >> "$tracker_file"
 
 **Tracker file format:**
 ```
-HIV_Drugs.txt
-COVID_Drugs.txt
-Antibiotics.txt
-Beta_Blockers.txt
+Pharm_11 Beta Blockers_text.txt
+Pharm_12 ACE Inhibitors_text.txt
+Pharm_13 Diuretics_text.txt
+Pharm_14 Calcium Channel Blockers_text.txt
 ```
 
 **Benefits:**
@@ -369,9 +369,9 @@ Verification Results:
   - Card count: 127
 
 Analysis reports saved:
-  HIV_Drugs_Study_Guide-analysis-report.md
-  HIV_Drugs_Comparison_Chart-analysis-report.md
-  HIV_Drugs_Flashcards-analysis-report.md
+  11 Beta Blockers-analysis-report.md (Word)
+  11 Beta Blockers-analysis-report.md (Excel)
+  11 Beta Blockers-analysis-report.md (Anki)
 
 Token cost: ~120k tokens (3 formats × ~40k each)
 ```
@@ -389,13 +389,13 @@ Token cost: ~120k tokens (3 formats × ~40k each)
 ✅ FULL WORKFLOW COMPLETE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Source: HIV_Drugs.txt
+Source: Pharm_11 Beta Blockers_text.txt
 Course: Pharmacology 3
 
 Study Guides Created (3 formats):
-  ✓ HIV_Drugs_Study_Guide.docx (Word LO)
-  ✓ HIV_Drugs_Comparison_Chart.xlsx (Excel Comparison)
-  ✓ HIV_Drugs_Flashcards.apkg (Anki)
+  ✓ 11 Beta Blockers.docx (Word LO)
+  ✓ 11 Beta Blockers.xlsx (Excel Comparison)
+  ✓ 11 Beta Blockers.apkg (Anki)
 
 Post-Processing:
   ✓ Master chart consolidated → Pharmacology_Master_Reference.xlsx
@@ -476,13 +476,13 @@ Rationale: Quick reference (HTML), comprehensive LO coverage
 
 **Input:**
 ```
-/create-all "HIV_Antivirals.txt"
+/create-all "Pharm_11 Beta Blockers_text.txt"
 ```
 
 **Creates:**
-- HIV_Antivirals_Study_Guide.docx
-- HIV_Antivirals_Comparison_Chart.xlsx
-- HIV_Antivirals_Flashcards.apkg
+- 11 Beta Blockers.docx
+- 11 Beta Blockers.xlsx
+- 11 Beta Blockers.apkg
 
 **Auto-processing:**
 - Updates Pharmacology_Master_Reference.xlsx
@@ -494,14 +494,14 @@ Rationale: Quick reference (HTML), comprehensive LO coverage
 
 **Input:**
 ```
-/create-all "Beta_Blockers.txt" --formats word,excel-4tab,anki,biography
+/create-all "Pharm_11 Beta Blockers_text.txt" --formats word,excel-4tab,anki,biography
 ```
 
 **Creates:**
-- Beta_Blockers_Study_Guide.docx
-- Beta_Blockers_Drug_Chart.xlsx (4-tab)
-- Beta_Blockers_Flashcards.apkg
-- Beta_Blockers_Biography.docx
+- 11 Beta Blockers.docx (Word LO)
+- 11 Beta Blockers.xlsx (4-tab Excel)
+- 11 Beta Blockers.apkg (Anki)
+- 11 Beta Blockers.docx (Biography - different subfolder)
 
 ---
 
@@ -509,7 +509,7 @@ Rationale: Quick reference (HTML), comprehensive LO coverage
 
 **Input:**
 ```
-/create-all "ACE_Inhibitors.txt" --verify
+/create-all "Pharm_12 ACE Inhibitors_text.txt" --verify
 ```
 
 **Creates study guides + runs verification:**
@@ -540,9 +540,9 @@ Rationale: Quick reference (HTML), comprehensive LO coverage
 
 **Manual workflow (separate commands):**
 ```
-/LO-word "HIV.txt"           → ~48k tokens
-/key-comparisons-excel "HIV.txt" → ~38k tokens
-/anki "HIV.txt"              → ~22k tokens
+/LO-word "Pharm_11 Beta Blockers_text.txt"           → ~48k tokens
+/key-comparisons-excel "Pharm_11 Beta Blockers_text.txt" → ~38k tokens
+/anki "Pharm_11 Beta Blockers_text.txt"              → ~22k tokens
 Manual consolidation         → ~5k tokens
 Manual QUICK_ACCESS update   → ~5k tokens
 ─────────────────────────────────────────
@@ -640,7 +640,7 @@ Example:
 
 ```
 ❌ Error: Source file not found
-Path: HIV_Drugs.txt
+Path: Pharm_11 Beta Blockers_text.txt
 
 Check:
   1. File path is correct
@@ -656,8 +656,8 @@ Check:
 ⚠️  Workflow interrupted after format 2/3
 
 Completed formats:
-  ✓ HIV_Drugs_Study_Guide.docx
-  ✓ HIV_Drugs_Comparison_Chart.xlsx
+  ✓ 11 Beta Blockers.docx
+  ✓ 11 Beta Blockers.xlsx
 
 Pending formats:
   ⏳ Anki flashcards

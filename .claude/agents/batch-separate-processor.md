@@ -130,15 +130,23 @@ Before completing, verify:
 
 ### Step 8: Save Output
 
-**File naming convention:**
-- Extract topic/content identifier from source filename
-- Apply template-appropriate naming
-- Save to specified output directory
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension based on template type
+7. NO template suffixes, NO title case normalization
 
 **Examples:**
-- Source: `HIV_Drugs.txt` → Output: `HIV_Drugs_Chart.xlsx`
-- Source: `Cardiovascular_System.txt` → Output: `Cardiovascular_LO.docx`
-- Source: `Back_Pain_Workup.txt` → Output: `Back_Pain_Clinical_Guide.html`
+- Source: `Pharm_11 Beta Blockers_text.txt` → Output: `11 Beta Blockers.xlsx`
+- Source: `Micro_4 Intro to Virology_text.txt` → Output: `4 Intro to Virology.docx`
+- Source: `Clinical_Back Pain Assessment_text.txt` → Output: `Back Pain Assessment.html`
+- Source: `Pharm_HIV_Drugs_text.txt` → Output: `HIV Drugs.xlsx`
+- Source: `Micro_Basics Of Immunology_text.txt` → Output: `Basics Of Immunology.docx`
+
+**Save to specified output directory** (provided by slash command)
 
 ### Step 9: Report Completion
 

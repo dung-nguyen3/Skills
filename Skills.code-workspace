@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": "."
+    },
+    {
+      "path": "../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Midwestern/Quarter 3"
     }
   ],
   "settings": {
@@ -10,6 +13,7 @@
       "**/node_modules": true,
       "**/__pycache__": true,
       "**/*.pyc": true
-    }
+    },
+    "claudeCode.initialPermissionMode": "bypassPermissions"
   }
 }

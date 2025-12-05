@@ -315,12 +315,32 @@ Track your progress:
 
 ### Step 9: Save Files
 
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension: `.xlsx`
+7. NO template suffixes, NO title case normalization
+
+**Examples:**
+- `Micro_4 Intro to Virology_text.txt` → `4 Intro to Virology.xlsx`
+- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.xlsx`
+- `Micro_4_Intro_To_Virology_text.txt` → `4 Intro To Virology.xlsx`
+- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology.xlsx`
+
+**Batch Merge Naming:**
+- Input: `Micro_4 Intro to Virology_text.txt` + `Micro_5 Viral Replication_text.txt`
+- Output: `Lecture 4-5.xlsx`
+- Format: `Lecture [min]-[max].xlsx` (based on lecture numbers found)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Comparison_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].xlsx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Comparison_Chart.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
@@ -378,9 +398,9 @@ Track your progress:
 
 ### Single File:
 ```
-/key-comparisons-excel "Clinical Medicine/Exam 2/Extract/Hypersensitivity.txt"
+/key-comparisons-excel "Clinical Medicine/Exam 2/Extract/Pharm_11 Beta Blockers_text.txt"
 ```
-Creates: `Hypersensitivity_Comparison_Chart.xlsx`
+Creates: `11 Beta Blockers.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
@@ -390,23 +410,22 @@ Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/key-comparisons-excel "TypeI.txt;TypeII.txt;TypeIII.txt;TypeIV.txt"
+/key-comparisons-excel "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
-Creates 4 separate comparison charts:
-- `TypeI_Comparison_Chart.xlsx`
-- `TypeII_Comparison_Chart.xlsx`
-- `TypeIII_Comparison_Chart.xlsx`
-- `TypeIV_Comparison_Chart.xlsx`
+Creates 3 separate comparison charts:
+- `11 Beta Blockers.xlsx`
+- `12 ACE Inhibitors.xlsx`
+- `13 Diuretics.xlsx`
 
 Uses batch-separate-processor agent with architectural isolation (zero contamination).
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/key-comparisons-excel --merge "Hypersensitivity-Mechanisms.txt;Hypersensitivity-Clinical.txt;Hypersensitivity-Treatment.txt"
+/key-comparisons-excel --merge "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt"
 ```
 Creates 1 merged comparison chart:
-- `Hypersensitivity_Comprehensive_Comparison_Chart.xlsx` (all content merged)
-- `Hypersensitivity_Comprehensive_merge_report.md` (source traceability)
+- `Lecture 11-12.xlsx` (all content merged)
+- `Lecture 11-12_merge_report.md` (source traceability)
 
 Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, and source traceability.
 

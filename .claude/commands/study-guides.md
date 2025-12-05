@@ -429,7 +429,7 @@ for format_name in selected_formats:
 ### Interactive Single File
 
 ```
-User: /study-guides "HIV_Drugs.txt"
+User: /study-guides "Pharm_11 Beta Blockers_text.txt"
 
 Claude: Which formats would you like to create?
         [shows format menu]
@@ -439,6 +439,11 @@ User: word, excel-comparison, anki
 Claude: [Verification checklist]
         Creating 3 formats...
         ✓ Complete
+
+Creates:
+- 11 Beta Blockers.docx
+- 11 Beta Blockers.xlsx
+- 11 Beta Blockers.apkg
 ```
 
 ### Interactive Directory

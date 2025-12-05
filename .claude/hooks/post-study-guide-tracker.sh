@@ -92,5 +92,16 @@ if [[ -x "$post_processing_runner" ]] || [[ -f "$post_processing_runner" ]]; the
     python3 "$post_processing_runner" "$file_path" 2>&1 || true
 fi
 
+# LOCK FILE CLEANUP - Move Office temp files to py/ subfolder
+# (Matches pattern: Python scripts stored in py/, lock files stored in py/)
+study_guide_dir=$(dirname "$file_path")
+py_dir="$study_guide_dir/py"
+
+# Only proceed if py/ folder exists (created during study guide generation)
+if [[ -d "$py_dir" ]]; then
+    # Move any lock files to py/ folder (non-blocking)
+    find "$study_guide_dir" -maxdepth 1 \( -name "~\$*.xlsx" -o -name "~\$*.docx" \) -exec mv {} "$py_dir/" \; 2>/dev/null || true
+fi
+
 # Exit silently - don't show output (other hook will show reminder)
 exit 0

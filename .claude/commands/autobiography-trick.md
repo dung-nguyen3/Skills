@@ -160,20 +160,35 @@ Provide:
 
 ## Output Format
 
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension: `.docx`
+7. NO template suffixes, NO title case normalization
+
+**Examples:**
+- `Micro_4 Intro to Virology_text.txt` → `4 Intro to Virology.docx`
+- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.docx`
+- `Micro_4_Intro_To_Virology_text.txt` → `4 Intro To Virology.docx`
+- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology.docx`
+
+**Batch Merge Naming:**
+- Input: `Micro_4 Intro to Virology_text.txt` + `Micro_5 Viral Replication_text.txt`
+- Output: `Lecture 4-5.docx`
+- Format: `Lecture [min]-[max].docx` (based on lecture numbers found)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Biographies.docx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].docx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Drug_Biographies.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
 - Create `py/` subfolder if doesn't exist
 
-**Example filenames:**
-```
-Cardiovascular_Drug_Biographies.docx
-HIV_Antiretroviral_Drug_Biographies.docx
-Antibiotic_Drug_Biographies.docx
-```
+- Confirm both files saved successfully
 
 
 ---

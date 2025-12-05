@@ -331,12 +331,31 @@ Track your progress:
 
 ### Step 9: Save Files
 
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension: `.xlsx` for Excel, `.py` for Python
+7. NO template suffixes, NO title case normalization
+
+**Examples:**
+- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.xlsx`
+- `Micro_4 Antibiotics_text.txt` → `4 Antibiotics.xlsx`
+- `Pharm_HIV_Drugs_text.txt` → `HIV Drugs.xlsx`
+
+**Batch Merge Naming:**
+- Input: `Pharm_11 Beta Blockers_text.txt` + `Pharm_12 ACE Inhibitors_text.txt`
+- Output: `Lecture 11-12.xlsx`
+- Format: `Lecture [min]-[max].xlsx` (based on lecture numbers found)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Drug_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].xlsx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Drug_Chart.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
@@ -416,9 +435,9 @@ Coverage: [M/N] ([percentage]%)
 
 ### Single File:
 ```
-/4-tab-excel "Pharmacology/Exam 3/Extract/HIV Antivirals.txt"
+/4-tab-excel "Pharmacology/Exam 3/Extract/Pharm_11 Beta Blockers_text.txt"
 ```
-Creates: `HIV_Antivirals_Drug_Chart.xlsx`
+Creates: `11 Beta Blockers.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
@@ -428,22 +447,22 @@ Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/4-tab-excel "HIV.txt;COVID.txt;Antibiotics.txt"
+/4-tab-excel "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
 Creates 3 separate Excel files:
-- `HIV_Drug_Chart.xlsx` (only HIV drugs)
-- `COVID_Drug_Chart.xlsx` (only COVID drugs)
-- `Antibiotics_Drug_Chart.xlsx` (only antibiotic drugs)
+- `11 Beta Blockers.xlsx` (only Beta Blockers)
+- `12 ACE Inhibitors.xlsx` (only ACE Inhibitors)
+- `13 Diuretics.xlsx` (only Diuretics)
 
 Uses batch-separate-processor agent with architectural isolation (zero contamination).
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+/4-tab-excel --merge "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
 Creates 1 merged Excel file:
-- `HIV_Comprehensive_Drug_Chart.xlsx` (all HIV drug classes merged)
-- `HIV_Comprehensive_Drug_Chart_merge_report.md` (source traceability)
+- `Lecture 11-13.xlsx` (all drug classes merged)
+- `Lecture 11-13_merge_report.md` (source traceability)
 
 Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, and source traceability.
 

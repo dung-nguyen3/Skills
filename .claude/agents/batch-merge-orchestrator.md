@@ -320,11 +320,30 @@ Save TWO files:
 1. **Merged study guide**: [output_filename with appropriate extension]
 2. **Merge report**: [output_filename]_merge_report.md
 
-**File naming:**
+**Merge Filename Rule:**
+1. Extract lecture numbers from all input files
+2. Find min and max lecture numbers
+3. Format as: `Lecture [min]-[max].[extension]`
+4. If only one lecture number: `Lecture [number].[extension]`
+5. If no lecture numbers: Use first file's cleaned topic name
+6. Merge report: `[output_filename]_merge_report.md`
+
+**Examples:**
 ```
-Input: "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
-Output study guide: "HIV_Comprehensive_Drug_Chart.xlsx"
-Output merge report: "HIV_Comprehensive_Drug_Chart_merge_report.md"
+Input: "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
+Lecture numbers: 11, 12, 13
+Output study guide: "Lecture 11-13.xlsx"
+Output merge report: "Lecture 11-13_merge_report.md"
+
+Input: "Micro_4 Intro to Virology_text.txt;Micro_5 Viral Replication_text.txt"
+Lecture numbers: 4, 5
+Output study guide: "Lecture 4-5.docx"
+Output merge report: "Lecture 4-5_merge_report.md"
+
+Input: "Micro_Basics Of Immunology_text.txt;Micro_Advanced Immunology_text.txt"
+No lecture numbers found
+Output study guide: "Basics Of Immunology.docx" (uses first file's topic)
+Output merge report: "Basics Of Immunology_merge_report.md"
 ```
 
 **Step 5.3: Final Summary**

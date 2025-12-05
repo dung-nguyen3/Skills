@@ -245,18 +245,27 @@ Before completing, agent verifies:
 
 **Single:**
 ```
-/word-excel-anki "Pharmacology/Exam 3/Extract/HIV_Drugs.txt"
+/word-excel-anki "Pharmacology/Exam 3/Extract/Pharm_11 Beta Blockers_text.txt"
 ```
+Creates:
+- `11 Beta Blockers.docx` (Word)
+- `11 Beta Blockers.xlsx` (Excel)
+- `11 Beta Blockers.apkg` (Anki)
 
 **Batch:**
 ```
-/word-excel-anki "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/word-excel-anki "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
+Creates 9 files (3 formats × 3 sources):
+- `11 Beta Blockers.docx`, `11 Beta Blockers.xlsx`, `11 Beta Blockers.apkg`
+- `12 ACE Inhibitors.docx`, `12 ACE Inhibitors.xlsx`, `12 ACE Inhibitors.apkg`
+- `13 Diuretics.docx`, `13 Diuretics.xlsx`, `13 Diuretics.apkg`
 
 **Directory:**
 ```
 /word-excel-anki "Pharmacology/Exam 3/Extract/"
 ```
+Processes all .txt files in directory
 
 ---
 

@@ -227,12 +227,32 @@ Track your progress:
 
 ### Step 9: Save Files
 
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension: `.apkg`
+7. NO template suffixes, NO title case normalization
+
+**Examples:**
+- `Micro_4 Intro to Virology_text.txt` → `4 Intro to Virology.apkg`
+- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.apkg`
+- `Micro_4_Intro_To_Virology_text.txt` → `4 Intro To Virology.apkg`
+- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology.apkg`
+
+**Batch Merge Naming:**
+- Input: `Micro_4 Intro to Virology_text.txt` + `Micro_5 Viral Replication_text.txt`
+- Output: `Lecture 4-5.apkg`
+- Format: `Lecture [min]-[max].apkg` (based on lecture numbers found)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.apkg`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].apkg`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Flashcards.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully

@@ -271,12 +271,32 @@ Track your progress:
 
 ### Step 7: Save Files
 
+**Output Filename Rule:**
+1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
+2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
+3. Replace underscores with spaces for readability
+4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
+5. Preserve capitalization as-is (after underscore→space conversion)
+6. Add appropriate extension: `.docx` for Word, `.py` for Python
+7. NO template suffixes, NO title case normalization
+
+**Examples:**
+- `Micro_4 Intro to Virology_text.txt` → `4 Intro to Virology.docx`
+- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.docx`
+- `Micro_4_Intro_To_Virology_text.txt` → `4 Intro To Virology.docx`
+- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology.docx`
+
+**Batch Merge Naming:**
+- Input: `Micro_4 Intro to Virology_text.txt` + `Micro_5 Viral Replication_text.txt`
+- Output: `Lecture 4-5.docx`
+- Format: `Lecture [min]-[max].docx` (based on lecture numbers found)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Study_Guide.docx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].docx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Study_Guide.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
@@ -349,27 +369,27 @@ For batch operations (semicolon-separated files or --merge flag):
 
 ### Single File:
 ```
-/LO-word "Pharmacology/Exam 3/Extract/Lecture 42.txt"
+/LO-word "Pharmacology/Exam 3/Extract/Pharm_42 Beta Blockers_text.txt"
 ```
-Creates: `Lecture_42_LO_Guide.docx`
+Creates: `42 Beta Blockers.docx`
 
 ### Batch Separate (N files → N outputs):
 ```
-/LO-word "Lecture42.txt;Lecture43.txt;Lecture44.txt"
+/LO-word "Micro_4 Intro to Virology_text.txt;Micro_5 Viral Replication_text.txt;Micro_6 Viral Pathogenesis_text.txt"
 ```
 Creates 3 separate Word files:
-- `Lecture_42_LO_Guide.docx` (only Lecture 42 content)
-- `Lecture_43_LO_Guide.docx` (only Lecture 43 content)
-- `Lecture_44_LO_Guide.docx` (only Lecture 44 content)
+- `4 Intro to Virology.docx` (only Lecture 4 content)
+- `5 Viral Replication.docx` (only Lecture 5 content)
+- `6 Viral Pathogenesis.docx` (only Lecture 6 content)
 
 Uses batch-separate-processor agent with architectural isolation.
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/LO-word --merge "Cardio-Lec1.txt;Cardio-Lec2.txt;Cardio-Lec3.txt"
+/LO-word --merge "Micro_4 Intro to Virology_text.txt;Micro_5 Viral Replication_text.txt;Micro_6 Viral Pathogenesis_text.txt"
 ```
 Creates 1 merged Word file:
-- `Cardiovascular_Comprehensive_LO_Guide.docx` (all 3 lectures merged)
-- `Cardiovascular_Comprehensive_LO_Guide_merge_report.md` (source traceability)
+- `Lecture 4-6.docx` (all 3 lectures merged)
+- `Lecture 4-6_merge_report.md` (source traceability)
 
 Uses batch-merge-orchestrator agent with intelligent merge and overlap resolution.

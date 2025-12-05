@@ -1,12 +1,34 @@
 {
+  "model": "claude-sonnet-4-20250514",
   "permissions": {
     "allow": [
-      "Edit:*",
-      "Write:*",
-      "MultiEdit:*",
-      "NotebookEdit:*",
-      "Bash:*",
-      "WebSearch:*"
+      "WebSearch",
+      "WebFetch",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Task",
+      "NotebookEdit",
+      "MultiEdit",
+      "Bash(python3:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(open:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(cat:*)",
+      "Bash(wc:*)",
+      "Bash(cd:*)",
+      "Bash(chmod:*)",
+      "Bash(touch:*)",
+      "Bash(echo:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)"
     ],
     "defaultMode": "acceptEdits"
   },
