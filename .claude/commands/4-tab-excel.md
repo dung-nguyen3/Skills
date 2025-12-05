@@ -73,7 +73,7 @@ Drug list: [Drug A, Drug B, Drug C, ...]
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
-☐ Instruction template: Excel Drugs Chart 11-1.txt
+☐ Instruction template: Excel_Drugs_Chart_11-1_REVISED.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
@@ -94,7 +94,7 @@ BATCH SEPARATE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files are drug lectures
-☐ Template: Excel Drugs Chart 11-1.txt (per file)
+☐ Template: Excel_Drugs_Chart_11-1_REVISED.txt (per file)
 ☐ Output: N files → N Excel charts
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
@@ -128,7 +128,7 @@ BATCH MERGE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Files are related/compatible for merging
-☐ Template: Excel Drugs Chart 11-1.txt (unified)
+☐ Template: Excel_Drugs_Chart_11-1_REVISED.txt (unified)
 ☐ Output: N files → 1 merged Excel chart
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Content matrix, overlap resolution, source traceability
