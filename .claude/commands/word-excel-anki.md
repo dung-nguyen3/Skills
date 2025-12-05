@@ -5,20 +5,39 @@ argument-hint: Single file, batch files separated by semicolon, or directory pat
 
 Create a multi-format study bundle from source file: $ARGUMENTS
 
-This command generates 3 complementary formats in ONE efficient pass:
-1. Word LO Study Guide (.docx)
-2. Excel Comparison Chart (.xlsx)
-3. Anki Flashcard Deck (.apkg)
+This command generates 3 complementary formats by invoking individual commands:
+1. Word LO Study Guide (.docx) - via /LO-word
+2. Excel Comparison Chart (.xlsx) - via /key-comparisons-excel
+3. Anki Flashcard Deck (.apkg) - via /anki
 
-**Token Efficiency:** Reads source ONCE → generates all 3 formats (~35-40k tokens saved vs separate commands)
+**Architecture:** Each format is created using its dedicated command with FULL instructions.
+This ensures identical output quality whether you run this bundle or individual commands.
 
 ## Instructions
 
 ### Step 0: Detect Mode
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE, if directory path → DIRECTORY MODE, otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH/DIRECTORY], File count: [#], Files: [list]
+**Check for semicolons:**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH MODE**
+- Split by semicolon to get file list
+
+**Otherwise: SINGLE MODE**
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH]
+File count: [#]
+Files: [list]
+```
+
+---
+
+### Step 0.5: Handle Directory Input
+
+If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
+If batch (semicolon-separated), process each path independently.
 
 ---
 
@@ -29,215 +48,207 @@ This command generates 3 complementary formats in ONE efficient pass:
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file(s): $ARGUMENTS
-☐ Templates: Word LO 11-5, Excel Comparison, Anki
-☐ Source-only policy: I will ONLY use information from source file(s)
-☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
-☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
-☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
-☐ Formats: Word LO + Excel Comparison + Anki (3 formats per file)
+☐ Formats: Word LO + Excel Comparison + Anki (3 formats)
+☐ Method: Individual command invocation (full instructions per format)
+☐ Commands to invoke:
+   1. /LO-word - Full 376-line template with LO tracking
+   2. /key-comparisons-excel - Full 408-line template with comparison tables
+   3. /anki - Full 266-line template with LO extraction
+☐ Source-only policy: Each command enforces source-only
+☐ Learning objectives: Each command extracts LOs EXACTLY as written
+☐ Exception: Memory tricks/mnemonics researched via WebSearch (per command)
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
 ---
 
-### Step 2: Launch Multi-Format Processor Agent
+### Step 2: Process Each Format Sequentially
 
-**Use the Task tool to invoke multi-format-processor agent:**
+**CRITICAL: Invoke each command with FULL execution, not abbreviated.**
 
-```python
-Task(
-    subagent_type="multi-format-processor",
-    prompt=f"""
-Process source file to generate 3 study guide formats:
-
-Source file: {source_file_path}
-Formats: ["word", "excel-comparison", "anki"]
-Output directory: {output_directory}
-
-Instructions:
-1. Read source file ONCE completely
-2. Extract all information (LOs, drugs/conditions, comparisons, pearls)
-3. Generate Word LO study guide following Word_LO_11-5_REVISED.txt
-4. Generate Excel comparison chart following Excel_Comparison_Chart_REVISED.txt
-5. Generate Anki flashcards following anki.md instructions
-6. Use EXACT terminology from source in all formats
-7. WebSearch for mnemonics ONCE, use in all formats
-8. Save all 3 outputs to output directory
-
-Token efficiency: Read source once, generate all formats sequentially.
-    """
-)
-```
-
-**For BATCH mode:** Launch agent once per file (each in isolated context)
-
-**For DIRECTORY mode:**
-1. Scan directory for `.txt` files
-2. Read `.processed_files.txt` to skip already-processed
-3. Launch agent for each NEW file
-4. Update `.processed_files.txt`
+Each command below must be executed completely, following ALL steps in that command's template.
+Do NOT skip steps or summarize - execute as if user ran the command directly.
 
 ---
 
-### Step 3: Agent Processing
+#### Format 1/3: Word LO Study Guide
 
-The multi-format-processor agent will:
-
-1. **Read source ONCE** - Extract comprehensive data structure
-2. **Load all 3 templates** - Word, Excel, Anki
-3. **Generate Word LO Study Guide:**
-   - 4 sections (LOs, Key Comparisons, Master Chart, High-Yield)
-   - Soft pastel colors, Calibri 12pt
-   - Comparison Item Inventory Protocol mandatory
-   - Output: `[Topic]_Study_Guide.docx`
-
-4. **Generate Excel Comparison Chart:**
-   - Side-by-side comparison tables
-   - Font: Calibri size 10 (data), size 12 (headers)
-   - Colors: ROW_COLORS palette
-   - White borders (#FFFFFF)
-   - Output: `[Topic]_Comparison_Chart.xlsx`
-
-5. **Generate Anki Flashcards:**
-   - **CRITICAL: EXACT wording from source** (no paraphrasing)
-   - 3-15 words per answer
-   - One concept per card
-   - LO-filtering mandatory
-   - Output: `[Topic]_Flashcards.apkg`
-
-6. **WebSearch for mnemonics ONCE** - Reuse across all 3 formats
-
-7. **Verify exact terminology consistency** across all outputs
-
----
-
-### Step 4: Post-Creation Actions
-
-**After agent completes:**
-
-1. **Verify outputs created:**
-   ```
-   ✓ [Topic]_Study_Guide.docx created
-   ✓ [Topic]_Comparison_Chart.xlsx created
-   ✓ [Topic]_Flashcards.apkg created
-   ```
-
-2. **Report token efficiency:**
-   ```
-   Token Efficiency Report:
-   - Source read: 1x (not 3x)
-   - Estimated savings: ~[calculate]k tokens
-   - Formats: 3 outputs from single source read
-   ```
-
-3. **Optional: Auto-consolidate master charts**
-   If Excel comparison includes master chart data:
-   ```bash
-   python study-guides/templates-and-examples/Python_Examples/Auto_Consolidate_Master_Charts.py \
-     "[Topic]_Comparison_Chart.xlsx" \
-     "Pharmacology_Master_Reference.xlsx"
-   ```
-
-4. **Optional: Update QUICK_ACCESS index**
-   ```bash
-   python study-guides/templates-and-examples/Python_Examples/Generate_Quick_Access_Index.py \
-     "[Class]/[Exam]/Claude Study Tools/"
-   ```
-
-5. **Update batch tracker** (for weekly reminder):
-   ```bash
-   bash .claude/hooks/helpers/update-batch-date.sh
-   ```
-
----
-
-### Step 5: Completion Report
+**Invoke /LO-word with source file:**
 
 ```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMAT 1/3: WORD LO STUDY GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Executing /LO-word "$ARGUMENTS"
+
+[Follow ALL steps from /LO-word command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Word_LO_11-5_REVISED.txt template)
+- Step 3: Read source file, identify ALL learning objectives
+- Step 4: Create study guide with 4 sections
+- Step 5: Use TodoWrite to track each LO
+- Step 6: Post-creation template compliance verification
+- Step 7: Save files
+
+CRITICAL REQUIREMENTS (from /LO-word):
+- Learning objective STATEMENTS must be copied EXACTLY as written
+- Use TodoWrite to create todo for EACH learning objective
+- 4 sections: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+- Soft pastel colors, Calibri 12pt
+- WebSearch for mnemonics (mandatory)
+- Post-creation verification with ALL checks
+
+Output: [Topic]_Study_Guide.docx
+```
+
+**Execute /LO-word completely before proceeding to Format 2.**
+
+---
+
+#### Format 2/3: Excel Comparison Chart
+
+**Invoke /key-comparisons-excel with source file:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMAT 2/3: EXCEL COMPARISON CHART
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Executing /key-comparisons-excel "$ARGUMENTS"
+
+[Follow ALL steps from /key-comparisons-excel command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Excel_Comparison_Chart_REVISED.txt template)
+- Step 3: Analyze source file (identify ALL conditions/concepts)
+- Step 4: Create 3-tab Excel chart
+- Step 5: WebSearch for mnemonics
+- Step 6: Python implementation
+- Step 7: Use TodoWrite to track progress
+- Step 8: Post-creation template compliance verification
+- Step 9: Save files
+
+CRITICAL REQUIREMENTS (from /key-comparisons-excel):
+- 3 tabs: Key Comparisons, Master Chart, Summary
+- Tab 1: MULTIPLE comparison tables (one category per table)
+- Mnemonics DIRECTLY BELOW relevant tables
+- ONE color per table/category (not alternating rows)
+- ALL data cells have pastel background (not white)
+- Post-creation verification with ALL checks
+
+Output: [Topic]_Comparison_Chart.xlsx
+```
+
+**Execute /key-comparisons-excel completely before proceeding to Format 3.**
+
+---
+
+#### Format 3/3: Anki Flashcard Deck
+
+**Invoke /anki with source file:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMAT 3/3: ANKI FLASHCARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Executing /anki "$ARGUMENTS"
+
+[Follow ALL steps from /anki command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Anki_APKG_Example.py)
+- Step 3: Extract Learning Objectives (MANDATORY enumeration)
+- Step 4: Analyze source file (LO-focused, create LO-Content Mapping)
+- Step 5: Create flashcards (LO-filtered only)
+- Step 6: Use TodoWrite to track progress
+- Step 7: Generate APKG file
+- Step 8: Post-creation verification
+- Step 9: Save files
+
+CRITICAL REQUIREMENTS (from /anki):
+- Step 3: Extract and LIST all LOs verbatim before creating cards
+- LO-filtering: ONLY create cards for LO-mapped content
+- EXACT wording from source (no paraphrasing medical terms)
+- 3-15 words per answer
+- One concept per card
+- Post-creation verification: All LOs have at least one flashcard
+
+Output: [Topic]_Flashcards.apkg
+```
+
+**Execute /anki completely.**
+
+---
+
+### Step 3: Bundle Completion Report
+
+**After all 3 formats complete:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ MULTI-FORMAT BUNDLE CREATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Source: [filename]
 Formats generated: 3
 
 Outputs:
-1. [filename]_Study_Guide.docx ([N] pages, [M] LOs)
-2. [filename]_Comparison_Chart.xlsx ([N] comparison tables)
-3. [filename]_Flashcards.apkg ([N] cards)
+1. [filename]_Study_Guide.docx (Word LO)
+   - Learning objectives: [N]
+   - Sections: 4 (LOs, Comparisons, Master Chart, High-Yield)
+
+2. [filename]_Comparison_Chart.xlsx (Excel Comparison)
+   - Comparison tables: [N]
+   - Tabs: 3 (Key Comparisons, Master Chart, Summary)
+
+3. [filename]_Flashcards.apkg (Anki)
+   - Total cards: [N]
+   - LOs covered: [N]
 
 Location: [Class]/[Exam]/Claude Study Tools/
 
-Token Efficiency: Saved ~[N]k tokens vs separate commands
-Exact Terminology: ✓ Consistent across all formats
+Quality Assurance:
+✓ Each format used its dedicated command with full instructions
+✓ Learning objectives extracted and tracked per format
+✓ Source-only policy enforced per format
+✓ Post-creation verification completed per format
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
 
 ## Batch Processing
 
-**For batch separate (N files → N×3 outputs):**
-- Launch multi-format-processor agent N times
-- Each invocation: 1 source → 3 outputs
-- Architectural isolation per file
+**For batch mode (semicolon-separated files):**
 
-**For batch merge (N files → 3 merged outputs):**
-- Use batch-merge-orchestrator instead
-- Merge content from N files → 1 Word + 1 Excel + 1 Anki
+Process each file independently:
+1. File 1: Execute all 3 formats (Steps 2.1-2.3)
+2. File 2: Execute all 3 formats (Steps 2.1-2.3)
+3. ...continue for all files
 
-@.claude/agents/multi-format-processor.md
-@.claude/agents/batch-merge-orchestrator.md
+**Each file gets complete processing with full command execution.**
 
 ---
 
-## Format Defaults
+## Why This Architecture
 
-**Course-specific bundles** (from `.claude/format-defaults.json`):
-- Pharmacology: Word + Excel Comparison + Anki (default)
-- Pathophysiology: Word + Excel Comparison (no Anki)
-- Clinical Medicine: Word + HTML-LO (quick reference)
+**Previous approach (multi-format-processor agent):**
+- Sparse instructions delegated to agent
+- Missing LO enumeration step
+- Missing TodoWrite per LO tracking
+- Skipped learning objectives
 
-**Override with --formats flag:**
-```bash
-/word-excel-anki --formats word,anki "source.txt"
-```
+**Current approach (individual command invocation):**
+- Each format uses its full dedicated command
+- Identical output whether running bundle or individual commands
+- All verification steps enforced
+- All LO tracking in place
 
----
-
-## Error Handling
-
-**If source file not found:**
-```
-❌ ERROR: Source file not found
-File: [filename]
-Action: Verify file path and try again
-```
-
-**If agent fails:**
-```
-❌ ERROR: Multi-format processing failed
-Reason: [error message]
-Action: Check source file format and try again
-```
-
-**If partial success:**
-```
-⚠️  PARTIAL SUCCESS
-Created: [list successful formats]
-Failed: [list failed formats]
-Action: Review error messages and retry failed formats
-```
-
----
-
-## Quality Assurance
-
-Before completing, agent verifies:
-- [ ] Source read completely (ONCE)
-- [ ] All 3 formats created successfully
-- [ ] **EXACT terminology from source** in all formats (no paraphrasing)
-- [ ] Learning objectives verbatim in Word
-- [ ] Comparison Item Inventory Protocol followed
-- [ ] WebSearch mnemonics shared across formats
-- [ ] All outputs source-only compliant
+**Trade-off:** Slightly more tokens used, but guaranteed accuracy and completeness.
 
 ---
 
@@ -257,6 +268,16 @@ Before completing, agent verifies:
 ```
 /word-excel-anki "Pharmacology/Exam 3/Extract/"
 ```
+
+---
+
+## Format Defaults
+
+This command always creates: Word LO + Excel Comparison + Anki
+
+For different format combinations, use:
+- `/create-all` with --formats flag
+- `/study-guides` for interactive format selection
 
 ---
 

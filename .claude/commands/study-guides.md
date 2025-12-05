@@ -236,39 +236,105 @@ VERIFICATION CHECKLIST:
 
 ### Step 6: Launch Processing
 
-**For each source file:**
+**CRITICAL: Execute each format using its dedicated command with FULL instructions.**
+
+Each format must be executed completely, following ALL steps in that command's template.
+Do NOT skip steps or summarize - execute as if user ran the command directly.
+
+---
+
+**Format Command Mapping:**
+
+| Format | Command | Key Requirements |
+|--------|---------|------------------|
+| `word` | /LO-word | 4 sections, TodoWrite per LO, verbatim LO statements |
+| `excel-4tab` | /4-tab-excel | 4 tabs, drug inventory, coverage report |
+| `excel-comparison` | /key-comparisons-excel | 3 tabs, multiple comparison tables per category |
+| `excel-master` | /master-chart-excel | Single comprehensive table |
+| `excel-clinical` | /clinical-assessment-excel | 4 tabs, OLDCAARTS format |
+| `anki` | /anki | LO extraction step, LO-content mapping, LO-filtered cards |
+| `html-lo` | /LO-html | 4 tabs, interactive, source-only |
+| `html-drugs` | /drugs-html | Drug reference chart |
+| `html-clinical` | /clinical-assessment-html | H&P format |
+| `biography` | /autobiography-trick | Personified drug stories |
+
+---
+
+**For each selected format, follow its FULL command template:**
+
+**Example - Word LO (if selected):**
+```
+Executing /LO-word "[source_file]"
+
+[Follow ALL steps from /LO-word command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Word_LO_11-5_REVISED.txt template)
+- Step 3: Read source file, identify ALL learning objectives
+- Step 4: Create study guide with 4 sections
+- Step 5: Use TodoWrite to track each LO
+- Step 6: Post-creation template compliance verification
+- Step 7: Save files
+
+CRITICAL: Learning objective STATEMENTS must be copied EXACTLY as written.
+CRITICAL: Use TodoWrite to create todo for EACH learning objective.
+```
+
+**Example - Anki (if selected):**
+```
+Executing /anki "[source_file]"
+
+[Follow ALL steps from /anki command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Anki_APKG_Example.py)
+- Step 3: Extract Learning Objectives (MANDATORY enumeration)
+- Step 4: Analyze source file (LO-focused, create LO-Content Mapping)
+- Step 5: Create flashcards (LO-filtered only)
+- Step 6: Use TodoWrite to track progress
+- Step 7: Generate APKG file
+- Step 8: Post-creation verification
+- Step 9: Save files
+
+CRITICAL: Step 3 - Extract and LIST all LOs verbatim BEFORE creating cards.
+CRITICAL: ONLY create cards for LO-mapped content.
+```
+
+---
+
+**Processing Flow:**
 
 **If single file - Process inline:**
 ```
 Processing: [filename]
 Creating [N] formats...
 
-[For each format]:
-  Format 1/N: [format name]
-  → Invoke appropriate command internally
+Format 1/N: [format name]
+  → Execute /[command] with FULL template instructions
+  → Follow ALL steps (verification, creation, post-verification)
   ✓ [output filename]
 
-[Mnemonic cache check for each format]
-[Post-processing automation triggers after creation]
+Format 2/N: [format name]
+  → Execute /[command] with FULL template instructions
+  → Follow ALL steps
+  ✓ [output filename]
+
+[Continue for all selected formats]
 ```
 
 **If multiple files - Use agents:**
 ```
 Processing [N] source files with [M] formats each...
 
-Launching batch-separate-processor agent [N] times:
+Each agent must execute formats using FULL command templates:
 
 File 1/N: [filename1]
-  [Agent creates M formats in isolated context]
-  ✓ [M outputs created]
+  [Agent executes each format's command with FULL instructions]
+  ✓ [M outputs created with all verification steps]
 
 File 2/N: [filename2]
-  [Agent creates M formats in isolated context]
-  ✓ [M outputs created]
-
-[Agents can run in parallel - up to 10 at once]
-[Each agent has own context window - no pollution]
-[Progress checkpoints saved after each file]
+  [Agent executes each format's command with FULL instructions]
+  ✓ [M outputs created with all verification steps]
 ```
 
 ---

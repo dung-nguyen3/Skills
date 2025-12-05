@@ -219,65 +219,138 @@ file_count = len(new_files)
 
 ### Step 3: Create Study Guides (Sequential)
 
-**Process each format sequentially:**
+**CRITICAL: Execute each format using its dedicated command with FULL instructions.**
+
+Each format below must be executed completely, following ALL steps in that command's template.
+Do NOT skip steps or summarize - execute as if user ran the command directly.
+
+---
 
 #### Format 1: Word LO Study Guide
 
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORMAT 1/3: WORD LO STUDY GUIDE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Creating Word LO study guide...
-
-[Executes /LO-word command inline]
-
-✓ Complete: HIV_Drugs_Study_Guide.docx
-  Pages: 12
-  Learning objectives: 8
-  Comparison tables: 5
-  Master chart: 15 drugs
-
-Token cost: ~48k tokens
-```
-
-#### Format 2: Excel Comparison Chart
+**Execute /LO-word with source file:**
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORMAT 2/3: EXCEL COMPARISON CHART
+FORMAT 1/N: WORD LO STUDY GUIDE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Creating Excel comparison chart...
+Executing /LO-word "[source_file]"
 
-[Executes /key-comparisons-excel command inline]
+[Follow ALL steps from /LO-word command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Word_LO_11-5_REVISED.txt template)
+- Step 3: Read source file, identify ALL learning objectives
+- Step 4: Create study guide with 4 sections
+- Step 5: Use TodoWrite to track each LO
+- Step 6: Post-creation template compliance verification
+- Step 7: Save files
 
-✓ Complete: HIV_Drugs_Comparison_Chart.xlsx
-  Comparison tables: 5
-  Categories: MOA, Toxicity, Uses, Interactions
+CRITICAL REQUIREMENTS (from /LO-word):
+- Learning objective STATEMENTS must be copied EXACTLY as written
+- Use TodoWrite to create todo for EACH learning objective
+- 4 sections: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+- Soft pastel colors, Calibri 12pt
+- WebSearch for mnemonics (mandatory)
+- Post-creation verification with ALL checks
 
-Token cost: ~38k tokens
+Output: [Topic]_Study_Guide.docx
 ```
 
-#### Format 3: Anki Flashcards
+**Execute /LO-word completely before proceeding to next format.**
+
+---
+
+#### Format 2: Excel Comparison Chart (if in formats list)
+
+**Execute /key-comparisons-excel with source file:**
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORMAT 3/3: ANKI FLASHCARDS
+FORMAT 2/N: EXCEL COMPARISON CHART
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Creating Anki flashcard deck...
+Executing /key-comparisons-excel "[source_file]"
 
-[Executes /anki command inline]
+[Follow ALL steps from /key-comparisons-excel command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Excel_Comparison_Chart_REVISED.txt template)
+- Step 3: Analyze source file (identify ALL conditions/concepts)
+- Step 4: Create 3-tab Excel chart
+- Step 5: WebSearch for mnemonics
+- Step 6: Python implementation
+- Step 7: Use TodoWrite to track progress
+- Step 8: Post-creation template compliance verification
+- Step 9: Save files
 
-✓ Complete: HIV_Drugs_Flashcards.apkg
-  Total cards: 127
-  Learning objectives covered: 8
+CRITICAL REQUIREMENTS (from /key-comparisons-excel):
+- 3 tabs: Key Comparisons, Master Chart, Summary
+- Tab 1: MULTIPLE comparison tables (one category per table)
+- Mnemonics DIRECTLY BELOW relevant tables
+- ONE color per table/category (not alternating rows)
+- ALL data cells have pastel background (not white)
+- Post-creation verification with ALL checks
 
-Token cost: ~22k tokens
+Output: [Topic]_Comparison_Chart.xlsx
 ```
 
-**Total for study guides: ~108k tokens**
+**Execute completely before proceeding to next format.**
+
+---
+
+#### Format 3: Anki Flashcards (if in formats list)
+
+**Execute /anki with source file:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMAT 3/N: ANKI FLASHCARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Executing /anki "[source_file]"
+
+[Follow ALL steps from /anki command]:
+- Step 0: Mode detection
+- Step 1: Pre-creation verification checklist
+- Step 2: Load resources (Anki_APKG_Example.py)
+- Step 3: Extract Learning Objectives (MANDATORY enumeration)
+- Step 4: Analyze source file (LO-focused, create LO-Content Mapping)
+- Step 5: Create flashcards (LO-filtered only)
+- Step 6: Use TodoWrite to track progress
+- Step 7: Generate APKG file
+- Step 8: Post-creation verification
+- Step 9: Save files
+
+CRITICAL REQUIREMENTS (from /anki):
+- Step 3: Extract and LIST all LOs verbatim before creating cards
+- LO-filtering: ONLY create cards for LO-mapped content
+- EXACT wording from source (no paraphrasing medical terms)
+- 3-15 words per answer
+- One concept per card
+- Post-creation verification: All LOs have at least one flashcard
+
+Output: [Topic]_Flashcards.apkg
+```
+
+**Execute completely before proceeding to next format.**
+
+---
+
+#### Other Formats (as specified by --formats flag)
+
+**For each additional format, execute its dedicated command with FULL instructions:**
+
+| Format | Command | Key Requirements |
+|--------|---------|------------------|
+| `excel-4tab` | /4-tab-excel | 4 tabs, drug inventory, coverage report |
+| `excel-master` | /master-chart-excel | Single comprehensive table |
+| `html-lo` | /LO-html | 4 tabs, interactive, source-only |
+| `html-drugs` | /drugs-html | Drug reference chart |
+| `biography` | /autobiography-trick | Personified drug stories |
+
+**Each format must follow its command's FULL template with all steps.**
 
 ---
 
