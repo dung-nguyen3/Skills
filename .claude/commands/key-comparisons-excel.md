@@ -157,23 +157,38 @@ Read these files in order:
 
 **CRITICAL - Read ENTIRE source file:**
 - Identify ALL conditions/concepts/mechanisms mentioned (don't skip any)
-- Note categories suitable for comparison tables
-- Identify items that need side-by-side comparison
-- Look for clinical presentation, diagnosis, treatment patterns
+- **Identify ALL comparison categories from learning objectives** (common examples below, but identify any others asked in LOs):
+  - Clinical Presentation
+  - Pathophysiology/Mechanism
+  - Diagnosis/Labs
+  - Treatment
+  - Prognosis
+  - Complications
+  - Risk Factors
+  - Epidemiology
+  - **Identify any other comparison categories asked in the learning objectives**
+- Note items that need side-by-side comparison
 - Note any existing mnemonics or memory aids mentioned
+
+**IMPORTANT:** The number of comparison tables = number of comparison categories in LOs. Do NOT limit to 3 tables.
 
 ### Step 4: Create 3-Tab Excel Chart
 
 **Required Tabs:**
 
 **Tab 1: Key Comparisons**
-- Multiple side-by-side comparison tables
+- **DYNAMIC number of comparison tables** - create as many as needed based on learning objectives
+- Each table compares 1-2 categories at a time to help break it down and differentiate
 - ONE category per table (don't combine)
-  - Example: Separate tables for Mechanism, Clinical Presentation, Treatment
-- Columns = items being compared (e.g., Type I, Type II, Type III, Type IV)
-- Rows = comparison categories within that topic
+  - Example: If comparing Clinical Presentation, Diagnosis, and Treatment for Conditions A, B, C:
+    - Table 1: Clinical Presentation comparing Conditions A, B, and C
+    - Table 2: Diagnosis comparing Conditions A, B, and C
+    - Table 3: Treatment comparing Conditions A, B, and C
+- Columns = items being compared (e.g., Condition A, Condition B, Condition C)
+- Rows = features within that category
 - Mnemonics placed directly BELOW relevant tables
 - 2-3 blank rows between different comparison tables
+- **Do NOT limit to 3 tables** - create N tables where N = comparison categories in LOs
 
 **Tab 2: Master Chart**
 - ALL items in one comprehensive table
@@ -182,12 +197,12 @@ Read these files in order:
 - Frozen header row
 - Color-coded by category
 
-**Tab 3: Summary**
-- Mnemonics (researched, with full breakdown)
-- "If X Think Y" associations
-- Critical values (if applicable)
+**Tab 3: Summary (for clinical medicine sources)**
+- Mnemonics (researched, with full breakdown) - e.g., "FEVER" for corneal ulcer features
+- "If you see X, Think Y" associations
+- Critical values
 - Key definitions
-- High-yield pearls
+- Final high-yield exam pearls
 
 **Critical Requirements:**
 - Use ONLY source file information
@@ -314,6 +329,7 @@ Track your progress:
 
 ## Common Mistakes to Avoid
 
+❌ **Limiting to only 3 comparison tables** - create as many as needed based on LOs
 ❌ Combining multiple categories in one comparison table
 ❌ Putting mnemonics only in Summary (should be below relevant tables too)
 ❌ Inventing mnemonics instead of researching

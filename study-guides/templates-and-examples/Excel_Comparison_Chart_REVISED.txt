@@ -94,6 +94,40 @@ Create comprehensive medical comparison Excel files with:
 
 ---
 
+## CRITICAL: DYNAMIC TABLE COUNT
+
+The number of comparison tables is NOT fixed. Create as many tables as needed to compare the information asked in the learning objectives.
+
+### How to Determine Tables:
+
+1. **Analyze source learning objectives** - identify ALL comparison categories:
+   - Clinical Presentation
+   - Pathophysiology/Mechanism
+   - Diagnosis/Labs
+   - Treatment
+   - Prognosis
+   - Complications
+   - Risk Factors
+   - Epidemiology
+   - [Any other categories asked in LOs]
+
+2. **Create ONE table per category** - each table compares that category across all items
+   - Each table compares 1-2 categories at a time to help break it down and differentiate
+
+3. **Example**: If comparing Clinical Presentation, Diagnosis, and Treatment for Conditions A, B, C:
+   - Table 1: Clinical Presentation comparing Conditions A, B, and C
+   - Table 2: Diagnosis comparing Conditions A, B, and C
+   - Table 3: Treatment comparing Conditions A, B, and C
+
+4. **If source has 6 comparison categories across 4 conditions:**
+   - Create 6 separate comparison tables
+   - NOT 3 tables with categories combined
+
+**WRONG**: 3 tables combining multiple categories
+**RIGHT**: N tables where N = number of comparison categories in learning objectives
+
+---
+
 ## TAB 1: KEY COMPARISONS
 
 ### Purpose
@@ -180,7 +214,9 @@ Row 2+: [One condition per row]
 ### Purpose
 Quick-reference high-yield information for rapid review
 
-### Required Sections
+### Required Sections (for Clinical Medicine Sources)
+
+The Summary sheet should include the following sections:
 
 #### 1. Mnemonics
 ```
@@ -208,10 +244,11 @@ If you see [finding/symptom] → Think [diagnosis/condition]
 [Term]: [Definition from source]
 ```
 
-#### 5. High-Yield Pearls
+#### 5. Final High-Yield Exam Pearls
 - Board-relevant facts
 - Clinical decision points
 - Must-know associations
+- Key exam takeaways
 
 ### Formatting Rules
 - Blue bold label for section headers (color='0000FF')
