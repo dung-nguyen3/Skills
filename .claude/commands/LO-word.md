@@ -51,7 +51,7 @@ If batch (semicolon-separated), process each path independently.
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
-☐ Instruction template: Word LO 11-5.txt
+☐ Instruction template: Word_LO_11-5_REVISED.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
@@ -72,7 +72,7 @@ BATCH SEPARATE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files are learning objective lectures
-☐ Template: Word LO 11-5.txt (per file)
+☐ Template: Word_LO_11-5_REVISED.txt (per file)
 ☐ Output: N files → N Word guides
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
@@ -106,7 +106,7 @@ BATCH MERGE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Files are related/compatible for merging
-☐ Template: Word LO 11-5.txt (unified)
+☐ Template: Word_LO_11-5_REVISED.txt (unified)
 ☐ Output: N files → 1 merged Word guide
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Content matrix, overlap resolution, source traceability

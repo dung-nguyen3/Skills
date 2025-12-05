@@ -15,11 +15,13 @@ This folder contains template files and example study guides.
 - `Color_Samples.py` - Color scheme utilities
 
 **Text template instructions (.txt):**
-- `Excel Drugs Chart 11-1.txt` - Instructions for Excel Drug Chart template
-- `Word LO 11-5.txt` - Instructions for Word LO template
-- `HTML LO with Master Chart 10-30.txt` - Instructions for HTML LO template
-- `Excel Master Chart Only.txt` - Instructions for Master Chart only
-- `Autobiography Drug Stories.txt` - Example source material
+- `Excel_Drugs_Chart_11-1_REVISED.txt` - Instructions for Excel Drug Chart template
+- `Word_LO_11-5_REVISED.txt` - Instructions for Word LO template
+- `HTML_LO_REVISED.txt` - Instructions for HTML LO template
+- `Excel_Master_Chart_Only_REVISED.txt` - Instructions for Master Chart only
+- `Excel_Comparison_Chart_REVISED.txt` - Instructions for Excel Comparison Chart
+- `Clinical_Physical_Assessment_REVISED.txt` - Instructions for Clinical Assessment
+- `Autobiography_Drug_Stories_REVISED.txt` - Instructions for Drug Autobiography stories
 
 ### Example Study Guides
 
@@ -54,16 +56,16 @@ Claude Code has built-in commands that automatically use these templates:
 If you want to understand template structure:
 
 1. **For Excel Drug Charts:**
-   - Read `Excel Drugs Chart 11-1.txt` for format details
+   - Read `Excel_Drugs_Chart_11-1_REVISED.txt` for format details
    - See `Example 24 HIV Chart excel.xlsx` for completed example
    - Reference `Drug_Chart_Example.xlsx` for structure
 
 2. **For Word LO Guides:**
-   - Read `Word LO 11-5.txt` for format details
+   - Read `Word_LO_11-5_REVISED.txt` for format details
    - Use `LO Word 11-5 template.py` code reference
 
 3. **For HTML Guides:**
-   - Read `HTML LO with Master Chart 10-30.txt` for format details
+   - Read `HTML_LO_REVISED.txt` for format details
 
 ### Option 3: Customize Templates
 
@@ -86,12 +88,12 @@ If you want to understand template structure:
 ### 2. HTML Learning Objectives Guide (4-tab format)
 **Best for:** Any medical topic with learning objectives
 **Tabs:** LO Q&A, Key Comparisons, Master Tables, Summary
-**Instructions:** `HTML LO with Master Chart 10-30.txt`
+**Instructions:** `HTML_LO_REVISED.txt`
 
 ### 3. Word Learning Objectives Guide
 **Best for:** Traditional document format
 **Template:** `LO Word 11-5 template.py`
-**Instructions:** `Word LO 11-5.txt`
+**Instructions:** `Word_LO_11-5_REVISED.txt`
 
 ### 4. Clinical Assessment Guide (HTML)
 **Best for:** History-taking, physical exam by chief complaint

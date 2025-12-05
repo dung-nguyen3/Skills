@@ -238,11 +238,11 @@ cd "/home/user/Skills/Copy Study Guide Claude Q3 2" && git [command]
 **If you RENAME or MOVE template files:**
 - ⚠️ Must update slash command files (`.claude/commands/*.md`)
 - Update the template path references in command files
-- **Example:** Renamed `Word LO 11-5.txt` → Update `create-word.md` line 17
+- **Example:** Renamed `Word_LO_11-5_REVISED.txt` → Update command file path reference
 
 **Slash commands reference templates by path:**
-- `/LO-word` → reads `Claude Templates/Word LO 11-5.txt` at runtime
-- `/4-tab-excel` → reads `Claude Templates/Excel Drugs Chart 11-1.txt` at runtime
+- `/LO-word` → reads `study-guides/templates-and-examples/Word_LO_11-5_REVISED.txt` at runtime
+- `/4-tab-excel` → reads `study-guides/templates-and-examples/Excel_Drugs_Chart_11-1_REVISED.txt` at runtime
 - `/verify-accuracy` → contains verification protocol (no template dependency)
 
 **Best practice:**
