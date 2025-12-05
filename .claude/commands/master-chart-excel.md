@@ -293,12 +293,16 @@ Track your progress:
 
 ### Step 8: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `1 ANS.txt` → `1 ANS.xlsx`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Master_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].xlsx`
+- Example: Source `1 ANS.txt` → Output `1 ANS.xlsx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Master_Chart.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName].py`
+- Example: Source `1 ANS.txt` → Output `py/1 ANS.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully

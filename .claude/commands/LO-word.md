@@ -271,12 +271,16 @@ Track your progress:
 
 ### Step 7: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `1 ANS.txt` → `1 ANS.docx`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Study_Guide.docx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].docx`
+- Example: Source `1 ANS.txt` → Output `1 ANS.docx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Study_Guide.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName].py`
+- Example: Source `1 ANS.txt` → Output `py/1 ANS.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully

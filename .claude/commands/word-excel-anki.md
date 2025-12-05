@@ -177,12 +177,15 @@ Track your progress:
 
 ### Word Step 6: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `1 ANS.txt` → `1 ANS.docx`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Study_Guide.docx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].docx`
+- Example: Source `1 ANS.txt` → Output `1 ANS.docx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Study_Guide.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName]_word.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
@@ -351,12 +354,15 @@ Track your progress:
 
 ### Excel Step 8: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `1 ANS.txt` → `1 ANS.xlsx`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Comparison_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].xlsx`
+- Example: Source `1 ANS.txt` → Output `1 ANS.xlsx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Comparison_Chart.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName]_excel.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
@@ -531,12 +537,15 @@ Track your progress:
 
 ### Anki Step 8: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `1 ANS.txt` → `1 ANS.apkg`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Flashcards.apkg`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].apkg`
+- Example: Source `1 ANS.txt` → Output `1 ANS.apkg`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Flashcards.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName]_anki.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully

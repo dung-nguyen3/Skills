@@ -285,12 +285,16 @@ Track your progress:
 
 ### Step 9: Save Files
 
+**Naming Convention:** Use source filename with new extension (e.g., `Back Pain.txt` → `Back Pain.xlsx`)
+
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[Topic]_Clinical_Assessment_Chart.xlsx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[SourceFileName].xlsx`
+- Example: Source `Back Pain.txt` → Output `Back Pain.xlsx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[Topic]_Clinical_Assessment_Chart.py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[SourceFileName].py`
+- Example: Source `Back Pain.txt` → Output `py/Back Pain.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully
