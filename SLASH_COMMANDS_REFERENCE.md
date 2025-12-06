@@ -155,6 +155,21 @@ Location: `.claude/commands/`
 - One fact per card for optimal learning
 - Import directly into Anki via File -> Import
 
+**Auto-Import Feature:**
+- **Requirements:** Anki must be running, AnkiConnect add-on installed (code: 2055492159), `pip install requests`
+- **Configuration:** Enable in `.claude/settings.local.json`
+  ```json
+  {
+    "anki_auto_import": {
+      "enabled": true
+    }
+  }
+  ```
+- **Behavior:**
+  - Enabled: Automatically imports .apkg into Anki via AnkiConnect API
+  - Disabled (default): Shows manual import instructions
+- **See:** [ANKI_AUTO_IMPORT.md](study-guides/user-docs/ANKI_AUTO_IMPORT.md) for complete guide
+
 **Example:**
 ```
 /anki Pharmacology/Exam 3/Extract/HIV Antivirals.txt

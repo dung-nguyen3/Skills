@@ -222,7 +222,7 @@ def load_notes_from_csv(csv_path, model):
 # PACKAGE EXPORT
 # =============================================================================
 
-def export_deck(deck, output_path, media_files=None):
+def export_deck(deck, output_path, media_files=None, auto_import=None):
     """
     Export deck to .apkg file.
 
@@ -230,6 +230,7 @@ def export_deck(deck, output_path, media_files=None):
         deck: genanki.Deck with notes added
         output_path: Path for output .apkg file
         media_files: Optional list of media file paths to include
+        auto_import: Enable auto-import (None=use config, True=force on, False=force off)
     """
     package = genanki.Package(deck)
 
@@ -240,12 +241,190 @@ def export_deck(deck, output_path, media_files=None):
     print(f"Deck exported to: {output_path}")
     print(f"Total cards: {len(deck.notes)}")
 
+    # Auto-import if enabled
+    should_import = auto_import
+    if should_import is None:
+        settings = load_auto_import_settings()
+        should_import = settings.get("enabled", False)
+
+    if should_import:
+        auto_import_to_anki(output_path)
+    else:
+        print("\n💡 To import: Open Anki → File → Import")
+        print("   Or enable auto-import in .claude/settings.json")
+
+
+# =============================================================================
+# ANKICONNECT AUTO-IMPORT
+# =============================================================================
+
+def invoke_ankiconnect(action, **params):
+    """
+    Call AnkiConnect API.
+
+    Args:
+        action: API action name
+        **params: Action parameters
+
+    Returns:
+        API result or None on error
+    """
+    import requests
+
+    payload = {
+        "action": action,
+        "version": 6,
+        "params": params
+    }
+
+    try:
+        response = requests.post('http://localhost:8765', json=payload, timeout=5)
+        response_data = response.json()
+
+        if response_data.get('error'):
+            return None
+
+        return response_data.get('result')
+    except Exception:
+        return None
+
+
+def is_ankiconnect_available():
+    """Check if AnkiConnect is running."""
+    try:
+        result = invoke_ankiconnect("version")
+        return result is not None
+    except Exception:
+        return False
+
+
+def load_auto_import_settings():
+    """Load auto-import settings from environment variables or config files."""
+    import os
+    import json
+    from pathlib import Path
+
+    # Default settings
+    settings = {
+        "enabled": False,
+        "show_import_status": True
+    }
+
+    # Check environment variable first (set in .claude/settings.local.json)
+    env_enabled = os.environ.get("ANKI_AUTO_IMPORT")
+    if env_enabled is not None:
+        settings["enabled"] = env_enabled.lower() in ("true", "1", "yes")
+        return settings
+
+    # Fallback: Try loading from config files (legacy approach)
+    # Note: This may not work due to Claude Code settings schema validation
+    settings_path = Path(__file__).parents[3] / ".claude/settings.json"
+    if settings_path.exists():
+        try:
+            with open(settings_path) as f:
+                config = json.load(f)
+                if "anki_auto_import" in config:
+                    settings.update(config["anki_auto_import"])
+        except (json.JSONDecodeError, KeyError):
+            pass
+
+    # Override with local settings if exists
+    local_settings_path = Path(__file__).parents[3] / ".claude/settings.local.json"
+    if local_settings_path.exists():
+        try:
+            with open(local_settings_path) as f:
+                local_config = json.load(f)
+                if "anki_auto_import" in local_config:
+                    settings.update(local_config["anki_auto_import"])
+        except (json.JSONDecodeError, KeyError):
+            pass
+
+    return settings
+
+
+def auto_import_to_anki(apkg_path):
+    """
+    Import .apkg file into Anki using AnkiConnect.
+
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        # Check if AnkiConnect is available
+        if not is_ankiconnect_available():
+            print("  ⚠️  Auto-import skipped: AnkiConnect not available")
+            print("     → Make sure Anki is running")
+            print("     → Install AnkiConnect add-on (code: 2055492159)")
+            print("     → Restart Anki after installing")
+            return False
+
+        print(f"  🔄 Importing deck into Anki via AnkiConnect...")
+
+        # Import the package
+        result = invoke_ankiconnect("importPackage", path=str(apkg_path))
+
+        if result is False:
+            print(f"  ⚠️  Import failed: Deck may already exist or file is invalid")
+            print(f"     Check Anki to verify import status")
+            return False
+
+        print(f"  ✅ Successfully imported into Anki!")
+        return True
+
+    except Exception as e:
+        print(f"  ⚠️  Auto-import failed: {e}")
+        print(f"     Import manually via Anki → File → Import")
+        return False
+
+
+def batch_import_to_anki(apkg_paths):
+    """
+    Import multiple .apkg files using AnkiConnect.
+
+    Returns:
+        dict: {'success': [...], 'failed': [...]}
+    """
+    results = {'success': [], 'failed': []}
+
+    try:
+        if not is_ankiconnect_available():
+            print("  ⚠️  Batch auto-import skipped: AnkiConnect not available")
+            print("     Make sure Anki is running with AnkiConnect installed")
+            return results
+
+        print(f"  🔄 Batch importing {len(apkg_paths)} decks via AnkiConnect...")
+
+        for apkg_path in apkg_paths:
+            try:
+                result = invoke_ankiconnect("importPackage", path=str(apkg_path))
+
+                if result is not False:
+                    results['success'].append(apkg_path)
+                else:
+                    results['failed'].append((apkg_path, "Import returned False"))
+
+            except Exception as e:
+                results['failed'].append((apkg_path, str(e)))
+
+        # Print summary
+        print(f"  ✅ Batch import complete: {len(results['success'])}/{len(apkg_paths)} succeeded")
+        if results['failed']:
+            print(f"  ⚠️  Failed imports:")
+            for path, error in results['failed']:
+                print(f"     - {os.path.basename(path)}: {error}")
+
+        return results
+
+    except Exception as e:
+        print(f"  ⚠️  Batch auto-import failed: {e}")
+        return results
+
 
 # =============================================================================
 # MAIN WORKFLOW
 # =============================================================================
 
-def create_flashcard_deck(csv_path, deck_name, output_path):
+def create_flashcard_deck(csv_path, deck_name, output_path, auto_import=None):
     """
     Complete workflow to create an Anki deck from CSV.
 
@@ -253,6 +432,7 @@ def create_flashcard_deck(csv_path, deck_name, output_path):
         csv_path: Path to CSV file with Question,Answer columns
         deck_name: Name for the Anki deck
         output_path: Path for output .apkg file
+        auto_import: Enable auto-import (None=use config, True/False=override)
 
     Returns:
         int: Number of cards created
@@ -269,7 +449,7 @@ def create_flashcard_deck(csv_path, deck_name, output_path):
         deck.add_note(note)
 
     # Export to .apkg
-    export_deck(deck, output_path)
+    export_deck(deck, output_path, auto_import=auto_import)
 
     return len(notes)
 

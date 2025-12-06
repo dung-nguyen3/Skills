@@ -14,7 +14,7 @@ Create comprehensive, color-coded Word document study guides from source materia
 - File organization rules
 
 **Word-specific requirements:**
-- 4 main sections: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+- 3 main sections: Learning Objectives, Key Comparisons, High-Yield Summary
 - Soft pastel color scheme throughout
 - NO page references in this document type
 - Tables for all comparisons (2+ items)
@@ -24,7 +24,7 @@ Create comprehensive, color-coded Word document study guides from source materia
 ## DOCUMENT STRUCTURE
 
 ### Required Tabs (Sections)
-The Word document must have 4 main sections:
+The Word document must have 3 main sections:
 
 #### 1. Learning Objectives
 Each learning objective gets its own subsection with:
@@ -42,13 +42,7 @@ Each learning objective gets its own subsection with:
 - Examples: Drug mechanisms, similar conditions, exam techniques
 - **For drug mechanisms:** Add "Analogy" column with researched analogies
 
-#### 3. Master Chart
-- Comprehensive table of ALL conditions/topics from source
-- Columns: Condition | Key Features | Additional columns as needed
-- Organized by category or alphabetically
-- Color-coded rows for visual organization
-
-#### 4. High-Yield Summary
+#### 3. High-Yield Summary
 Color-coded boxes grouped by category:
 - Anatomy Must-Knows
 - Emergency/Critical Conditions
@@ -98,7 +92,6 @@ Use these for table headers (darker pastel):
 - **Orange**: `FFE0B2` (255, 224, 178) - Special tests/signs
 - **Red**: `FFCDD2` (255, 205, 210) - Abnormal/pathology
 - **Pink**: `F8BBD0` (248, 187, 208) - Differential diagnosis
-- **Light Purple**: `EDE7F6` (237, 231, 246) - Master charts
 
 ### Background Colors (Lighter Pastels)
 Use these for row backgrounds:
@@ -421,39 +414,7 @@ doc.add_heading('Concept A vs Concept B', 2)
 doc.add_page_break()
 ```
 
-### TAB 3: Master Chart
-```python
-heading = doc.add_heading('Master Chart - [Topic]', 1)
-heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-
-doc.add_heading('Comprehensive Topic Chart', 2)
-table = doc.add_table(rows=X, cols=2)
-table.style = 'Table Grid'
-
-# Headers with master chart color (light purple)
-headers = ['Concept/Topic', 'Key Details from Source']
-for i, header_text in enumerate(headers):
-    set_cell_background(table.rows[0].cells[i], 'EDE7F6')
-    set_cell_text(table.rows[0].cells[i], header_text, bold=True)
-
-# Data rows - ALL topics from learning objectives
-master_data = [
-    ['Topic 1', 'Key information'],
-    ['Topic 2', 'Key information'],
-    # [Include ALL topics from source]
-]
-
-for row_idx, row_content in enumerate(master_data, start=1):
-    cells = table.rows[row_idx].cells
-    set_cell_background(cells[0], 'F3E5F5')
-    set_cell_text(cells[0], row_content[0], bold=True)
-    set_cell_background(cells[1], 'FFFFFF')
-    set_cell_text(cells[1], row_content[1])
-
-doc.add_page_break()
-```
-
-### TAB 4: High-Yield Summary
+### TAB 3: High-Yield Summary
 ```python
 heading = doc.add_heading('High-Yield Summary', 1)
 heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
@@ -499,7 +460,6 @@ Before finalizing, verify:
 - [ ] All information from source file only (except researched mnemonics/analogies)
 - [ ] Every learning objective has: summary + tables + pearls box + mnemonics box + analogy box
 - [ ] All comparison tables have appropriate categories
-- [ ] Master chart includes ALL conditions/topics from source
 - [ ] Memory tricks and analogies researched via WebSearch (not invented)
 
 ### Formatting Requirements
@@ -515,7 +475,7 @@ Before finalizing, verify:
 
 ### Structure Requirements
 - [ ] Title and (Lecture #) centered at beginning
-- [ ] 4 main sections (tabs) present
+- [ ] 3 main sections (tabs) present
 - [ ] Page breaks after each learning objective
 - [ ] Page breaks between main sections
 - [ ] Consistent spacing (6pt before/after boxes)
@@ -543,7 +503,7 @@ Before finalizing, verify:
 ✅ Use WebSearch for mnemonics, analogies, and memory aids
 ✅ Add clinical pearls using medical reasoning
 ✅ Create comparison tables for ANY items needing differentiation (2+ items)
-✅ Include all 4 required tabs/sections
+✅ Include all 3 required tabs/sections
 ✅ Use clinical reasoning tips ("If X think Y")
 ✅ Read entire source file to identify ALL relevant content
 ✅ Verify all table text is black/dark colored for readability

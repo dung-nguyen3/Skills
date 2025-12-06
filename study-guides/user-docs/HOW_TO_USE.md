@@ -194,6 +194,67 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 ---
 
+### Example 7: Auto-Import to Anki
+
+**Enable auto-import feature:**
+
+1. Install AnkiConnect add-on in Anki:
+   - Tools → Add-ons → Get Add-ons
+   - Enter code: `2055492159`
+   - Restart Anki
+
+2. Install requirements:
+   ```bash
+   pip install requests
+   ```
+
+3. Enable in settings:
+   Create `.claude/settings.local.json`:
+   ```json
+   {
+     "anki_auto_import": {
+       "enabled": true
+     }
+   }
+   ```
+
+**You say:**
+```
+/anki "Pharmacology/Exam 1/Extract/HIV-Drugs.txt"
+```
+
+**What happens (with auto-import enabled):**
+```
+✅ Deck exported to: HIV Drugs.apkg
+📊 Total cards: 47
+
+🔄 Importing deck into Anki via AnkiConnect...
+✅ Successfully imported into Anki!
+```
+
+**What happens (without auto-import):**
+```
+✅ Deck exported to: HIV Drugs.apkg
+📊 Total cards: 47
+
+💡 To import: Open Anki → File → Import
+   Or enable auto-import in .claude/settings.json
+```
+
+**Best for:**
+- Saving time (no manual imports)
+- Batch processing multiple decks
+- Streamlined workflow
+
+**Requirements:**
+- Anki must be running
+- AnkiConnect installed
+- Auto-import enabled in settings
+
+For complete guide, see [ANKI_AUTO_IMPORT.md](ANKI_AUTO_IMPORT.md)
+
+---
+
 ## Template Selection Guide
 
 ### Which Command Should I Use?

@@ -14,6 +14,7 @@
 ### Study Guides
 - [Create Study Guide (3 Steps)](#create-study-guide-3-steps)
 - [Verify Study Guide (2 Steps)](#verify-study-guide-2-steps)
+- [Create Anki Flashcards](#create-anki-flashcards)
 - [Study Guide Decision Tree](#study-guide-decision-tree)
 
 ### Infrastructure
@@ -46,6 +47,9 @@
 
 # Clinical Assessment Guide
 /clinical-assessment-html "path/to/source.txt" "Chief Complaint"
+
+# Anki Flashcards
+/anki "path/to/lecture.txt"
 
 # Verify Accuracy
 /verify-accuracy "path/to/study-guide.xlsx" "path/to/source.txt"
@@ -89,6 +93,7 @@
 | Non-drug lecture with LOs | `/LO-html` |
 | Clinical exam notes | `/clinical-assessment-html` |
 | Need Word format | `/LO-word` |
+| Need Anki flashcards | `/anki` |
 | Existing study guide to check | `/verify-accuracy` |
 
 ---
@@ -133,6 +138,41 @@ Claude will:
 - State "Re-verification complete"
 
 **Use before exams** to ensure 100% accuracy!
+
+---
+
+## Create Anki Flashcards
+
+### Basic Usage
+```bash
+/anki "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
+```
+
+### Auto-Import Feature (Optional)
+
+**Enable auto-import** to skip manual File → Import steps:
+
+**1. Create/edit** `.claude/settings.local.json`:
+```json
+{
+  "anki_auto_import": {
+    "enabled": true
+  }
+}
+```
+
+**2. Requirements:**
+- Anki must be running
+- AnkiConnect add-on installed (code: `2055492159`)
+- Run: `pip install requests`
+
+**3. Use:**
+```bash
+/anki "path/to/lecture.txt"
+# Deck automatically imports into Anki!
+```
+
+**See:** [ANKI_AUTO_IMPORT.md](study-guides/user-docs/ANKI_AUTO_IMPORT.md) for setup and troubleshooting
 
 ---
 

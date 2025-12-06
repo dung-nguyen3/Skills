@@ -99,36 +99,45 @@ LEARNING OBJECTIVES EXTRACTED:
 ...
 ```
 
-### Step 4: Analyze Source File (LO-Focused)
+### Step 4: Analyze Source File (Essential Facts + High-Yield)
 
 **For EACH learning objective:**
-- Identify facts that DIRECTLY answer the LO
-- Identify foundational facts needed to understand the answer
-- Include supporting context that leads to the answer
-- Map all related content to LO number
+- Identify the **minimum essential facts** needed to answer the LO
+- Focus on what you'd need to **recall** to answer the question
+- Skip background/context that doesn't require memorization
+- Map essential content to LO number
 - EXCLUDE content unrelated to any LO
 
-**Create LO-Content Mapping:**
+**Create Essential Facts Mapping:**
 ```
 LO 1: "Understand the mechanism of penicillin"
-  - Foundation: Peptidoglycan structure and function
-  - Foundation: Why peptidoglycan is essential for bacteria
-  - Direct: Penicillin inhibits transpeptidase enzyme
-  - Direct: Prevents cross-linking of peptidoglycan
-  - Result: Bacterial cell wall weakens and lyses
+  - Essential: Penicillin inhibits transpeptidase enzyme
+  - Essential: Prevents peptidoglycan cross-linking
+  - Essential: Results in bacterial cell wall lysis
 
 LO 2: [LO statement]
-  - Foundation: [prerequisite knowledge]
-  - Direct: [facts that answer the LO]
+  - Essential: [minimum facts needed to answer LO]
 ...
 ```
 
-**LO-RELEVANT FILTERING RULE:**
-- Include facts that directly answer the LO
-- Include foundational knowledge needed to understand the answer
-- Include context that leads to or supports the answer
-- EXCLUDE content that has no relationship to any LO
-- When in doubt about relevance, include if it helps understanding
+**IDENTIFY HIGH-YIELD FACTS (even if not directly tied to LOs):**
+```
+HIGH-YIELD FACTS:
+- Black box warnings
+- Drug interactions (especially dangerous ones)
+- First-line treatments
+- Pathognomonic findings/"buzzwords"
+- Common adverse effects (not exhaustive lists)
+- Clinical pearls emphasized in lecture
+- Board exam favorites
+```
+
+**ESSENTIAL + HIGH-YIELD FILTERING RULE:**
+- Include facts that **directly answer** the LO (essential)
+- Include **high-yield clinical facts** (black box warnings, dangerous interactions, first-line treatments)
+- EXCLUDE background/context that doesn't require active recall
+- EXCLUDE content unrelated to any LO or clinical practice
+- **When in doubt about relevance, SKIP it** - focus on essential + high-yield only
 
 ### Step 5: Create Flashcards (LO-Filtered)
 
@@ -164,11 +173,27 @@ For each LO:
    - Preserve exact drug names, receptor names, classifications
    - No lengthy explanations - just the core fact
 
-3. **Coverage (LO-Based)**
-   - Create cards ONLY for content mapped to LOs in Step 4
-   - One clear question-answer pair per LO-mapped fact
+3. **Coverage (Essential + High-Yield)**
+   - Create cards ONLY for essential facts and high-yield content from Step 4
+   - **ONE fact per card** (Minimum Information Principle - atomic cards)
+   - **Word limits:** Questions <20 words, Answers <30 words (ideally 3-15)
+   - **No filler words** - be concise and precise
+   - **Context connection:** Link each card to its LO or clinical significance
+   - **Vary question structures:** Avoid repetitive phrasing (What/Which/How/Define/Describe)
    - No duplicate concepts
-   - Do NOT create cards for content outside LO scope
+   - Do NOT create cards for content outside LO scope or low-yield facts
+
+   **Essential vs Skip Decision Criteria:**
+   ✓ Create cards for:
+   - Facts that directly answer an LO
+   - High-yield clinical facts (black box warnings, dangerous interactions)
+   - Information you'd be tested on or need clinically
+
+   ✗ Skip cards for:
+   - Background physiology you already know
+   - Low-yield trivia or historical facts
+   - Over-detailed information not emphasized in lecture
+   - Context that doesn't require active recall
 
 4. **Source-Only Policy**
    - Use ONLY information from the source file
@@ -202,8 +227,8 @@ Track your progress:
 
 1. **LO Coverage Check**
    - All LOs have at least one flashcard
-   - Every flashcard maps to a specific LO
-   - No flashcards for non-LO content
+   - Every flashcard maps to a specific LO or high-yield fact
+   - No flashcards for non-LO or low-yield content
 
 2. **Source Accuracy**
    - All facts come from source file only
@@ -212,18 +237,33 @@ Track your progress:
 
 3. **Question Quality**
    - Questions are clear and unambiguous
-   - One concept per card
-   - Variety of question types used
+   - **Atomic cards:** Each card tests ONE fact only (no combined concepts)
+   - **Word count:** Questions <20 words
+   - **Variety:** Question structures vary (not repetitive)
+   - **Precision:** Questions are specific and self-contained
 
 4. **Answer Quality**
-   - Answers are concise (3-15 words typical)
-   - Single concept per answer
-   - Exact terminology preserved
+   - **Concise:** Answers <30 words (ideally 3-15 words)
+   - **Atomic:** Single concept per answer
+   - **Exact terminology:** Source wording preserved exactly
+   - **Context:** Answers connect to LO or clinical significance
+
+5. **Volume Check**
+   - Typical range: 50-100 cards for standard lecture
+   - If >150 cards: Review for over-inclusion (too many low-yield or background facts)
+   - If <30 cards: Verify all LOs and high-yield facts covered
+   - **Quality over quantity** - better fewer essential cards than exhaustive coverage
+
+6. **Essential vs Exhaustive**
+   - Are these essential facts or exhaustive coverage?
+   - Did you skip low-yield background information?
+   - Are cards focused on what you'd be tested on?
 
 **CRITICAL: State "Post-creation verification complete" and report:**
 - Total LOs: [#]
 - Total flashcards: [#]
 - Cards per LO: [breakdown]
+- Volume assessment: [within/above/below typical range]
 
 ### Step 9: Save Files
 
@@ -248,15 +288,73 @@ Track your progress:
 - Format: `Lecture [min]-[max].apkg` (based on lecture numbers found)
 
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].apkg`
-- Create Claude Study Tools folder if doesn't exist
+- Save to: `[Class]/[Exam]/Claude Study Tools/anki/[OutputFilename].apkg`
+- Create `Claude Study Tools/anki/` folder if doesn't exist
 
 **Python File:**
 - Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
-- Create `py/` subfolder if doesn't exist
+- Create `Claude Study Tools/py/` subfolder if doesn't exist
+
+**Directory Structure:**
+```
+Claude Study Tools/
+├── anki/
+│   └── [OutputFilename].apkg
+├── py/
+│   └── [OutputFilename].py
+```
 
 - Confirm both files saved successfully
 
+### Step 10: Auto-Import (Optional)
+
+**Auto-import uses AnkiConnect to automatically import .apkg files into Anki.**
+
+**Status messages:**
+
+✅ **Success:**
+```
+🔄 Importing deck into Anki via AnkiConnect...
+✅ Successfully imported into Anki!
+```
+
+⚠️ **AnkiConnect not available:**
+```
+⚠️  Auto-import skipped: AnkiConnect not available
+    → Make sure Anki is running
+    → Install AnkiConnect add-on (code: 2055492159)
+    → Restart Anki after installing
+```
+
+⚠️ **Auto-import disabled (default):**
+```
+💡 To import: Open Anki → File → Import
+   Or enable auto-import in .claude/settings.json
+```
+
+**To enable auto-import:**
+
+Create or edit `.claude/settings.local.json`:
+```json
+{
+  "anki_auto_import": {
+    "enabled": true
+  }
+}
+```
+
+**Requirements:**
+- Anki must be running
+- AnkiConnect add-on installed (code: 2055492159)
+- Run: `pip install requests`
+
+**Setup AnkiConnect:**
+1. Open Anki
+2. Tools → Add-ons → Get Add-ons
+3. Enter code: `2055492159`
+4. Restart Anki
+
+**Batch mode:** All decks are imported in a single session with success/failure summary.
 
 ---
 
@@ -270,11 +368,15 @@ For batch operations (semicolon-separated files or --merge flag):
 ## Common Mistakes to Avoid
 
 - Creating vague or ambiguous questions
-- Putting multiple concepts in one answer
+- **Putting multiple concepts in one card** (violates Minimum Information Principle)
+- **Creating too many cards** - Focus on essential + high-yield, not exhaustive coverage
+- **Including low-yield facts** that don't appear in LOs or clinical practice
 - Adding information not in the source
+- **Paraphrasing medical terms** instead of using exact source wording
 - Using pronouns without clear referents
-- Making answers too long (should be 3-15 words)
-- Skipping important facts from source
+- Making answers too long (should be 3-15 words, max 30)
+- **Skipping essential or high-yield facts** from source
+- **Repetitive question phrasing** - vary structures (What/Which/How/Define)
 - Not escaping special characters in data properly
 
 ## Example Usage
