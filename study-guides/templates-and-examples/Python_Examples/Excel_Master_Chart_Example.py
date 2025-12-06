@@ -17,22 +17,77 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
 # =============================================================================
-# COLOR SCHEME (See Excel_Color_Reference.txt)
+# COLOR SCHEME - 3-Shade System (See Excel_Color_Reference.txt)
 # =============================================================================
 
-HEADER_BG = '4472C4'  # Dark blue
-ROW_COLORS = [
-    'D9E2F3',  # Ice Blue
-    'C8E6C9',  # Seafoam
-    'D1C4E9',  # Light Orchid
-    'F7E7CE',  # Champagne
-    'BDD7EE',  # Sky Blue
-    'F0F8FF',  # Pale Azure
-    'FCE4EC',  # Blush Pink
-    'EDE7F6',  # Soft Lilac
-    'FFE8D6',  # Soft Tangerine
-    'BBDEFB',  # Powder Blue
+MAIN_TITLE_COLOR = '4472C4'  # Dark blue for headers
+
+# Color Set 0: Ice Blue
+ICE_BLUE_HEADER = 'B4C6E7'
+ICE_BLUE_MAIN = 'D9E2F3'
+ICE_BLUE_ROW_LABEL = 'C5D3ED'
+
+# Color Set 1: Seafoam
+SEAFOAM_HEADER = 'A5D6A7'
+SEAFOAM_MAIN = 'C8E6C9'
+SEAFOAM_ROW_LABEL = 'B7DDB9'
+
+# Color Set 2: Light Orchid
+LIGHT_ORCHID_HEADER = 'B39DDB'
+LIGHT_ORCHID_MAIN = 'D1C4E9'
+LIGHT_ORCHID_ROW_LABEL = 'C2B2E0'
+
+# Color Set 3: Champagne
+CHAMPAGNE_HEADER = 'F4D9B3'
+CHAMPAGNE_MAIN = 'F7E7CE'
+CHAMPAGNE_ROW_LABEL = 'F6E0C0'
+
+# Color Set 4: Sky Blue
+SKY_BLUE_HEADER = '9ECAE1'
+SKY_BLUE_MAIN = 'BDD7EE'
+SKY_BLUE_ROW_LABEL = 'ACD0E7'
+
+# Color Set 5: Pale Azure
+PALE_AZURE_HEADER = 'D9ECFF'
+PALE_AZURE_MAIN = 'F0F8FF'
+PALE_AZURE_ROW_LABEL = 'E5F2FF'
+
+# Color Set 6: Blush Pink
+BLUSH_PINK_HEADER = 'F8BBD0'
+BLUSH_PINK_MAIN = 'FCE4EC'
+BLUSH_PINK_ROW_LABEL = 'FAD2DE'
+
+# Color Set 7: Soft Lilac
+SOFT_LILAC_HEADER = 'D1C4E9'
+SOFT_LILAC_MAIN = 'EDE7F6'
+SOFT_LILAC_ROW_LABEL = 'DFD6ED'
+
+# Color Set 8: Soft Tangerine
+SOFT_TANGERINE_HEADER = 'FFD4B3'
+SOFT_TANGERINE_MAIN = 'FFE8D6'
+SOFT_TANGERINE_ROW_LABEL = 'FFDEC4'
+
+# Color Set 9: Powder Blue
+POWDER_BLUE_HEADER = '90CAF9'
+POWDER_BLUE_MAIN = 'BBDEFB'
+POWDER_BLUE_ROW_LABEL = 'A5D6FA'
+
+COLOR_SETS = [
+    {'header': ICE_BLUE_HEADER, 'main': ICE_BLUE_MAIN, 'row_label': ICE_BLUE_ROW_LABEL},
+    {'header': SEAFOAM_HEADER, 'main': SEAFOAM_MAIN, 'row_label': SEAFOAM_ROW_LABEL},
+    {'header': LIGHT_ORCHID_HEADER, 'main': LIGHT_ORCHID_MAIN, 'row_label': LIGHT_ORCHID_ROW_LABEL},
+    {'header': CHAMPAGNE_HEADER, 'main': CHAMPAGNE_MAIN, 'row_label': CHAMPAGNE_ROW_LABEL},
+    {'header': SKY_BLUE_HEADER, 'main': SKY_BLUE_MAIN, 'row_label': SKY_BLUE_ROW_LABEL},
+    {'header': PALE_AZURE_HEADER, 'main': PALE_AZURE_MAIN, 'row_label': PALE_AZURE_ROW_LABEL},
+    {'header': BLUSH_PINK_HEADER, 'main': BLUSH_PINK_MAIN, 'row_label': BLUSH_PINK_ROW_LABEL},
+    {'header': SOFT_LILAC_HEADER, 'main': SOFT_LILAC_MAIN, 'row_label': SOFT_LILAC_ROW_LABEL},
+    {'header': SOFT_TANGERINE_HEADER, 'main': SOFT_TANGERINE_MAIN, 'row_label': SOFT_TANGERINE_ROW_LABEL},
+    {'header': POWDER_BLUE_HEADER, 'main': POWDER_BLUE_MAIN, 'row_label': POWDER_BLUE_ROW_LABEL},
 ]
+
+def get_color_set(index):
+    """Get color set by index (rotates through available sets)"""
+    return COLOR_SETS[index % len(COLOR_SETS)]
 
 # =============================================================================
 # HELPER FUNCTIONS
@@ -84,7 +139,7 @@ def create_master_chart(output_path, headers, column_widths, data_rows):
         cell = ws.cell(1, col_idx)
         cell.value = header_text
         cell.font = Font(name='Calibri', size=12, bold=True, color='FFFFFF')
-        cell.fill = PatternFill(start_color=HEADER_BG, end_color=HEADER_BG, fill_type='solid')
+        cell.fill = PatternFill(start_color=MAIN_TITLE_COLOR, end_color=MAIN_TITLE_COLOR, fill_type='solid')
         cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
         cell.border = Border(
             left=Side(style='thin', color='FFFFFF'),
@@ -100,7 +155,7 @@ def create_master_chart(output_path, headers, column_widths, data_rows):
     # DATA ROWS
     # ==========================================================================
     current_row = 2
-    category_index = 0
+    category_index = -1  # Start at -1 so first category becomes 0
     prev_category = None
 
     for row_data in data_rows:
@@ -111,7 +166,9 @@ def create_master_chart(output_path, headers, column_widths, data_rows):
             category_index += 1
             prev_category = category
 
-        color = ROW_COLORS[category_index % len(ROW_COLORS)]
+        # Get color set and use 'main' shade for data cells
+        colors = get_color_set(category_index)
+        color = colors['main']
 
         # Apply data to cells
         for col_idx, value in enumerate(row_data, start=1):
@@ -119,6 +176,7 @@ def create_master_chart(output_path, headers, column_widths, data_rows):
             bold = (col_idx == 1)  # First column (category) is bold
             set_cell_style(cell, text=value, bold=bold, bg_color=color)
 
+        ws.row_dimensions[current_row].height = 60
         current_row += 1
 
     # Save

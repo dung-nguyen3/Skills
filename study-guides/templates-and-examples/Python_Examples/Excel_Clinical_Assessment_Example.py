@@ -46,23 +46,38 @@ ONSET_COLORS = {
     'Chronic Inflammatory': 'BDD7EE',  # Sky Blue - chronic with inflammation
 }
 
-# HEADER_COLORS for Key Comparisons tab (25% darker shades)
-HEADER_COLORS = [
-    'B4C6E7',  # Ice Blue HEADER
-    'A8CCA8',  # Seafoam HEADER
-    'B8A4D0',  # Light Orchid HEADER
-    'E0D0B0',  # Champagne HEADER
-    '9DC3E6',  # Sky Blue HEADER
+# COLOR_SETS for Key Comparisons tab (3-shade system matching template)
+ICE_BLUE_HEADER = 'B4C6E7'
+ICE_BLUE_MAIN = 'D9E2F3'
+ICE_BLUE_ROW_LABEL = 'C5D3ED'
+
+SEAFOAM_HEADER = 'A5D6A7'
+SEAFOAM_MAIN = 'C8E6C9'
+SEAFOAM_ROW_LABEL = 'B7DDB9'
+
+LIGHT_ORCHID_HEADER = 'B39DDB'
+LIGHT_ORCHID_MAIN = 'D1C4E9'
+LIGHT_ORCHID_ROW_LABEL = 'C2B2E0'
+
+CHAMPAGNE_HEADER = 'F4D9B3'
+CHAMPAGNE_MAIN = 'F7E7CE'
+CHAMPAGNE_ROW_LABEL = 'F6E0C0'
+
+SKY_BLUE_HEADER = '9ECAE1'
+SKY_BLUE_MAIN = 'BDD7EE'
+SKY_BLUE_ROW_LABEL = 'ACD0E7'
+
+COLOR_SETS = [
+    {'header': ICE_BLUE_HEADER, 'main': ICE_BLUE_MAIN, 'row_label': ICE_BLUE_ROW_LABEL},
+    {'header': SEAFOAM_HEADER, 'main': SEAFOAM_MAIN, 'row_label': SEAFOAM_ROW_LABEL},
+    {'header': LIGHT_ORCHID_HEADER, 'main': LIGHT_ORCHID_MAIN, 'row_label': LIGHT_ORCHID_ROW_LABEL},
+    {'header': CHAMPAGNE_HEADER, 'main': CHAMPAGNE_MAIN, 'row_label': CHAMPAGNE_ROW_LABEL},
+    {'header': SKY_BLUE_HEADER, 'main': SKY_BLUE_MAIN, 'row_label': SKY_BLUE_ROW_LABEL},
 ]
 
-# MAIN_COLORS for Key Comparisons data rows (lighter shades)
-MAIN_COLORS = [
-    'D9E2F3',  # Ice Blue MAIN
-    'C8E6C9',  # Seafoam MAIN
-    'D1C4E9',  # Light Orchid MAIN
-    'F7E7CE',  # Champagne MAIN
-    'BDD7EE',  # Sky Blue MAIN
-]
+def get_color_set(index):
+    """Get color set by index (rotates through available sets)"""
+    return COLOR_SETS[index % len(COLOR_SETS)]
 
 # =============================================================================
 # HELPER FUNCTIONS
@@ -94,15 +109,16 @@ def create_comparison_header(ws, title, row, span_cols=4, table_index=0):
     """Create merged title row for a comparison table"""
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
     cell = ws.cell(row, 1)
-    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
+    colors = get_color_set(table_index)
     apply_cell_style(cell, text=title, bold=True, font_size=14,
-                    bg_color=header_color, alignment='center', font_color='000000')
+                    bg_color=colors['header'], alignment='center', font_color='000000')
     cell.font = Font(name='Calibri', size=14, bold=True, color='000000')
     ws.row_dimensions[row].height = 30
 
 def create_column_headers(ws, headers, row, start_col=1, table_index=0):
     """Create column headers for comparison table"""
-    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
+    colors = get_color_set(table_index)
+    header_color = colors['main']
     for col_idx, header in enumerate(headers, start=start_col):
         cell = ws.cell(row, col_idx)
         apply_cell_style(cell, text=header, bold=True, font_size=11,
@@ -197,7 +213,8 @@ def create_key_comparisons_tab(wb):
         ('Treatment Focus', 'Address underlying cause', 'Multimodal, functional improvement'),
     ]
 
-    table_main = MAIN_COLORS[table_index]
+    colors = get_color_set(table_index)
+    table_main = colors['main']
     for row_data in comparison_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
@@ -229,7 +246,8 @@ def create_key_comparisons_tab(wb):
         ('Night Pain', 'Present, improves on rising', 'Less common'),
     ]
 
-    table_main = MAIN_COLORS[table_index]
+    colors = get_color_set(table_index)
+    table_main = colors['main']
     for row_data in comparison_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
@@ -262,7 +280,8 @@ def create_key_comparisons_tab(wb):
         ('Example Test C', 'Patient position, maneuver description', 'Abnormal reflex or finding', 'Condition C'),
     ]
 
-    table_main = MAIN_COLORS[table_index]
+    colors = get_color_set(table_index)
+    table_main = colors['main']
     for row_data in test_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)

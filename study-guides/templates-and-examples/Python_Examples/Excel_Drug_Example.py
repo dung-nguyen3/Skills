@@ -18,22 +18,91 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 # =============================================================================
-# COLOR SCHEME (See Excel_Color_Reference.txt for details)
+# COLOR SCHEME - SOFT PASTELS WITH BLACK TEXT
 # =============================================================================
 
-HEADER_BG = '4472C4'  # Dark blue
-ROW_COLORS = [
-    'D9E2F3',  # Ice Blue
-    'C8E6C9',  # Seafoam
-    'D1C4E9',  # Light Orchid
-    'F7E7CE',  # Champagne
-    'BDD7EE',  # Sky Blue
-    'F0F8FF',  # Pale Azure
-    'FCE4EC',  # Blush Pink
-    'EDE7F6',  # Soft Lilac
-    'FFE8D6',  # Soft Tangerine
-    'BBDEFB',  # Powder Blue
+# Main color sets for drug class tables (rotate through these)
+# Color Set 0: Ice Blue
+ICE_BLUE_HEADER = 'B4C6E7'
+ICE_BLUE_MAIN = 'D9E2F3'
+ICE_BLUE_ROW_LABEL = 'C5D3ED'
+
+# Color Set 1: Seafoam
+SEAFOAM_HEADER = 'A8CCA8'
+SEAFOAM_MAIN = 'C8E6C9'
+SEAFOAM_ROW_LABEL = 'B8D9B9'
+
+# Color Set 2: Light Orchid
+LIGHT_ORCHID_HEADER = 'B8A4D0'
+LIGHT_ORCHID_MAIN = 'D1C4E9'
+LIGHT_ORCHID_ROW_LABEL = 'C4B4DC'
+
+# Color Set 3: Champagne
+CHAMPAGNE_HEADER = 'E0D0B0'
+CHAMPAGNE_MAIN = 'F7E7CE'
+CHAMPAGNE_ROW_LABEL = 'EBDBBF'
+
+# Color Set 4: Sky Blue
+SKY_BLUE_HEADER = '9DC3E6'
+SKY_BLUE_MAIN = 'BDD7EE'
+SKY_BLUE_ROW_LABEL = 'AECDEA'
+
+# Color Set 5: Pale Azure
+PALE_AZURE_HEADER = 'D0E8FF'
+PALE_AZURE_MAIN = 'F0F8FF'
+PALE_AZURE_ROW_LABEL = 'E0F0FF'
+
+# Color Set 6: Blush Pink
+BLUSH_PINK_HEADER = 'E8C4CC'
+BLUSH_PINK_MAIN = 'FCE4EC'
+BLUSH_PINK_ROW_LABEL = 'F2D4DC'
+
+# Color Set 7: Soft Lilac
+SOFT_LILAC_HEADER = 'D0C8DC'
+SOFT_LILAC_MAIN = 'EDE7F6'
+SOFT_LILAC_ROW_LABEL = 'DED7E9'
+
+# Color Set 8: Soft Tangerine
+SOFT_TANGERINE_HEADER = 'E0C8B0'
+SOFT_TANGERINE_MAIN = 'FFE8D6'
+SOFT_TANGERINE_ROW_LABEL = 'EFD8C3'
+
+# Color Set 9: Powder Blue
+POWDER_BLUE_HEADER = 'A0C4E8'
+POWDER_BLUE_MAIN = 'BBDEFB'
+POWDER_BLUE_ROW_LABEL = 'ADD1F1'
+
+# Special background colors
+MNEMONIC_BG = 'E6F3FF'  # Light blue for mnemonics
+CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
+MAIN_TITLE_COLOR = '4472C4'  # Dark blue for sheet titles
+ANALOGY_BOX_BG = 'FFF9E6'  # Light yellow for analogy boxes
+
+# Color sets array for easy rotation
+COLOR_SETS = [
+    {'header': ICE_BLUE_HEADER, 'main': ICE_BLUE_MAIN, 'row_label': ICE_BLUE_ROW_LABEL},
+    {'header': SEAFOAM_HEADER, 'main': SEAFOAM_MAIN, 'row_label': SEAFOAM_ROW_LABEL},
+    {'header': LIGHT_ORCHID_HEADER, 'main': LIGHT_ORCHID_MAIN, 'row_label': LIGHT_ORCHID_ROW_LABEL},
+    {'header': CHAMPAGNE_HEADER, 'main': CHAMPAGNE_MAIN, 'row_label': CHAMPAGNE_ROW_LABEL},
+    {'header': SKY_BLUE_HEADER, 'main': SKY_BLUE_MAIN, 'row_label': SKY_BLUE_ROW_LABEL},
+    {'header': PALE_AZURE_HEADER, 'main': PALE_AZURE_MAIN, 'row_label': PALE_AZURE_ROW_LABEL},
+    {'header': BLUSH_PINK_HEADER, 'main': BLUSH_PINK_MAIN, 'row_label': BLUSH_PINK_ROW_LABEL},
+    {'header': SOFT_LILAC_HEADER, 'main': SOFT_LILAC_MAIN, 'row_label': SOFT_LILAC_ROW_LABEL},
+    {'header': SOFT_TANGERINE_HEADER, 'main': SOFT_TANGERINE_MAIN, 'row_label': SOFT_TANGERINE_ROW_LABEL},
+    {'header': POWDER_BLUE_HEADER, 'main': POWDER_BLUE_MAIN, 'row_label': POWDER_BLUE_ROW_LABEL},
 ]
+
+# Border style - white borders between cells
+thin_border = Border(
+    left=Side(style='thin', color='FFFFFF'),
+    right=Side(style='thin', color='FFFFFF'),
+    top=Side(style='thin', color='FFFFFF'),
+    bottom=Side(style='thin', color='FFFFFF')
+)
+
+def get_color_set(index):
+    """Get color set by index (rotates through available sets)"""
+    return COLOR_SETS[index % len(COLOR_SETS)]
 
 # =============================================================================
 # HELPER FUNCTIONS
@@ -54,12 +123,7 @@ def apply_cell_style(cell, text='', bold=False, font_size=10, bg_color=None,
         cell.fill = PatternFill(start_color=bg_color, end_color=bg_color, fill_type='solid')
 
     if border:
-        cell.border = Border(
-            left=Side(style='thin', color='FFFFFF'),
-            right=Side(style='thin', color='FFFFFF'),
-            top=Side(style='thin', color='FFFFFF'),
-            bottom=Side(style='thin', color='FFFFFF')
-        )
+        cell.border = thin_border
 
 def create_header_row(ws, headers, row=1):
     """Create formatted header row"""
@@ -67,7 +131,7 @@ def create_header_row(ws, headers, row=1):
         cell = ws.cell(row, col_idx)
         apply_cell_style(
             cell, text=header, bold=True, font_size=12,
-            bg_color=HEADER_BG, alignment='center'
+            bg_color=MAIN_TITLE_COLOR, alignment='center'
         )
         cell.font = Font(name='Calibri', size=12, bold=True, color='FFFFFF')
 
@@ -86,12 +150,74 @@ def add_mnemonic_row(ws, row, mnemonic_text, color, span_cols=10):
     apply_cell_style(
         cell,
         text=f"💡 MEMORY TRICKS: {mnemonic_text}",
-        bold=True,
-        font_size=10,
-        bg_color='FFF3E0',  # Orange background
+        bold=False,
+        font_size=11,
+        bg_color=MNEMONIC_BG,
         alignment='left'
     )
-    ws.row_dimensions[row].height = 40
+    ws.row_dimensions[row].height = 60
+
+def add_comparison_table(ws, start_row, title, headers, data_rows, colors):
+    """
+    Add a key comparison table for Key Comparisons tab
+
+    Args:
+        ws: worksheet object
+        start_row: starting row number
+        title: table title (e.g., "MECHANISMS ACROSS CLASSES")
+        headers: list of column headers
+        data_rows: list of lists, each inner list is a row of data
+        colors: dict with 'header' and 'main' color hex codes
+
+    Returns:
+        next available row number
+    """
+    from openpyxl.utils import get_column_letter
+
+    current_row = start_row
+    num_cols = len(headers)
+    end_col_letter = get_column_letter(num_cols)
+
+    # Title row (merged)
+    ws.merge_cells(f'A{current_row}:{end_col_letter}{current_row}')
+    title_cell = ws[f'A{current_row}']
+    title_cell.value = title
+    title_cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
+    title_cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
+    title_cell.alignment = Alignment(horizontal='center', vertical='center')
+    title_cell.border = thin_border
+    ws.row_dimensions[current_row].height = 25
+    current_row += 1
+
+    # Header row
+    for col_idx, header in enumerate(headers, start=1):
+        cell = ws.cell(row=current_row, column=col_idx)
+        cell.value = header
+        cell.font = Font(name='Calibri', bold=True, size=11, color='000000')
+        cell.fill = PatternFill(start_color=colors['main'], end_color=colors['main'], fill_type='solid')
+        cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+        cell.border = thin_border
+    ws.row_dimensions[current_row].height = 23
+    current_row += 1
+
+    # Data rows - ALL rows use same color (colors['main'])
+    for row_data in data_rows:
+        for col_idx, value in enumerate(row_data, start=1):
+            cell = ws.cell(row=current_row, column=col_idx)
+            cell.value = value
+            # First column is bold
+            if col_idx == 1:
+                cell.font = Font(name='Calibri', bold=True, size=10, color='000000')
+            else:
+                cell.font = Font(name='Calibri', size=10, color='000000')
+            # ALL cells get pastel background
+            cell.fill = PatternFill(start_color=colors['main'], end_color=colors['main'], fill_type='solid')
+            cell.alignment = Alignment(wrap_text=True, vertical='top')
+            cell.border = thin_border
+        ws.row_dimensions[current_row].height = 43
+        current_row += 1
+
+    return current_row
 
 # =============================================================================
 # TAB 1: DRUG DETAILS
@@ -129,21 +255,26 @@ def create_drug_details_tab(wb):
     # Class header
     ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=7)
     cell = ws.cell(current_row, 1)
+    colors = get_color_set(class_index)
     apply_cell_style(cell, text="NUCLEOSIDE REVERSE TRANSCRIPTASE INHIBITORS (NRTIs)",
-                    bold=True, font_size=14, bg_color=HEADER_BG, alignment='center')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
-    ws.row_dimensions[current_row].height = 30
+                    bold=True, font_size=18, bg_color=colors['header'], alignment='center')
+    cell.font = Font(name='Calibri', size=18, bold=True, color='000000')
+    ws.row_dimensions[current_row].height = 28
     current_row += 1
 
     # Drug names header
-    color = ROW_COLORS[class_index % len(ROW_COLORS)]
+    color = colors['main']
     headers = ['Property', 'Tenofovir (Viread)', 'Emtricitabine (Emtriva)',
                'Lamivudine (Epivir)', 'Abacavir (Ziagen)', 'Analogy']
     for col_idx, header in enumerate(headers, start=1):
         cell = ws.cell(current_row, col_idx)
-        apply_cell_style(cell, text=header, bold=True, font_size=11,
-                        bg_color=color, alignment='center')
-    ws.row_dimensions[current_row].height = 25
+        if col_idx == 1:
+            apply_cell_style(cell, text=header, bold=True, font_size=14,
+                            bg_color=colors['row_label'], alignment='center')
+        else:
+            apply_cell_style(cell, text=header, bold=True, font_size=16,
+                            bg_color=color, alignment='center')
+    ws.row_dimensions[current_row].height = 30
     current_row += 1
 
     # Class-wide properties (merged across all drugs)
@@ -156,22 +287,23 @@ def create_drug_details_tab(wb):
     for prop_name, prop_value in class_properties:
         # Property name in column A
         cell_a = ws.cell(current_row, 1)
-        apply_cell_style(cell_a, text=prop_name, bold=True, bg_color=color)
+        apply_cell_style(cell_a, text=prop_name, bold=True, font_size=14, bg_color=colors['row_label'])
 
         # Merge columns B-E for shared value
         ws.merge_cells(start_row=current_row, start_column=2,
                       end_row=current_row, end_column=5)
         cell_value = ws.cell(current_row, 2)
-        apply_cell_style(cell_value, text=prop_value, bg_color='FFFFFF')
+        apply_cell_style(cell_value, text=prop_value, font_size=12, bg_color=color)
 
         # Analogy column (only for mechanism row)
         cell_g = ws.cell(current_row, 6)
         if prop_name == 'Mechanism':
             analogy = "Like giving a construction crew fake bricks (nucleosides). They build them into the wall (DNA chain), but the fake bricks are defective and the wall collapses."
-            apply_cell_style(cell_g, text=analogy, bg_color='FFE8D6', font_size=10)
+            apply_cell_style(cell_g, text=analogy, bg_color=ANALOGY_BOX_BG, font_size=10)
         else:
-            apply_cell_style(cell_g, text='', bg_color='FFFFFF')
+            apply_cell_style(cell_g, text='', bg_color=color)
 
+        ws.row_dimensions[current_row].height = 48 if prop_name != 'Route' else 32
         current_row += 1
 
     # Drug-specific properties (individual values per drug)
@@ -207,13 +339,14 @@ def create_drug_details_tab(wb):
 
         # Property name
         cell_a = ws.cell(current_row, 1)
-        apply_cell_style(cell_a, text=prop_name, bold=True, bg_color=color)
+        apply_cell_style(cell_a, text=prop_name, bold=True, font_size=14, bg_color=colors['row_label'])
 
         # Individual drug values
         for col_idx, value in enumerate(prop_row[1:], start=2):
             cell = ws.cell(current_row, col_idx)
-            apply_cell_style(cell, text=value, bg_color='FFFFFF')
+            apply_cell_style(cell, text=value, font_size=12, bg_color=color)
 
+        ws.row_dimensions[current_row].height = 48
         current_row += 1
 
     # Memory tricks row
@@ -240,7 +373,7 @@ def create_key_comparisons_tab(wb):
     """
     Tab 2: Key Comparisons
     - Side-by-side comparisons across drug classes
-    - Mechanisms, toxicities, uses, interactions
+    - Each comparison table uses ONE consistent color
     """
     ws = wb.create_sheet("Key Comparisons")
 
@@ -255,32 +388,104 @@ def create_key_comparisons_tab(wb):
 
     current_row = 1
 
-    # Comparison 1: Mechanisms Across Classes
-    create_header_row(ws, ['Drug Class', 'Mechanism', 'Target', 'Result', 'Analogy'], current_row)
-    current_row += 1
+    # Comparison 1: Mechanisms Across Classes (Ice Blue)
+    colors = get_color_set(0)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'MECHANISMS ACROSS CLASSES',
+        ['Drug Class', 'Mechanism', 'Target', 'Result', 'Analogy'],
+        [
+            ['NRTI', 'Nucleoside analog → chain termination', 'Reverse transcriptase',
+             'Viral DNA synthesis stops', 'Fake bricks in a wall'],
+            ['NNRTI', 'Allosteric binding', 'Reverse transcriptase',
+             'Enzyme cannot function', 'Jamming the gears of a machine'],
+            ['Integrase Inhibitor', 'Blocks integration', 'Integrase enzyme',
+             'Viral DNA cannot insert into host', 'Blocking the stapler'],
+            ['Protease Inhibitor', 'Competitive inhibition', 'HIV protease',
+             'Immature non-infectious virions', 'Assembly line shut down'],
+        ],
+        colors
+    )
+    current_row += 2
 
-    comparison_data = [
-        ('NRTI', 'Nucleoside analog → chain termination', 'Reverse transcriptase',
-         'Viral DNA synthesis stops', 'Fake bricks in a wall'),
-        ('NNRTI', 'Allosteric binding', 'Reverse transcriptase',
-         'Enzyme cannot function', 'Jamming the gears of a machine'),
-        ('Integrase Inhibitor', 'Blocks integration', 'Integrase enzyme',
-         'Viral DNA cannot insert into host', 'Blocking the stapler'),
-        ('Protease Inhibitor', 'Competitive inhibition', 'HIV protease',
-         'Immature non-infectious virions', 'Assembly line shut down'),
-    ]
+    # Comparison 2: Major Toxicities (Seafoam)
+    colors = get_color_set(1)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'MAJOR TOXICITIES COMPARISON',
+        ['Drug Class', 'Key Toxicity', 'Monitoring', 'Management'],
+        [
+            ['NRTI', '⚠️ Lactic acidosis, hepatotoxicity, lipodystrophy',
+             'Lactate levels, LFTs, lipid panel', 'Discontinue if severe'],
+            ['NNRTI', 'Rash (including Stevens-Johnson), hepatotoxicity',
+             'Skin examination, LFTs', 'Stop immediately if severe rash'],
+            ['Protease Inhibitor', 'GI upset, hyperglycemia, hyperlipidemia',
+             'Blood glucose, lipid panel', 'Manage metabolic effects'],
+            ['Integrase Inhibitor', 'Generally well tolerated, weight gain',
+             'Weight monitoring', 'Lifestyle modifications'],
+        ],
+        colors
+    )
+    current_row += 2
 
-    for idx, row_data in enumerate(comparison_data):
-        color = ROW_COLORS[idx % len(ROW_COLORS)]
-        for col_idx, value in enumerate(row_data, start=1):
-            cell = ws.cell(current_row, col_idx)
-            bold = (col_idx == 1)  # First column bold
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
-        current_row += 1
+    # Comparison 3: Clinical Uses (Light Orchid)
+    colors = get_color_set(2)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'CLINICAL USES COMPARISON',
+        ['Drug Class', 'Primary Use', 'Special Indications', 'Notes'],
+        [
+            ['NRTI', '🟢 First-line HIV therapy', 'PrEP (Truvada, Descovy)',
+             'Backbone of most regimens'],
+            ['NNRTI', 'HIV treatment (combination)', 'Resource-limited settings',
+             'Cannot be used as monotherapy'],
+            ['Protease Inhibitor', 'HIV treatment (salvage)', 'Treatment-experienced patients',
+             'Often boosted with ritonavir'],
+            ['Integrase Inhibitor', '🟢 First-line HIV therapy', 'Preferred in many guidelines',
+             'High barrier to resistance'],
+        ],
+        colors
+    )
+    current_row += 2
 
-    current_row += 2  # Space before next comparison
+    # Comparison 4: Drug Interactions (Champagne)
+    colors = get_color_set(3)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'MAJOR DRUG INTERACTIONS',
+        ['Drug Class', 'Key Interactions', 'Mechanism', 'Clinical Impact'],
+        [
+            ['NRTI', 'Limited interactions', 'Renally eliminated',
+             'Generally safe with other drugs'],
+            ['NNRTI', 'CYP450 inducers/inhibitors', 'Hepatic metabolism',
+             '⚠️ Many significant interactions'],
+            ['Protease Inhibitor', 'CYP3A4 substrates', 'CYP3A4 inhibition',
+             '⚠️ Extensive interaction profile'],
+            ['Integrase Inhibitor', 'Cation-containing antacids', 'Chelation',
+             'Separate administration by 2-4 hours'],
+        ],
+        colors
+    )
+    current_row += 2
 
-    # Add more comparisons (toxicity, uses, interactions) here...
+    # Comparison 5: Clinical Decision-Making (Sky Blue)
+    colors = get_color_set(4)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'CLINICAL DECISION-MAKING GUIDE',
+        ['Scenario', 'Preferred Choice', 'Rationale'],
+        [
+            ['Treatment-naïve patient', '🟢 Integrase inhibitor + 2 NRTIs',
+             'Best efficacy, tolerability, high barrier to resistance'],
+            ['Pregnancy', 'Integrase inhibitor-based regimen',
+             'Safest profile, extensive pregnancy data'],
+            ['Renal impairment', 'Avoid tenofovir TDF, use TAF',
+             'Reduced nephrotoxicity with TAF formulation'],
+            ['Treatment-experienced with resistance', 'Boosted PI + newer agents',
+             'Higher barrier to resistance, salvage therapy'],
+        ],
+        colors
+    )
 
     return ws
 
@@ -321,7 +526,7 @@ def create_master_chart_tab(wb):
          'CrCl <50 mL/min', 'Monitor renal function'),
         ('NRTI', 'Emtricitabine (Emtriva)', 'Oral', 'Nucleoside analog → chain termination',
          '🟢 HIV - First line', 'Minimal', 'None', 'Safe in pregnancy'),
-        ('NRTI', 'Lamivudine (Epivir)', 'Oral', 'Nucleoside analog → chain termination',
+        ('NRTI', 'Lamivudide (Epivir)', 'Oral', 'Nucleoside analog → chain termination',
          'HIV, HBV', 'Minimal', 'None', 'HBV coinfection'),
         ('NRTI', 'Abacavir (Ziagen)', 'Oral', 'Nucleoside analog → chain termination',
          'HIV', '⚠️ Hypersensitivity reaction', 'HLA-B*5701 positive',
@@ -330,7 +535,7 @@ def create_master_chart_tab(wb):
     ]
 
     current_row = 2
-    class_index = 0
+    class_index = -1  # Start at -1 so first class becomes 0
     prev_class = None
 
     for row_data in master_data:
@@ -341,13 +546,24 @@ def create_master_chart_tab(wb):
             class_index += 1
             prev_class = drug_class
 
-        color = ROW_COLORS[class_index % len(ROW_COLORS)]
+        # Get color set and use 'main' shade for data cells
+        colors = get_color_set(class_index)
+        color = colors['main']
 
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
-            bold = (col_idx == 1)  # Drug class column bold
-            apply_cell_style(cell, text=value, bold=bold, bg_color=color)
+            # First column (drug class) is bold
+            if col_idx == 1:
+                cell.font = Font(name='Calibri', bold=True, size=10, color='000000')
+            else:
+                cell.font = Font(name='Calibri', size=10, color='000000')
+            # All cells get drug class color
+            cell.fill = PatternFill(start_color=color, end_color=color, fill_type='solid')
+            cell.alignment = Alignment(wrap_text=True, vertical='top')
+            cell.border = thin_border
+            cell.value = value
 
+        ws.row_dimensions[current_row].height = 60
         current_row += 1
 
     return ws
@@ -374,69 +590,83 @@ def create_high_yield_tab(wb):
     current_row = 1
 
     # Section 1: Clinical Pearls
+    colors = get_color_set(0)
     ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
     cell = ws.cell(current_row, 1)
-    apply_cell_style(cell, text="CLINICAL PEARLS", bold=True, font_size=14,
-                    bg_color=HEADER_BG, alignment='center')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
+    cell.value = "CLINICAL PEARLS"
+    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
+    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 23
     current_row += 1
 
-    pearls = [
-        "• All NRTIs require activation by host kinases - if kinase activity is low, drug may not work",
-        "• Tenofovir + Emtricitabine = most common first-line NRTI backbone",
-        "• Abacavir hypersensitivity is life-threatening - NEVER rechallenge if reaction occurs",
-        "• NRTI class effect: lactic acidosis and hepatic steatosis (rare but serious)",
-    ]
+    pearls_content = """• All NRTIs require activation by host kinases - if kinase activity is low, drug may not work
+• Tenofovir + Emtricitabine = most common first-line NRTI backbone
+• Abacavir hypersensitivity is life-threatening - NEVER rechallenge if reaction occurs
+• NRTI class effect: lactic acidosis and hepatic steatosis (rare but serious)"""
 
-    for pearl in pearls:
-        cell = ws.cell(current_row, 1)
-        apply_cell_style(cell, text=pearl, bg_color='E0F2F1')
-        ws.row_dimensions[current_row].height = 30
-        current_row += 1
-
+    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
+    cell = ws.cell(current_row, 1)
+    cell.value = pearls_content
+    cell.font = Font(name='Calibri', size=11, color='000000')
+    cell.fill = PatternFill(start_color=CLINICAL_PEARL_BG, end_color=CLINICAL_PEARL_BG, fill_type='solid')
+    cell.alignment = Alignment(wrap_text=True, vertical='top')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 60
     current_row += 2
 
     # Section 2: Mnemonics
+    colors = get_color_set(1)
     ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
     cell = ws.cell(current_row, 1)
-    apply_cell_style(cell, text="MEMORY TRICKS & MNEMONICS", bold=True, font_size=14,
-                    bg_color=HEADER_BG, alignment='center')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
+    cell.value = "MEMORY TRICKS & MNEMONICS"
+    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
+    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 23
     current_row += 1
 
-    mnemonics = [
-        '💡 "NRTI = Nucleoside Rival Terminating Infection"',
-        '💡 "Tenofovir = Tender kidneys" (nephrotoxicity)',
-        '💡 "Abacavir needs All-Clear Before using" (HLA-B*5701 screening)',
-    ]
+    mnemonics_content = """💡 "NRTI = Nucleoside Rival Terminating Infection"
+💡 "Tenofovir = Tender kidneys" (nephrotoxicity)
+💡 "Abacavir needs All-Clear Before using" (HLA-B*5701 screening)"""
 
-    for mnemonic in mnemonics:
-        cell = ws.cell(current_row, 1)
-        apply_cell_style(cell, text=mnemonic, bg_color='FFF3E0')
-        ws.row_dimensions[current_row].height = 30
-        current_row += 1
-
+    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
+    cell = ws.cell(current_row, 1)
+    cell.value = mnemonics_content
+    cell.font = Font(name='Calibri', size=11, color='000000')
+    cell.fill = PatternFill(start_color=MNEMONIC_BG, end_color=MNEMONIC_BG, fill_type='solid')
+    cell.alignment = Alignment(wrap_text=True, vertical='top')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 60
     current_row += 2
 
     # Section 3: If X Think Y
+    colors = get_color_set(2)
     ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
     cell = ws.cell(current_row, 1)
-    apply_cell_style(cell, text='"IF X THINK Y" ASSOCIATIONS', bold=True, font_size=14,
-                    bg_color=HEADER_BG, alignment='center')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='FFFFFF')
+    cell.value = '"IF X THINK Y" ASSOCIATIONS'
+    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
+    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
+    cell.alignment = Alignment(horizontal='center', vertical='center')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 23
     current_row += 1
 
-    associations = [
-        "If HIV-naïve patient → Think: Tenofovir + Emtricitabine + Integrase Inhibitor",
-        "If hypersensitivity reaction on HIV meds → Think: Abacavir (check HLA-B*5701)",
-        "If rising creatinine on HIV meds → Think: Tenofovir nephrotoxicity",
-    ]
+    associations_content = """If HIV-naïve patient → Think: Tenofovir + Emtricitabine + Integrase Inhibitor
+If hypersensitivity reaction on HIV meds → Think: Abacavir (check HLA-B*5701)
+If rising creatinine on HIV meds → Think: Tenofovir nephrotoxicity"""
 
-    for assoc in associations:
-        cell = ws.cell(current_row, 1)
-        apply_cell_style(cell, text=assoc, bg_color='F3E5F5')
-        ws.row_dimensions[current_row].height = 30
-        current_row += 1
+    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
+    cell = ws.cell(current_row, 1)
+    cell.value = associations_content
+    cell.font = Font(name='Calibri', size=11, color='000000')
+    cell.fill = PatternFill(start_color=ANALOGY_BOX_BG, end_color=ANALOGY_BOX_BG, fill_type='solid')
+    cell.alignment = Alignment(wrap_text=True, vertical='top')
+    cell.border = thin_border
+    ws.row_dimensions[current_row].height = 60
+    current_row += 1
 
     return ws
 

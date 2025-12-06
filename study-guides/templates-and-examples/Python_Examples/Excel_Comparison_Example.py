@@ -19,49 +19,84 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 # =============================================================================
-# COLOR SCHEME (See Excel_Color_Reference.txt for details)
+# COLOR SCHEME - 3-Shade System (See Excel_Color_Reference.txt)
 # =============================================================================
-
-# Two-shade system: Each color has HEADER (25% darker) and MAIN (lighter) variants
-# - HEADER shade: Table title rows, column headers
-# - MAIN shade: Data rows
 
 MAIN_TITLE_BG = '4472C4'  # Dark blue - ONLY for sheet titles
 MNEMONIC_BG = 'E6F3FF'    # Light blue for mnemonics
 CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
 
-# HEADER_COLORS: 25% darker shades for table titles and column headers
-HEADER_COLORS = [
-    'B4C6E7',  # Ice Blue HEADER
-    'A8CCA8',  # Seafoam HEADER
-    'B8A4D0',  # Light Orchid HEADER
-    'E0D0B0',  # Champagne HEADER
-    '9DC3E6',  # Sky Blue HEADER
-    'D0E8FF',  # Pale Azure HEADER
-    'E8C4CC',  # Blush Pink HEADER
-    'D0C8DC',  # Soft Lilac HEADER
-    'E0C8B0',  # Soft Tangerine HEADER
-    'A0C4E8',  # Powder Blue HEADER
+# Color Set 0: Ice Blue
+ICE_BLUE_HEADER = 'B4C6E7'
+ICE_BLUE_MAIN = 'D9E2F3'
+ICE_BLUE_ROW_LABEL = 'C5D3ED'
+
+# Color Set 1: Seafoam
+SEAFOAM_HEADER = 'A5D6A7'
+SEAFOAM_MAIN = 'C8E6C9'
+SEAFOAM_ROW_LABEL = 'B7DDB9'
+
+# Color Set 2: Light Orchid
+LIGHT_ORCHID_HEADER = 'B39DDB'
+LIGHT_ORCHID_MAIN = 'D1C4E9'
+LIGHT_ORCHID_ROW_LABEL = 'C2B2E0'
+
+# Color Set 3: Champagne
+CHAMPAGNE_HEADER = 'F4D9B3'
+CHAMPAGNE_MAIN = 'F7E7CE'
+CHAMPAGNE_ROW_LABEL = 'F6E0C0'
+
+# Color Set 4: Sky Blue
+SKY_BLUE_HEADER = '9ECAE1'
+SKY_BLUE_MAIN = 'BDD7EE'
+SKY_BLUE_ROW_LABEL = 'ACD0E7'
+
+# Color Set 5: Pale Azure
+PALE_AZURE_HEADER = 'D9ECFF'
+PALE_AZURE_MAIN = 'F0F8FF'
+PALE_AZURE_ROW_LABEL = 'E5F2FF'
+
+# Color Set 6: Blush Pink
+BLUSH_PINK_HEADER = 'F8BBD0'
+BLUSH_PINK_MAIN = 'FCE4EC'
+BLUSH_PINK_ROW_LABEL = 'FAD2DE'
+
+# Color Set 7: Soft Lilac
+SOFT_LILAC_HEADER = 'D1C4E9'
+SOFT_LILAC_MAIN = 'EDE7F6'
+SOFT_LILAC_ROW_LABEL = 'DFD6ED'
+
+# Color Set 8: Soft Tangerine
+SOFT_TANGERINE_HEADER = 'FFD4B3'
+SOFT_TANGERINE_MAIN = 'FFE8D6'
+SOFT_TANGERINE_ROW_LABEL = 'FFDEC4'
+
+# Color Set 9: Powder Blue
+POWDER_BLUE_HEADER = '90CAF9'
+POWDER_BLUE_MAIN = 'BBDEFB'
+POWDER_BLUE_ROW_LABEL = 'A5D6FA'
+
+COLOR_SETS = [
+    {'header': ICE_BLUE_HEADER, 'main': ICE_BLUE_MAIN, 'row_label': ICE_BLUE_ROW_LABEL},
+    {'header': SEAFOAM_HEADER, 'main': SEAFOAM_MAIN, 'row_label': SEAFOAM_ROW_LABEL},
+    {'header': LIGHT_ORCHID_HEADER, 'main': LIGHT_ORCHID_MAIN, 'row_label': LIGHT_ORCHID_ROW_LABEL},
+    {'header': CHAMPAGNE_HEADER, 'main': CHAMPAGNE_MAIN, 'row_label': CHAMPAGNE_ROW_LABEL},
+    {'header': SKY_BLUE_HEADER, 'main': SKY_BLUE_MAIN, 'row_label': SKY_BLUE_ROW_LABEL},
+    {'header': PALE_AZURE_HEADER, 'main': PALE_AZURE_MAIN, 'row_label': PALE_AZURE_ROW_LABEL},
+    {'header': BLUSH_PINK_HEADER, 'main': BLUSH_PINK_MAIN, 'row_label': BLUSH_PINK_ROW_LABEL},
+    {'header': SOFT_LILAC_HEADER, 'main': SOFT_LILAC_MAIN, 'row_label': SOFT_LILAC_ROW_LABEL},
+    {'header': SOFT_TANGERINE_HEADER, 'main': SOFT_TANGERINE_MAIN, 'row_label': SOFT_TANGERINE_ROW_LABEL},
+    {'header': POWDER_BLUE_HEADER, 'main': POWDER_BLUE_MAIN, 'row_label': POWDER_BLUE_ROW_LABEL},
 ]
 
-# MAIN_COLORS: Lighter shades for data rows
-MAIN_COLORS = [
-    'D9E2F3',  # Ice Blue MAIN
-    'C8E6C9',  # Seafoam MAIN
-    'D1C4E9',  # Light Orchid MAIN
-    'F7E7CE',  # Champagne MAIN
-    'BDD7EE',  # Sky Blue MAIN
-    'F0F8FF',  # Pale Azure MAIN
-    'FCE4EC',  # Blush Pink MAIN
-    'EDE7F6',  # Soft Lilac MAIN
-    'FFE8D6',  # Soft Tangerine MAIN
-    'BBDEFB',  # Powder Blue MAIN
-]
+def get_color_set(index):
+    """Get color set by index (rotates through available sets)"""
+    return COLOR_SETS[index % len(COLOR_SETS)]
 
 # COLOR RULE: Same table/category = same color set
-# - Table title row: HEADER_COLORS[index]
-# - Column headers: HEADER_COLORS[index]
-# - Data rows: MAIN_COLORS[index]
+# - Table title row: colors['header']
+# - Column headers: colors['main'] (lighter than header)
+# - Data rows: colors['main'] (same as column headers)
 # Rotate to next color SET only when starting a NEW table/category
 
 # =============================================================================
@@ -94,23 +129,24 @@ def create_comparison_header(ws, title, row, span_cols=5, table_index=0):
     """Create merged title row for a comparison table
 
     Args:
-        table_index: Index for color selection (uses HEADER_COLORS[table_index])
+        table_index: Index for color selection (uses COLOR_SETS[table_index]['header'])
     """
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
     cell = ws.cell(row, 1)
-    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
+    colors = get_color_set(table_index)
     apply_cell_style(cell, text=title, bold=True, font_size=14,
-                    bg_color=header_color, alignment='center', font_color='000000')
+                    bg_color=colors['header'], alignment='center', font_color='000000')
     cell.font = Font(name='Calibri', size=14, bold=True, color='000000')
-    ws.row_dimensions[row].height = 30
+    ws.row_dimensions[row].height = 25
 
 def create_column_headers(ws, headers, row, start_col=1, table_index=0):
     """Create column headers for comparison table
 
     Args:
-        table_index: Index for color selection (uses HEADER_COLORS[table_index])
+        table_index: Index for color selection (uses COLOR_SETS[table_index]['main'])
     """
-    header_color = HEADER_COLORS[table_index % len(HEADER_COLORS)]
+    colors = get_color_set(table_index)
+    header_color = colors['main']
     for col_idx, header in enumerate(headers, start=start_col):
         cell = ws.cell(row, col_idx)
         apply_cell_style(cell, text=header, bold=True, font_size=11,
@@ -213,8 +249,9 @@ def create_key_comparisons_tab(wb):
          'Complement, neutrophils', 'Cytokines (IFN-γ, TNF)'),
     ]
 
-    # Table 1 uses ONE color SET: HEADER for title/headers, MAIN for data rows
-    table_1_main = MAIN_COLORS[table_index]
+    # Table 1 uses ONE color SET: HEADER for title, MAIN for headers/data rows
+    colors = get_color_set(table_index)
+    table_1_main = colors['main']
     for row_data in mechanism_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
@@ -252,8 +289,9 @@ def create_key_comparisons_tab(wb):
         ('Severity', 'Can be life-threatening', 'Variable', 'Chronic inflammation', 'Usually localized'),
     ]
 
-    # Table 2 uses ONE color SET: HEADER for title/headers, MAIN for data rows
-    table_2_main = MAIN_COLORS[table_index]
+    # Table 2 uses ONE color SET: HEADER for title, MAIN for headers/data rows
+    colors = get_color_set(table_index)
+    table_2_main = colors['main']
     for row_data in clinical_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
@@ -285,8 +323,9 @@ def create_key_comparisons_tab(wb):
          'Treat underlying condition', 'Avoid known antigens'),
     ]
 
-    # Table 3 uses ONE color SET: HEADER for title/headers, MAIN for data rows
-    table_3_main = MAIN_COLORS[table_index]
+    # Table 3 uses ONE color SET: HEADER for title, MAIN for headers/data rows
+    colors = get_color_set(table_index)
+    table_3_main = colors['main']
     for row_data in treatment_data:
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
@@ -346,11 +385,24 @@ def create_master_chart_tab(wb):
     ]
 
     current_row = 2
-    # Master Chart: Each row is a different TYPE/CATEGORY, so each gets its own color
-    # If multiple items were in same category, they would share the same MAIN color
-    # Data rows use font size 10 (not 11) per iCloud source spec
-    for idx, row_data in enumerate(master_data):
-        color = MAIN_COLORS[idx % len(MAIN_COLORS)]
+    # Master Chart: Category-based coloring (same category = same color)
+    # In this example, each row is a different category (Type I-IV)
+    # Data rows use font size 10 (not 11) per template spec
+    category_index = -1  # Start at -1 so first category becomes 0
+    prev_category = None
+
+    for row_data in master_data:
+        category = row_data[0]  # First column is the category
+
+        # Change color when category changes
+        if category != prev_category:
+            category_index += 1
+            prev_category = category
+
+        # Get color set and use 'main' shade for data cells
+        colors = get_color_set(category_index)
+        color = colors['main']
+
         for col_idx, value in enumerate(row_data, start=1):
             cell = ws.cell(current_row, col_idx)
             bold = (col_idx == 1)  # First column bold
