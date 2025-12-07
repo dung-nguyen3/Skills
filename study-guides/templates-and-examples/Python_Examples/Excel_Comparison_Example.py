@@ -11,6 +11,17 @@ Structure:
 - Tab 2: Master Chart (all items in one comprehensive table)
 - Tab 3: Summary (mnemonics, "If X Think Y", high-yield pearls)
 
+Category Selection:
+Categories are selected from comprehensive menus (A-M) in the template based on
+learning objectives. This example uses Menu B (Medical Conditions) categories:
+- Mechanism comparison (Table 1)
+- Clinical presentation comparison (Table 2)
+- Treatment comparison (Table 3)
+
+Categories are flexible - use menus in Excel_Comparison_Chart_REVISED.txt to
+select relevant categories for any medical topic (diagnostic tools, drugs,
+conditions, mechanisms, anatomy, procedures, etc.).
+
 Example: Hypersensitivity Reactions Type I-IV
 """
 

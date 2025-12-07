@@ -157,20 +157,78 @@ Read these files in order:
 
 **CRITICAL - Read ENTIRE source file:**
 - Identify ALL conditions/concepts/mechanisms mentioned (don't skip any)
-- **Identify ALL comparison categories from learning objectives** (common examples below, but identify any others asked in LOs):
-  - Clinical Presentation
-  - Pathophysiology/Mechanism
-  - Diagnosis/Labs
-  - Treatment
-  - Prognosis
-  - Complications
-  - Risk Factors
-  - Epidemiology
-  - **Identify any other comparison categories asked in the learning objectives**
+- Identify topic type (diagnostic tools, medical conditions, drugs, mechanisms, etc.)
 - Note items that need side-by-side comparison
 - Note any existing mnemonics or memory aids mentioned
 
-**IMPORTANT:** The number of comparison tables = number of comparison categories in LOs. Do NOT limit to 3 tables.
+### Step 3.5: Select Comparison Categories from Menus
+
+<category_selection_step>
+
+**Using the comprehensive category menus from template, select relevant categories:**
+
+**Checklist:**
+☐ Analyzed all learning objectives in source file
+☐ Identified which menu(s) apply (A-M from template)
+☐ Selected categories from menu that relate to LOs
+☐ Applied LO relevance filter (include/exclude criteria)
+☐ Documented category list for comparison tables
+
+**Process:**
+
+1. **Match Source to Menu(s):**
+   - Diagnostic tools/tests → Menu A
+   - Medical conditions (any specialty) → Menu B
+   - Drugs/pharmacology → Menu C
+   - Mechanisms/pathophysiology → Menu D
+   - Physical exam/assessment → Menu E
+   - Treatments/interventions → Menu F
+   - Risk factors → Menu G
+   - Classifications/staging → Menu H
+   - Labs/biomarkers → Menu I
+   - Anatomy/structures → Menu J
+   - Procedures/techniques → Menu K
+   - Differential diagnosis → Menu L
+   - Systems/physiology → Menu M
+
+2. **Select Relevant Categories:**
+   From the matched menu(s), select categories that:
+   - Learning objectives explicitly ask to compare
+   - Help differentiate items students frequently confuse
+   - Enable actionable clinical decisions from LOs
+   - Contain hallmark/pathognomonic findings mentioned in LOs
+
+3. **Exclude Irrelevant Categories:**
+   Skip categories that contain:
+   - Tangential information not related to LOs
+   - Background context that doesn't aid comparison
+   - Information too broad or generic to be useful
+
+4. **Document Category List:**
+   ```
+   CATEGORY SELECTION:
+   Source topic: [topic type]
+   Menu used: [Menu letter(s)]
+   Categories selected: [list of categories from menu]
+   Number of comparison tables: [N]
+   ```
+
+**Example:**
+```
+CATEGORY SELECTION:
+Source topic: Pulmonary embolism diagnostic tests
+Menu used: Menu A (Diagnostic Tools & Tests)
+Categories selected:
+  1. Test Characteristics (Sensitivity, Specificity, PPV, NPV)
+  2. Indications (When to Order)
+  3. Interpretation (How to Read Results)
+  4. Advantages & Disadvantages
+Number of comparison tables: 4
+```
+
+</category_selection_step>
+
+**IMPORTANT:** The number of comparison tables = number of categories selected from menus. Do NOT limit to 3 tables.
 
 ### Step 4: Create 3-Tab Excel Chart
 
