@@ -6,7 +6,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 ### 1. Slash Commands (Quick Actions)
 - `/LO-word` - Create Word study guide from source file
-- `/4-tab-excel` - Create 4-tab Excel drug chart (pharmacology)
+- `/drugs-3-tab-excel` - Create 4-tab Excel drug chart (pharmacology)
 - `/drugs-html` - Create interactive HTML drug reference (pharmacology)
 - `/LO-html` - Create HTML learning objectives guide (ANY medical topic)
 - `/clinical-assessment-html` - Create clinical assessment guide (history & physical exam)
@@ -37,7 +37,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 
 **You say:**
 ```
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 **What happens:**
@@ -261,14 +261,14 @@ For complete guide, see [ANKI_AUTO_IMPORT.md](ANKI_AUTO_IMPORT.md)
 
 | Content Type | Recommended Command | Output Format |
 |--------------|---------------------|---------------|
-| **Pharmacology (drugs)** | `/4-tab-excel` OR `/drugs-html` | Excel or HTML |
+| **Pharmacology (drugs)** | `/drugs-3-tab-excel` OR `/drugs-html` | Excel or HTML |
 | **Any medical topic with learning objectives** | `/LO-html` | HTML |
 | **Clinical history & physical exam** | `/clinical-assessment-html` | HTML |
 | **Word document needed** | `/LO-word` | Word (any topic) |
 
 ### Detailed Selection Guide
 
-**Use `/4-tab-excel` when:**
+**Use `/drugs-3-tab-excel` when:**
 - Creating comprehensive drug charts
 - Need 4-tab format (Details, Comparisons, Master Chart, Pearls)
 - Want print-friendly Excel for exam prep
@@ -301,7 +301,7 @@ For complete guide, see [ANKI_AUTO_IMPORT.md](ANKI_AUTO_IMPORT.md)
 ### Can I Use Multiple Templates?
 
 **Yes!** For pharmacology, consider creating BOTH:
-- `/4-tab-excel` - Comprehensive study (detailed tables, comparisons)
+- `/drugs-3-tab-excel` - Comprehensive study (detailed tables, comparisons)
 - `/drugs-html` - Quick mobile reference (same content, different format)
 
 ---
@@ -607,7 +607,7 @@ Recommended actions for next session:
 ### How They Work Together:
 
 **Normal workflow:**
-1. 📝 You: `/4-tab-excel source.txt`
+1. 📝 You: `/drugs-3-tab-excel source.txt`
 2. ✅ Claude states verification checklist (automatic)
 3. ⛔ PreToolUse hook: Checks verification → ALLOWS
 4. 📝 Claude creates Excel file
@@ -798,7 +798,7 @@ Session cache: .claude/study-guide-cache/abc123
 1. Session starts
    └─ Cache directory created automatically
 
-2. You: /4-tab-excel source.txt
+2. You: /drugs-3-tab-excel source.txt
    └─ UserPromptSubmit: Skill activation check
 
 3. Claude: States verification checklist
@@ -898,7 +898,7 @@ Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 **Step 2:** Use slash command
 ```
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 ```
 
 **Step 3:** Claude creates 4-tab chart
@@ -1012,11 +1012,11 @@ ls .claude/commands/
 **Check 2:** Correct syntax?
 ```
 # ✓ Correct:
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 # ✗ Wrong:
-4-tab-excel (missing slash)
-/4-tab-excel (missing file path)
+drugs-3-tab-excel (missing slash)
+/drugs-3-tab-excel (missing file path)
 ```
 
 **Check 3:** File path correct?
@@ -1044,7 +1044,7 @@ ls "Claude Templates/Excel Drugs Chart 11-1.txt"
 **Fix:** Always use slash commands for template compliance:
 ```
 /LO-word [source]
-/4-tab-excel [source]
+/drugs-3-tab-excel [source]
 ```
 
 ---
@@ -1097,7 +1097,7 @@ Or use detailed verification:
 "Create an Excel drug chart from HIV drugs"
 
 # ✓ Slash command (reliable):
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 ```
 
 ---
@@ -1143,7 +1143,7 @@ Pharmacology/
 
 **Instead:** Let the slash commands handle it:
 ```
-/4-tab-excel Extract/Beta_Blockers.txt
+/drugs-3-tab-excel Extract/Beta_Blockers.txt
 ```
 
 Claude will automatically:
@@ -1179,7 +1179,7 @@ Claude will automatically:
 | Command | Purpose | Arguments | Output |
 |---------|---------|-----------|--------|
 | `/LO-word` | Create Word study guide | Source file path | .docx in Claude Study Tools/ |
-| `/4-tab-excel` | Create Excel drug chart | Source file path | .xlsx in Claude Study Tools/ |
+| `/drugs-3-tab-excel` | Create Excel drug chart | Source file path | .xlsx in Claude Study Tools/ |
 | `/verify-accuracy` | Deep accuracy analysis | Study guide path, Source path | Fixed file with report |
 
 ### Skill Triggers Summary

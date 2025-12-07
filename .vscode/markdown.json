@@ -1,10 +1,10 @@
 {
   "Create Excel Drug Chart": {
-    "prefix": ["excel", "/4-tab-excel", "drug-excel"],
+    "prefix": ["excel", "/drugs-3-tab-excel", "drug-excel"],
     "body": [
-      "/4-tab-excel \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
+      "/drugs-3-tab-excel \"${1:Pharmacology/Exam 3/Extract/}${2:filename}.txt\""
     ],
-    "description": "Insert /4-tab-excel command for drug charts"
+    "description": "Insert /drugs-3-tab-excel command for drug charts"
   },
   "Create Word Study Guide": {
     "prefix": ["word", "/LO-word", "study-word"],

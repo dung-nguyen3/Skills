@@ -18,7 +18,7 @@ Creates comprehensive study guides in multiple formats from source lecture notes
 /LO-word "source-files/Lecture_42.txt"
 
 # Excel drug chart
-/4-tab-excel "source-files/HIV_Antivirals.txt"
+/drugs-3-tab-excel "source-files/HIV_Antivirals.txt"
 
 # HTML interactive guide
 /LO-html "source-files/Cardiovascular_Disease.txt"
@@ -29,7 +29,7 @@ Creates comprehensive study guides in multiple formats from source lecture notes
 ```
 study-guides/
 ├── .claude/
-│   └── commands/          # Slash commands (/LO-word, /4-tab-excel, etc.)
+│   └── commands/          # Slash commands (/LO-word, /drugs-3-tab-excel, etc.)
 ├── CLAUDE.md              # Study guide specific settings
 ├── templates-and-examples/
 │   ├── *_REVISED.txt      # Cleaned instruction templates
@@ -49,7 +49,7 @@ Creates 4-section Word document:
 3. Master Chart (comprehensive overview)
 4. High-Yield Summary (color-coded boxes)
 
-### /4-tab-excel
+### /drugs-3-tab-excel
 Creates 4-tab Excel drug chart:
 1. Drug Details (by class with comparison tables)
 2. Key Comparisons (mechanisms, toxicities, uses)

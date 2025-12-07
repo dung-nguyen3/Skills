@@ -27,7 +27,7 @@ Location: `.claude/commands/`
 
 ---
 
-### /4-tab-excel
+### /drugs-3-tab-excel
 **Purpose:** Create comprehensive 4-tab Excel drug chart from pharmacology source material
 **Arguments:** Source file path (e.g., `Pharmacology/Exam 3/Extract/HIV Drugs.txt`)
 **Output:** `.xlsx` file in `[Class]/[Exam]/Claude Study Tools/`
@@ -41,7 +41,7 @@ Location: `.claude/commands/`
 
 **Example:**
 ```
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Antivirals.txt
 ```
 
 ---
@@ -225,7 +225,7 @@ Location: `.claude/commands/`
 **When NOT to use:**
 - ❌ Only need ONE format (use individual commands)
 - ❌ Need specialized formats (HTML, clinical guide, biography)
-- ❌ Need full 4-tab Excel drug chart (use `/4-tab-excel` instead of comparison chart)
+- ❌ Need full 4-tab Excel drug chart (use `/drugs-3-tab-excel` instead of comparison chart)
 
 **Course-Specific Defaults:**
 - Pharmacology: Word + Excel Comparison + Anki (default)
@@ -282,7 +282,7 @@ Claude Study Tools/
 
 | Your Content Type | Use This Command |
 |-------------------|------------------|
-| Pharmacology drugs (need Excel) | `/4-tab-excel` |
+| Pharmacology drugs (need Excel) | `/drugs-3-tab-excel` |
 | Single-sheet master chart | `/master-chart-excel` |
 | Side-by-side comparisons | `/key-comparisons-excel` |
 | Clinical assessment Excel | `/clinical-assessment-excel` |
@@ -310,10 +310,10 @@ Claude Study Tools/
 ### 1. Always Use Absolute or Relative Paths
 ```bash
 # Good:
-/4-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
+/drugs-3-tab-excel Pharmacology/Exam 3/Extract/HIV Drugs.txt
 
 # Bad:
-/4-tab-excel HIV Drugs.txt  # Might not find file
+/drugs-3-tab-excel HIV Drugs.txt  # Might not find file
 ```
 
 ### 2. Quote Paths with Spaces
@@ -340,7 +340,7 @@ Claude Study Tools/
 - Each file is processed independently with explicit context isolation
 - Verification runs for EACH file (not just once at start)
 - Prevents information contamination between files
-- Example: `/4-tab-excel "HIV.txt;COVID.txt;Antibiotics.txt"` creates 3 separate Excel files
+- Example: `/drugs-3-tab-excel "HIV.txt;COVID.txt;Antibiotics.txt"` creates 3 separate Excel files
 - Each file gets complete verification and post-creation checks
 
 ### 6. Use Tab Completion
@@ -355,7 +355,7 @@ Claude Study Tools/
 ```
 .claude/commands/
 ├── LO-word.md
-├── 4-tab-excel.md
+├── drugs-3-tab-excel.md
 ├── master-chart-excel.md
 ├── key-comparisons-excel.md
 ├── clinical-assessment-excel.md
@@ -393,7 +393,7 @@ pwd
 **Need more detail on a specific command?**
 ```bash
 # Read the full command file
-cat .claude/commands/4-tab-excel.md
+cat .claude/commands/drugs-3-tab-excel.md
 ```
 
 **Want to customize a command?**

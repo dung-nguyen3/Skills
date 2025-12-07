@@ -1,5 +1,5 @@
 ---
-description: Create comprehensive 4-tab Excel drug chart from pharmacology source material
+description: Create comprehensive 3-tab Excel drug chart from pharmacology source material
 argument-hint: Single file, batch files separated by semicolon, or directory paths. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
@@ -76,8 +76,8 @@ VERIFICATION CHECKLIST:
 ☐ Instruction template: Excel Drugs Chart 11-1.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
-☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
-☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
+☐ 3-tab structure: Drug Details, Key Comparisons, Master Chart
+☐ 10 categories: MOA, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -169,8 +169,8 @@ Read these files in order:
    - Main instructions and requirements (~550 lines)
 
 2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Excel_Drug_Example.py`
-   - Complete 4-tab implementation with all helper functions
-   - Shows Drug Details, Key Comparisons, Master Chart, High-Yield tabs
+   - Complete 3-tab implementation with all helper functions
+   - Shows Drug Details, Key Comparisons, Master Chart tabs
 
 3. **Color Reference**: `study-guides/templates-and-examples/Excel_Color_Reference.txt`
    - Shared color palette and styling specifications
@@ -184,7 +184,7 @@ Read these files in order:
 - Verify first-line designations
 - Document combination therapies
 
-### Step 4: Create 4-Tab Excel Chart
+### Step 4: Create 3-Tab Excel Chart
 
 **Required Tabs:**
 
@@ -192,34 +192,27 @@ Read these files in order:
 - Drug class comparison tables
 - Drugs as columns, properties as rows
 - Merged cells for class-wide properties
-- Memory tricks row after EACH drug class
-- Analogy boxes for mechanisms
+- 10 categories in order: MOA, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
 
 **Tab 2: Key Comparisons**
 - Side-by-side comparison tables
-- Mechanisms, toxicities, uses, interactions
-- Analogies for drug mechanisms (researched)
-- One category per comparison
+- Specific comparison tables: Combined Drug, Adverse Effects, First/Second-line, Toxicity, Mechanisms, Interactions, DOC
+- Format rules: One category per comparison, group similar info together
+- Example: Group drugs with same toxicity near each other for easy memorization
 
 **Tab 3: Master Chart**
 - ALL drugs in one table
 - Rows = drugs, Columns = characteristics
+- Column order: Drug Class, Drug Name, Mechanism, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
 - Frozen header row
 - Color-coded by drug class
-
-**Tab 4: High-Yield & Pearls**
-- Clinical pearls
-- Mnemonics (researched)
-- "If X Think Y" associations
-- Must-know facts
 
 **Critical Requirements:**
 - Use ONLY source file information
 - ALL data cells have soft pastel backgrounds
 - Mark first-line drugs only if source states it
 - Verify before merging cells (identical info only)
-- Research mnemonics via WebSearch (mandatory)
-- Use emojis sparingly: 🟢 (DOC), ⚠️ (critical warnings)
+- Use emoji notation: 🟢 DOC for [condition] in Uses, ⚠️ for serious/toxic effects in Adverse Effects
 
 <verbatim-requirement>
 CRITICAL: If source contains learning objectives, they must be copied EXACTLY.
@@ -230,16 +223,17 @@ Note: Drug details/explanations CAN be paraphrased from source content.
 </verbatim-requirement>
 
 <template-compliance>
-MANDATORY TEMPLATE REQUIREMENTS - Excel Drug Chart (4 tabs):
+MANDATORY TEMPLATE REQUIREMENTS - Excel Drug Chart (3 tabs):
 
 STRUCTURE:
 - Tab 1 "Drug Details": One table per drug class, columns=drugs, rows=properties
-  - Analogy column (Column G) with 2-4 sentence analogies
-  - Memory tricks row after EACH drug class table
+  - 10 categories in order: MOA, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
   - Merged cells ONLY for class-wide info (not drug-specific)
 - Tab 2 "Key Comparisons": Comparisons ACROSS drug classes
+  - Specific comparison tables: Combined Drug, Adverse Effects, First/Second-line, Toxicity, Mechanisms, Interactions, DOC
+  - Format rules: One category per comparison, group similar info together
 - Tab 3 "Master Chart": ALL drugs in ONE table, header frozen
-- Tab 4 "High-Yield & Pearls": Clinical pearls, mnemonics, must-know facts
+  - Column order: Drug Class, Drug Name, Mechanism, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
 
 FORMATTING (MANDATORY):
 - Header row: #4472C4 (dark blue), white bold text, size 12
@@ -262,16 +256,7 @@ FORMATTING (MANDATORY):
 - Text wrapping enabled on all cells
 </template-compliance>
 
-### Step 5: WebSearch for Mnemonics
-
-**MANDATORY - Research established mnemonics:**
-- Search: "medical mnemonics [drug class]"
-- Search: "[drug name] mnemonic USMLE"
-- Find PROVEN mnemonics only - never invent
-- Add mnemonic row after each drug class table
-- Include full breakdown/explanation
-
-### Step 6: Python Implementation
+### Step 5: Python Implementation
 
 Use openpyxl to create the Excel file:
 - Soft pastel color scheme (hex codes from template)
@@ -280,7 +265,7 @@ Use openpyxl to create the Excel file:
 - Set appropriate column widths
 - Black text throughout (#000000)
 
-### Step 7: Use TodoWrite
+### Step 6: Use TodoWrite
 
 Track your progress:
 - Create todo for each drug class
@@ -288,19 +273,22 @@ Track your progress:
 - Mark completed as you finish
 - Keep user informed
 
-### Step 8: Post-Creation Template Compliance Verification
+### Step 7: Post-Creation Template Compliance Verification
 
 **MANDATORY - Verify EACH requirement before reporting complete:**
 
 **Structure Compliance:**
-☐ EXACTLY 4 tabs present: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
+☐ EXACTLY 3 tabs present: Drug Details, Key Comparisons, Master Chart
 ☐ Tab names correct
 ☐ Tab 1: One table per drug class (NOT all classes in one table)
-☐ Tab 1: Analogy column present with 2-4 sentence analogies
-☐ Tab 1: Memory tricks row after EACH drug class table
-☐ Tab 2: Comparisons ACROSS drug classes
+☐ Tab 1: 10 categories in correct order (MOA, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special, [Other])
+☐ Tab 1: Uses includes 🟢 DOC notation where applicable
+☐ Tab 1: Adverse Effects includes ⚠️ for serious/toxic effects
+☐ Tab 2: Specific comparison tables present (Combined Drug, Adverse Effects, First/Second-line, Toxicity, Mechanisms, Interactions, DOC)
+☐ Tab 2: One category per comparison table
+☐ Tab 2: Similar info grouped together
 ☐ Tab 3: ALL drugs in ONE table, header frozen
-☐ Tab 4: Clinical pearls, mnemonics, must-know facts sections
+☐ Tab 3: Columns in correct order (Drug Class, Drug Name, Mechanism, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special, [Other])
 
 **Formatting Compliance:**
 ☐ Header row: Dark blue (#4472C4), white bold text, size 12
@@ -316,20 +304,20 @@ Track your progress:
 **Source Accuracy:**
 ☐ Drug-specific info NOT applied to entire class
 ☐ First-line designation only where source explicitly states
-☐ No external info (except researched mnemonics)
+☐ No external info added
 ☐ Merged cells only for truly class-wide information
 
 **Completeness:**
 ☐ ALL drugs from source included
 ☐ All drug classes covered
 ☐ Master chart has every drug
-☐ Mnemonics researched via WebSearch (not invented)
+☐ All 10 categories present in Tab 1 and Tab 3
 
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
 **State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
 
-### Step 9: Save Files
+### Step 8: Save Files
 
 **Output Filename Rule:**
 1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
@@ -360,7 +348,7 @@ Track your progress:
 
 - Confirm both files saved successfully
 
-### Step 10: Drug Coverage Report (SINGLE MODE ONLY)
+### Step 9: Drug Coverage Report (SINGLE MODE ONLY)
 
 **Compare drugs included vs Drug Inventory from Step 0.8:**
 
@@ -391,9 +379,11 @@ Coverage: [M/N] ([percentage]%)
 ❌ Marking all drugs as first-line when only specific ones are
 ❌ Merging cells without verifying identical information
 ❌ Applying drug-specific info to entire class
-❌ Inventing mnemonics instead of researching
 ❌ White backgrounds on data cells (should be pastel)
-❌ Missing memory tricks row after drug classes
+❌ Forgetting to mark DOC with 🟢 in Uses category
+❌ Forgetting to mark toxicity with ⚠️ in Adverse Effects category
+❌ Wrong category order (must follow 10-category sequence)
+❌ Creating 4 tabs instead of 3
 
 ---
 
@@ -402,10 +392,11 @@ Coverage: [M/N] ([percentage]%)
 ### CORRECT Implementation:
 
 **Structure:**
-✓ 4 tabs: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
+✓ 3 tabs: Drug Details, Key Comparisons, Master Chart
 ✓ Tab 1 has separate table for each drug class (NRTIs, NNRTIs, PIs, etc.)
-✓ Memory tricks row after each drug class table
-✓ Analogy column (Column G) explaining mechanisms
+✓ Tab 1 has 10 categories in correct order
+✓ Tab 2 has specific comparison tables (Combined Drug, Adverse Effects, First/Second-line, Toxicity, etc.)
+✓ Tab 3 has all 11 columns in correct order
 
 **Formatting:**
 ✓ "NRTIs" (5 drugs): All rows #D9E2F3 (Ice Blue)
@@ -417,10 +408,10 @@ Coverage: [M/N] ([percentage]%)
 ### INCORRECT Implementation:
 
 **Structure:**
-✗ Only 3 tabs (missing High-Yield & Pearls)
+✗ 4 tabs instead of 3 (High-Yield & Pearls tab should NOT exist)
 ✗ All drug classes in ONE giant table instead of separate tables
-✗ No memory tricks row after drug classes
-✗ Missing analogy column
+✗ Wrong category order or missing categories
+✗ Tab 2 missing specific comparison tables
 
 **Formatting:**
 ✗ "NRTIs": Some rows #D9E2F3, others white/no fill ← WRONG
@@ -435,19 +426,19 @@ Coverage: [M/N] ([percentage]%)
 
 ### Single File:
 ```
-/4-tab-excel "Pharmacology/Exam 3/Extract/Pharm_11 Beta Blockers_text.txt"
+/drugs-3-tab-excel "Pharmacology/Exam 3/Extract/Pharm_11 Beta Blockers_text.txt"
 ```
 Creates: `11 Beta Blockers.xlsx`
 
 ### Single Directory (auto-finds all files):
 ```
-/4-tab-excel "/Users/name/Documents/Pharmacology/Exam 2/Extract"
+/drugs-3-tab-excel "/Users/name/Documents/Pharmacology/Exam 2/Extract"
 ```
 Finds all readable files in directory, processes in batch separate mode.
 
 ### Batch Separate (N files → N outputs):
 ```
-/4-tab-excel "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
+/drugs-3-tab-excel "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
 Creates 3 separate Excel files:
 - `11 Beta Blockers.xlsx` (only Beta Blockers)
@@ -458,7 +449,7 @@ Uses batch-separate-processor agent with architectural isolation (zero contamina
 
 ### Batch Merge (N files → 1 merged output):
 ```
-/4-tab-excel --merge "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
+/drugs-3-tab-excel --merge "Pharm_11 Beta Blockers_text.txt;Pharm_12 ACE Inhibitors_text.txt;Pharm_13 Diuretics_text.txt"
 ```
 Creates 1 merged Excel file:
 - `Lecture 11-13.xlsx` (all drug classes merged)
@@ -468,12 +459,12 @@ Uses batch-merge-orchestrator agent with intelligent merge, overlap resolution, 
 
 ### Batch Merge with Directories (N directories → 1 merged output):
 ```
-/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/drugs-3-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 Finds all files from both directories, merges into 1 comprehensive Excel chart.
 
 ### Mixed Files and Directories:
 ```
-/4-tab-excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
+/drugs-3-tab-excel --merge "/path/to/Extract;specific-file.txt;/path/to/Txt"
 ```
 Expands directories, keeps specific files, merges all into 1 Excel chart.

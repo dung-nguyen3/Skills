@@ -423,7 +423,7 @@ Expands directories, keeps specific files, merges all into 1 Master Chart.
 
 | Command | Tabs | Purpose |
 |---------|------|---------|
-| `/4-tab-excel` | 4 tabs | Drug pharmacology (detailed) |
+| `/drugs-3-tab-excel` | 3 tabs | Drug pharmacology (detailed) |
 | `/key-comparisons-excel` | 3 tabs | Side-by-side comparisons |
 | `/master-chart-excel` | 1 tab | Quick reference chart (flexible columns) |
 

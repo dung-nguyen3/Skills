@@ -1,7 +1,7 @@
 # Excel Drug Chart Template - Instructions
 
 ## Purpose
-Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology source material.
+Create comprehensive, color-coded 3-tab Excel drug charts from pharmacology source material.
 
 ---
 
@@ -9,15 +9,13 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 
 **See parent CLAUDE.md for:**
 - Source-only policy (use ONLY source file information)
-- MANDATORY WebSearch for mnemonics/analogies
 - Verification checklists
 - File organization
 
 **Excel-specific requirements:**
-- 4 tabs: Drug Details, Key Comparisons, Master Chart, High-Yield & Pearls
+- 3 tabs: Drug Details, Key Comparisons, Master Chart
 - Soft pastel color scheme (see Excel_Color_Reference.txt)
 - Include page references in cells for verification
-- Research analogies for ALL drug mechanisms
 
 ---
 
@@ -27,43 +25,70 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 - `Excel_Color_Reference.txt` - Complete color palette and styling specs
 
 **Complete working example:**
-- `Python_Examples/Excel_Drug_Example.py` - Full 4-tab implementation with all code
+- `Python_Examples/Excel_Drug_Example.py` - Full 3-tab implementation with all code
 
 ---
 
-## FILE STRUCTURE: 4 TABS
+## FILE STRUCTURE: 3 TABS
 
 ### Tab 1: Drug Details
 - Sheet name: "Drug Details"
 - Drug class comparison tables
 - Each drug class = its own table with drugs as columns
 - Merged cells for properties shared across ALL drugs in class
-- **Analogy column (Column G):** 2-4 sentence analogy for EACH drug's mechanism
-- **Memory tricks row** after EACH drug class table
 - Color-coded by drug class (rotate through color palette)
+
+**Row Order (10 categories):**
+1. Mechanism of Action
+2. Route
+3. Uses (mark drug of choice: 🟢 DOC for [condition])
+4. Combination Therapy
+5. Adverse Effects (mark serious/toxic effects: ⚠️ hepatotoxicity, ⚠️ bone marrow suppression)
+6. Contraindications
+7. Drug Interactions
+8. Pharmacokinetics
+9. Special Considerations
+10. [Other categories as found in source]
 
 ### Tab 2: Key Comparisons
 - Sheet name: "Key Comparisons"
 - Side-by-side comparisons ACROSS drug classes
-- Categories: Mechanisms, Toxicities, Uses, Drug Interactions
-- Research analogies for mechanism comparisons
-- Helps differentiate between similar classes
+- Categories: Mechanisms, Toxicities, Uses, Drug Interactions, DOC
+
+**Specific Comparison Tables to Include:**
+1. **Combined Drug Comparison Chart** (if applicable) - Shows combination drugs with components (Drug 1 + Drug 2 = Combined Name)
+2. **Adverse Effects Comparison** - Side-by-side comparison of common adverse effects
+3. **First-line vs Second-line Drugs** - Clear treatment hierarchy designation
+4. **Toxicity Comparison** - Serious/life-threatening effects, overdose symptoms
+5. **[Other comparisons as needed]** - Based on source content
+
+**Format Rules:**
+- Make multiple separate comparison tables, each with clear headers
+- **Only compare 1 category at a time per table**
+- **Group similar information together** (e.g., if Foscarnet and Acyclovir both cause renal toxicity, place rows near each other for easy memorization)
+- Color-code each comparison table
+- Use visual indicators for critical information
 
 ### Tab 3: Master Chart
 - Sheet name: "Master Chart"
 - ALL drugs in ONE comprehensive table
 - Rows = individual drugs
-- Columns = key characteristics
 - Frozen header row for scrolling
 - Quick reference chart
 
-### Tab 4: High-Yield & Pearls
-- Sheet name: "High-Yield & Pearls"
-- Clinical pearls (using medical reasoning)
-- Researched mnemonics
-- "If X Think Y" associations
-- Must-know facts
-- Organized by category
+**Column Order (left to right):**
+1. Drug Class
+2. Drug Name (Brand)
+3. Mechanism of Action
+4. Route
+5. Uses (with 🟢 DOC notation)
+6. Combination Therapy
+7. Adverse Effects (with ⚠️ for toxicity)
+8. Contraindications
+9. Drug Interactions
+10. Pharmacokinetics
+11. Special Considerations
+12. [Other categories as found in source]
 
 ---
 
@@ -97,7 +122,6 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 - Class mechanism (if shared)
 - Drug-specific mechanism
 - Target receptors/enzymes
-- **REQUIRED:** Research 2-4 sentence analogy explaining mechanism
 
 **3. Clinical Uses**
 - Primary indications
@@ -152,13 +176,11 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 ### Row Heights
 - Header row: 25
 - Data rows: Auto-expand to fit content (no over/under expansion)
-- Mnemonic rows: 40-50 (needs space for full text)
 
 ### Column Widths
 - Property names: 30
 - Drug names: 25
 - Long text (mechanism, uses, AE): 35-40
-- Analogy column: 40
 
 ### Borders
 - Use white borders (#FFFFFF) - invisible, blends with pastels
@@ -178,49 +200,61 @@ Create comprehensive, color-coded 4-tab Excel drug charts from pharmacology sour
 
 ```
 Row 1: [Merged] DRUG CLASS NAME (bold, header color, centered)
-Row 2: Property | Drug 1 | Drug 2 | Drug 3 | Drug 4 | Analogy
-Row 3: Drug Class | [Merged across drugs] | Analogy text (for mechanism)
-Row 4: Mechanism | [Merged if same] | Analogy (2-4 sentences)
-Row 5: Route | [Merged if same] |
-Row 6: Uses | Individual | Individual | Individual | Individual |
-Row 7: Adverse Effects | [Merge if class-wide, separate if drug-specific] |
-Row 8: Contraindications | Individual | Individual | Individual | Individual |
-Row 9: Special Considerations | Individual | Individual | Individual | Individual |
-Row N: [Merged] 💡 MEMORY TRICKS: [Researched mnemonic]
+Row 2: Property | Drug 1 | Drug 2 | Drug 3 | Drug 4
+Row 3: Mechanism | [Merged if same for all drugs in class]
+Row 4: Route | [Merged if same]
+Row 5: Uses | Individual (🟢 DOC for [condition])
+Row 6: Combination Therapy | Individual or merged
+Row 7: Adverse Effects | [Merge if class-wide, separate if drug-specific] (⚠️ for toxicity)
+Row 8: Contraindications | Individual
+Row 9: Drug Interactions | Individual
+Row 10: Pharmacokinetics | Individual or merged
+Row 11: Special Considerations | Individual
 
-[Space row]
+[Space rows]
 
 Next Drug Class...
 ```
-
-### Analogy Requirements
-- **MANDATORY:** Research analogies using WebSearch
-- 2-4 sentences explaining how the mechanism works
-- Use real-world comparisons
-- Place in Column G (or last column) adjacent to mechanism
-- Examples: "Like cutting assembly line belt", "Acts as bouncer blocking door"
-
-### Memory Tricks Row
-- After each drug class table
-- Merged across all columns
-- Orange background (#FFF3E0)
-- 💡 prefix
-- Research mnemonics - NEVER invent
 
 ---
 
 ## TAB 2: KEY COMPARISONS STRUCTURE
 
-Create comparison tables for:
-- **Mechanisms** across classes (with analogies)
-- **Toxicity profiles** comparison
-- **Clinical uses** comparison
-- **Drug interactions** comparison
-- **When to use which class** (clinical decision-making)
+**Specific Comparison Tables to Include:**
+
+1. **Combined Drug Comparison Chart** (if applicable)
+   - Shows all combination drugs with their individual components
+   - Format: Drug 1 + Drug 2 = Combined Name
+
+2. **Adverse Effects Comparison**
+   - Side-by-side comparison of common adverse effects across drug classes
+
+3. **First-line vs Second-line Drugs**
+   - Clear designation of treatment hierarchy
+
+4. **Toxicity Comparison**
+   - Serious/life-threatening effects
+   - Overdose symptoms
+
+5. **Mechanisms Comparison** (across classes)
+
+6. **Drug Interactions Comparison**
+
+7. **DOC (Drug of Choice) Comparison** by indication
+
+8. **[Other comparisons as needed]** based on source content
+
+### Format Rules:
+- Make multiple separate comparison tables, each with clear headers
+- **Only compare 1 category at a time per table**
+- **Group similar information together**
+  - Example: If Foscarnet and Acyclovir both cause renal toxicity, place these rows near each other for easy memorization
+- Color-code each comparison table
+- Use visual indicators for critical information
 
 ### Table Format:
 ```
-Header Row: Category | Class 1 | Class 2 | Class 3 | Class 4
+Header Row: Category | Class/Drug 1 | Class/Drug 2 | Class/Drug 3 | Class/Drug 4
 Row 1: Feature 1 | Value | Value | Value | Value
 Row 2: Feature 2 | Value | Value | Value | Value
 ...
@@ -232,44 +266,32 @@ Row 2: Feature 2 | Value | Value | Value | Value
 
 Single comprehensive table with ALL drugs:
 
-```
-Headers: Drug Class | Drug Name (Brand) | Route | Mechanism | Uses | Adverse Effects | Contraindications | Special Considerations
+**Column Order (left to right):**
+1. Drug Class
+2. Drug Name (Brand)
+3. Mechanism of Action
+4. Route
+5. Uses (with 🟢 DOC notation)
+6. Combination Therapy
+7. Adverse Effects (with ⚠️ for toxicity)
+8. Contraindications
+9. Drug Interactions
+10. Pharmacokinetics
+11. Special Considerations
+12. [Other categories as found in source]
 
-Row 1: Class A | Drug 1 | ... | ... | ... | ... | ... | ...
-Row 2: Class A | Drug 2 | ... | ... | ... | ... | ... | ...
-Row 3: Class B | Drug 3 | ... | ... | ... | ... | ... | ...
+```
+Headers: Drug Class | Drug Name (Brand) | Mechanism | Route | Uses | Combination | Adverse Effects | Contraindications | Interactions | PK | Special
+
+Row 1: Class A | Drug 1 | ... | ... | 🟢 DOC for HTN | ... | Nausea, ⚠️ hepatotoxicity | ... | ... | ... | ...
+Row 2: Class A | Drug 2 | ... | ... | ... | ... | ... | ... | ... | ... | ...
+Row 3: Class B | Drug 3 | ... | ... | ... | ... | ... | ... | ... | ... | ...
 ...
 ```
 
 - Frozen header row (freeze panes at A2)
 - Color-code rows by drug class
 - All information condensed to one row per drug
-
----
-
-## TAB 4: HIGH-YIELD & PEARLS STRUCTURE
-
-Organize by sections:
-
-### Clinical Pearls
-- Use medical reasoning and clinical context
-- "If X think Y" associations
-- Board-relevant information
-- Teal background (#E0F2F1)
-
-### Memory Tricks & Mnemonics
-- Researched mnemonics only
-- Complete phrases/stories (not just letters)
-- Orange background (#FFF3E0)
-
-### Must-Know Facts
-- Critical information
-- Purple background (#F3E5F5)
-
-### Drug Selection Guide
-- When to choose which drug
-- Patient-specific considerations
-- Green background (#E8F5E9)
 
 ---
 
@@ -307,17 +329,17 @@ def apply_cell_style(cell, text='', bold=False, font_size=10,
 
 ### Complete Working Example
 
-**For full 4-tab implementation, see:**
+**For full 3-tab implementation, see:**
 `Python_Examples/Excel_Drug_Example.py`
 
 The example includes:
-- Complete Tab 1 with comparison tables, analogy column, mnemonic rows
-- Complete Tab 2 with key comparisons across classes
+- Complete Tab 1 with drug class comparison tables (10 categories)
+- Complete Tab 2 with key comparisons across classes (specific comparison tables)
 - Complete Tab 3 with master chart of all drugs
-- Complete Tab 4 with clinical pearls and mnemonics
 - All helper functions and styling
 - Row merging logic
 - Color rotation by drug class
+- DOC notation (🟢) and toxicity marking (⚠️) examples
 
 ---
 
@@ -329,47 +351,51 @@ Before finalizing:
 - [ ] ALL drugs from source included
 - [ ] Drug-specific vs class-wide information correctly identified
 - [ ] No information applied to wrong drug
-- [ ] First-line designations ONLY where source explicitly states
-- [ ] Analogies researched for ALL drug mechanisms
-- [ ] Mnemonics researched (not invented)
+- [ ] First-line designations ONLY where source explicitly states (🟢 DOC for [condition])
+- [ ] Toxicity marked with ⚠️ in Adverse Effects category
 
 ### Structure Compliance
-- [ ] All 4 tabs present with correct names
-- [ ] Tab 1: Comparison tables for each drug class
-- [ ] Tab 1: Analogy column for all mechanisms
-- [ ] Tab 1: Memory tricks row after each class
-- [ ] Tab 2: Key comparisons across classes
+- [ ] All 3 tabs present with correct names (Drug Details, Key Comparisons, Master Chart)
+- [ ] Tab 1: Comparison tables for each drug class (10 categories in order)
+- [ ] Tab 1: Rows follow correct order (MOA, Route, Uses, Combination, AEs, Contraindications, Interactions, PK, Special)
+- [ ] Tab 2: Specific comparison tables included (Combined Drug, AEs, First/Second-line, Toxicity, etc.)
+- [ ] Tab 2: Only 1 category compared at a time per table
+- [ ] Tab 2: Similar information grouped together
 - [ ] Tab 3: Master chart with ALL drugs
-- [ ] Tab 4: Organized clinical pearls and mnemonics
+- [ ] Tab 3: Columns in correct order
 
 ### Formatting
 - [ ] Colors match Excel_Color_Reference.txt
-- [ ] Header row: Dark blue, white bold text
+- [ ] Header row: Dark blue (#4472C4), white bold text
 - [ ] Data rows: Pastel colors, black text
 - [ ] White borders throughout
 - [ ] Row heights fit content
 - [ ] Frozen header on Tab 3
+- [ ] 🟢 emoji used for DOC
+- [ ] ⚠️ emoji used for serious/toxic effects
 
 ---
 
 ## COMMON MISTAKES TO AVOID
 
 **DON'T:**
-- ❌ Invent mnemonics - MUST research via WebSearch
 - ❌ Apply drug-specific info to entire class
-- ❌ Mark drugs as "first-line" without source confirmation
-- ❌ Skip analogy column or memory tricks rows
+- ❌ Mark drugs as "first-line" or "DOC" without source confirmation
 - ❌ Use harsh colors instead of soft pastels
 - ❌ Forget to freeze header row on Master Chart
-- ❌ Add external medical knowledge without * marking
+- ❌ Add external medical knowledge
+- ❌ Mix up category order (must follow the 10-category sequence)
+- ❌ Forget to mark toxicity with ⚠️ emoji
+- ❌ Forget to mark DOC with 🟢 emoji
 
 **DO:**
-- ✅ Research mnemonics and analogies via WebSearch
 - ✅ Verify drug-specific vs class-wide information
 - ✅ Include page references in cells
 - ✅ Use soft pastel colors consistently
-- ✅ Add analogy explanations for ALL mechanisms
-- ✅ Create memory tricks row after each drug class
+- ✅ Follow the 10-category order for Tab 1 and Tab 3
+- ✅ Mark serious/toxic effects with ⚠️ in Adverse Effects
+- ✅ Mark drug of choice with 🟢 in Uses
+- ✅ Group similar information together in Tab 2 comparisons
 
 ---
 

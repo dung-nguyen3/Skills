@@ -386,7 +386,7 @@ Next Steps:
 ```python
 format_commands = {
     "word": "/LO-word",
-    "excel-4tab": "/4-tab-excel",
+    "excel-4tab": "/drugs-3-tab-excel",
     "excel-comparison": "/key-comparisons-excel",
     "excel-master": "/master-chart-excel",
     "excel-clinical": "/clinical-assessment-excel",

@@ -118,7 +118,7 @@ git checkout backup-YYYYMMDD-HHMM
 - Quality gate enforcement
 
 **Commands:** `.claude/commands/`
-- `/4-tab-excel` - 4-tab Excel drug charts
+- `/drugs-3-tab-excel` - 4-tab Excel drug charts
 - `/master-chart-excel` - Single-sheet master chart
 - `/key-comparisons-excel` - Excel comparison tables
 - `/clinical-assessment-excel` - Clinical assessment Excel

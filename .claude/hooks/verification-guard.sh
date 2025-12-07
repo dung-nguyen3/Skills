@@ -90,7 +90,7 @@ VERIFICATION CHECKLIST:
 5. ONLY then proceed with creation
 
 💡 TIP: Use slash commands which automatically handle verification:
-   /4-tab-excel [source-file]
+   /drugs-3-tab-excel [source-file]
    /LO-word [source-file]
 
 ⚠️  This block ensures source-only policy and quality standards.

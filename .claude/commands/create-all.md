@@ -440,7 +440,7 @@ Next Steps:
 | Format Name | Output | Command Used |
 |-------------|--------|--------------|
 | `word` | Word LO study guide | `/LO-word` |
-| `excel-4tab` | 4-tab Excel drug chart | `/4-tab-excel` |
+| `excel-4tab` | 4-tab Excel drug chart | `/drugs-3-tab-excel` |
 | `excel-comparison` | Excel comparison chart | `/key-comparisons-excel` |
 | `excel-master` | Excel master chart only | `/master-chart-excel` |
 | `anki` | Anki flashcard deck | `/anki` |

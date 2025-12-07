@@ -5,7 +5,7 @@
 | Want This? | Use This Command |
 |------------|------------------|
 | Word study guide | `/LO-word` |
-| Excel drug chart (4 tabs) | `/4-tab-excel` |
+| Excel drug chart (4 tabs) | `/drugs-3-tab-excel` |
 | Excel single-sheet overview | `/master-chart-excel` |
 | Excel side-by-side comparisons | `/key-comparisons-excel` |
 | Anki flashcards | `/anki` |

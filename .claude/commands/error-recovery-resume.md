@@ -313,7 +313,7 @@ No incomplete batch operations detected.
 
 To start new batch:
   /word-excel-anki "[directory or files]"
-  /4-tab-excel "[directory or files]"
+  /drugs-3-tab-excel "[directory or files]"
 ```
 
 ---

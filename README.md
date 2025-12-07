@@ -31,19 +31,19 @@ All commands support **single**, **batch separate**, and **batch merge** modes:
 
 ```bash
 # Single file
-/4-tab-excel "drugs.txt"
+/drugs-3-tab-excel "drugs.txt"
 
 # Single directory (auto-finds all .txt)
-/4-tab-excel "/path/to/Extract"
+/drugs-3-tab-excel "/path/to/Extract"
 
 # Batch separate
-/4-tab-excel "HIV.txt;Antibiotics.txt"
+/drugs-3-tab-excel "HIV.txt;Antibiotics.txt"
 
 # Batch merge (intelligent merge with overlap resolution)
-/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt"
+/drugs-3-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt"
 
 # Batch merge with directories
-/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/drugs-3-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 
 ### Excel Comparison Chart (Any Medical Topic)
@@ -279,7 +279,7 @@ Shows processed/pending/failed files with completion percentages.
 ### Single Mode (1 file → 1 output)
 
 ```bash
-/4-tab-excel "HIV_Drugs.txt"
+/drugs-3-tab-excel "HIV_Drugs.txt"
 ```
 
 Standard single-file processing.
@@ -287,7 +287,7 @@ Standard single-file processing.
 ### Directory Mode (auto-finds all .txt files with smart tracking)
 
 ```bash
-/4-tab-excel "/path/to/Extract"
+/drugs-3-tab-excel "/path/to/Extract"
 ```
 
 - Auto-discovers all `.txt` files in directory
@@ -314,7 +314,7 @@ Standard single-file processing.
 ### Batch Separate (N files → N outputs)
 
 ```bash
-/4-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
+/drugs-3-tab-excel "HIV.txt;Antibiotics.txt;Antivirals.txt"
 ```
 
 - Creates separate output for each file
@@ -324,7 +324,7 @@ Standard single-file processing.
 ### Batch Merge (N files → 1 merged output)
 
 ```bash
-/4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+/drugs-3-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
 ```
 
 - Combines multiple files into one comprehensive output
@@ -336,7 +336,7 @@ Standard single-file processing.
 ### Batch Merge with Directories (N directories → 1 merged output)
 
 ```bash
-/4-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
+/drugs-3-tab-excel --merge "/path/to/Exam2/Extract;/path/to/Exam4/Txt"
 ```
 
 - Auto-discovers all `.txt` files from multiple directories
@@ -365,7 +365,7 @@ Auto-finds all .txt files from both directories, filters for back pain content, 
 
 | Content Type | Command |
 |--------------|---------|
-| Pharmacology drugs (detailed Excel) | `/4-tab-excel` |
+| Pharmacology drugs (detailed Excel) | `/drugs-3-tab-excel` |
 | Medical topic comparisons (Excel) | `/key-comparisons-excel` |
 | Quick reference chart (single sheet) | `/master-chart-excel` |
 | Pharmacology drugs (HTML/mobile) | `/drugs-html` |

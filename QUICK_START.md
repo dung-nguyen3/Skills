@@ -37,7 +37,7 @@
 /LO-word "path/to/lecture.txt"
 
 # Excel Drug Chart
-/4-tab-excel "path/to/drugs.txt"
+/drugs-3-tab-excel "path/to/drugs.txt"
 
 # HTML Learning Objectives (any medical topic)
 /LO-html "path/to/lecture.txt"
@@ -77,7 +77,7 @@
 **START HERE:**
 1. **Is it about drugs?** → YES: Go to #2 | NO: Go to #4
 2. **Do you want Excel or HTML?**
-   - Excel (comprehensive tables): `/4-tab-excel`
+   - Excel (comprehensive tables): `/drugs-3-tab-excel`
    - HTML (mobile reference): `/drugs-html`
 3. **DONE!**
 
@@ -89,7 +89,7 @@
 
 | I Have... | Use This Command |
 |-----------|------------------|
-| Drug lecture notes | `/4-tab-excel` OR `/drugs-html` |
+| Drug lecture notes | `/drugs-3-tab-excel` OR `/drugs-html` |
 | Non-drug lecture with LOs | `/LO-html` |
 | Clinical exam notes | `/clinical-assessment-html` |
 | Need Word format | `/LO-word` |
@@ -106,7 +106,7 @@
 
 ### Step 2: Run Slash Command
 ```bash
-/4-tab-excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
+/drugs-3-tab-excel "Pharmacology/Exam 3/Extract/HIV Drugs.txt"
 ```
 **On Mac:** Press `Cmd + V` to paste the command
 
@@ -300,10 +300,10 @@ Type these in Command Palette:
 **Check 1:** Did you include the slash?
 ```bash
 # ✓ Correct
-/4-tab-excel path.txt
+/drugs-3-tab-excel path.txt
 
 # ✗ Wrong
-4-tab-excel path.txt
+drugs-3-tab-excel path.txt
 ```
 
 **Check 2:** Does the file exist?

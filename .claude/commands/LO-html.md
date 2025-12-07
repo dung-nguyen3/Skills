@@ -333,7 +333,7 @@ For batch operations (semicolon-separated files or --merge flag):
 ## Related Commands
 
 - `/drugs-html` - For pharmacology topics (drug-focused template)
-- `/4-tab-excel` - For comprehensive drug charts (Excel format)
+- `/drugs-3-tab-excel` - For comprehensive drug charts (Excel format)
 - `/clinical-assessment-html` - For history-taking and physical exam guides
 - `/verify-accuracy` - Verify accuracy of created study guide
 

@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
 COMPLETE EXCEL DRUG CHART EXAMPLE
-Reference implementation for creating comprehensive 4-tab drug charts
+Reference implementation for creating comprehensive 3-tab drug charts
 
-This file shows a COMPLETE working example with all 4 tabs.
+This file shows a COMPLETE working example with all 3 tabs.
 Templates should reference this file rather than including all code inline.
 
 Structure:
 - Tab 1: Drug Details (comparison tables by drug class)
 - Tab 2: Key Comparisons (mechanisms, toxicities, uses)
 - Tab 3: Master Chart (all drugs in one table)
-- Tab 4: High-Yield & Pearls (clinical pearls, mnemonics)
 """
 
 from openpyxl import Workbook
@@ -73,10 +72,7 @@ POWDER_BLUE_MAIN = 'BBDEFB'
 POWDER_BLUE_ROW_LABEL = 'ADD1F1'
 
 # Special background colors
-MNEMONIC_BG = 'E6F3FF'  # Light blue for mnemonics
-CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
 MAIN_TITLE_COLOR = '4472C4'  # Dark blue for sheet titles
-ANALOGY_BOX_BG = 'FFF9E6'  # Light yellow for analogy boxes
 
 # Color sets array for easy rotation
 COLOR_SETS = [
@@ -142,20 +138,6 @@ def set_column_widths(ws, widths):
     """Set column widths from dictionary"""
     for col_letter, width in widths.items():
         ws.column_dimensions[col_letter].width = width
-
-def add_mnemonic_row(ws, row, mnemonic_text, color, span_cols=10):
-    """Add memory tricks row after drug class table"""
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
-    cell = ws.cell(row, 1)
-    apply_cell_style(
-        cell,
-        text=f"💡 MEMORY TRICKS: {mnemonic_text}",
-        bold=False,
-        font_size=11,
-        bg_color=MNEMONIC_BG,
-        alignment='left'
-    )
-    ws.row_dimensions[row].height = 60
 
 def add_comparison_table(ws, start_row, title, headers, data_rows, colors):
     """
@@ -227,9 +209,11 @@ def create_drug_details_tab(wb):
     """
     Tab 1: Drug Details
     - Drug class comparison tables
-    - Drugs as columns, properties as rows
+    - Drugs as columns, properties as rows (10 categories)
     - Merged cells for shared class properties
-    - Memory tricks row after each class
+    - Category order: MOA, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special, [Other]
+    - DOC notation: 🟢 DOC for [condition] inline with uses
+    - Toxicity marking: ⚠️ within Adverse Effects row
     """
     ws = wb.active
     ws.title = "Drug Details"
@@ -242,7 +226,6 @@ def create_drug_details_tab(wb):
         'D': 25,  # Drug 3
         'E': 25,  # Drug 4
         'F': 25,  # Drug 5
-        'G': 40,  # Analogy column
     })
 
     current_row = 1
@@ -253,7 +236,7 @@ def create_drug_details_tab(wb):
     # =========================================================================
 
     # Class header
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=7)
+    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=6)
     cell = ws.cell(current_row, 1)
     colors = get_color_set(class_index)
     apply_cell_style(cell, text="NUCLEOSIDE REVERSE TRANSCRIPTASE INHIBITORS (NRTIs)",
@@ -265,7 +248,7 @@ def create_drug_details_tab(wb):
     # Drug names header
     color = colors['main']
     headers = ['Property', 'Tenofovir (Viread)', 'Emtricitabine (Emtriva)',
-               'Lamivudine (Epivir)', 'Abacavir (Ziagen)', 'Analogy']
+               'Lamivudine (Epivir)', 'Abacavir (Ziagen)']
     for col_idx, header in enumerate(headers, start=1):
         cell = ws.cell(current_row, col_idx)
         if col_idx == 1:
@@ -289,49 +272,58 @@ def create_drug_details_tab(wb):
         cell_a = ws.cell(current_row, 1)
         apply_cell_style(cell_a, text=prop_name, bold=True, font_size=14, bg_color=colors['row_label'])
 
-        # Merge columns B-E for shared value
+        # Apply styling to ALL cells BEFORE merging (B-E = columns 2-5)
+        for col_idx in range(2, 6):  # Columns 2, 3, 4, 5 = B, C, D, E
+            cell = ws.cell(current_row, col_idx)
+            apply_cell_style(cell, text=prop_value if col_idx==2 else '',
+                           font_size=12, bg_color=color)
+
+        # Now merge columns B-E
         ws.merge_cells(start_row=current_row, start_column=2,
                       end_row=current_row, end_column=5)
-        cell_value = ws.cell(current_row, 2)
-        apply_cell_style(cell_value, text=prop_value, font_size=12, bg_color=color)
-
-        # Analogy column (only for mechanism row)
-        cell_g = ws.cell(current_row, 6)
-        if prop_name == 'Mechanism':
-            analogy = "Like giving a construction crew fake bricks (nucleosides). They build them into the wall (DNA chain), but the fake bricks are defective and the wall collapses."
-            apply_cell_style(cell_g, text=analogy, bg_color=ANALOGY_BOX_BG, font_size=10)
-        else:
-            apply_cell_style(cell_g, text='', bg_color=color)
 
         ws.row_dimensions[current_row].height = 48 if prop_name != 'Route' else 32
         current_row += 1
 
     # Drug-specific properties (individual values per drug)
+    # Category order: Uses, Combination Therapy, Adverse Effects, Contraindications, Drug Interactions, Pharmacokinetics, Special Considerations
+    # Note: Uses includes 🟢 DOC notation, Adverse Effects includes ⚠️ for toxicity
     drug_properties = [
         ('Uses',
-         '🟢 HIV - First line',
-         '🟢 HIV - First line',
+         '🟢 DOC for HIV (first-line)',
+         '🟢 DOC for HIV (first-line)',
          'HIV, HBV',
-         'HIV (HLA-B*5701 negative)',
-         ''),
-        ('Major Adverse Effects',
-         '⚠️ Nephrotoxicity, ↓ bone density',
+         'HIV (HLA-B*5701 negative)'),
+        ('Combination Therapy',
+         'Often with emtricitabine (Truvada)',
+         'Often with tenofovir (Truvada)',
+         'Triple therapy combinations',
+         'Triple therapy combinations'),
+        ('Adverse Effects',
+         '⚠️ Nephrotoxicity, ⚠️ ↓ bone density',
          'Minimal (well tolerated)',
          'Minimal (well tolerated)',
-         '⚠️ Hypersensitivity reaction',
-         ''),
+         '⚠️ Hypersensitivity reaction (life-threatening)'),
         ('Contraindications',
          'CrCl <50 mL/min',
          'None',
          'None',
-         'HLA-B*5701 positive',
-         ''),
+         'HLA-B*5701 positive'),
+        ('Drug Interactions',
+         'Limited interactions',
+         'Limited interactions',
+         'Limited interactions',
+         'No significant interactions'),
+        ('Pharmacokinetics',
+         'Renal elimination',
+         'Renal elimination',
+         'Renal elimination',
+         'Hepatic metabolism'),
         ('Special Considerations',
          'Monitor renal function',
          'Safe in pregnancy',
          'Safe in pregnancy, HBV coinfection',
-         '❗ Screen HLA-B*5701 BEFORE use',
-         ''),
+         '❗ Screen HLA-B*5701 BEFORE use'),
     ]
 
     for prop_row in drug_properties:
@@ -349,14 +341,8 @@ def create_drug_details_tab(wb):
         ws.row_dimensions[current_row].height = 48
         current_row += 1
 
-    # Memory tricks row
-    add_mnemonic_row(
-        ws, current_row,
-        '"NRTI = Nucleoside Rival Terminating Infection" - Competes with real nucleosides to terminate viral DNA',
-        color,
-        span_cols=6
-    )
-    current_row += 2  # Space before next class
+    # Space before next class
+    current_row += 2
     class_index += 1
 
     # =========================================================================
@@ -374,6 +360,17 @@ def create_key_comparisons_tab(wb):
     Tab 2: Key Comparisons
     - Side-by-side comparisons across drug classes
     - Each comparison table uses ONE consistent color
+    - Only compare 1 category at a time per table
+    - Group similar information together (e.g., group drugs with same toxicity near each other)
+
+    Specific comparison tables to include:
+    1. Combined Drug Comparison Chart (if applicable)
+    2. Adverse Effects Comparison
+    3. First-line vs Second-line Drugs
+    4. Toxicity Comparison
+    5. Mechanisms Comparison
+    6. Drug Interactions Comparison
+    7. DOC Comparison by indication
     """
     ws = wb.create_sheet("Key Comparisons")
 
@@ -388,39 +385,60 @@ def create_key_comparisons_tab(wb):
 
     current_row = 1
 
+    # Comparison 0: Combined Drug Comparison Chart (if applicable) (Powder Blue)
+    # Shows combination drugs with their individual components
+    colors = get_color_set(9)
+    current_row = add_comparison_table(
+        ws, current_row,
+        'COMBINED DRUG COMPARISON CHART',
+        ['Drug 1', 'Drug 2', 'Combined Product', 'Uses'],
+        [
+            ['Tenofovir', 'Emtricitabine', 'Truvada', '🟢 DOC for HIV (first-line), PrEP'],
+            ['Tenofovir alafenamide', 'Emtricitabine', 'Descovy', 'HIV, PrEP (better renal profile)'],
+            ['Abacavir', 'Lamivudine', 'Epzicom', 'HIV (HLA-B*5701 negative)'],
+        ],
+        colors
+    )
+    current_row += 2
+
     # Comparison 1: Mechanisms Across Classes (Ice Blue)
+    # Note: Only compare 1 category (Mechanism) at a time
     colors = get_color_set(0)
     current_row = add_comparison_table(
         ws, current_row,
         'MECHANISMS ACROSS CLASSES',
-        ['Drug Class', 'Mechanism', 'Target', 'Result', 'Analogy'],
+        ['Drug Class', 'Mechanism', 'Target', 'Result'],
         [
             ['NRTI', 'Nucleoside analog → chain termination', 'Reverse transcriptase',
-             'Viral DNA synthesis stops', 'Fake bricks in a wall'],
+             'Viral DNA synthesis stops'],
             ['NNRTI', 'Allosteric binding', 'Reverse transcriptase',
-             'Enzyme cannot function', 'Jamming the gears of a machine'],
+             'Enzyme cannot function'],
             ['Integrase Inhibitor', 'Blocks integration', 'Integrase enzyme',
-             'Viral DNA cannot insert into host', 'Blocking the stapler'],
+             'Viral DNA cannot insert into host'],
             ['Protease Inhibitor', 'Competitive inhibition', 'HIV protease',
-             'Immature non-infectious virions', 'Assembly line shut down'],
+             'Immature non-infectious virions'],
         ],
         colors
     )
     current_row += 2
 
     # Comparison 2: Major Toxicities (Seafoam)
+    # Note: Group similar toxicities together (e.g., hepatotoxicity entries near each other)
     colors = get_color_set(1)
     current_row = add_comparison_table(
         ws, current_row,
         'MAJOR TOXICITIES COMPARISON',
         ['Drug Class', 'Key Toxicity', 'Monitoring', 'Management'],
         [
-            ['NRTI', '⚠️ Lactic acidosis, hepatotoxicity, lipodystrophy',
+            # Grouped: Hepatotoxicity and severe reactions
+            ['NRTI', '⚠️ Lactic acidosis, ⚠️ hepatotoxicity, lipodystrophy',
              'Lactate levels, LFTs, lipid panel', 'Discontinue if severe'],
-            ['NNRTI', 'Rash (including Stevens-Johnson), hepatotoxicity',
+            ['NNRTI', '⚠️ Rash (Stevens-Johnson), ⚠️ hepatotoxicity',
              'Skin examination, LFTs', 'Stop immediately if severe rash'],
+            # Grouped: Metabolic effects
             ['Protease Inhibitor', 'GI upset, hyperglycemia, hyperlipidemia',
              'Blood glucose, lipid panel', 'Manage metabolic effects'],
+            # Well-tolerated group
             ['Integrase Inhibitor', 'Generally well tolerated, weight gain',
              'Weight monitoring', 'Lifestyle modifications'],
         ],
@@ -499,38 +517,51 @@ def create_master_chart_tab(wb):
     - ALL drugs in one comprehensive table
     - Rows = individual drugs
     - Frozen header for scrolling
+    - Column order: Drug Class, Drug Name, Mechanism, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special
+    - Uses includes 🟢 DOC notation, Adverse Effects includes ⚠️ for toxicity
     """
     ws = wb.create_sheet("Master Chart")
 
     # Column widths
     set_column_widths(ws, {
         'A': 20,  # Drug Class
-        'B': 25,  # Drug Name
-        'C': 15,  # Route
-        'D': 35,  # Mechanism
+        'B': 25,  # Drug Name (Brand)
+        'C': 35,  # Mechanism of Action
+        'D': 15,  # Route
         'E': 35,  # Uses
-        'F': 35,  # Adverse Effects
-        'G': 30,  # Contraindications
-        'H': 30,  # Special Considerations
+        'F': 30,  # Combination Therapy
+        'G': 35,  # Adverse Effects
+        'H': 30,  # Contraindications
+        'I': 30,  # Drug Interactions
+        'J': 25,  # Pharmacokinetics
+        'K': 30,  # Special Considerations
     })
 
-    # Headers
-    headers = ['Drug Class', 'Drug Name (Brand)', 'Route', 'Mechanism',
-               'Uses', 'Adverse Effects', 'Contraindications', 'Special Considerations']
+    # Headers (11 columns)
+    headers = ['Drug Class', 'Drug Name (Brand)', 'Mechanism of Action', 'Route',
+               'Uses', 'Combination Therapy', 'Adverse Effects', 'Contraindications',
+               'Drug Interactions', 'Pharmacokinetics', 'Special Considerations']
     create_header_row(ws, headers, 1)
 
     # Master chart data (ALL drugs from ALL classes)
+    # Column order: Drug Class, Drug Name, Mechanism, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special
     master_data = [
-        ('NRTI', 'Tenofovir (Viread)', 'Oral', 'Nucleoside analog → chain termination',
-         '🟢 HIV - First line', '⚠️ Nephrotoxicity, ↓ bone density',
-         'CrCl <50 mL/min', 'Monitor renal function'),
-        ('NRTI', 'Emtricitabine (Emtriva)', 'Oral', 'Nucleoside analog → chain termination',
-         '🟢 HIV - First line', 'Minimal', 'None', 'Safe in pregnancy'),
-        ('NRTI', 'Lamivudide (Epivir)', 'Oral', 'Nucleoside analog → chain termination',
-         'HIV, HBV', 'Minimal', 'None', 'HBV coinfection'),
-        ('NRTI', 'Abacavir (Ziagen)', 'Oral', 'Nucleoside analog → chain termination',
-         'HIV', '⚠️ Hypersensitivity reaction', 'HLA-B*5701 positive',
-         '❗ Screen HLA-B*5701 BEFORE use'),
+        ('NRTI', 'Tenofovir (Viread)', 'Nucleoside analog → chain termination', 'Oral',
+         '🟢 DOC for HIV (first-line)', 'Often with emtricitabine (Truvada)',
+         '⚠️ Nephrotoxicity, ⚠️ ↓ bone density', 'CrCl <50 mL/min',
+         'Limited interactions', 'Renal elimination', 'Monitor renal function'),
+        ('NRTI', 'Emtricitabine (Emtriva)', 'Nucleoside analog → chain termination', 'Oral',
+         '🟢 DOC for HIV (first-line)', 'Often with tenofovir (Truvada)',
+         'Minimal (well tolerated)', 'None',
+         'Limited interactions', 'Renal elimination', 'Safe in pregnancy'),
+        ('NRTI', 'Lamivudine (Epivir)', 'Nucleoside analog → chain termination', 'Oral',
+         'HIV, HBV', 'Triple therapy combinations',
+         'Minimal (well tolerated)', 'None',
+         'Limited interactions', 'Renal elimination', 'HBV coinfection'),
+        ('NRTI', 'Abacavir (Ziagen)', 'Nucleoside analog → chain termination', 'Oral',
+         'HIV (HLA-B*5701 negative)', 'Triple therapy combinations',
+         '⚠️ Hypersensitivity reaction (life-threatening)', 'HLA-B*5701 positive',
+         'No significant interactions', 'Hepatic metabolism', '❗ Screen HLA-B*5701 BEFORE use'),
         # Add all other drugs here...
     ]
 
@@ -569,117 +600,20 @@ def create_master_chart_tab(wb):
     return ws
 
 # =============================================================================
-# TAB 4: HIGH-YIELD & PEARLS
-# =============================================================================
-
-def create_high_yield_tab(wb):
-    """
-    Tab 4: High-Yield & Pearls
-    - Clinical pearls
-    - Mnemonics
-    - "If X Think Y" associations
-    - Must-know facts
-    """
-    ws = wb.create_sheet("High-Yield & Pearls")
-
-    # Column widths
-    set_column_widths(ws, {
-        'A': 100,  # Full width for content
-    })
-
-    current_row = 1
-
-    # Section 1: Clinical Pearls
-    colors = get_color_set(0)
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = "CLINICAL PEARLS"
-    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
-    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
-    cell.alignment = Alignment(horizontal='center', vertical='center')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 23
-    current_row += 1
-
-    pearls_content = """• All NRTIs require activation by host kinases - if kinase activity is low, drug may not work
-• Tenofovir + Emtricitabine = most common first-line NRTI backbone
-• Abacavir hypersensitivity is life-threatening - NEVER rechallenge if reaction occurs
-• NRTI class effect: lactic acidosis and hepatic steatosis (rare but serious)"""
-
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = pearls_content
-    cell.font = Font(name='Calibri', size=11, color='000000')
-    cell.fill = PatternFill(start_color=CLINICAL_PEARL_BG, end_color=CLINICAL_PEARL_BG, fill_type='solid')
-    cell.alignment = Alignment(wrap_text=True, vertical='top')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 60
-    current_row += 2
-
-    # Section 2: Mnemonics
-    colors = get_color_set(1)
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = "MEMORY TRICKS & MNEMONICS"
-    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
-    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
-    cell.alignment = Alignment(horizontal='center', vertical='center')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 23
-    current_row += 1
-
-    mnemonics_content = """💡 "NRTI = Nucleoside Rival Terminating Infection"
-💡 "Tenofovir = Tender kidneys" (nephrotoxicity)
-💡 "Abacavir needs All-Clear Before using" (HLA-B*5701 screening)"""
-
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = mnemonics_content
-    cell.font = Font(name='Calibri', size=11, color='000000')
-    cell.fill = PatternFill(start_color=MNEMONIC_BG, end_color=MNEMONIC_BG, fill_type='solid')
-    cell.alignment = Alignment(wrap_text=True, vertical='top')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 60
-    current_row += 2
-
-    # Section 3: If X Think Y
-    colors = get_color_set(2)
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = '"IF X THINK Y" ASSOCIATIONS'
-    cell.font = Font(name='Calibri', bold=True, size=14, color='000000')
-    cell.fill = PatternFill(start_color=colors['header'], end_color=colors['header'], fill_type='solid')
-    cell.alignment = Alignment(horizontal='center', vertical='center')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 23
-    current_row += 1
-
-    associations_content = """If HIV-naïve patient → Think: Tenofovir + Emtricitabine + Integrase Inhibitor
-If hypersensitivity reaction on HIV meds → Think: Abacavir (check HLA-B*5701)
-If rising creatinine on HIV meds → Think: Tenofovir nephrotoxicity"""
-
-    ws.merge_cells(start_row=current_row, start_column=1, end_row=current_row, end_column=1)
-    cell = ws.cell(current_row, 1)
-    cell.value = associations_content
-    cell.font = Font(name='Calibri', size=11, color='000000')
-    cell.fill = PatternFill(start_color=ANALOGY_BOX_BG, end_color=ANALOGY_BOX_BG, fill_type='solid')
-    cell.alignment = Alignment(wrap_text=True, vertical='top')
-    cell.border = thin_border
-    ws.row_dimensions[current_row].height = 60
-    current_row += 1
-
-    return ws
-
-# =============================================================================
 # MAIN FUNCTION
 # =============================================================================
 
 def create_drug_chart(output_path):
     """
-    Create complete 4-tab drug chart
+    Create complete 3-tab drug chart
 
     Args:
         output_path: Path to save the Excel file
+
+    Tabs:
+        - Tab 1: Drug Details (comparison tables by drug class)
+        - Tab 2: Key Comparisons (specific comparison tables across classes)
+        - Tab 3: Master Chart (all drugs in one comprehensive table)
     """
     # Create workbook
     wb = Workbook()
@@ -688,7 +622,6 @@ def create_drug_chart(output_path):
     create_drug_details_tab(wb)
     create_key_comparisons_tab(wb)
     create_master_chart_tab(wb)
-    create_high_yield_tab(wb)
 
     # Save
     wb.save(output_path)

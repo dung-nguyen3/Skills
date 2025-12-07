@@ -131,12 +131,16 @@ def create_comparison_header(ws, title, row, span_cols=5, table_index=0):
     Args:
         table_index: Index for color selection (uses COLOR_SETS[table_index]['header'])
     """
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
-    cell = ws.cell(row, 1)
     colors = get_color_set(table_index)
-    apply_cell_style(cell, text=title, bold=True, font_size=14,
-                    bg_color=colors['header'], alignment='center', font_color='000000')
-    cell.font = Font(name='Calibri', size=14, bold=True, color='000000')
+    # Apply styling to ALL cells BEFORE merging
+    for col_idx in range(1, span_cols + 1):
+        cell = ws.cell(row, col_idx)
+        apply_cell_style(cell, text=title if col_idx==1 else '', bold=True, font_size=14,
+                        bg_color=colors['header'], alignment='center', font_color='000000')
+        cell.font = Font(name='Calibri', size=14, bold=True, color='000000')
+
+    # Now merge cells
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
     ws.row_dimensions[row].height = 25
 
 def create_column_headers(ws, headers, row, start_col=1, table_index=0):
@@ -182,10 +186,13 @@ def add_mnemonic_row(ws, row, mnemonic_text, span_cols=5):
     apply_cell_style(cell_a, text='MEMORY AID', bold=True, font_size=11,
                     bg_color=MNEMONIC_BG, alignment='left', font_color='0000FF')
 
-    # Mnemonic content merged across remaining columns
+    # Apply styling to ALL cells BEFORE merging (columns 2 through span_cols)
+    for col_idx in range(2, span_cols + 1):
+        cell = ws.cell(row, col_idx)
+        apply_cell_style(cell, text=mnemonic_text if col_idx==2 else '', bg_color=MNEMONIC_BG)
+
+    # Now merge mnemonic content across remaining columns
     ws.merge_cells(start_row=row, start_column=2, end_row=row, end_column=span_cols)
-    cell_content = ws.cell(row, 2)
-    apply_cell_style(cell_content, text=mnemonic_text, bg_color=MNEMONIC_BG)
     ws.row_dimensions[row].height = 60
 
 def add_section_header(ws, row, title):

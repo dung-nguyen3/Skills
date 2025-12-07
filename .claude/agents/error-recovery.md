@@ -420,7 +420,7 @@ This is normal if:
 
 To start new batch:
   /word-excel-anki "[files]"
-  /4-tab-excel "[files]"
+  /drugs-3-tab-excel "[files]"
   /LO-word "[files]"
 ```
 

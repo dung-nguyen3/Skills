@@ -71,7 +71,7 @@ Automatically stores new mnemonics with:
 ### Commands That Use Cache
 
 All study guide commands check cache before WebSearch:
-- `/4-tab-excel`
+- `/drugs-3-tab-excel`
 - `/LO-word`
 - `/LO-html`
 - `/drugs-html`

@@ -40,7 +40,7 @@ Ensure ALL medical study guides are created from source material only, with mand
 - "create clinical assessment guide" (HTML)
 - "make study guide from lecture"
 - "generate word/excel/html study guide"
-- "/4-tab-excel [source-file]"
+- "/drugs-3-tab-excel [source-file]"
 - "/LO-word [source-file]"
 - "/drugs-html [source-file]"
 - "/LO-html [source-file]"
@@ -169,7 +169,7 @@ Then state: "Post-creation verification complete"
 ## Tips
 
 💡 Use slash commands for automatic verification:
-- `/4-tab-excel [source-file]` - Automatically handles verification
+- `/drugs-3-tab-excel [source-file]` - Automatically handles verification
 - `/LO-word [source-file]` - Automatically handles verification
 - `/verify-accuracy [file] [source]` - Deep accuracy check
 

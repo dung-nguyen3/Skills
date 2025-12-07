@@ -23,7 +23,7 @@ cat <<'EOF'
    - Quality check
 
 💡 Use slash commands for automatic compliance:
-   /4-tab-excel [source-file]
+   /drugs-3-tab-excel [source-file]
    /LO-word [source-file]
    /verify-accuracy [file] [source]
 
@@ -51,7 +51,7 @@ It's been 7+ days since your last batch operation.
 
 💡 Consider running batch processing on new source files:
    /word-excel-anki "path/to/directory/"
-   /4-tab-excel "path/to/directory/"
+   /drugs-3-tab-excel "path/to/directory/"
 
 📁 Check these locations for unprocessed files:
    - [Course]/[Exam]/Extract/

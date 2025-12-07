@@ -113,7 +113,7 @@ Recent Study Guides Created:
 [If batch state exists]:
 Last Batch Run:
   Batch ID: [batch-id]
-  Command: [/word-excel-anki | /4-tab-excel | etc.]
+  Command: [/word-excel-anki | /drugs-3-tab-excel | etc.]
   Status: [completed | failed | in-progress]
   Files: [N completed] / [M total]
 
@@ -347,7 +347,7 @@ Quick Actions:
 
 **Works with:**
 - `/word-excel-anki` - See which files still need processing
-- `/4-tab-excel` - Check pending drug chart sources
+- `/drugs-3-tab-excel` - Check pending drug chart sources
 - `/error-recovery-resume` - Resume failed batch operations
 
 **Workflow:**

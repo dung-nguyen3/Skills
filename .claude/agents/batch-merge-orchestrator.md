@@ -6,7 +6,7 @@ description: |
 
   Use when: User wants to combine multiple related files into one comprehensive output.
 examples:
-  - <example>User runs: /4-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
+  - <example>User runs: /drugs-3-tab-excel --merge "HIV-PIs.txt;HIV-NRTIs.txt;HIV-NNRTIs.txt"
     I read all 3 files, identify which drugs are in which files, resolve any overlapping information,
     and create ONE comprehensive HIV drug chart with all drug classes merged intelligently.</example>
   - <example>User runs: /clinical-assessment-html --merge "Lower-Back.txt;Spine.txt;Neuro.txt" "Back Pain"
@@ -451,7 +451,7 @@ Output will be comprehensive but no conflict resolution needed
 ## Integration with Batch Workflow
 
 **Main thread workflow:**
-1. User runs: `/4-tab-excel --merge "f1.txt;f2.txt;f3.txt"`
+1. User runs: `/drugs-3-tab-excel --merge "f1.txt;f2.txt;f3.txt"`
 2. Main thread detects `--merge` flag
 3. Main thread launches YOU once with all 3 files
 4. You read all files, create matrix, resolve overlaps, merge

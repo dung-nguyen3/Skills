@@ -31,7 +31,7 @@ Use a slash command based on your content type:
 
 **For drug information (pharmacology):**
 ```
-/4-tab-excel HIV_Lecture_Notes.txt
+/drugs-3-tab-excel HIV_Lecture_Notes.txt
 ```
 → Creates 4-tab Excel drug chart
 
@@ -62,7 +62,7 @@ After creation, run verification:
 
 | Content Type | Recommended Format | Command |
 |--------------|-------------------|---------|
-| Drug classes, pharmacology | Excel Drug Chart | `/4-tab-excel` |
+| Drug classes, pharmacology | Excel Drug Chart | `/drugs-3-tab-excel` |
 | Learning objectives (any topic) | HTML LO Guide | `/LO-html` |
 | History-taking, physical exam | Clinical Guide | `/clinical-assessment-html` |
 | General notes | Word Document | `/LO-word` |
@@ -129,7 +129,7 @@ A: Use `/verify-accuracy` - the study-guide-analyzer agent performs comprehensiv
 **Ready to create your first study guide?**
 
 1. Prepare your source file
-2. Run `/4-tab-excel [source-file]` (or your preferred format)
+2. Run `/drugs-3-tab-excel [source-file]` (or your preferred format)
 3. Follow the prompts
 4. Verify with `/verify-accuracy`
 
