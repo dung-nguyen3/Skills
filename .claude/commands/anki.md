@@ -1,29 +1,56 @@
 ---
 description: Create comprehensive Anki flashcard deck (.apkg) from source material
-argument-hint: Single file, batch files separated by semicolon, or directory path (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir")
+argument-hint: Single file, batch files separated by semicolon, or directory path. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
 Create an Anki flashcard deck from source file: $ARGUMENTS
 
 ## Instructions
 
-### Step 0: Detect Mode (Single vs Batch)
+### Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
+
+**Step 0.3: Check for semicolons**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
+
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 Anki deck (inline processing)
+- **BATCH SEPARATE**: N files → N Anki decks (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged Anki deck (orchestrator agent, intelligent merge)
 
 ---
 
-### Step 0.5: Handle Directory Input
 
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
-
----
-
-
-### Step 1: Pre-Creation Verification
+### Step 1: Pre-Creation Verification & Agent Invocation
 
 #### For SINGLE MODE:
 
@@ -39,27 +66,85 @@ VERIFICATION CHECKLIST:
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
-#### For BATCH MODE:
+**Then proceed with Step 2 (inline processing).**
+
+---
+
+#### For BATCH SEPARATE MODE:
+
+**MANDATORY - State this checklist:**
 
 ```
-BATCH INITIAL VALIDATION:
-☐ Source files: [list all files from $ARGUMENTS]
+BATCH SEPARATE VALIDATION:
+☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files use same source-only policy
 ☐ LO-filtering: Each file will be filtered by its Learning Objectives
-☐ Output: ONE Anki deck will be created per source file
+☐ Output: N files → N Anki decks
+☐ Agent: batch-separate-processor (launched N times)
+☐ Architectural isolation: Each file processed in separate agent context
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
-
-BATCH PROCESSING RULES:
-☐ Each file will get complete verification (not just once)
-☐ Each file will be processed independently
-☐ Context isolation: I will explicitly clear data between files
-☐ Source-only policy applies per-file
-☐ LO-filtering applies per-file
-☐ No external facts will be added to any deck
 ```
 
-**IMPORTANT**: Full verification checklist will run for EACH file (Step 1 repeated in Batch Processing).
+**Then invoke batch-separate-processor agent:**
+
+```
+I'll use the batch-separate-processor agent to process your files with architectural isolation.
+
+Launching agent [X] times:
+- File 1: batch-separate-processor → [Output1.apkg]
+- File 2: batch-separate-processor → [Output2.apkg]
+...
+- File N: batch-separate-processor → [OutputN.apkg]
+
+Each agent invocation is architecturally isolated (zero cross-contamination).
+```
+
+**STOP HERE - Do NOT continue with Steps 2-9. The agent handles all processing.**
+
+---
+
+#### For BATCH MERGE MODE:
+
+**MANDATORY - State this checklist:**
+
+```
+BATCH MERGE VALIDATION:
+☐ Source files: [list all files]
+☐ File validation: All files exist and are readable
+☐ Files are related/compatible for merging
+☐ Output: N files → 1 merged Anki deck
+☐ Agent: batch-merge-orchestrator (launched once)
+☐ Merge features: Content matrix, overlap resolution, source traceability
+☐ Save location: [Class]/[Exam]/Claude Study Tools/
+```
+
+**Then invoke batch-merge-orchestrator agent:**
+
+```
+I'll use the batch-merge-orchestrator agent to intelligently merge your files.
+
+Agent will:
+1. Read all N files completely
+2. Create content matrix (which LOs/concepts in which files)
+3. Identify overlaps and gaps
+4. Resolve conflicts with source traceability
+5. Merge into ONE comprehensive Anki deck
+6. Create merge report with traceability map
+
+Output:
+- 1 merged Anki deck: [filename.apkg]
+- 1 merge report: [filename_merge_report.md]
+```
+
+**STOP HERE - Do NOT continue with Steps 2-9. The agent handles all processing.**
+
+---
+
+**IMPORTANT FOR BATCH MODES:**
+- Batch separate/merge use agents (subagent architecture)
+- Single mode uses inline processing (Steps 2-9)
+- Do NOT mix - if agent is launched, STOP and let agent complete the work
 
 ### Step 2: Load Resources
 
@@ -220,6 +305,26 @@ Track your progress:
 **Use genanki library to create .apkg:**
 
 @study-guides/templates-and-examples/Python_Examples/Anki_APKG_Example.py
+
+**Deck Naming Convention:**
+
+Determine the deck name based on the file path:
+1. Extract course name from file path
+2. Apply course name mapping if needed
+3. Use format: `[Course Name]::[Topic]`
+
+**Course Name Mapping:**
+- Path contains "Clinical Medicine 3" → Use "Clinical Medicine II"
+- Path contains "Clinical Medicine I" → Use "Clinical Medicine I"
+- Path contains "Clinical Medicine II" → Use "Clinical Medicine II"
+- Path contains "Pharmacology" → Use "Pharmacology"
+- Path contains "Microbiology" → Use "Microbiology"
+- Other courses: Use exact name from path
+
+**Example:**
+- File path: `.../Clinical Medicine 3/Exam 1/...`
+- Topic: "Diagnostics in Cardiology"
+- Deck name: `'Clinical Medicine II::Diagnostics in Cardiology'`
 
 ### Step 8: Post-Creation Verification
 

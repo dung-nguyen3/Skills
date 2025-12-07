@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
 COMPLETE EXCEL DRUG CHART EXAMPLE
-Reference implementation for creating comprehensive 3-tab drug charts
+Reference implementation for creating comprehensive drug charts
 
-This file shows a COMPLETE working example with all 3 tabs.
+This file shows a COMPLETE working example with all tabs.
 Templates should reference this file rather than including all code inline.
 
 Structure:
 - Tab 1: Drug Details (comparison tables by drug class)
 - Tab 2: Key Comparisons (mechanisms, toxicities, uses)
 - Tab 3: Master Chart (all drugs in one table)
+- Tab 4 (Optional): FYI Drugs (future reference drugs with page numbers)
 """
 
 from openpyxl import Workbook
@@ -600,20 +601,75 @@ def create_master_chart_tab(wb):
     return ws
 
 # =============================================================================
+# TAB 4 (OPTIONAL): FYI DRUGS
+# =============================================================================
+
+def create_fyi_tab(wb, fyi_drugs):
+    """
+    Tab 4 (Optional): FYI Drugs
+    - Simple 2-column table: Drug Name | Page Number
+    - Only include if source has FYI/Future Reference section
+    - Minimal styling
+
+    Args:
+        wb: Workbook object
+        fyi_drugs: List of tuples (drug_name, page_number)
+                   Example: [("Cevimeline (Evoxac)", "25"), ("Rivastigmine (Exelon)", "25")]
+    """
+    ws = wb.create_sheet("FYI Drugs")
+
+    # Column widths
+    set_column_widths(ws, {
+        'A': 35,  # Drug Name
+        'B': 15,  # Page Number
+    })
+
+    # Headers
+    headers = ['Drug Name', 'Page Number']
+    create_header_row(ws, headers, 1)
+
+    # Data rows
+    current_row = 2
+    for drug_name, page_number in fyi_drugs:
+        # Drug name
+        cell_a = ws.cell(current_row, 1)
+        cell_a.value = drug_name
+        cell_a.font = Font(name='Calibri', size=10, color='000000')
+        cell_a.alignment = Alignment(wrap_text=True, vertical='top')
+        cell_a.fill = PatternFill(start_color='FFFFFF', end_color='FFFFFF', fill_type='solid')
+        cell_a.border = thin_border
+
+        # Page number
+        cell_b = ws.cell(current_row, 2)
+        cell_b.value = page_number
+        cell_b.font = Font(name='Calibri', size=10, color='000000')
+        cell_b.alignment = Alignment(horizontal='center', vertical='top')
+        cell_b.fill = PatternFill(start_color='FFFFFF', end_color='FFFFFF', fill_type='solid')
+        cell_b.border = thin_border
+
+        ws.row_dimensions[current_row].height = 20
+        current_row += 1
+
+    return ws
+
+# =============================================================================
 # MAIN FUNCTION
 # =============================================================================
 
-def create_drug_chart(output_path):
+def create_drug_chart(output_path, fyi_drugs=None):
     """
-    Create complete 3-tab drug chart
+    Create complete drug chart with 3 main tabs (+ optional FYI tab)
 
     Args:
         output_path: Path to save the Excel file
+        fyi_drugs: Optional list of tuples (drug_name, page_number) for FYI drugs
+                   Example: [("Cevimeline (Evoxac)", "25"), ("Rivastigmine (Exelon)", "25")]
 
     Tabs:
         - Tab 1: Drug Details (comparison tables by drug class)
         - Tab 2: Key Comparisons (specific comparison tables across classes)
         - Tab 3: Master Chart (all drugs in one comprehensive table)
+        - Tab 4 (Optional): FYI Drugs (if fyi_drugs list provided)
     """
     # Create workbook
     wb = Workbook()
@@ -623,10 +679,22 @@ def create_drug_chart(output_path):
     create_key_comparisons_tab(wb)
     create_master_chart_tab(wb)
 
+    # Create FYI tab if FYI drugs provided
+    if fyi_drugs:
+        create_fyi_tab(wb, fyi_drugs)
+
     # Save
     wb.save(output_path)
     print(f"✅ Drug chart created: {output_path}")
 
 if __name__ == '__main__':
-    # Example usage
+    # Example usage without FYI drugs
     create_drug_chart('HIV_Drugs_Chart.xlsx')
+
+    # Example usage with FYI drugs
+    # fyi_drugs_example = [
+    #     ("Cevimeline (Evoxac)", "25"),
+    #     ("Rivastigmine (Exelon)", "25"),
+    #     ("Galantamine (Razadyne)", "25"),
+    # ]
+    # create_drug_chart('HIV_Drugs_Chart_with_FYI.xlsx', fyi_drugs=fyi_drugs_example)

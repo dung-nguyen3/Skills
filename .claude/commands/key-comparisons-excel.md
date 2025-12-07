@@ -11,34 +11,41 @@ Create Excel comparison chart from: $ARGUMENTS
 
 **Parse arguments to detect mode:**
 
-**Check for --merge flag:**
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
 - If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
 - Strip `--merge` from arguments to get file list
 
-**Check for semicolons:**
+**Step 0.3: Check for semicolons**
 - If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
 
-**Otherwise: SINGLE MODE**
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
 **State which mode detected:**
 ```
 MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
 ```
 
 **Mode Descriptions:**
 - **SINGLE**: 1 file → 1 comparison chart (inline processing)
 - **BATCH SEPARATE**: N files → N comparison charts (agent per file, isolated contexts)
 - **BATCH MERGE**: N files → 1 merged comparison chart (orchestrator agent, intelligent merge)
-
----
-
-### Step 0.5: Handle Directory Input
-
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
 
 ---
 
@@ -51,11 +58,11 @@ If batch (semicolon-separated), process each path independently.
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
-☐ Instruction template: Excel_Comparison_Chart_REVISED.txt
+☐ Text template: Excel_Comparison_Chart_REVISED.txt (WHAT to create - structure/requirements)
+☐ Python reference: Excel_Comparison_Example.py (HOW to implement - styling/code)
+☐ Resource hierarchy: Text=structure/requirements, Python=styling/implementation
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
-☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
-☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -168,7 +175,6 @@ Read these files in order:
   - Epidemiology
   - **Identify any other comparison categories asked in the learning objectives**
 - Note items that need side-by-side comparison
-- Note any existing mnemonics or memory aids mentioned
 
 **IMPORTANT:** The number of comparison tables = number of comparison categories in LOs. Do NOT limit to 3 tables.
 
@@ -186,7 +192,6 @@ Read these files in order:
     - Table 3: Treatment comparing Conditions A, B, and C
 - Columns = items being compared (e.g., Condition A, Condition B, Condition C)
 - Rows = features within that category
-- Mnemonics placed directly BELOW relevant tables
 - 2-3 blank rows between different comparison tables
 - **Do NOT limit to 3 tables** - create N tables where N = comparison categories in LOs
 
@@ -198,7 +203,6 @@ Read these files in order:
 - Color-coded by category
 
 **Tab 3: Summary (for clinical medicine sources)**
-- Mnemonics (researched, with full breakdown) - e.g., "FEVER" for corneal ulcer features
 - "If you see X, Think Y" associations
 - Critical values
 - Key definitions
@@ -207,9 +211,7 @@ Read these files in order:
 **Critical Requirements:**
 - Use ONLY source file information
 - ALL data cells have soft pastel backgrounds
-- Research mnemonics via WebSearch (mandatory)
 - Multiple comparison tables (one category per table)
-- Mnemonics directly below relevant tables (not on separate sheet)
 
 <template-compliance>
 MANDATORY TEMPLATE REQUIREMENTS - Excel Comparison Chart (3 tabs):
@@ -218,10 +220,9 @@ STRUCTURE:
 - Tab 1 "Key Comparisons": MULTIPLE tables (one category per table)
   - NOT one giant table combining all categories
   - Columns = items compared, Rows = features
-  - Mnemonics placed DIRECTLY BELOW relevant tables
   - 2-3 blank rows between different comparison tables
 - Tab 2 "Master Chart": ALL items in ONE comprehensive table, header frozen
-- Tab 3 "Summary": Mnemonics, "If X Think Y", critical values, key definitions
+- Tab 3 "Summary": "If X Think Y", critical values, key definitions
 
 FORMATTING (MANDATORY):
 - Header row: #4472C4 (dark blue), white bold text, size 12
@@ -247,16 +248,7 @@ FORMATTING (MANDATORY):
 - Text wrapping enabled on all cells
 </template-compliance>
 
-### Step 5: WebSearch for Mnemonics
-
-**MANDATORY - Research established mnemonics:**
-- Search: "medical mnemonics [topic]"
-- Search: "[concept] mnemonic USMLE"
-- Find PROVEN mnemonics only - never invent
-- Add mnemonic row after each comparison table
-- Include full breakdown/explanation
-
-### Step 6: Python Implementation
+### Step 5: Python Implementation
 
 Use openpyxl to create the Excel file:
 - Soft pastel color scheme (hex codes from template)
@@ -265,7 +257,7 @@ Use openpyxl to create the Excel file:
 - Set appropriate column widths
 - Black text throughout (#000000)
 
-### Step 7: Use TodoWrite
+### Step 6: Use TodoWrite
 
 Track your progress:
 - Create todo for each comparison table
@@ -273,7 +265,7 @@ Track your progress:
 - Mark completed as you finish
 - Keep user informed
 
-### Step 8: Post-Creation Template Compliance Verification
+### Step 7: Post-Creation Template Compliance Verification
 
 **MANDATORY - Verify EACH requirement before reporting complete:**
 
@@ -282,10 +274,9 @@ Track your progress:
 ☐ Tab names correct
 ☐ Tab 1: MULTIPLE comparison tables (one category per table)
 ☐ Tab 1: NOT one giant table combining all categories
-☐ Tab 1: Mnemonics DIRECTLY BELOW relevant tables
 ☐ Tab 1: 2-3 blank rows between different comparison tables
 ☐ Tab 2: ALL items in ONE table, header frozen
-☐ Tab 3: Mnemonics, "If X Think Y", critical values, key definitions
+☐ Tab 3: "If X Think Y", critical values, key definitions
 
 **Formatting Compliance:**
 ☐ Header row: Dark blue (#4472C4), white bold text, size 12
@@ -293,10 +284,18 @@ Track your progress:
 ☐ Each category uses ONE consistent color
 ☐ Colors rotate when category changes
 ☐ White borders (#FFFFFF) on all cells
+☐ Merged cells have visible borders (no missing horizontal lines)
 ☐ Text wrapping enabled on all cells
 ☐ Column widths appropriate (25-40)
 ☐ Row heights fit content
 ☐ Font: Calibri, size 11 (headers 12)
+
+**Python Pattern Compliance:**
+☐ COLOR_SETS system used (3-shade: header, main, row_label)
+☐ Colors match Excel_Comparison_Example.py specifications
+☐ Border pattern matches Python example (white thin borders)
+☐ Merged cell pattern correct (styled ALL cells BEFORE merging)
+☐ Font sizes match Python example per tab type
 
 **Source Accuracy:**
 ☐ All information from source file only
@@ -307,13 +306,18 @@ Track your progress:
 ☐ ALL conditions/concepts from source included
 ☐ All comparison categories covered
 ☐ Master chart has all items
-☐ Mnemonics researched via WebSearch (not invented)
+
+**Resource Compliance Note:**
+Briefly confirm which resources were followed:
+- Structure requirements: [Text template ✓]
+- Styling implementation: [Python example ✓]
+- Any conflicts resolved per hierarchy: [List if any]
 
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
 **State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
 
-### Step 9: Save Files
+### Step 8: Save Files
 
 **Output Filename Rule:**
 1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
@@ -351,8 +355,6 @@ Track your progress:
 
 ❌ **Limiting to only 3 comparison tables** - create as many as needed based on LOs
 ❌ Combining multiple categories in one comparison table
-❌ Putting mnemonics only in Summary (should be below relevant tables too)
-❌ Inventing mnemonics instead of researching
 ❌ White backgrounds on data cells (should be pastel)
 ❌ Using 4 tabs instead of 3
 ❌ Adding external medical information not in source
@@ -366,7 +368,6 @@ Track your progress:
 **Structure:**
 ✓ 3 tabs: Key Comparisons, Master Chart, Summary
 ✓ Tab 1 has MULTIPLE tables (one for Mechanism, one for Clinical, one for Treatment)
-✓ Mnemonic directly below each comparison table
 ✓ 2-3 blank rows between comparison tables
 
 **Formatting:**
@@ -382,7 +383,6 @@ Track your progress:
 **Structure:**
 ✗ Only 2 tabs (missing Summary)
 ✗ ONE giant comparison table combining Mechanism, Clinical, and Treatment
-✗ Mnemonics only in Summary tab (should be below relevant tables)
 ✗ No spacing between different comparison sections
 
 **Formatting:**

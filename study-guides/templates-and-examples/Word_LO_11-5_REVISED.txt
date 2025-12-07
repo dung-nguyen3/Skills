@@ -9,12 +9,11 @@ Create comprehensive, color-coded Word document study guides from source materia
 
 **Before starting, complete verification checklist in parent CLAUDE.md:**
 - Source-only policy for medical content
-- MANDATORY WebSearch for mnemonics/analogies
 - Clinical pearls using medical reasoning (not just source facts)
 - File organization rules
 
 **Word-specific requirements:**
-- 3 main sections: Learning Objectives, Key Comparisons, High-Yield Summary
+- 2 main sections: Learning Objectives, Key Comparisons
 - Soft pastel color scheme throughout
 - NO page references in this document type
 - Tables for all comparisons (2+ items)
@@ -24,7 +23,7 @@ Create comprehensive, color-coded Word document study guides from source materia
 ## DOCUMENT STRUCTURE
 
 ### Required Tabs (Sections)
-The Word document must have 3 main sections:
+The Word document must have 2 main sections:
 
 #### 1. Learning Objectives
 Each learning objective gets its own subsection with:
@@ -32,25 +31,12 @@ Each learning objective gets its own subsection with:
 - Summary: Bullet-point outline answering the LO
 - Tables: Category/Details tables OR Comparison tables (2+ items)
 - Clinical Pearls & High-Yield Points Box
-- Memory Tricks/Mnemonics Box (researched via WebSearch)
-- Analogy Box (2-4 sentences, researched)
 - Page break after each LO
 
 #### 2. Key Comparisons
 - Side-by-side comparison tables
 - Focus on commonly confused or similar concepts
 - Examples: Drug mechanisms, similar conditions, exam techniques
-- **For drug mechanisms:** Add "Analogy" column with researched analogies
-
-#### 3. High-Yield Summary
-Color-coded boxes grouped by category:
-- Anatomy Must-Knows
-- Emergency/Critical Conditions
-- Normal Variants
-- Clinical Pearls
-- Formulas/Key Values
-- Treatment Pearls
-- Other categories as appropriate
 
 ---
 
@@ -105,11 +91,9 @@ Use these for row backgrounds:
 - **White**: `FFFFFF` - for data cells
 
 ### Color-Coded Box Types
-1. **High-Yield Box** (Purple): Title RGB(118, 75, 162), Background `F3E5F5`
-2. **Clinical Pearls & High-Yield Points** (Teal): Title RGB(0, 77, 64), Background `E0F2F1`
-3. **Critical/Emergency** (Red): Title RGB(183, 28, 28), Background `FFEBEE`
-4. **Memory Tricks** (Orange): Title RGB(230, 81, 0), Background `FFF3E0`
-5. **Normal Variants** (Green): Title RGB(27, 94, 32), Background `E8F5E9`
+1. **Clinical Pearls & High-Yield Points** (Teal): Title RGB(0, 77, 64), Background `E0F2F1`
+2. **Critical/Emergency** (Red): Title RGB(183, 28, 28), Background `FFEBEE`
+3. **Normal Variants** (Green): Title RGB(27, 94, 32), Background `E8F5E9`
 
 ### Font
 CALIBRI size 12 for all text (11pt for dense tables)
@@ -188,7 +172,7 @@ def set_cell_text(cell, text, bold=False, color=None, size=11):
                 run.font.color.rgb = RGBColor(*color)
 
 def add_colored_box(doc, title, content_list, title_color, bg_color='F3E5F5'):
-    """Add a colored information box"""
+    """Add a colored information box (same width as tables)"""
     # Add title
     para = doc.add_paragraph()
     run = para.add_run(title)
@@ -197,10 +181,8 @@ def add_colored_box(doc, title, content_list, title_color, bg_color='F3E5F5'):
     run.font.name = 'Calibri'
     run.font.color.rgb = RGBColor(*title_color)
 
-    # Add content box
+    # Add content box (no indentation - same width as tables)
     para = doc.add_paragraph()
-    para.paragraph_format.left_indent = Inches(0.3)
-    para.paragraph_format.right_indent = Inches(0.3)
     para.paragraph_format.space_before = Pt(6)
     para.paragraph_format.space_after = Pt(6)
 
@@ -300,18 +282,6 @@ add_colored_box(doc, 'CRITICAL - Never Miss:', [
     'Emergency sign 2',
     'Urgent finding 3'
 ], (183, 28, 28), 'FFEBEE')
-
-# Memory Tricks Box (MUST USE RESEARCHED MNEMONICS)
-add_colored_box(doc, 'Memory Tricks & Mnemonics:', [
-    '"Never Let Monkeys Eat Bananas" (WBC order: Neutrophils, Lymphocytes, Monocytes, Eosinophils, Basophils)',
-    '"VETIN" for respiration steps: V=Ventilation, E=External exchange, T=Transport, IN=INternal exchange',
-    'Use complete phrases, NOT simple letter acronyms'
-], (230, 81, 0), 'FFF3E0')
-
-# Analogy Box (MUST USE RESEARCHED ANALOGIES)
-add_colored_box(doc, 'Analogy:', [
-    'Researched analogy explaining the concept in 2-4 sentences using real-world comparison'
-], (118, 75, 162), 'F3E5F5')
 ```
 
 ### Heading Colors
@@ -368,22 +338,6 @@ add_colored_box(doc, 'Clinical Pearls & High-Yield Points:', [
     'If X think Y association'
 ], (0, 77, 64), 'E0F2F1')
 
-doc.add_paragraph()
-
-# Memory Tricks/Mnemonics Box (researched via WebSearch)
-add_colored_box(doc, 'Memory Tricks & Mnemonics:', [
-    'Researched mnemonic 1',
-    'Researched mnemonic 2',
-    'Memory technique explanation'
-], (230, 81, 0), 'FFF3E0')
-
-doc.add_paragraph()
-
-# Analogy Box (researched analogy)
-add_colored_box(doc, 'Analogy:', [
-    'Researched 2-4 sentence analogy explaining the concept'
-], (118, 75, 162), 'F3E5F5')
-
 doc.add_page_break()  # After each learning objective
 ```
 
@@ -410,33 +364,6 @@ heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
 # Example structure:
 doc.add_heading('Concept A vs Concept B', 2)
 # [Create comparison table with appropriate color scheme]
-
-doc.add_page_break()
-```
-
-### TAB 3: High-Yield Summary
-```python
-heading = doc.add_heading('High-Yield Summary', 1)
-heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-
-# Create colored boxes grouped by category
-# Categories adapt to topic (anatomy, formulas, pathology, etc.)
-
-add_colored_box(doc, 'CATEGORY 1 - Must Know:', [
-    'Key fact 1',
-    'Key fact 2'
-], (118, 75, 162), 'F3E5F5')
-
-doc.add_paragraph()
-
-add_colored_box(doc, 'EMERGENCIES - Never Miss:', [
-    'Critical finding 1',
-    'Red flag 2'
-], (183, 28, 28), 'FFEBEE')
-
-doc.add_paragraph()
-
-# Add additional categories as appropriate for topic
 ```
 
 ---
@@ -457,10 +384,9 @@ print(f"Study guide created: {output_path}")
 Before finalizing, verify:
 
 ### Content Requirements
-- [ ] All information from source file only (except researched mnemonics/analogies)
-- [ ] Every learning objective has: summary + tables + pearls box + mnemonics box + analogy box
+- [ ] All information from source file only
+- [ ] Every learning objective has: summary + tables + pearls box
 - [ ] All comparison tables have appropriate categories
-- [ ] Memory tricks and analogies researched via WebSearch (not invented)
 
 ### Formatting Requirements
 - [ ] Soft pastel color scheme used consistently
@@ -475,7 +401,7 @@ Before finalizing, verify:
 
 ### Structure Requirements
 - [ ] Title and (Lecture #) centered at beginning
-- [ ] 3 main sections (tabs) present
+- [ ] 2 main sections (tabs) present
 - [ ] Page breaks after each learning objective
 - [ ] Page breaks between main sections
 - [ ] Consistent spacing (6pt before/after boxes)
@@ -488,22 +414,19 @@ Before finalizing, verify:
 ❌ Adding treatment details not in source
 ❌ Adding lab values not in source
 ❌ Adding risk factors not in source
-❌ Inventing mnemonics instead of researching via WebSearch
 ❌ Missing conditions/abnormalities mentioned in source
 ❌ Grouping items that don't share identical information
 
 ### Formatting Pitfalls
 ❌ Using harsh/bright colors instead of soft pastels
 ❌ White text in tables (not readable against pastels)
-❌ Omitting memory tricks and mnemonics sections
 ❌ Creating tables without proper color coding
 ❌ Inconsistent spacing or formatting
 
 ### Best Practices
-✅ Use WebSearch for mnemonics, analogies, and memory aids
 ✅ Add clinical pearls using medical reasoning
 ✅ Create comparison tables for ANY items needing differentiation (2+ items)
-✅ Include all 3 required tabs/sections
+✅ Include all 2 required tabs/sections
 ✅ Use clinical reasoning tips ("If X think Y")
 ✅ Read entire source file to identify ALL relevant content
 ✅ Verify all table text is black/dark colored for readability

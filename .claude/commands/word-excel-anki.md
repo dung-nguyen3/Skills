@@ -1,6 +1,6 @@
 ---
 description: Create multi-format study bundle (Word LO + Excel Comparison + Anki) from source
-argument-hint: Single file, batch files separated by semicolon, or directory path (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir")
+argument-hint: Single file, batch files separated by semicolon, or directory path. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
 Create a multi-format study bundle from source file: $ARGUMENTS
@@ -14,11 +14,45 @@ This command generates 3 complementary formats in ONE efficient pass:
 
 ## Instructions
 
-### Step 0: Detect Mode
+### Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE, if directory path → DIRECTORY MODE, otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH/DIRECTORY], File count: [#], Files: [list]
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
+
+**Step 0.3: Check for semicolons**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
+
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 multi-format bundle (inline processing)
+- **BATCH SEPARATE**: N files → N multi-format bundles (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged multi-format bundle (orchestrator agent, intelligent merge)
 
 ---
 

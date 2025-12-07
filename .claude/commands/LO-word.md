@@ -11,21 +11,35 @@ Create Word study guide from: $ARGUMENTS
 
 **Parse arguments to detect mode:**
 
-**Check for --merge flag:**
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
 - If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
 - Strip `--merge` from arguments to get file list
 
-**Check for semicolons:**
+**Step 0.3: Check for semicolons**
 - If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
 
-**Otherwise: SINGLE MODE**
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
 **State which mode detected:**
 ```
 MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
 ```
 
 **Mode Descriptions:**
@@ -35,10 +49,31 @@ Files: [list]
 
 ---
 
-### Step 0.5: Handle Directory Input
+### Step 0.8: Learning Objective Inventory (SINGLE MODE ONLY)
 
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
+**Skip this step for BATCH modes** (agents handle their own counting).
+
+**Before creating content, extract ALL LO statements from source:**
+
+1. Scan source file for Learning Objectives section
+2. Extract each LO statement verbatim
+3. Number them sequentially
+4. Document the count
+
+**Output format:**
+```
+LEARNING OBJECTIVE INVENTORY
+Source: [filename]
+Total LOs found: [N]
+
+1. [LO statement 1]
+2. [LO statement 2]
+3. [LO statement 3]
+...
+N. [LO statement N]
+```
+
+**Keep this list for verification at end (Step 10).**
 
 ---
 
@@ -54,8 +89,6 @@ VERIFICATION CHECKLIST:
 ☐ Instruction template: Word LO 11-5.txt
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
-☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
-☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -148,8 +181,8 @@ Read these files in order:
    - Includes correct table formatting (black text on pastel backgrounds)
 
 2. **Example Code**: `study-guides/templates-and-examples/Python_Examples/Word_LO_Example.py`
-   - Complete 4-section implementation with all helper functions
-   - Shows Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+   - Complete 2-section implementation with all helper functions
+   - Shows Learning Objectives and Key Comparisons
 
 ### Step 3: Read Source File
 
@@ -162,14 +195,12 @@ Read these files in order:
 
 Follow template instructions EXACTLY:
 
-**Required Structure (4 sections):**
-1. Learning Objectives - Each with summary, tables, boxes, mnemonics
+**Required Structure (2 sections):**
+1. Learning Objectives - Each with summary, tables, boxes
 2. Key Comparisons - Side-by-side comparison tables
-3. Master Chart - Comprehensive table of all topics
-4. High-Yield Summary - Color-coded boxes by category
 
 **Key Requirements:**
-- Use ONLY source file information (except mnemonics)
+- Use ONLY source file information
 - Answer ALL parts of each learning objective
 - Create comparison tables for 2+ similar items
 - Use soft pastel color scheme from template
@@ -186,14 +217,12 @@ Note: Answers/explanations CAN be paraphrased from source content.
 </verbatim-requirement>
 
 <template-compliance>
-MANDATORY TEMPLATE REQUIREMENTS - Word Learning Objectives (4 sections):
+MANDATORY TEMPLATE REQUIREMENTS - Word Learning Objectives (2 sections):
 
 STRUCTURE:
-- Section 1 "Learning Objectives": Each LO with Summary + Tables + Pearls Box + Mnemonics Box + Analogy Box
+- Section 1 "Learning Objectives": Each LO with Summary + Tables + Pearls Box
   - Page break after each LO
 - Section 2 "Key Comparisons": Comparison tables for 2+ similar items
-- Section 3 "Master Chart": ALL conditions/topics from source, color-coded rows
-- Section 4 "High-Yield Summary": Color-coded boxes grouped by category
 
 FORMATTING (MANDATORY):
 - Font: Calibri size 12 (11 for dense tables)
@@ -206,15 +235,8 @@ FORMATTING (MANDATORY):
   - High-Yield Box: Purple title (118, 75, 162), #F3E5F5 background
   - Clinical Pearls: Teal title (0, 77, 64), #E0F2F1 background
   - Critical/Emergency: Red title (183, 28, 28), #FFEBEE background
-  - Memory Tricks: Orange title (230, 81, 0), #FFF3E0 background
   - Normal Variants: Green title (27, 94, 32), #E8F5E9 background
 </template-compliance>
-
-**WebSearch Requirements (MANDATORY):**
-- Research mnemonics for each learning objective
-- Find analogies for drug mechanisms/complex concepts
-- Look for "If X think Y" clinical associations
-- Use PROVEN mnemonics only - never invent
 
 ### Step 5: Use TodoWrite
 
@@ -229,14 +251,11 @@ Track your progress:
 **MANDATORY - Verify EACH requirement before reporting complete:**
 
 **Structure Compliance:**
-☐ EXACTLY 4 sections present: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
+☐ EXACTLY 2 sections present: Learning Objectives, Key Comparisons
 ☐ Section names correct
-☐ Section 1: Each LO has Summary + Tables + Pearls Box + Mnemonics Box + Analogy Box
+☐ Section 1: Each LO has Summary + Tables + Pearls Box
 ☐ Section 1: Page break after each LO
 ☐ Section 2: Comparison tables for 2+ similar items
-☐ Section 3: ALL conditions/topics from source in one table
-☐ Section 3: Color-coded rows by category
-☐ Section 4: Color-coded boxes grouped by category
 
 **Formatting Compliance:**
 ☐ Font: Calibri size 12 (11 for dense tables)
@@ -249,11 +268,10 @@ Track your progress:
   - High-Yield: Purple title (118, 75, 162), #F3E5F5 background
   - Clinical Pearls: Teal title (0, 77, 64), #E0F2F1 background
   - Critical/Emergency: Red title (183, 28, 28), #FFEBEE background
-  - Memory Tricks: Orange title (230, 81, 0), #FFF3E0 background
   - Normal Variants: Green title (27, 94, 32), #E8F5E9 background
 
 **Source Accuracy:**
-☐ All info from source only (except researched mnemonics)
+☐ All info from source only
 ☐ External additions marked with asterisk (*)
 ☐ No page references in Word docs
 ☐ Learning objective STATEMENTS verbatim (not paraphrased)
@@ -262,8 +280,6 @@ Track your progress:
 ☐ ALL learning objectives from source included
 ☐ All LOs answered (all parts)
 ☐ All comparisons created for 2+ similar items
-☐ Master chart complete with all conditions/topics
-☐ Mnemonics researched via WebSearch (not invented)
 
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
@@ -301,6 +317,30 @@ Track your progress:
 
 - Confirm both files saved successfully
 
+### Step 8: LO Coverage Report (SINGLE MODE ONLY)
+
+**Compare LOs included vs LO Inventory from Step 0.8:**
+
+1. Count LOs actually included in the Word guide
+2. Compare against inventory list from Step 0.8
+3. Calculate coverage percentage
+4. Identify any missing LOs
+
+**MANDATORY OUTPUT:**
+```
+---
+LO COVERAGE REPORT
+Source LOs: [N] (from inventory)
+Included LOs: [M]
+Coverage: [M/N] ([percentage]%)
+
+[If 100%]: ✓ All learning objectives from source included.
+[If <100%]: ⚠️ MISSING LOs: [list missing LO numbers and statements]
+---
+```
+
+**If coverage < 100%:** Fix immediately before completing. Add missing LOs to document.
+
 ---
 
 ## Batch Processing
@@ -315,8 +355,7 @@ For batch operations (semicolon-separated files or --merge flag):
 ❌ Paraphrasing learning objective statements (must be verbatim)
 ❌ Missing page breaks between learning objectives
 ❌ Using wrong box colors (e.g., using purple for Clinical Pearls)
-❌ Inventing mnemonics instead of researching via WebSearch
-❌ Missing sections (must have all 4 sections)
+❌ Missing sections (must have all 3 sections)
 ❌ Adding external medical information not in source
 
 ---
@@ -326,14 +365,13 @@ For batch operations (semicolon-separated files or --merge flag):
 ### CORRECT Implementation:
 
 **Structure:**
-✓ 4 sections: Learning Objectives, Key Comparisons, Master Chart, High-Yield Summary
-✓ Each LO has Summary, Tables, Pearls Box, Mnemonics Box, Analogy Box
+✓ 2 sections: Learning Objectives, Key Comparisons
+✓ Each LO has Summary, Tables, Pearls Box
 ✓ Page break after each learning objective
 ✓ Comparison tables for similar conditions (Type I vs Type II diabetes)
 
 **Formatting:**
 ✓ Clinical Pearls box: Teal title (0, 77, 64), #E0F2F1 background
-✓ Memory Tricks box: Orange title (230, 81, 0), #FFF3E0 background
 ✓ High-Yield box: Purple title (118, 75, 162), #F3E5F5 background
 ✓ Section headings: Purple (118, 75, 162)
 ✓ Font: Calibri size 12
@@ -346,9 +384,8 @@ For batch operations (semicolon-separated files or --merge flag):
 ### INCORRECT Implementation:
 
 **Structure:**
-✗ Only 3 sections (missing High-Yield Summary)
+✗ Only 1 section (missing Key Comparisons)
 ✗ No page breaks between learning objectives
-✗ Missing Analogy boxes
 ✗ No comparison tables for similar items
 
 **Formatting:**

@@ -146,11 +146,9 @@ Using extracted source data...
 Creating:
 - Section 1: Learning Objectives (verbatim from source_data.learning_objectives)
 - Section 2: Key Comparisons (from source_data.comparisons)
-- Section 3: Master Chart (from source_data.entities)
-- Section 4: High-Yield Summary (from source_data.clinical_pearls)
 
 Following template requirements:
-✓ 4 sections
+✓ 2 sections
 ✓ Soft pastel colors
 ✓ Calibri 12pt font
 ✓ Comparison Item Inventory Protocol
@@ -356,7 +354,7 @@ Research mnemonics ONCE via WebSearch, use in all applicable formats:
 
 ### 4. **Template Compliance Per Format**
 Each format has specific requirements - follow them exactly:
-- Word: Soft pastels, 12pt, 4 sections
+- Word: Soft pastels, 12pt, 2 sections
 - Excel: Font 10, white borders, ROW_COLORS
 - Anki: Exact wording, 3-15 words, LO-filtered
 

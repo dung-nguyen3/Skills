@@ -17,8 +17,6 @@ Location: `.claude/commands/`
 **What it creates:**
 - Section 1: Learning Objectives (with tables, clinical pearls, mnemonics)
 - Section 2: Key Comparisons (side-by-side comparison tables)
-- Section 3: Master Chart (comprehensive overview table)
-- Section 4: High-Yield Summary (color-coded boxes by category)
 
 **Example:**
 ```
@@ -184,7 +182,7 @@ Location: `.claude/commands/`
 **Best For:** Comprehensive study preparation, token-efficient multi-format generation
 
 **What it creates:**
-1. **Word LO Study Guide** - 4 sections with learning objectives, comparisons, master chart
+1. **Word LO Study Guide** - 2 sections with learning objectives and comparisons
 2. **Excel Comparison Chart** - Side-by-side comparison tables with soft pastel colors
 3. **Anki Flashcards** - Q&A cards with LO-filtering and exact terminology
 

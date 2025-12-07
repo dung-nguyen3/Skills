@@ -147,6 +147,32 @@ ROW_COLORS = [
 
 ---
 
+## FORMATTING REQUIREMENTS - Python Reference
+
+**→ See Excel_Master_Chart_Example.py for exact implementation of all formatting requirements**
+
+### Colors
+- 3-shade COLOR_SETS system (header, main, row_label)
+- Rotate by category/class using pastel palette
+- All data cells MUST have pastel backgrounds
+
+**→ See Excel_Master_Chart_Example.py lines 25-90 for exact COLOR_SETS and rotation logic**
+
+### Borders
+- White thin borders on ALL cells
+- Master Chart doesn't use merged cells, so no special merge handling needed
+
+**→ See Excel_Master_Chart_Example.py for border definitions**
+
+### Row Heights & Column Widths
+- Header row: 25
+- Data rows: Auto-expand to fit content
+- Column widths vary by content type (see Column Width Guidelines above)
+
+**→ See Excel_Master_Chart_Example.py for exact implementation**
+
+---
+
 ## CONTENT GUIDELINES
 
 ### Category/Class Column (Column A):

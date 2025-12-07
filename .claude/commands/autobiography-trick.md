@@ -1,24 +1,51 @@
 ---
 description: Create engaging drug autobiography stories with personified characters
-argument-hint: Single file, batch files separated by semicolon, or directory path (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir")
+argument-hint: Single file, batch files separated by semicolon, or directory path. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
 Create drug autobiography stories from source file: $ARGUMENTS
 
 ## Instructions
 
-### Step 0: Detect Mode (Single vs Batch)
+### Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Parse arguments:** If $ARGUMENTS contains `;` → BATCH MODE (multiple files), otherwise SINGLE MODE.
+**Parse arguments to detect mode:**
 
-**State mode:** MODE DETECTED: [SINGLE/BATCH], File count: [#], Files: [list]
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
 
----
+**Step 0.2: Check for --merge flag**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
 
-### Step 0.5: Handle Directory Input
+**Step 0.3: Check for semicolons**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
 
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
+
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 autobiography document (inline processing)
+- **BATCH SEPARATE**: N files → N autobiography documents (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged autobiography document (orchestrator agent, intelligent merge)
 
 ---
 
@@ -163,29 +190,29 @@ Provide:
 **Output Filename Rule:**
 1. Strip file extension and common suffixes (`_text.txt`, `_extracted.txt`, etc.)
 2. Strip course prefixes (`Micro_`, `Pharm_`, `Clinical_`, `Patho_`, etc.)
-3. Replace underscores with spaces for readability
-4. Extract lecture number and topic: `[Number] [Topic]` or just `[Topic]`
-5. Preserve capitalization as-is (after underscore→space conversion)
-6. Add appropriate extension: `.docx`
+3. Keep underscores in place (do NOT replace with spaces)
+4. Extract lecture number and topic: `[Number]_[Topic]` or just `[Topic]`
+5. Preserve capitalization as-is
+6. Add autobiography suffix: `_autobiography.docx`
 7. NO template suffixes, NO title case normalization
 
 **Examples:**
-- `Micro_4 Intro to Virology_text.txt` → `4 Intro to Virology.docx`
-- `Pharm_11 Beta Blockers_text.txt` → `11 Beta Blockers.docx`
-- `Micro_4_Intro_To_Virology_text.txt` → `4 Intro To Virology.docx`
-- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology.docx`
+- `Micro_4 Intro to Virology_text.txt` → `4_Intro to Virology_autobiography.docx`
+- `Pharm_11 Beta Blockers_text.txt` → `11_Beta Blockers_autobiography.docx`
+- `Micro_4_Intro_To_Virology_text.txt` → `4_Intro_To_Virology_autobiography.docx`
+- `Micro_Basics Of Immunology_text.txt` → `Basics Of Immunology_autobiography.docx`
 
 **Batch Merge Naming:**
 - Input: `Micro_4 Intro to Virology_text.txt` + `Micro_5 Viral Replication_text.txt`
-- Output: `Lecture 4-5.docx`
-- Format: `Lecture [min]-[max].docx` (based on lecture numbers found)
+- Output: `Lecture_4-5_autobiography.docx`
+- Format: `Lecture_[min]-[max]_autobiography.docx` (based on lecture numbers found)
 
 **Study Guide Output:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename].docx`
+- Save to: `[Class]/[Exam]/Claude Study Tools/[OutputFilename]_autobiography.docx`
 - Create Claude Study Tools folder if doesn't exist
 
 **Python File:**
-- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename].py`
+- Save to: `[Class]/[Exam]/Claude Study Tools/py/[OutputFilename]_autobiography.py`
 - Create `py/` subfolder if doesn't exist
 
 - Confirm both files saved successfully

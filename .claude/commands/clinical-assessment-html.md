@@ -15,15 +15,28 @@ Create a clinical assessment guide from: $ARGUMENTS
 - Last argument is always the chief complaint (quoted string)
 - Everything before it is the file/directory path(s)
 
-**Check for --merge flag:**
+**Step 0.1: Check if input is a directory**
+- If file path is a directory:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
 - If first argument is `--merge`: **BATCH MERGE MODE**
 - Strip `--merge`, extract file list and chief complaint
 
-**Check for semicolons in file argument:**
+**Step 0.3: Check for semicolons in file argument**
 - If file argument contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
 
-**Otherwise: SINGLE MODE**
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
 **State which mode detected:**
 ```
@@ -31,18 +44,13 @@ MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
 Chief Complaint: [extract from last argument]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
 ```
 
 **Mode Descriptions:**
 - **SINGLE**: 1 file → 1 clinical guide (inline processing)
 - **BATCH SEPARATE**: N files → N clinical guides (agent per file, isolated contexts)
 - **BATCH MERGE**: N files → 1 merged clinical guide (orchestrator agent, filters relevant content from all files)
-
----
-
-### Step 0.5: Handle Directory Input
-
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
 If batch (semicolon-separated), process each path independently.
 
 ---

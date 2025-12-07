@@ -71,8 +71,7 @@ Your study guide folder now has automated quality controls and shortcuts:
 4. Creates comprehensive Word doc with:
    - All learning objectives answered (all parts)
    - Key comparison tables
-   - Master chart
-   - High-yield summary boxes
+   - Clinical pearls boxes
 5. Researches mnemonics via WebSearch
 6. Runs post-creation verification
 7. Saves to: `Pharmacology/Exam 3/Claude Study Tools/Lecture_42_Study_Guide.docx`

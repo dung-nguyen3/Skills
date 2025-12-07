@@ -60,17 +60,14 @@ I automatically suggest myself when you:
 
 ### 2. Structure Requirements
 
-**Excel Study Guides (4 tabs required):**
-- Tab 1: Drug Details / Learning Objectives
+**Excel Drug Charts (3 tabs required):**
+- Tab 1: Drug Details
 - Tab 2: Key Comparisons
 - Tab 3: Master Chart
-- Tab 4: High-Yield Summary
 
-**Word Study Guides (4 sections required):**
+**Word Study Guides (2 sections required):**
 - Section 1: Learning Objectives (detailed answers)
 - Section 2: Key Comparisons (side-by-side tables)
-- Section 3: Master Chart (comprehensive reference)
-- Section 4: High-Yield Summary (color-coded boxes)
 
 **HTML Study Guides (4 tabs required):**
 - Tab 1: Learning Objectives / Drug Details
@@ -99,12 +96,10 @@ I automatically suggest myself when you:
 ### 4. Required Elements
 
 **All Study Guides Must Include:**
-- All 4 tabs/sections present
+- All required tabs/sections present (varies by format)
 - Comparison tables (when 2+ similar items)
 - Memory tricks/mnemonics
 - Clinical pearls (where applicable)
-- Master chart with ALL topics from source
-- High-yield summary section
 
 ### 5. Comparison Item Inventory Protocol (MANDATORY)
 
@@ -200,9 +195,9 @@ All 5 items present - PASS
 - Wrong hex codes
 
 ### ❌ Structure Problems
-- Missing tabs/sections (not all 4 present)
+- Missing tabs/sections
 - Tabs in wrong order
-- Missing required elements (Master Chart, High-Yield)
+- Missing required elements
 
 ### ❌ Formatting Errors
 - Wrong font (not Calibri)
@@ -213,8 +208,7 @@ All 5 items present - PASS
 ### ❌ Completeness Issues
 - No comparison tables (when 2+ similar items exist)
 - Missing mnemonics section
-- Incomplete Master Chart
-- No high-yield summary
+- Incomplete coverage of source material
 
 ---
 
@@ -286,15 +280,13 @@ I provide:
 
 **Before considering study guide complete, verify:**
 
-- [ ] All 4 tabs/sections present
+- [ ] All required tabs/sections present (2 for Word, 3 for Excel, 4 for HTML)
 - [ ] Soft pastel colors used (hex codes match)
 - [ ] Calibri font, size 12pt (Word/Excel)
 - [ ] Table headers: bold + colored background
 - [ ] Comparison tables created (when 2+ similar items)
 - [ ] Memory tricks/mnemonics included
 - [ ] Clinical pearls added (where applicable)
-- [ ] Master Chart includes ALL topics from source
-- [ ] High-Yield Summary section populated
 - [ ] Color-coded boxes used appropriately
 - [ ] Formatting consistent throughout
 

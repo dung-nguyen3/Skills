@@ -149,8 +149,6 @@ Perform these checks methodically:
 **Word LO:**
 - Learning Objectives section (all parts answered)
 - Key Comparisons section
-- Master Chart section
-- High-Yield Summary section
 - Soft pastel color scheme
 
 **HTML LO:**

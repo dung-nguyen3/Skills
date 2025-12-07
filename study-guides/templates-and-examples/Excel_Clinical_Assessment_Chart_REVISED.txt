@@ -6,6 +6,7 @@
 1. **Source-Only Policy**: Only use information from the source file. Do not add external medical knowledge.
 2. **Mnemonic Research**: All mnemonics MUST be researched via WebSearch - never invent them.
 3. **4-Tab Structure**: Key Comparisons, Master Chart, H&P Guide, Summary (in that order)
+   - **Note**: This clinical chart's 4-tab structure IS APPROPRIATE and DIFFERENT from drug charts (which use 3 tabs). Tab 4 (Summary) is ESSENTIAL for clinical practice and includes RED FLAGS, mnemonics, and critical warnings that are vital for patient safety.
 4. **Onset-Based Categorization**: Group conditions by onset pattern, not just category
 5. **H&P Guide**: Comprehensive guide including OLDCAARTS history, PMH/FH/SH, ROS, Physical Exam with verbalizations, Patient Education, and Red Flags
 
@@ -127,6 +128,52 @@ Row 2+: [One condition per row, grouped by onset]
 - 🟢 = First-line treatment
 - ❗ = Critical point
 - ✅ = Positive finding/expected result
+
+---
+
+## FORMATTING REQUIREMENTS - Python Reference
+
+**→ See Excel_Clinical_Assessment_Example.py for exact implementation of all formatting requirements**
+
+### Colors
+- ONSET_COLORS system (Acute, Subacute, Chronic categorization)
+- Clinical Assessment uses its own color scheme (NOT the standard COLOR_SETS)
+- All data cells MUST have pastel backgrounds
+
+**→ See Excel_Clinical_Assessment_Example.py for exact ONSET_COLORS definitions**
+
+### Borders
+- White thin borders on ALL cells
+- Apply to ALL cells BEFORE merging (see merged cell section below)
+
+**→ See Excel_Clinical_Assessment_Example.py for border definitions**
+
+### Row Heights & Column Widths
+- Vary by content type and tab
+
+**→ See Excel_Clinical_Assessment_Example.py for exact dimensions per element**
+
+### CRITICAL: Merged Cell Border Behavior
+
+When merging cells in openpyxl, only the top-left cell retains styling (borders, colors, etc.). Other cells become MergedCell objects and lose formatting.
+
+**CORRECT PATTERN (always use):**
+1. Apply styling (borders, colors, fonts) to ALL cells in range FIRST
+2. THEN merge the cells
+
+**Example:**
+```python
+# Step 1: Style ALL cells in the range
+for col_idx in range(start_col, end_col + 1):
+    cell = ws.cell(current_row, col_idx)
+    apply_cell_style(cell, text=value if col_idx==start_col else '', bg_color=color)
+
+# Step 2: THEN merge
+ws.merge_cells(start_row=current_row, start_column=start_col,
+               end_row=current_row, end_column=end_col)
+```
+
+**→ See Excel_Clinical_Assessment_Example.py lines 111-119, 156-162, 168-176, 447-455, 461-468 for complete implementation**
 
 ---
 
@@ -406,6 +453,12 @@ This section lists findings that require immediate evaluation or referral.
 
 ## MNEMONIC RESEARCH PROTOCOL
 
+**CRITICAL REQUIREMENT: WebSearch is MANDATORY for all mnemonics**
+- You MUST use WebSearch to find established medical mnemonics
+- NEVER invent or create your own mnemonics
+- Only use proven mnemonics from medical education resources (USMLE, medical school materials)
+- If no mnemonic is found via WebSearch, do not include one
+
 ### Search Strategy
 ```
 Search queries to use:
@@ -416,10 +469,11 @@ Search queries to use:
 ```
 
 ### Rules
-- ONLY use mnemonics found through research
-- NEVER invent new mnemonics
+- ONLY use mnemonics found through WebSearch research
+- NEVER invent new mnemonics under any circumstances
 - Include full breakdown of each letter/word
 - Place mnemonics directly below relevant comparison tables
+- Cite source when possible
 
 ---
 

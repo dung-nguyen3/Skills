@@ -1,5 +1,5 @@
 ---
-description: Create comprehensive 3-tab Excel drug chart from pharmacology source material
+description: Create comprehensive Excel drug chart (3 main tabs + optional FYI) from pharmacology source material
 argument-hint: Single file, batch files separated by semicolon, or directory paths. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
@@ -11,34 +11,41 @@ Create Excel drug chart from: $ARGUMENTS
 
 **Parse arguments to detect mode:**
 
-**Check for --merge flag:**
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
 - If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
 - Strip `--merge` from arguments to get file list
 
-**Check for semicolons:**
+**Step 0.3: Check for semicolons**
 - If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
 
-**Otherwise: SINGLE MODE**
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
 **State which mode detected:**
 ```
 MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
 ```
 
 **Mode Descriptions:**
 - **SINGLE**: 1 file → 1 Excel chart (inline processing)
 - **BATCH SEPARATE**: N files → N Excel charts (agent per file, isolated contexts)
 - **BATCH MERGE**: N files → 1 merged Excel chart (orchestrator agent, intelligent merge)
-
----
-
-### Step 0.5: Handle Directory Input
-
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
 
 ---
 
@@ -62,6 +69,61 @@ Drug list: [Drug A, Drug B, Drug C, ...]
 
 **Keep this list for verification at end (Step 10).**
 
+**Edge Case Drugs - Tracking Ambiguous Classifications:**
+
+During inventory, identify drugs that may not fit cleanly into the main drug class structure:
+
+**What qualifies as an edge case drug:**
+- Treatment/antidote agents (e.g., pralidoxime for organophosphate poisoning)
+- Supportive therapy drugs mentioned alongside main therapeutic agents
+- Drugs discussed with full details (MOA, route, uses, AEs, etc.) but not listed in main classification
+- Adjunct agents that don't belong to a specific drug class
+
+**Process for edge case drugs:**
+
+1. **During Step 0.8 Inventory:** Flag any drugs that don't clearly fit into the main drug classes listed in source
+   - Example: "2-PAM (Pralidoxime) - discussed as treatment for organophosphate poisoning, not listed in main 4 drug classes"
+
+2. **Continue with main chart:** Do NOT block chart creation on edge cases
+   - Create all 3 tabs using only the clearly classified drugs
+   - Complete drug coverage report
+
+3. **After chart completion (Step 9):** Report edge case drugs to user and ask for guidance
+
+   **Output format:**
+   ```
+   ---
+   EDGE CASE DRUGS IDENTIFIED
+   The following drugs were discussed in source but don't fit into the main drug classification:
+
+   1. [Drug Name] ([Brand]) - [Brief reason, e.g., "treatment for X poisoning"]
+      Source pages: [page numbers]
+
+   Should these be included in the chart? If yes, under which drug class?
+   ---
+   ```
+
+4. **If user confirms inclusion:**
+   - Add to appropriate tab/class as user specifies
+   - Update drug coverage report to reflect inclusion
+   - Regenerate affected sections
+
+**Example - Cholinergic Agents source:**
+```
+Edge case identified:
+- Pralidoxime (2-PAM) - Treatment for organophosphate poisoning
+  Discussed: MOA, route, uses, AEs, contraindications, PK (pages 698-706)
+  Not listed in main 4 classes: Direct acting agonists, AChE inhibitors,
+  Cholinergic antagonists, Neuromuscular blockers
+
+Ask user: "Should Pralidoxime (2-PAM) be included? If yes, under which class?"
+```
+
+**When NOT to flag as edge case:**
+- Drugs clearly listed in one of the main drug classes
+- FYI drugs (handled separately in Step 0.7)
+- Brief mentions without detailed drug information
+
 ---
 
 ### Step 1: Pre-Creation Verification & Agent Invocation
@@ -73,11 +135,14 @@ Drug list: [Drug A, Drug B, Drug C, ...]
 ```
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
-☐ Instruction template: Excel Drugs Chart 11-1.txt
+☐ Text template: Excel_Drugs_Chart_11-1_REVISED.txt (WHAT to create - structure/requirements)
+☐ Python reference: Excel_Drug_Example.py (HOW to implement - styling/code)
+☐ Resource hierarchy: Text=structure/requirements, Python=styling/implementation
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
-☐ 3-tab structure: Drug Details, Key Comparisons, Master Chart
+☐ 3-tab structure (+ optional FYI): Drug Details, Key Comparisons, Master Chart, FYI Drugs (if source has FYI section)
 ☐ 10 categories: MOA, Route, Uses (🟢 DOC), Combination, Adverse Effects (⚠️ toxicity), Contraindications, Interactions, PK, Special, [Other]
+☐ FYI drugs: Check if source has FYI/Future Reference section (create 4th tab if present)
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -177,6 +242,50 @@ Read these files in order:
 
 ### Step 3: Analyze Source File
 
+**CRITICAL - Extract Exact Drug Class Names:**
+
+Before analyzing drug details, identify and extract the EXACT drug class names from the source:
+
+1. **Find the drug classification structure** (usually near the beginning of lecture slides)
+2. **Copy drug class names EXACTLY as written** - word-for-word, character-for-character
+3. **Do NOT:**
+   - Paraphrase or "improve" class names (e.g., "Direct acting agonists" → ❌ "Direct Muscarinic Agonists")
+   - Add clarifying details not in source (e.g., "Neuromuscular blockers" → ❌ "Neuromuscular Blockers (Depolarizing)")
+   - Create new classes not explicitly listed in source (e.g., ❌ "Nicotinic Agonists" if source doesn't list it as a main class)
+   - Expand abbreviations unless source does (e.g., "AChE inhibitors" → ❌ "Acetylcholinesterase Inhibitors")
+   - Combine or split classes differently than source presents them
+
+4. **Use these EXACT class names** throughout all tabs, table headers, labels, and reports
+
+**Example from Cholinergic Agents source (lines 14-18):**
+```
+✅ CORRECT (exact from source):
+1. Direct acting agonists
+2. AChE inhibitors
+3. Cholinergic antagonists
+4. Neuromuscular blockers
+
+❌ INCORRECT (modified):
+- "Direct Muscarinic Agonists" ← paraphrased/made more specific
+- "Cholinesterase Inhibitors" ← expanded abbreviation AChE
+- "Muscarinic Antagonists" ← paraphrased (source says "Cholinergic")
+- "Neuromuscular Blockers (Depolarizing)" ← added clarifying detail
+- "Nicotinic Agonists" ← created new class not in source's main list
+```
+
+**Same rule applies to drug names:**
+- Use generic and brand names EXACTLY as written in source
+- Preserve capitalization, spacing, abbreviations, punctuation, formatting
+- Example: If source says "OnabotulinumtoxinA (Botox®)", use that exact spelling/capitalization
+
+**Why this matters:**
+- Ensures charts match source material exactly (students can cross-reference easily)
+- Prevents confusion from inconsistent terminology
+- Follows source-only policy strictly
+- Mirrors verbatim-copy requirement for Learning Objectives
+
+---
+
 **CRITICAL - Read ENTIRE source file:**
 - Identify ALL drugs mentioned (don't skip any)
 - Note drug classes and classifications
@@ -184,7 +293,7 @@ Read these files in order:
 - Verify first-line designations
 - Document combination therapies
 
-### Step 4: Create 3-Tab Excel Chart
+### Step 4: Create 3-Tab Excel Chart (+ Optional FYI Tab)
 
 **Required Tabs:**
 
@@ -223,7 +332,7 @@ Note: Drug details/explanations CAN be paraphrased from source content.
 </verbatim-requirement>
 
 <template-compliance>
-MANDATORY TEMPLATE REQUIREMENTS - Excel Drug Chart (3 tabs):
+MANDATORY TEMPLATE REQUIREMENTS - Excel Drug Chart (3 main tabs + optional FYI tab):
 
 STRUCTURE:
 - Tab 1 "Drug Details": One table per drug class, columns=drugs, rows=properties
@@ -278,7 +387,7 @@ Track your progress:
 **MANDATORY - Verify EACH requirement before reporting complete:**
 
 **Structure Compliance:**
-☐ EXACTLY 3 tabs present: Drug Details, Key Comparisons, Master Chart
+☐ 3 main tabs present (+ FYI tab if source has FYI section): Drug Details, Key Comparisons, Master Chart
 ☐ Tab names correct
 ☐ Tab 1: One table per drug class (NOT all classes in one table)
 ☐ Tab 1: 10 categories in correct order (MOA, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special, [Other])
@@ -289,6 +398,9 @@ Track your progress:
 ☐ Tab 2: Similar info grouped together
 ☐ Tab 3: ALL drugs in ONE table, header frozen
 ☐ Tab 3: Columns in correct order (Drug Class, Drug Name, Mechanism, Route, Uses, Combination, Adverse Effects, Contraindications, Interactions, PK, Special, [Other])
+☐ Tab 4 (if applicable): FYI Drugs tab present if source contains FYI/Future Reference section
+☐ Tab 4 (if applicable): Simple 2-column format (Drug Name | Page Number)
+☐ Tab 4 (if applicable): FYI drugs NOT included in main drug inventory count
 
 **Formatting Compliance:**
 ☐ Header row: Dark blue (#4472C4), white bold text, size 12
@@ -296,10 +408,18 @@ Track your progress:
 ☐ Each drug class uses ONE consistent color
 ☐ Colors rotate when drug class changes
 ☐ White borders (#FFFFFF) on all cells
+☐ Merged cells have visible borders (no missing horizontal lines)
 ☐ Text wrapping enabled on all cells
 ☐ Column widths appropriate (25-40)
 ☐ Row heights fit content
 ☐ Font: Calibri, size 11 (headers 12)
+
+**Python Pattern Compliance:**
+☐ COLOR_SETS system used (3-shade: header, main, row_label)
+☐ Colors match Excel_Drug_Example.py specifications
+☐ Border pattern matches Python example (white thin borders)
+☐ Merged cell pattern correct (styled ALL cells BEFORE merging)
+☐ Font sizes match Python example per tab type
 
 **Source Accuracy:**
 ☐ Drug-specific info NOT applied to entire class
@@ -316,6 +436,12 @@ Track your progress:
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
 **State: "Post-creation verification complete - all checks passed" or list issues found and fix them.**
+
+**Resource Compliance Note:**
+Briefly confirm which resources were followed:
+- Structure requirements: [Text template ✓]
+- Styling implementation: [Python example ✓]
+- Any conflicts resolved per hierarchy: [List if any]
 
 ### Step 8: Save Files
 
@@ -365,12 +491,66 @@ Source drugs: [N] (from inventory)
 Included drugs: [M]
 Coverage: [M/N] ([percentage]%)
 
+Drugs included (by class):
+- [Drug Class 1]: [Drug A, Drug B, Drug C]
+- [Drug Class 2]: [Drug D, Drug E]
+- [Drug Class 3]: [Drug F, Drug G, Drug H]
+...
+
 [If 100%]: All drugs from source included.
 [If <100%]: MISSING: [list missing drug names]
 ---
 ```
 
+**FORMAT EXAMPLES:**
+
+✅ **CORRECT Format (Single-line per class):**
+```
+Drugs included (by class):
+- Direct Muscarinic Agonists: Acetylcholine (Miochol®), Bethanechol (Urecholine®), Pilocarpine (IsoptoCarpine®)
+- Nicotinic Agonists: Nicotine, Varenicline (Chantix®)
+- Cholinesterase Inhibitors: Physostigmine (Eserine®), Neostigmine (Prostigmin®), Donepezil (Aricept®)
+```
+
+❌ **INCORRECT Format (Multi-line per class):**
+```
+**Direct Muscarinic Agonists (3):**
+- Acetylcholine (Miochol®)
+- Bethanechol (Urecholine®)
+- Pilocarpine (IsoptoCarpine®)
+```
+**Why incorrect:** Each drug on separate line instead of comma-separated on single line; breaks scannability
+
+❌ **INCORRECT Format (No class grouping):**
+```
+Drugs included:
+- Acetylcholine (Miochol®)
+- Bethanechol (Urecholine®)
+- Physostigmine (Eserine®)
+```
+**Why incorrect:** Loses class context; drugs not grouped by class
+
+---
+
 **If coverage < 100%:** Fix immediately before completing. Add missing drugs to appropriate tabs.
+
+### FYI Drugs Report (If Applicable)
+
+**After reporting main drug coverage, if source contained FYI drugs, report them:**
+
+**MANDATORY OUTPUT (if FYI drugs present):**
+```
+---
+FYI DRUGS
+FYI drugs found: [N]
+FYI drugs: [Drug A, Drug B, Drug C]
+
+Note: FYI drugs are NOT included in main drug inventory count. See Tab 4 for page numbers.
+---
+```
+
+**If no FYI drugs in source:**
+- Simply state: "No FYI drugs found in source."
 
 ---
 
@@ -392,7 +572,7 @@ Coverage: [M/N] ([percentage]%)
 ### CORRECT Implementation:
 
 **Structure:**
-✓ 3 tabs: Drug Details, Key Comparisons, Master Chart
+✓ 3 main tabs: Drug Details, Key Comparisons, Master Chart (+ FYI tab if applicable)
 ✓ Tab 1 has separate table for each drug class (NRTIs, NNRTIs, PIs, etc.)
 ✓ Tab 1 has 10 categories in correct order
 ✓ Tab 2 has specific comparison tables (Combined Drug, Adverse Effects, First/Second-line, Toxicity, etc.)
@@ -408,7 +588,9 @@ Coverage: [M/N] ([percentage]%)
 ### INCORRECT Implementation:
 
 **Structure:**
-✗ 4 tabs instead of 3 (High-Yield & Pearls tab should NOT exist)
+✗ 4 tabs with wrong 4th tab (e.g., High-Yield & Pearls tab should NOT exist - only FYI Drugs tab is acceptable as 4th tab)
+✗ Missing FYI tab when source has FYI section
+✗ Including FYI drugs in main drug count
 ✗ All drug classes in ONE giant table instead of separate tables
 ✗ Wrong category order or missing categories
 ✗ Tab 2 missing specific comparison tables

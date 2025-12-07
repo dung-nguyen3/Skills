@@ -83,7 +83,7 @@ def get_color_set(index):
 # HELPER FUNCTIONS
 # =============================================================================
 
-def apply_cell_style(cell, text='', bold=False, font_size=11, bg_color=None,
+def apply_cell_style(cell, text='', bold=False, font_size=10, bg_color=None,
                      border=True, alignment='left', wrap=True, font_color='000000'):
     """Apply comprehensive cell styling"""
     cell.value = text

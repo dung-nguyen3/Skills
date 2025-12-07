@@ -34,29 +34,50 @@ Create an **interactive HTML study guide** for ANY medical topic with learning o
 /LO-html --merge "/path/to/dir1;/path/to/dir2"
 ```
 
-## Mode Detection & Directory Expansion
+## Step 0: Detect Mode (Single / Batch Separate / Batch Merge)
 
-**Step 1: Check for --merge flag:**
-- If arguments start with `--merge`: **BATCH MERGE MODE** (N files → 1 merged HTML)
-- Strip `--merge` to get file list
+**Parse arguments to detect mode:**
 
-**Step 2: Check for semicolons:**
-- If arguments contain `;`: **BATCH SEPARATE MODE** (N files → N HTML files)
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
 
-**Step 3: Handle Directory Input:**
-If path is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
+**Step 0.2: Check for --merge flag**
+- If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
+- Strip `--merge` from arguments to get file list
 
-**Step 4: Update mode if needed:**
-- If 1 file: SINGLE MODE
-- If multiple files AND no --merge: BATCH SEPARATE MODE
-- If multiple files AND --merge: BATCH MERGE MODE
+**Step 0.3: Check for semicolons**
+- If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
+- Split by semicolon to get file list
 
-**For BATCH SEPARATE:** Launch batch-separate-processor agent N times (architectural isolation)
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
 
-**For BATCH MERGE:** Launch batch-merge-orchestrator agent once (intelligent merge with overlap resolution)
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
-**For SINGLE:** Process inline (read Steps below)
+**State which mode detected:**
+```
+MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
+File count: [#]
+Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
+```
+
+**Mode Descriptions:**
+- **SINGLE**: 1 file → 1 HTML guide (inline processing)
+- **BATCH SEPARATE**: N files → N HTML guides (agent per file, isolated contexts)
+- **BATCH MERGE**: N files → 1 merged HTML guide (orchestrator agent, intelligent merge)
+
+**Agent Invocation:**
+- **For BATCH SEPARATE:** Launch batch-separate-processor agent N times (architectural isolation)
+- **For BATCH MERGE:** Launch batch-merge-orchestrator agent once (intelligent merge with overlap resolution)
+- **For SINGLE:** Process inline (follow steps below)
 
 ---
 

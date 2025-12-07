@@ -29,7 +29,7 @@ Create comprehensive, color-coded 3-tab Excel drug charts from pharmacology sour
 
 ---
 
-## FILE STRUCTURE: 3 TABS
+## FILE STRUCTURE: 3 TABS (+ Optional FYI Tab)
 
 ### Tab 1: Drug Details
 - Sheet name: "Drug Details"
@@ -89,6 +89,25 @@ Create comprehensive, color-coded 3-tab Excel drug charts from pharmacology sour
 10. Pharmacokinetics
 11. Special Considerations
 12. [Other categories as found in source]
+
+### Tab 4 (Optional): FYI Drugs
+- Sheet name: "FYI Drugs"
+- **Only include if source has FYI/Future Reference sections**
+- Simple 2-column table: Drug Name | Page Number
+- Lists drugs marked as "FYI" or "Future reference material" in source
+- These drugs are NOT counted in main drug inventory
+- Format: Plain list, minimal styling
+
+**When to include:**
+- Source contains section labeled "FYI", "Future reference", or similar
+- Drugs explicitly marked as supplementary/additional reference
+
+**Format:**
+- Column 1: Drug Name (with brand name in parentheses)
+- Column 2: Page Number
+- Header row: Standard blue (#4472C4) with white text
+- Data rows: Simple white background or light pastel
+- No complex styling needed
 
 ---
 
@@ -168,10 +187,21 @@ Create comprehensive, color-coded 3-tab Excel drug charts from pharmacology sour
 
 ### Colors & Styling
 - See `Excel_Color_Reference.txt` for complete specifications
+- 3-shade COLOR_SETS system (header, main, row_label)
+- Rotate by drug class using pastel palette
 - Header row: Dark blue (#4472C4), white bold text
 - Data rows: Rotate through 10 pastel colors by drug class
 - All cells: White borders (#FFFFFF)
-- Text: Black, Calibri, size 10 (size 12 for headers)
+
+**→ See Excel_Drug_Example.py lines 15-85 for exact COLOR_SETS and rotation logic**
+- Font Specifications (see Excel_Drug_Example.py for exact implementation):
+  - Drug Details tab data: Size 12
+  - Key Comparisons tab data: Size 10
+  - Master Chart tab data: Size 10
+  - Headers: Size 12 (bold)
+  - Drug class headers: Size 18 (bold)
+  - Drug names row: Size 16 (bold)
+  - Property labels: Size 14 (bold)
 
 ### Row Heights
 - Header row: 25
@@ -182,9 +212,35 @@ Create comprehensive, color-coded 3-tab Excel drug charts from pharmacology sour
 - Drug names: 25
 - Long text (mechanism, uses, AE): 35-40
 
+**→ See Excel_Drug_Example.py for exact row heights and column widths per element**
+
 ### Borders
 - Use white borders (#FFFFFF) - invisible, blends with pastels
 - Creates clean, modern look
+- Apply to ALL cells BEFORE merging (see merged cell section below)
+
+**→ See Excel_Drug_Example.py lines 87-94 for border definitions**
+
+### CRITICAL: Merged Cell Border Behavior
+
+When merging cells in openpyxl, only the top-left cell retains styling (borders, colors, etc.). Other cells become MergedCell objects and lose formatting.
+
+**CORRECT PATTERN (always use):**
+1. Apply styling (borders, colors, fonts) to ALL cells in range FIRST
+2. THEN merge the cells
+
+**Example:**
+```python
+# Step 1: Style ALL cells B, C, D
+for col_idx in range(2, 5):  # Columns B, C, D
+    cell = ws.cell(current_row, col_idx)
+    apply_cell_style(cell, text=value if col_idx==2 else '', bg_color=color)
+
+# Step 2: THEN merge
+ws.merge_cells(start_row=current_row, start_column=2, end_row=current_row, end_column=4)
+```
+
+**See Excel_Drug_Example.py lines 292-300 for complete implementation**
 
 ### Text Formatting Within Cells
 - Use bullet points (•) for lists
@@ -355,7 +411,7 @@ Before finalizing:
 - [ ] Toxicity marked with ⚠️ in Adverse Effects category
 
 ### Structure Compliance
-- [ ] All 3 tabs present with correct names (Drug Details, Key Comparisons, Master Chart)
+- [ ] All 3 main tabs present with correct names (Drug Details, Key Comparisons, Master Chart)
 - [ ] Tab 1: Comparison tables for each drug class (10 categories in order)
 - [ ] Tab 1: Rows follow correct order (MOA, Route, Uses, Combination, AEs, Contraindications, Interactions, PK, Special)
 - [ ] Tab 2: Specific comparison tables included (Combined Drug, AEs, First/Second-line, Toxicity, etc.)
@@ -363,6 +419,9 @@ Before finalizing:
 - [ ] Tab 2: Similar information grouped together
 - [ ] Tab 3: Master chart with ALL drugs
 - [ ] Tab 3: Columns in correct order
+- [ ] Tab 4 (if applicable): FYI Drugs tab present if source has FYI section
+- [ ] Tab 4 (if applicable): Simple 2-column format (Drug Name | Page Number)
+- [ ] Tab 4 (if applicable): FYI drugs NOT included in main drug inventory count
 
 ### Formatting
 - [ ] Colors match Excel_Color_Reference.txt
@@ -387,6 +446,8 @@ Before finalizing:
 - ❌ Mix up category order (must follow the 10-category sequence)
 - ❌ Forget to mark toxicity with ⚠️ emoji
 - ❌ Forget to mark DOC with 🟢 emoji
+- ❌ Include FYI drugs in main drug count or master chart
+- ❌ Skip FYI tab when source has FYI section
 
 **DO:**
 - ✅ Verify drug-specific vs class-wide information
@@ -396,6 +457,9 @@ Before finalizing:
 - ✅ Mark serious/toxic effects with ⚠️ in Adverse Effects
 - ✅ Mark drug of choice with 🟢 in Uses
 - ✅ Group similar information together in Tab 2 comparisons
+- ✅ Check for FYI/Future Reference sections in source
+- ✅ Create FYI Drugs tab if FYI drugs present
+- ✅ List FYI drugs separately from main drugs
 
 ---
 

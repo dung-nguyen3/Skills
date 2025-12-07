@@ -23,7 +23,6 @@ from openpyxl.utils import get_column_letter
 # =============================================================================
 
 MAIN_TITLE_BG = '4472C4'  # Dark blue - ONLY for sheet titles
-MNEMONIC_BG = 'E6F3FF'    # Light blue for mnemonics
 CLINICAL_PEARL_BG = 'E8F5E9'  # Light green for clinical pearls
 
 # Color Set 0: Ice Blue
@@ -32,49 +31,49 @@ ICE_BLUE_MAIN = 'D9E2F3'
 ICE_BLUE_ROW_LABEL = 'C5D3ED'
 
 # Color Set 1: Seafoam
-SEAFOAM_HEADER = 'A5D6A7'
+SEAFOAM_HEADER = 'A8CCA8'
 SEAFOAM_MAIN = 'C8E6C9'
-SEAFOAM_ROW_LABEL = 'B7DDB9'
+SEAFOAM_ROW_LABEL = 'B8D9B9'
 
 # Color Set 2: Light Orchid
-LIGHT_ORCHID_HEADER = 'B39DDB'
+LIGHT_ORCHID_HEADER = 'B8A4D0'
 LIGHT_ORCHID_MAIN = 'D1C4E9'
-LIGHT_ORCHID_ROW_LABEL = 'C2B2E0'
+LIGHT_ORCHID_ROW_LABEL = 'C4B4DC'
 
 # Color Set 3: Champagne
-CHAMPAGNE_HEADER = 'F4D9B3'
+CHAMPAGNE_HEADER = 'E0D0B0'
 CHAMPAGNE_MAIN = 'F7E7CE'
-CHAMPAGNE_ROW_LABEL = 'F6E0C0'
+CHAMPAGNE_ROW_LABEL = 'EBDBBF'
 
 # Color Set 4: Sky Blue
-SKY_BLUE_HEADER = '9ECAE1'
+SKY_BLUE_HEADER = '9DC3E6'
 SKY_BLUE_MAIN = 'BDD7EE'
-SKY_BLUE_ROW_LABEL = 'ACD0E7'
+SKY_BLUE_ROW_LABEL = 'AECDEA'
 
 # Color Set 5: Pale Azure
-PALE_AZURE_HEADER = 'D9ECFF'
+PALE_AZURE_HEADER = 'D0E8FF'
 PALE_AZURE_MAIN = 'F0F8FF'
-PALE_AZURE_ROW_LABEL = 'E5F2FF'
+PALE_AZURE_ROW_LABEL = 'E0F0FF'
 
 # Color Set 6: Blush Pink
-BLUSH_PINK_HEADER = 'F8BBD0'
+BLUSH_PINK_HEADER = 'E8C4CC'
 BLUSH_PINK_MAIN = 'FCE4EC'
-BLUSH_PINK_ROW_LABEL = 'FAD2DE'
+BLUSH_PINK_ROW_LABEL = 'F2D4DC'
 
 # Color Set 7: Soft Lilac
-SOFT_LILAC_HEADER = 'D1C4E9'
+SOFT_LILAC_HEADER = 'D0C8DC'
 SOFT_LILAC_MAIN = 'EDE7F6'
-SOFT_LILAC_ROW_LABEL = 'DFD6ED'
+SOFT_LILAC_ROW_LABEL = 'DED7E9'
 
 # Color Set 8: Soft Tangerine
-SOFT_TANGERINE_HEADER = 'FFD4B3'
+SOFT_TANGERINE_HEADER = 'E0C8B0'
 SOFT_TANGERINE_MAIN = 'FFE8D6'
-SOFT_TANGERINE_ROW_LABEL = 'FFDEC4'
+SOFT_TANGERINE_ROW_LABEL = 'EFD8C3'
 
 # Color Set 9: Powder Blue
-POWDER_BLUE_HEADER = '90CAF9'
+POWDER_BLUE_HEADER = 'A0C4E8'
 POWDER_BLUE_MAIN = 'BBDEFB'
-POWDER_BLUE_ROW_LABEL = 'A5D6FA'
+POWDER_BLUE_ROW_LABEL = 'ADD1F1'
 
 COLOR_SETS = [
     {'header': ICE_BLUE_HEADER, 'main': ICE_BLUE_MAIN, 'row_label': ICE_BLUE_ROW_LABEL},
@@ -103,7 +102,7 @@ def get_color_set(index):
 # HELPER FUNCTIONS
 # =============================================================================
 
-def apply_cell_style(cell, text='', bold=False, font_size=11, bg_color=None,
+def apply_cell_style(cell, text='', bold=False, font_size=10, bg_color=None,
                      border=True, alignment='left', wrap=True, font_color='000000'):
     """Apply comprehensive cell styling"""
     cell.value = text
@@ -179,22 +178,6 @@ def set_column_widths(ws, widths):
     for col_letter, width in widths.items():
         ws.column_dimensions[col_letter].width = width
 
-def add_mnemonic_row(ws, row, mnemonic_text, span_cols=5):
-    """Add mnemonic row directly below a comparison table"""
-    # Label in column A
-    cell_a = ws.cell(row, 1)
-    apply_cell_style(cell_a, text='MEMORY AID', bold=True, font_size=11,
-                    bg_color=MNEMONIC_BG, alignment='left', font_color='0000FF')
-
-    # Apply styling to ALL cells BEFORE merging (columns 2 through span_cols)
-    for col_idx in range(2, span_cols + 1):
-        cell = ws.cell(row, col_idx)
-        apply_cell_style(cell, text=mnemonic_text if col_idx==2 else '', bg_color=MNEMONIC_BG)
-
-    # Now merge mnemonic content across remaining columns
-    ws.merge_cells(start_row=row, start_column=2, end_row=row, end_column=span_cols)
-    ws.row_dimensions[row].height = 60
-
 def add_section_header(ws, row, title):
     """Add section header in Summary tab
 
@@ -266,11 +249,6 @@ def create_key_comparisons_tab(wb):
             apply_cell_style(cell, text=value, bold=bold, bg_color=table_1_main)
         current_row += 1
 
-    # Mnemonic directly below Mechanism table
-    current_row += 1
-    add_mnemonic_row(ws, current_row,
-        'MNEMONIC: "ACID"\n\nA = Anaphylactic (Type I)\nC = Cytotoxic (Type II)\n'
-        'I = Immune complex (Type III)\nD = Delayed (Type IV)', span_cols=5)
     current_row += 3  # Space before next table
 
     # =========================================================================
@@ -339,11 +317,6 @@ def create_key_comparisons_tab(wb):
             bold = (col_idx == 1)
             apply_cell_style(cell, text=value, bold=bold, bg_color=table_3_main)
         current_row += 1
-
-    # Mnemonic for Treatment
-    current_row += 1
-    add_mnemonic_row(ws, current_row,
-        'Type I = Epi first!\nType IV = Time heals (delayed onset, delayed resolution)', span_cols=5)
 
     return ws
 
@@ -442,30 +415,7 @@ def create_summary_tab(wb):
     current_row = 1
 
     # =========================================================================
-    # Section 1: MNEMONICS
-    # =========================================================================
-
-    add_section_header(ws, current_row, "MNEMONICS")
-    current_row += 1
-
-    mnemonics = [
-        ('ACID', 'A = Anaphylactic (Type I)\nC = Cytotoxic (Type II)\n'
-         'I = Immune complex (Type III)\nD = Delayed (Type IV)'),
-        ('Type I timing', '"I" = Immediate (minutes)'),
-        ('Type IV timing', '"IV" looks like "4" = 4th type = delayed (days)'),
-    ]
-
-    for mnemonic_name, mnemonic_content in mnemonics:
-        cell = ws.cell(current_row, 1)
-        full_text = f'MNEMONIC: "{mnemonic_name}"\n\n{mnemonic_content}'
-        apply_cell_style(cell, text=full_text, bg_color=MNEMONIC_BG)
-        ws.row_dimensions[current_row].height = 80
-        current_row += 1
-
-    current_row += 2
-
-    # =========================================================================
-    # Section 2: IF X THINK Y
+    # Section 1: IF X THINK Y
     # =========================================================================
 
     add_section_header(ws, current_row, '"IF X THINK Y" ASSOCIATIONS')
@@ -489,7 +439,7 @@ def create_summary_tab(wb):
     current_row += 2
 
     # =========================================================================
-    # Section 3: KEY DEFINITIONS
+    # Section 2: KEY DEFINITIONS
     # =========================================================================
 
     add_section_header(ws, current_row, "KEY DEFINITIONS")
@@ -513,7 +463,7 @@ def create_summary_tab(wb):
     current_row += 2
 
     # =========================================================================
-    # Section 4: HIGH-YIELD PEARLS
+    # Section 3: HIGH-YIELD PEARLS
     # =========================================================================
 
     add_section_header(ws, current_row, "HIGH-YIELD PEARLS")

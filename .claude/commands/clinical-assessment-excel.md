@@ -11,34 +11,41 @@ Create Excel clinical assessment chart from: $ARGUMENTS
 
 **Parse arguments to detect mode:**
 
-**Check for --merge flag:**
+**Step 0.1: Check if input is a directory**
+- If $ARGUMENTS is a directory path:
+  - List all .txt/.pdf files in directory (non-recursive)
+  - Count files found
+  - Store file list for later use
+  - **Important**: Continue to Step 0.2 with file count information
+
+**Step 0.2: Check for --merge flag**
 - If $ARGUMENTS starts with `--merge`: **BATCH MERGE MODE**
 - Strip `--merge` from arguments to get file list
 
-**Check for semicolons:**
+**Step 0.3: Check for semicolons**
 - If $ARGUMENTS contains semicolons (`;`): **BATCH SEPARATE MODE**
 - Split by semicolon to get file list
 
-**Otherwise: SINGLE MODE**
+**Step 0.4: Check directory file count (from Step 0.1)**
+- If directory with 0 files: **ERROR** - "No .txt/.pdf files found in directory"
+- If directory with 1 file: **SINGLE MODE** - Process that one file
+- If directory with 2+ files: **BATCH SEPARATE MODE** - Process all files independently
+
+**Step 0.5: Otherwise SINGLE MODE**
+- Single file path with no special flags
 
 **State which mode detected:**
 ```
 MODE DETECTED: [SINGLE / BATCH SEPARATE / BATCH MERGE]
 File count: [#]
 Files: [list]
+Source: [directory (auto-detected batch) / semicolon-separated / single file]
 ```
 
 **Mode Descriptions:**
 - **SINGLE**: 1 file → 1 clinical assessment chart (inline processing)
 - **BATCH SEPARATE**: N files → N clinical assessment charts (agent per file, isolated contexts)
 - **BATCH MERGE**: N files → 1 merged clinical assessment chart (orchestrator agent, intelligent merge)
-
----
-
-### Step 0.5: Handle Directory Input
-
-If $ARGUMENTS is a directory, process all .txt/.pdf files within it.
-If batch (semicolon-separated), process each path independently.
 
 ---
 
@@ -52,7 +59,9 @@ If batch (semicolon-separated), process each path independently.
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
 ☐ Physical Assessment Template: WILL AUTO-INCLUDE (H&P reference)
-☐ Instruction template: Excel_Clinical_Assessment_Chart_REVISED.txt
+☐ Text template: Excel_Clinical_Assessment_Chart_REVISED.txt (WHAT to create - structure/requirements)
+☐ Python reference: Excel_Clinical_Assessment_Example.py (HOW to implement - styling/code)
+☐ Resource hierarchy: Text=structure/requirements, Python=styling/implementation
 ☐ Source-only policy: I will ONLY use information from source file
 ☐ Exception: Memory tricks/mnemonics WILL be researched via WebSearch
 ☐ MANDATORY: I will WebSearch for mnemonics/analogies - I will NOT invent them
@@ -266,8 +275,15 @@ Track your progress:
 ☐ Onset-based color coding (Acute=pink, Chronic=seafoam, etc.)
 ☐ Same onset = same color throughout
 ☐ White borders (#FFFFFF) on all cells
+☐ Merged cells have visible borders (no missing horizontal lines)
 ☐ Text wrapping enabled
 ☐ Column widths appropriate (28-45)
+
+**Python Pattern Compliance:**
+☐ ONSET_COLORS system used (Acute, Subacute, Chronic categorization)
+☐ Border pattern matches Python example (white thin borders)
+☐ Merged cell pattern correct (styled ALL cells BEFORE merging)
+☐ Font sizes match Python example per tab type
 
 **Source Accuracy:**
 ☐ All information from source file only
@@ -280,6 +296,12 @@ Track your progress:
 ☐ All onset categories represented
 ☐ Red Flags section complete
 ☐ Mnemonics researched via WebSearch (not invented)
+
+**Resource Compliance Note:**
+Briefly confirm which resources were followed:
+- Structure requirements: [Text template ✓]
+- Styling implementation: [Python example ✓]
+- Any conflicts resolved per hierarchy: [List if any]
 
 **CRITICAL: If ANY check fails, FIX BEFORE reporting complete.**
 
