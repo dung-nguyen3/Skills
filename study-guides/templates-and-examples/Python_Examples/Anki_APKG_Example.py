@@ -461,31 +461,71 @@ def create_flashcard_deck(csv_path, deck_name, output_path, auto_import=None):
 if __name__ == '__main__':
     # Example: Create a sample CSV and convert to APKG
 
+    # =============================================================================
+    # FLASHCARD DATA - CARD DIRECTION GUIDE
+    # =============================================================================
+    #
+    # REVERSE CARDS (Definition/Features → Term):
+    #   Use for: Drug names, diagnostic tools, anatomical structures, diseases
+    #   Format: ("What [category] has [characteristics]?", "[Term]")
+    #
+    #   Examples:
+    #     ("What diagnostic tool measures duration, phase, frequency of heart sounds?",
+    #      "Phonocardiography"),
+    #     ("Which NRTI requires dose adjustment in renal impairment?",
+    #      "Tenofovir (TDF)"),
+    #
+    # FORWARD CARDS (Term/Context → Mechanism/Process):
+    #   Use for: Mechanisms, treatments, side effects, pathophysiology
+    #   Format: ("How/What/When does [term] [action]?", "[Result/mechanism]")
+    #
+    #   Examples:
+    #     ("How does atropine affect presynaptic M2 receptors?",
+    #      "Blocked → ↑NE release → ↑β1 stimulation → ↑HR"),
+    #     ("What are the adverse effects of NRTIs?",
+    #      "Lactic acidosis, hepatic steatosis, lipodystrophy"),
+    #
+    # ANSWER FORMATTING - Line Breaks for Multiple Items:
+    #   When answers contain multiple items (steps, symptoms, treatments), use line breaks.
+    #
+    #   ✓ CORRECT:
+    #     ("What are the symptoms of heart failure?",
+    #      "Dyspnea\nOrthopnea\nParoxysmal nocturnal dyspnea\nPeripheral edema\nFatigue"),
+    #
+    #     ("How is acute hyperkalemia treated?",
+    #      "1. IV Calcium (membrane stabilization)\n2. Insulin + D50W (shift K+ intracellularly)\n3. Albuterol nebulizer\n4. Sodium bicarbonate (if acidotic)\n5. Dialysis (if refractory)"),
+    #
+    #   ✗ WRONG (comma-separated):
+    #     ("What are the symptoms of heart failure?",
+    #      "Dyspnea, orthopnea, paroxysmal nocturnal dyspnea, peripheral edema, fatigue"),
+    #
+    # =============================================================================
+
     # Sample flashcard data (would normally come from source file analysis)
     sample_cards = [
+        # REVERSE CARDS (Features → Term)
         ("What is the mechanism of action of NRTIs?",
-         "Nucleoside/nucleotide reverse transcriptase inhibitors - competitive inhibition of HIV reverse transcriptase"),
+         "Nucleoside/nucleotide reverse transcriptase inhibitors"),
 
         ("Which NRTI requires dose adjustment in renal impairment?",
          "Tenofovir (TDF)"),
 
-        ("What is the black box warning for Abacavir?",
-         "HLA-B*5701 screening required - risk of severe hypersensitivity reaction"),
+        ("What drug class inhibits HIV protease enzyme?",
+         "Protease Inhibitors (PIs)"),
 
-        ("What are the adverse effects of Zidovudine (AZT)?",
-         "Bone marrow suppression, anemia, neutropenia"),
+        # FORWARD CARDS (Term → Mechanism)
+        ("How do NRTIs work?",
+         "Competitive inhibition of HIV reverse transcriptase"),
 
-        ("Which NRTIs are associated with lactic acidosis?",
-         "Didanosine (ddI) and Stavudine (d4T)"),
+        # FORWARD CARDS with line breaks for multiple items
+        ("What are the adverse effects of Tenofovir?",
+         "Renal toxicity\nDecreased bone density\nFanconi syndrome"),
 
-        ("What is the preferred NRTI backbone for initial HIV therapy?",
-         "Tenofovir + Emtricitabine (TDF/FTC) or TAF/FTC"),
+        ("What are the symptoms of lactic acidosis from NRTIs?",
+         "Nausea\nVomiting\nAbdominal pain\nFatigue\nHypotension"),
 
-        ("Define INSTI",
-         "Integrase strand transfer inhibitor - blocks HIV integrase enzyme"),
-
-        ("Which INSTIs have high barrier to resistance?",
-         "Dolutegravir and Bictegravir"),
+        ("When should Abacavir be avoided?",
+         "Patients with HLA-B*5701 allele (hypersensitivity risk)"),
     ]
 
     # Create sample CSV

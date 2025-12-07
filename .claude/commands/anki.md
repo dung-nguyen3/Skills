@@ -241,6 +241,86 @@ For each LO:
 - LO: "Understand peptidoglycan structure" → Cards about components, function
 - LO: "Define virulence factors" → Definition and example cards
 
+**Card Direction Logic (CRITICAL):**
+
+Determine card direction based on content type:
+
+**REVERSE CARDS (Definition/Features → Term):**
+Use when asking "What is the NAME of..." or "Which TERM has..."
+
+Examples:
+- Diagnostic tools: Features → Tool name
+- Drug names: MOA/indications → Drug name
+- Anatomical structures: Location/function → Structure name
+- Disease names: Presentation/features → Disease name
+- Receptor/enzyme names: Function/location → Name
+
+Question templates:
+- "What diagnostic tool [has/uses/measures] [characteristics]?"
+- "Which drug [mechanism/indication]?"
+- "What structure [location/function]?"
+- "Which disease presents with [symptoms]?"
+
+**FORWARD CARDS (Term/Context → Mechanism/Process):**
+Use when asking "HOW/WHY/WHEN/WHERE does..." or "What happens when..."
+
+Examples:
+- Mechanisms: "How does [drug] affect [target]?" → Mechanism
+- Treatments: "How is [condition] treated?" → Treatment protocol
+- Side effects: "What are adverse effects of [drug]?" → Side effects
+- Pathophysiology: "What causes [condition]?" → Pathophysiology
+- Clinical presentation: "What are symptoms of [condition]?" → Symptoms
+- **Procedures/Protocols: ALL STEPS IN ONE CARD** → Complete step-by-step protocol
+
+Question templates:
+- "How does [term] affect [target]?"
+- "What are the [effects/symptoms/causes] of [term]?"
+- "When is [drug/test] used?"
+- "Where does [structure/drug] act?"
+- "What is the protocol/procedure for [test/intervention]?"
+
+**IMPORTANT EXCEPTION - Procedure/Protocol Cards:**
+When the content is a multi-step procedure or protocol, keep ALL steps in ONE card.
+Do NOT split into separate cards per step - the sequence is the concept being tested.
+
+Example:
+✓ CORRECT:
+Q: "What is the protocol for Ankle-Brachial Index?"
+A: "1. Patient supine x10 min
+    2. Doppler measure brachial pressures (both arms, use highest)
+    3. Doppler measure ankle pressures (both legs, use highest per foot)
+    4. Calculate ABI"
+
+✗ WRONG (do not split):
+- Q: "What is step 1 of ABI?" A: "Patient supine"
+- Q: "What is step 2 of ABI?" A: "Measure brachial..."
+[Splitting loses procedural flow and context]
+
+**Answer Formatting - Line Breaks for Multiple Items:**
+When the answer contains multiple items (steps, symptoms, treatments, side effects, etc.), use line breaks to improve scannability.
+
+✓ CORRECT (line breaks for multiple items):
+Q: "What are the symptoms of heart failure?"
+A: "Dyspnea
+Orthopnea
+Paroxysmal nocturnal dyspnea
+Peripheral edema
+Fatigue"
+
+Q: "How is acute hyperkalemia treated?"
+A: "1. IV Calcium (membrane stabilization)
+2. Insulin + D50W (shift K+ intracellularly)
+3. Albuterol nebulizer (shift K+ intracellularly)
+4. Sodium bicarbonate (if acidotic)
+5. Dialysis (if refractory)"
+
+✗ WRONG (comma-separated, hard to scan):
+Q: "What are the symptoms of heart failure?"
+A: "Dyspnea, orthopnea, paroxysmal nocturnal dyspnea, peripheral edema, fatigue"
+
+Q: "How is acute hyperkalemia treated?"
+A: "IV Calcium, insulin + D50W, albuterol, sodium bicarbonate, dialysis if refractory"
+
 **Flashcard Guidelines:**
 
 1. **Question Quality**
@@ -286,11 +366,16 @@ For each LO:
    - Do NOT add external medical knowledge
 
 **Question Type Examples:**
-- "What is the mechanism of action of [drug]?" → "[MOA]"
-- "Which drug class inhibits [target]?" → "[Drug class]"
-- "What are the adverse effects of [drug]?" → "[Side effects]"
-- "Define [term]" → "[Definition]"
-- "Where does [drug] act?" → "[Site of action]"
+
+REVERSE CARDS (Features → Term):
+- "What diagnostic tool measures duration, phase, frequency of heart sounds?" → "Phonocardiography"
+- "Which drug inhibits transpeptidase and prevents peptidoglycan cross-linking?" → "Penicillin"
+- "What structure connects the right atrium to right ventricle?" → "Tricuspid valve"
+
+FORWARD CARDS (Term → Mechanism/Process):
+- "How does atropine affect presynaptic M2 receptors?" → "Blocked → ↑NE release → ↑β1 stimulation"
+- "What are the adverse effects of penicillin?" → "Hypersensitivity reactions, GI upset, rash"
+- "How is hyperkalemia treated emergently?" → "IV Calcium, insulin + D50W, albuterol"
 
 ### Step 6: Use TodoWrite
 
@@ -363,6 +448,18 @@ Determine the deck name based on the file path:
    - Are these essential facts or exhaustive coverage?
    - Did you skip low-yield background information?
    - Are cards focused on what you'd be tested on?
+
+7. **Card Direction Check**
+   - Reverse cards used for terms/tools/structures/diseases?
+   - Forward cards used for mechanisms/treatments/processes?
+   - No repetitive "What is [term]?" → "[definition]" patterns
+   - Variety in question stems for both card types
+
+8. **Answer Formatting Check**
+   - Multi-item answers use line breaks (not comma-separated)?
+   - Procedure steps displayed with line breaks for readability?
+   - Symptoms/treatments/side effects listed with line breaks?
+   - Answers are scannable and easy to review quickly?
 
 **CRITICAL: State "Post-creation verification complete" and report:**
 - Total LOs: [#]

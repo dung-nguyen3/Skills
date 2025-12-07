@@ -153,6 +153,11 @@ Location: `.claude/commands/`
 - One fact per card for optimal learning
 - Import directly into Anki via File -> Import
 
+**Card Direction Optimization:**
+- **Reverse cards** (definition → term) for diagnostic tools, drugs, anatomical structures
+- **Forward cards** (context → mechanism) for processes, treatments, pathophysiology
+- Follows active recall best practices for effective long-term retention
+
 **Auto-Import Feature:**
 - **Requirements:** Anki must be running, AnkiConnect add-on installed (code: 2055492159), `pip install requests`
 - **Configuration:** Enable in `.claude/settings.local.json`
