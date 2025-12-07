@@ -145,31 +145,300 @@ The number of comparison tables is NOT fixed. Create as many tables as needed to
 
 ### How to Determine Tables:
 
-1. **Analyze source learning objectives** - identify ALL comparison categories:
-   - Clinical Presentation
-   - Pathophysiology/Mechanism
-   - Diagnosis/Labs
-   - Treatment
-   - Prognosis
-   - Complications
-   - Risk Factors
-   - Epidemiology
-   - [Any other categories asked in LOs]
+<category_selection_protocol>
 
-2. **Create ONE table per category** - each table compares that category across all items
-   - Each table compares 1-2 categories at a time to help break it down and differentiate
+**Step 1: Analyze Learning Objectives**
+Read all learning objectives in source file to identify what comparisons are being asked.
 
-3. **Example**: If comparing Clinical Presentation, Diagnosis, and Treatment for Conditions A, B, C:
-   - Table 1: Clinical Presentation comparing Conditions A, B, and C
-   - Table 2: Diagnosis comparing Conditions A, B, and C
-   - Table 3: Treatment comparing Conditions A, B, and C
+**Step 2: Select Relevant Categories from Menus**
+Choose categories from the menus below that relate to the learning objectives. Only create comparison tables for categories that help students master the LOs.
 
-4. **If source has 6 comparison categories across 4 conditions:**
-   - Create 6 separate comparison tables
-   - NOT 3 tables with categories combined
+**Step 3: Create ONE Table Per Category**
+Each table compares that single category across all items (don't combine categories).
 
-**WRONG**: 3 tables combining multiple categories
-**RIGHT**: N tables where N = number of comparison categories in learning objectives
+**LO Relevance Filter - Include if:**
+- Learning objective explicitly asks to compare this category
+- Category helps differentiate items students frequently confuse
+- Category enables actionable clinical decisions from LOs
+- Category contains hallmark/pathognomonic findings mentioned in LOs
+
+**LO Relevance Filter - Exclude if:**
+- Tangential information not related to LOs
+- Background context that doesn't aid comparison
+- Information too broad or generic to be useful
+
+</category_selection_protocol>
+
+---
+
+### COMPREHENSIVE CATEGORY MENUS
+
+<menu id="A" topic="Diagnostic Tools & Tests">
+**When to use:** Comparing diagnostic modalities, imaging studies, laboratory tests
+
+**Categories:**
+- Test Type & Modality (imaging, lab, physical exam finding)
+- Test Characteristics (Sensitivity, Specificity, PPV, NPV, Accuracy)
+- Indications (When to Order / Clinical Scenarios)
+- Contraindications & Limitations
+- Interpretation (How to Read Results / What Results Mean)
+- Cost & Availability
+- Procedure Details & Patient Preparation
+- Advantages & Disadvantages
+- Comparison to Alternative Tests
+- Follow-up Based on Results
+
+**Example:** Comparing D-dimer, CT angiography, V/Q scan for PE diagnosis
+</menu>
+
+<menu id="B" topic="Medical Conditions (Universal - Any Specialty)">
+**When to use:** Comparing diseases, disorders, syndromes across ANY medical specialty
+
+**Categories:**
+- Clinical Presentation (Signs & Symptoms / How Patients Present)
+- Pathophysiology/Mechanism (How/Why It Happens)
+- Etiology & Risk Factors (What Causes It / Who Gets It)
+- Epidemiology (Demographics, Prevalence, Incidence)
+- Diagnosis & Workup (How to Diagnose / Tests to Order)
+- Differential Diagnosis (What Else Could It Be)
+- Treatment & Management (First-line, Second-line, Specific Regimens)
+- Prognosis & Natural History
+- Complications & Adverse Outcomes
+- Prevention & Screening
+- Anatomic Location/Distribution (Where It Affects)
+- Characteristic Physical/Structural Changes
+- Systemic/Extra-primary-site Manifestations
+- Disease Severity Classification
+- Time Course/Onset Pattern (Acute, Subacute, Chronic)
+- Triggers & Exacerbating Factors
+- Key Differentiators (Hallmark/Pathognomonic Findings)
+
+**Example:** Comparing Type I, II, III, IV hypersensitivity reactions
+**Example:** Comparing systemic lupus erythematosus, rheumatoid arthritis, scleroderma
+**Example:** Comparing acute coronary syndrome types (STEMI, NSTEMI, unstable angina)
+</menu>
+
+<menu id="C" topic="Pharmacology (Drugs & Drug Classes)">
+**When to use:** Comparing medications, drug classes, therapeutic agents
+
+**Categories:**
+- Mechanism of Action (How Drug Works)
+- Indications (What It Treats / When to Prescribe)
+- Contraindications (When NOT to Use)
+- Dosing & Administration (Route, Frequency, Duration)
+- Pharmacokinetics (Absorption, Distribution, Metabolism, Excretion)
+- Adverse Effects & Toxicity (Side Effects, Black Box Warnings)
+- Drug Interactions
+- Monitoring Requirements (Labs, Vitals)
+- Special Populations (Pregnancy, Pediatrics, Geriatrics, Renal/Hepatic)
+- Efficacy & Clinical Outcomes
+- Cost & Accessibility
+- Advantages Over Alternatives
+- Key Differentiators (Unique Properties)
+
+**Example:** Comparing beta blockers (metoprolol, atenolol, carvedilol)
+</menu>
+
+<menu id="D" topic="Pathophysiologic Mechanisms">
+**When to use:** Comparing underlying biological processes, molecular pathways
+
+**Categories:**
+- Cellular/Molecular Mechanism
+- Affected Organs/Systems
+- Pathway Components (Enzymes, Receptors, Mediators)
+- Triggers & Initiating Factors
+- Progression & Cascade of Events
+- Regulatory Mechanisms
+- End-Organ Effects
+- Compensation Mechanisms
+- Clinical Manifestations from Mechanism
+- Therapeutic Targets in Pathway
+
+**Example:** Comparing different shock types (hypovolemic, cardiogenic, distributive)
+</menu>
+
+<menu id="E" topic="Clinical Assessment Components">
+**When to use:** Comparing history-taking elements, physical exam techniques
+
+**Categories:**
+- Specific History Questions (What to Ask)
+- Physical Exam Maneuvers (What to Do / How to Perform)
+- Expected Findings (Normal vs Abnormal)
+- Interpretation (What Findings Mean)
+- Sensitivity & Specificity of Exam Finding
+- Special Techniques & Variations
+- Patient Positioning & Preparation
+- Age-Specific Considerations
+- Documentation Standards
+
+**Example:** Comparing orthopedic special tests (McMurray, Lachman, drawer test)
+</menu>
+
+<menu id="F" topic="Treatment Modalities & Interventions">
+**When to use:** Comparing therapeutic approaches, procedures, interventions
+
+**Categories:**
+- Treatment Type (Medical, Surgical, Procedural, Supportive)
+- Indications (When to Use This Treatment)
+- Contraindications (When NOT to Use)
+- Procedure/Protocol Details (How It's Done)
+- Expected Outcomes & Efficacy
+- Adverse Effects & Complications
+- Recovery/Follow-up Requirements
+- Alternatives & When to Choose Each
+- Patient Selection Criteria
+- Evidence Base & Guidelines
+- Cost & Resource Requirements
+- Age/Severity-Based Algorithms
+
+**Example:** Comparing treatment approaches for heart failure (ACEi, ARB, beta blocker, diuretics)
+</menu>
+
+<menu id="G" topic="Risk Factors & Protective Factors">
+**When to use:** Comparing what increases or decreases disease risk
+
+**Categories:**
+- Modifiable Risk Factors (Can Be Changed)
+- Non-Modifiable Risk Factors (Cannot Be Changed)
+- Protective Factors (Reduce Risk)
+- Relative Risk/Odds Ratio (How Much Risk)
+- Mechanism of Risk (Why It Increases Risk)
+- Population at Highest Risk
+- Prevention Strategies Targeting This Risk
+- Risk Assessment Tools/Scores
+
+**Example:** Comparing cardiovascular risk factors
+</menu>
+
+<menu id="H" topic="Disease Classifications & Staging">
+**When to use:** Comparing classification systems, staging criteria
+
+**Categories:**
+- Classification Criteria (What Defines Each Type/Stage)
+- Clinical Significance (Why Classification Matters)
+- Prognosis by Stage/Type
+- Treatment Differences by Stage/Type
+- Progression Between Stages
+- Assessment Tools for Staging
+- Nomenclature & Terminology
+
+**Example:** Comparing chronic kidney disease stages (CKD 1-5)
+</menu>
+
+<menu id="I" topic="Laboratory Values & Biomarkers">
+**When to use:** Comparing lab tests, biomarkers, clinical measurements
+
+**Categories:**
+- Normal Reference Ranges (What's Normal)
+- Abnormal Values & Interpretation (High vs Low Meaning)
+- Clinical Significance (When to Worry)
+- Conditions Associated with Abnormality
+- Timing of Measurement (When to Check)
+- Interfering Factors (What Affects Results)
+- Sensitivity & Specificity for Diagnosis
+- Monitoring Frequency
+- Critical Values & Actions
+
+**Example:** Comparing cardiac biomarkers (troponin, CK-MB, BNP)
+</menu>
+
+<menu id="J" topic="Anatomic Structures & Systems">
+**When to use:** Comparing anatomical regions, organs, systems
+
+**Categories:**
+- Location & Boundaries
+- Structure & Composition
+- Function & Physiology
+- Innervation & Vascular Supply
+- Anatomic Relationships (Adjacent Structures)
+- Clinical Relevance
+- Common Pathologies Affecting This Structure
+- Physical Exam Correlation
+
+**Example:** Comparing heart valves (mitral, tricuspid, aortic, pulmonic)
+</menu>
+
+<menu id="K" topic="Procedures & Diagnostic Techniques">
+**When to use:** Comparing clinical procedures, surgical techniques
+
+**Categories:**
+- Procedure Type & Approach
+- Indications (When to Perform)
+- Contraindications (When NOT to Perform)
+- Patient Preparation & Consent
+- Equipment & Setup
+- Step-by-Step Technique
+- Expected Findings/Results
+- Complications & Management
+- Post-Procedure Care
+- Alternatives & When to Choose
+
+**Example:** Comparing joint aspiration techniques for different joints
+</menu>
+
+<menu id="L" topic="Differential Diagnosis & Clinical Reasoning">
+**When to use:** Comparing possible diagnoses for a presentation
+
+**Categories:**
+- Key Distinguishing Features (What Sets It Apart)
+- Clinical Presentation Overlap (Similarities)
+- Diagnostic Tests to Differentiate
+- Urgency/Severity Considerations
+- Likelihood/Prevalence in This Population
+- "Red Flags" for Each Diagnosis
+- Initial Workup Approach
+- Decision Rules/Algorithms
+
+**Example:** Comparing causes of chest pain (ACS, PE, aortic dissection, pneumonia)
+</menu>
+
+<menu id="M" topic="Systems & Physiologic Functions">
+**When to use:** Comparing body systems, physiologic processes, homeostatic mechanisms
+
+**Categories:**
+- Primary Function (What System Does)
+- Key Components (Organs, Cells, Molecules Involved)
+- Regulation & Control Mechanisms
+- Integration with Other Systems
+- Normal Physiology Parameters
+- Pathophysiology When Disrupted
+- Clinical Assessment of Function
+- Age-Related Changes
+
+**Example:** Comparing sympathetic vs parasympathetic nervous system
+</menu>
+
+---
+
+### How to Use These Menus
+
+**Example 1: Diagnostic Tools**
+LO: "Compare diagnostic tests for pulmonary embolism"
+- Use Menu A (Diagnostic Tools)
+- Select relevant categories: Test Characteristics, Indications, Interpretation, Advantages/Disadvantages
+- Create 4 separate comparison tables (one per category)
+
+**Example 2: Medical Conditions**
+LO: "Compare and contrast the hypersensitivity reactions"
+- Use Menu B (Medical Conditions)
+- Select relevant categories: Pathophysiology/Mechanism, Clinical Presentation, Treatment
+- Create 3 separate comparison tables
+
+**Example 3: Mixed Topic**
+LO: "Describe the pathophysiology of different shock types and their management"
+- Use Menu D (Pathophysiologic Mechanisms) for mechanism comparison
+- Use Menu F (Treatment Modalities) for management comparison
+- Create tables from both menus as needed
+
+---
+
+### Critical Rules
+
+**WRONG**: 3 tables combining multiple categories (e.g., one table with mechanism AND treatment AND diagnosis)
+**RIGHT**: N tables where N = number of relevant categories from menus (one category per table)
+
+**WRONG**: Creating comparison tables for all categories in a menu regardless of LO relevance
+**RIGHT**: Only create tables for categories that relate to learning objectives
 
 ---
 
