@@ -4,7 +4,7 @@ This repository contains Claude Code infrastructure and study guide materials fo
 
 ## Personal Context
 
-- I'm a pharmacy student learning to use Claude Code
+- I'm a physician assistant student learning to use Claude Code
 - I use VS Code with Claude Code extension as my primary environment
 - Explain technical concepts clearly - I'm learning
 
@@ -16,7 +16,7 @@ This repository contains Claude Code infrastructure and study guide materials fo
 - Ask before creating new files unless explicitly required
 
 ### Communication Style
-- No emojis unless explicitly requested
+- No emojis unless explicitly requested or unless it's critical information.
 - Concise, clear explanations
 - Technical accuracy over validation
 
