@@ -60,8 +60,10 @@ Source: [directory (auto-detected batch) / semicolon-separated / single file]
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
 ☐ Source-only policy: I will ONLY use information from source file
-☐ LO-filtering: I will ONLY create cards for content that directly answers Learning Objectives
-☐ No non-LO content will be included
+☐ Source-driven: I will create cards for ALL content from source
+☐ Comprehensive coverage: No content will be excluded from source material
+☐ LO verification: All learning objectives will be covered (but cards not limited to LOs)
+☐ Exact wording: I will use exact words from source - NO paraphrasing
 ☐ No external facts will be added
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
@@ -79,7 +81,8 @@ BATCH SEPARATE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files use same source-only policy
-☐ LO-filtering: Each file will be filtered by its Learning Objectives
+☐ Source-driven: Each file will have comprehensive content extraction
+☐ Exact wording: Use exact words from source - NO paraphrasing
 ☐ Output: N files → N Anki decks
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
@@ -113,6 +116,8 @@ BATCH MERGE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Files are related/compatible for merging
+☐ Source-driven: Comprehensive content extraction from all files
+☐ Exact wording: Use exact words from sources - NO paraphrasing
 ☐ Output: N files → 1 merged Anki deck
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Content matrix, overlap resolution, source traceability
@@ -155,7 +160,9 @@ Read these files in order:
 
 2. **Source File**: Read the ENTIRE source file specified
 
-### Step 3: Extract Learning Objectives
+### Step 3: Extract Learning Objectives (For Coverage Verification Only)
+
+**IMPORTANT: LOs will be used to verify coverage in Step 8, NOT to filter content.**
 
 **MANDATORY - Parse LOs from source file:**
 
@@ -184,62 +191,73 @@ LEARNING OBJECTIVES EXTRACTED:
 ...
 ```
 
-### Step 4: Analyze Source File (Essential Facts + High-Yield)
+### Step 4: Analyze Source File (Comprehensive Extraction)
 
-**For EACH learning objective:**
-- Identify the **minimum essential facts** needed to answer the LO
-- Focus on what you'd need to **recall** to answer the question
-- Skip background/context that doesn't require memorization
-- Map essential content to LO number
-- EXCLUDE content unrelated to any LO
+**COMPREHENSIVE SOURCE ANALYSIS:**
 
-**Create Essential Facts Mapping:**
+Extract ALL content from source material including:
+- Key concepts, definitions, and terminology
+- Mechanisms and processes
+- Characteristics and features
+- Effects, outcomes, and consequences
+- Diagnostic/identifying criteria
+- Facts and details from source
+- Comparisons and contrasts presented
+
+**Completeness Check:**
+- Re-read source after analysis to verify nothing missed
+- Include supporting context and explanatory details
+- Do NOT exclude content - extract everything from the source
+- Use EXACT wording from source - NO paraphrasing
+
+**Content Organization:**
+Organize extracted content by topic/concept for card creation in Step 5.
+
 ```
-LO 1: "Understand the mechanism of penicillin"
-  - Essential: Penicillin inhibits transpeptidase enzyme
-  - Essential: Prevents peptidoglycan cross-linking
-  - Essential: Results in bacterial cell wall lysis
+TOPIC 1: [Concept name]
+  - Fact 1 (exact wording from source)
+  - Fact 2 (exact wording from source)
+  - Fact 3 (exact wording from source)
 
-LO 2: [LO statement]
-  - Essential: [minimum facts needed to answer LO]
+TOPIC 2: [Concept name]
+  - Fact 1 (exact wording from source)
+  - Fact 2 (exact wording from source)
 ...
 ```
 
-**IDENTIFY HIGH-YIELD FACTS (even if not directly tied to LOs):**
+### Step 5: Create Flashcards (Comprehensive)
+
+**Create flashcards for ALL content from Step 4**
+
+**Card Creation Principles:**
+- Atomic cards as default (one fact per card - proven superior)
+- Focused comparison cards when testing differentiation
+- Comprehensive coverage of source material
+- No artificial restrictions on card creation
+- Use EXACT wording from source - NO paraphrasing
+
+**COMPARISON CARDS - Use When Testing Differentiation:**
+
+Create focused comparison cards when source content involves:
+- Explicit comparisons ("X vs Y", "compared to", "differentiate")
+- Contrasting related items with different characteristics
+- Distinguishing between similar concepts
+
+**Comparison Card Format** (focused per category):
 ```
-HIGH-YIELD FACTS:
-- Black box warnings
-- Drug interactions (especially dangerous ones)
-- First-line treatments
-- Pathognomonic findings/"buzzwords"
-- Common adverse effects (not exhaustive lists)
-- Clinical pearls emphasized in lecture
-- Board exam favorites
+Q: "Item A vs Item B: [Category]"
+A: "Item A:
+- Characteristic 1
+- Characteristic 2
+- Characteristic 3
+
+Item B:
+- Characteristic 1
+- Characteristic 2
+- Characteristic 3"
 ```
 
-**ESSENTIAL + HIGH-YIELD FILTERING RULE:**
-- Include facts that **directly answer** the LO (essential)
-- Include **high-yield clinical facts** (black box warnings, dangerous interactions, first-line treatments)
-- EXCLUDE background/context that doesn't require active recall
-- EXCLUDE content unrelated to any LO or clinical practice
-- **When in doubt about relevance, SKIP it** - focus on essential + high-yield only
-
-### Step 5: Create Flashcards (LO-Filtered)
-
-**CRITICAL: Only create flashcards for LO-mapped content from Step 4**
-
-**LO-Aligned Flashcard Creation:**
-
-For each LO:
-- Create flashcards that test knowledge required by that LO
-- Questions should align with the verb in the LO (describe, understand, define, etc.)
-- Each LO should have at least 1 flashcard
-- All flashcards must map to an LO
-
-**Flashcard-LO Alignment Examples:**
-- LO: "Describe bacterial shapes" → Cards asking about each shape
-- LO: "Understand peptidoglycan structure" → Cards about components, function
-- LO: "Define virulence factors" → Definition and example cards
+**Default to atomic cards** - Only use comparison format when differentiation/contrast is being tested.
 
 **Card Direction Logic (CRITICAL):**
 
@@ -338,27 +356,14 @@ A: "IV Calcium, insulin + D50W, albuterol, sodium bicarbonate, dialysis if refra
    - Preserve exact drug names, receptor names, classifications
    - No lengthy explanations - just the core fact
 
-3. **Coverage (Essential + High-Yield)**
-   - Create cards ONLY for essential facts and high-yield content from Step 4
+3. **Coverage (Comprehensive)**
+   - Create cards for ALL content from Step 4
    - **ONE fact per card** (Minimum Information Principle - atomic cards)
    - **Word limits:** Questions <20 words, Answers <30 words (ideally 3-15)
    - **No filler words** - be concise and precise
-   - **Context connection:** Link each card to its LO or clinical significance
    - **Vary question structures:** Avoid repetitive phrasing (What/Which/How/Define/Describe)
    - No duplicate concepts
-   - Do NOT create cards for content outside LO scope or low-yield facts
-
-   **Essential vs Skip Decision Criteria:**
-   ✓ Create cards for:
-   - Facts that directly answer an LO
-   - High-yield clinical facts (black box warnings, dangerous interactions)
-   - Information you'd be tested on or need clinically
-
-   ✗ Skip cards for:
-   - Background physiology you already know
-   - Low-yield trivia or historical facts
-   - Over-detailed information not emphasized in lecture
-   - Context that doesn't require active recall
+   - Comprehensive coverage of source material
 
 4. **Source-Only Policy**
    - Use ONLY information from the source file
@@ -415,39 +420,39 @@ Determine the deck name based on the file path:
 
 **Verify the completed deck:**
 
-1. **LO Coverage Check**
-   - All LOs have at least one flashcard
-   - Every flashcard maps to a specific LO or high-yield fact
-   - No flashcards for non-LO or low-yield content
+1. **LO Coverage Verification**
+   - Verify all LOs are adequately covered (multiple cards per LO as needed for different components)
+   - This ensures all objectives are covered
+   - BUT cards are not limited to only LO-mapped content
 
-2. **Source Accuracy**
+2. **Source Completeness Check**
+   - Compare cards against source material
+   - Verify no content was excluded
+   - Check: key concepts, mechanisms, characteristics, effects, details from source
+   - Comprehensive coverage of ALL source content
+
+3. **Source Accuracy & Exact Wording**
    - All facts come from source file only
-   - Terminology matches source exactly
+   - **CRITICAL: Terminology matches source EXACTLY - word-for-word**
+   - No paraphrasing of medical terms, drug names, or technical language
    - No external information added
 
-3. **Question Quality**
+4. **Question Quality**
    - Questions are clear and unambiguous
    - **Atomic cards:** Each card tests ONE fact only (no combined concepts)
    - **Word count:** Questions <20 words
    - **Variety:** Question structures vary (not repetitive)
    - **Precision:** Questions are specific and self-contained
 
-4. **Answer Quality**
+5. **Answer Quality**
    - **Concise:** Answers <30 words (ideally 3-15 words)
    - **Atomic:** Single concept per answer
-   - **Exact terminology:** Source wording preserved exactly
-   - **Context:** Answers connect to LO or clinical significance
+   - **Exact terminology:** Source wording preserved exactly - NO paraphrasing
 
-5. **Volume Check**
-   - Typical range: 50-100 cards for standard lecture
-   - If >150 cards: Review for over-inclusion (too many low-yield or background facts)
-   - If <30 cards: Verify all LOs and high-yield facts covered
-   - **Quality over quantity** - better fewer essential cards than exhaustive coverage
-
-6. **Essential vs Exhaustive**
-   - Are these essential facts or exhaustive coverage?
-   - Did you skip low-yield background information?
-   - Are cards focused on what you'd be tested on?
+6. **Volume Check**
+   - Comprehensive coverage of source material
+   - Typical range: 50-100 cards for standard lecture (may vary based on source density)
+   - If unusually high/low: Verify completeness and accuracy
 
 7. **Card Direction Check**
    - Reverse cards used for terms/tools/structures/diseases?
@@ -455,7 +460,12 @@ Determine the deck name based on the file path:
    - No repetitive "What is [term]?" → "[definition]" patterns
    - Variety in question stems for both card types
 
-8. **Answer Formatting Check**
+8. **Comparison Card Check**
+   - Comparison cards used appropriately (only when testing differentiation)?
+   - Focused per category (not mega-cards with all aspects)?
+   - Atomic cards used as default?
+
+9. **Answer Formatting Check**
    - Multi-item answers use line breaks (not comma-separated)?
    - Procedure steps displayed with line breaks for readability?
    - Symptoms/treatments/side effects listed with line breaks?
@@ -571,15 +581,15 @@ For batch operations (semicolon-separated files or --merge flag):
 
 - Creating vague or ambiguous questions
 - **Putting multiple concepts in one card** (violates Minimum Information Principle)
-- **Creating too many cards** - Focus on essential + high-yield, not exhaustive coverage
-- **Including low-yield facts** that don't appear in LOs or clinical practice
+- **Excluding content from source** - Create comprehensive coverage
 - Adding information not in the source
-- **Paraphrasing medical terms** instead of using exact source wording
+- **CRITICAL: Paraphrasing medical terms** instead of using exact source wording word-for-word
 - Using pronouns without clear referents
 - Making answers too long (should be 3-15 words, max 30)
-- **Skipping essential or high-yield facts** from source
+- **Skipping content from source material**
 - **Repetitive question phrasing** - vary structures (What/Which/How/Define)
 - Not escaping special characters in data properly
+- Using comparison cards when atomic cards are more appropriate
 
 ## Example Usage
 

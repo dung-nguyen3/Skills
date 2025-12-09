@@ -499,6 +499,24 @@ if __name__ == '__main__':
     #     ("What are the symptoms of heart failure?",
     #      "Dyspnea, orthopnea, paroxysmal nocturnal dyspnea, peripheral edema, fatigue"),
     #
+    # COMPARISON CARDS (Item A vs Item B):
+    #   Use when testing differentiation/contrast between related items.
+    #   Format: ("Item A vs Item B: [Category]", "Item A:\n- Char 1\n\nItem B:\n- Char 1")
+    #
+    #   When to use:
+    #     - Source has explicit comparisons ("X vs Y", "compared to", "differentiate")
+    #     - Contrasting related items with different characteristics
+    #     - Distinguishing between similar concepts
+    #
+    #   ✓ CORRECT (focused per category):
+    #     ("Right heart failure vs left heart failure: Clinical presentation",
+    #      "Right heart failure:\nPeripheral edema\nJugular venous distension\nHepatomegaly\nAscites\n\nLeft heart failure:\nDyspnea\nOrthopnea\nParoxysmal nocturnal dyspnea\nPulmonary crackles"),
+    #
+    #     ("Type I vs Type II hypersensitivity: Mechanism",
+    #      "Type I:\nIgE-mediated\nMast cell degranulation\nImmediate reaction\n\nType II:\nIgG/IgM-mediated\nComplement activation\nCytotoxic reaction"),
+    #
+    #   Default to atomic cards - only use comparison format when differentiation is tested.
+    #
     # =============================================================================
 
     # Sample flashcard data (would normally come from source file analysis)
