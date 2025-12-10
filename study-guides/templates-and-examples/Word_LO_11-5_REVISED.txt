@@ -13,30 +13,42 @@ Create comprehensive, color-coded Word document study guides from source materia
 - File organization rules
 
 **Word-specific requirements:**
-- 2 main sections: Learning Objectives, Key Comparisons
+- 3 main sections: Learning Objectives, Reference Tables, Key Comparisons
 - Soft pastel color scheme throughout
 - NO page references in this document type
+- Tables separated from LOs with bidirectional links
 - Tables for all comparisons (2+ items)
 
 ---
 
 ## DOCUMENT STRUCTURE
 
-### Required Tabs (Sections)
-The Word document must have 2 main sections:
+### Required Sections
+The Word document must have 3 main sections:
 
-#### 1. Learning Objectives
+#### 1. Learning Objectives (NO tables)
 Each learning objective gets its own subsection with:
 - Verbatim learning objective text (from source)
-- Summary: Bullet-point outline answering the LO
-- Tables: Category/Details tables OR Comparison tables (2+ items)
-- Clinical Pearls & High-Yield Points Box
-- Page break after each LO
+- Summary: Answer to LO (NO "Summary:" label)
+  - **Use numbered list** when answer lists 3+ components/layers/functions/mechanisms
+  - **Use paragraph format** for simple 1-2 concept answers
+- Clinical Pearls & High-Yield Points (plain bullets, no colored box)
+- Related Tables (clickable links to Reference Tables section)
+- **Spacing:** 1 line space within LO sections, 2 line spaces between LOs
+- NO page break between LOs (continuous flow)
 
-#### 2. Key Comparisons
+#### 2. Reference Tables (NEW)
+All tables grouped by learning objective:
+- Section heading: "Reference Tables"
+- Subsection for each LO: "Learning Objective X"
+- Each table has title with back-link: "LO X"
+- Supports line breaks (\n) and bullet points in cells
+
+#### 3. Key Comparisons
 - Side-by-side comparison tables
 - Focus on commonly confused or similar concepts
 - Examples: Drug mechanisms, similar conditions, exam techniques
+- Stays AFTER Reference Tables section
 
 ---
 
@@ -90,10 +102,12 @@ Use these for row backgrounds:
 - **Light Pink**: `FCE4EC`
 - **White**: `FFFFFF` - for data cells
 
-### Color-Coded Box Types
-1. **Clinical Pearls & High-Yield Points** (Teal): Title RGB(0, 77, 64), Background `E0F2F1`
-2. **Critical/Emergency** (Red): Title RGB(183, 28, 28), Background `FFEBEE`
-3. **Normal Variants** (Green): Title RGB(27, 94, 32), Background `E8F5E9`
+### Color-Coded Box Types (ONLY for Key Comparisons/Reference Tables)
+**NOTE: Clinical Pearls now use plain bullets (no colored box) in Learning Objectives section**
+
+For special call-outs in Reference Tables or Key Comparisons:
+1. **Critical/Emergency** (Red): Title RGB(183, 28, 28), Background `FFEBEE`
+2. **Normal Variants** (Green): Title RGB(27, 94, 32), Background `E8F5E9`
 
 ### Font
 CALIBRI size 12 for all text (11pt for dense tables)
@@ -123,17 +137,6 @@ Choose relevant categories from:
 - **Data cells**: Regular black text on white background
 - **All table text**: Black or dark colored (never white - must be readable)
 - Table style: 'Table Grid'
-
----
-
-## MEMORY TRICKS & MNEMONICS
-
-**MANDATORY: Use WebSearch to find established mnemonics**
-- Research proven mnemonics on medical education sites
-- Look for complete phrases/sentences (e.g., "Never Let Monkeys Eat Bananas")
-- Avoid simple acronyms that just list letters (e.g., "FWN")
-- Find visual associations and story-based memory devices
-- Include explanations of how the mnemonic works
 
 ---
 
@@ -171,8 +174,94 @@ def set_cell_text(cell, text, bold=False, color=None, size=11):
             if color:
                 run.font.color.rgb = RGBColor(*color)
 
+def add_bookmark(paragraph, bookmark_name):
+    """Add a bookmark anchor to a paragraph for hyperlinking"""
+    # Unique ID for bookmark
+    bookmark_id = str(abs(hash(bookmark_name)) % 1000000)
+
+    # Bookmark start
+    bookmark_start = OxmlElement('w:bookmarkStart')
+    bookmark_start.set(qn('w:id'), bookmark_id)
+    bookmark_start.set(qn('w:name'), bookmark_name)
+
+    # Bookmark end
+    bookmark_end = OxmlElement('w:bookmarkEnd')
+    bookmark_end.set(qn('w:id'), bookmark_id)
+
+    # Insert at beginning and end of paragraph
+    paragraph._element.insert(0, bookmark_start)
+    paragraph._element.append(bookmark_end)
+
+def add_hyperlink_to_bookmark(paragraph, display_text, bookmark_name, color='0563C1'):
+    """Add clickable hyperlink to a bookmark within paragraph"""
+    # Create hyperlink element
+    hyperlink = OxmlElement('w:hyperlink')
+    hyperlink.set(qn('w:anchor'), bookmark_name)
+
+    # Create run for the text
+    new_run = OxmlElement('w:r')
+    rPr = OxmlElement('w:rPr')
+
+    # Hyperlink styling (blue, underlined)
+    c = OxmlElement('w:color')
+    c.set(qn('w:val'), color)
+    rPr.append(c)
+
+    u = OxmlElement('w:u')
+    u.set(qn('w:val'), 'single')
+    rPr.append(u)
+
+    # Font
+    font = OxmlElement('w:rFonts')
+    font.set(qn('w:ascii'), 'Calibri')
+    rPr.append(font)
+
+    sz = OxmlElement('w:sz')
+    sz.set(qn('w:val'), '24')  # 12pt
+    rPr.append(sz)
+
+    new_run.append(rPr)
+
+    # Add text
+    text_elem = OxmlElement('w:t')
+    text_elem.text = display_text
+    new_run.append(text_elem)
+
+    hyperlink.append(new_run)
+    paragraph._element.append(hyperlink)
+
+def add_plain_bullets(doc, items, bold_title=None):
+    """
+    Add plain bulleted list without colored box (for Clinical Pearls)
+
+    IMPORTANT: Clinical Pearls in Learning Objectives section now use
+    plain bullets instead of colored boxes.
+
+    Args:
+        doc: Document object
+        items: List of strings (each becomes a bullet)
+        bold_title: Optional bold title before bullets (e.g., 'Clinical Pearls & High-Yield Points:')
+    """
+    if bold_title:
+        para = doc.add_paragraph()
+        run = para.add_run(bold_title)
+        run.bold = True
+        run.font.name = 'Calibri'
+        run.font.size = Pt(12)
+
+    for item in items:
+        para = doc.add_paragraph(item, style='List Bullet')
+        para.paragraph_format.left_indent = Inches(0.25)
+        for run in para.runs:
+            run.font.name = 'Calibri'
+            run.font.size = Pt(12)
+
 def add_colored_box(doc, title, content_list, title_color, bg_color='F3E5F5'):
-    """Add a colored information box (same width as tables)"""
+    """
+    Add a colored information box (for special call-outs in Reference Tables/Key Comparisons)
+
+    NOTE: Do NOT use for Clinical Pearls in Learning Objectives - use add_plain_bullets() instead.
+    """
     # Add title
     para = doc.add_paragraph()
     run = para.add_run(title)
@@ -212,16 +301,32 @@ for section in sections:
     section.left_margin = Inches(0.8)
     section.right_margin = Inches(0.8)
 
-# Title
+# Title (subtitle removed)
 title = doc.add_heading('Study Guide Title', 0)
 title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 title.runs[0].font.color.rgb = RGBColor(118, 75, 162)
 title.runs[0].font.size = Pt(20)
 
-subtitle = doc.add_paragraph('Lecture #')
-subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
-subtitle.runs[0].font.size = Pt(14)
-subtitle.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+doc.add_paragraph()  # Spacing
+
+# Table of Contents heading
+toc_heading = doc.add_heading('Table of Contents', 2)
+toc_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+
+# TOC entries (clickable links to learning objectives)
+# learning_objectives list should be extracted from source first
+for idx, lo_text in enumerate(learning_objectives, start=1):
+    toc_para = doc.add_paragraph()
+    toc_para.paragraph_format.left_indent = Inches(0.25)
+
+    # Number (not hyperlinked)
+    num_run = toc_para.add_run(f'{idx}. ')
+    num_run.font.name = 'Calibri'
+    num_run.font.size = Pt(12)
+
+    # LO text (hyperlinked to bookmark)
+    bookmark_name = f'LO_{idx}'
+    add_hyperlink_to_bookmark(toc_para, lo_text, bookmark_name, color='0563C1')
 
 doc.add_page_break()
 ```
@@ -257,6 +362,18 @@ for row_idx, row_content in enumerate(row_data, start=1):
     for col_idx in range(1, 3):
         set_cell_background(cells[col_idx], 'FFFFFF')
         set_cell_text(cells[col_idx], row_content[col_idx])
+
+# TABLE CELLS WITH MULTIPLE ITEMS:
+# When a cell contains 3+ items, use line breaks and bullets for readability
+
+# Instead of: 'Metoprolol, Atenolol, Bisoprolol, Esmolol'
+# Use bullets:
+multi_item_text = "• Metoprolol\n• Atenolol\n• Bisoprolol\n• Esmolol"
+set_cell_text(cells[1], multi_item_text)
+
+# GUIDELINES:
+# - 1-2 items: Comma-separated acceptable (e.g., "Metoprolol, Atenolol")
+# - 3+ items: Use bullets with line breaks for scannability
 ```
 
 ### Creating Colored Boxes
@@ -287,82 +404,238 @@ add_colored_box(doc, 'CRITICAL - Never Miss:', [
 ### Heading Colors
 
 ```python
-# Main section heading (Tab heading)
-heading1 = doc.add_heading('Learning Objectives', 1)
-heading1.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-
-# Sub-heading (Learning Objective number)
-heading2 = doc.add_heading('Learning Objective 1:', 2)
+# Learning Objective heading (with bookmark for TOC)
+# Note: No "Learning Objectives" section heading - title/TOC already on page 1
+# Format: "1. [Learning objective statement]" - statement is IN the heading
+heading2 = doc.add_heading('1. Describe the mechanisms of action of beta blockers', 2)
 heading2.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+heading2.runs[0].font.size = Pt(14)  # Font size 14pt for LO headings
+add_bookmark(heading2, 'LO_1')  # Add bookmark for clickable TOC
 
-# Table heading
-heading3 = doc.add_heading('TABLE 1: Comparison Title', 3)
+# Table heading (no "TABLE 1:" prefix - just descriptive title)
+heading3 = doc.add_heading('Comparison Title', 3)
 heading3.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+
+# Key Comparisons section heading (this one is kept)
+heading_comparisons = doc.add_heading('Key Comparisons', 1)
+heading_comparisons.runs[0].font.color.rgb = RGBColor(118, 75, 162)
 ```
 
 ---
 
 ## LEARNING OBJECTIVE TEMPLATE
 
-For each learning objective, follow this structure:
+For each learning objective, follow this NEW structure (tables separated):
 
 ```python
-# Learning Objective Header
-obj = doc.add_heading('Learning Objective #X:', 2)
+# Learning Objective Header (with bookmark for TOC and back-links from tables)
+# Format: "X. [Learning objective statement]" - statement is IN the heading, no separate paragraph
+obj = doc.add_heading('X. [Verbatim learning objective text from source]', 2)
 obj.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-doc.add_paragraph('[Verbatim learning objective text from source]')
+obj.runs[0].font.size = Pt(14)  # Font size 14pt for LO headings
+add_bookmark(obj, 'LO_X')  # Add bookmark (e.g., LO_1, LO_2, etc.)
 
-# Summary paragraph (not bullets)
-summary = doc.add_paragraph()
-summary.add_run('Summary: ').bold = True
-summary.add_run('Concise paragraph answering the learning objective with key points from source.')
+# Summary - Format based on content complexity - NO "Summary:" label
 
-doc.add_paragraph()
+# SIMPLE SUMMARY (1-2 concepts): Use paragraph format (NO label)
+summary = doc.add_paragraph('Concise paragraph answering the learning objective with key points from source.')
+summary.runs[0].font.name = 'Calibri'
+summary.runs[0].font.size = Pt(12)
 
-# TABLE 1: Primary comparison or category table
-doc.add_heading('TABLE 1: Topic Comparison', 3)
-# [Create comparison table using code above]
+# COMPLEX SUMMARY (3+ steps/components with hierarchy): Use numbered list with manual numbering (NO label)
+summary_intro = doc.add_paragraph('Topic involves multiple regulatory mechanisms:')
+summary_intro.runs[0].font.name = 'Calibri'
+summary_intro.runs[0].font.size = Pt(12)
 
-doc.add_paragraph()
+# Item 1 with manual numbering
+p1 = doc.add_paragraph()
+p1.add_run('1. ').bold = True
+p1.add_run('Neural regulation')
+p1.paragraph_format.left_indent = Inches(0.25)
+sub1 = doc.add_paragraph('Parasympathetic (vagus nerve) increases motility', style='List Bullet')
+sub1.paragraph_format.left_indent = Inches(0.5)
+sub2 = doc.add_paragraph('Sympathetic nervous system decreases motility during stress', style='List Bullet')
+sub2.paragraph_format.left_indent = Inches(0.5)
 
-# TABLE 2: Additional tables as needed
-doc.add_heading('TABLE 2: [Additional Information]', 3)
-# [Create additional table if needed]
+# Item 2 with manual numbering
+p2 = doc.add_paragraph()
+p2.add_run('2. ').bold = True
+p2.add_run('Hormonal regulation')
+p2.paragraph_format.left_indent = Inches(0.25)
+sub3 = doc.add_paragraph('Secretin stimulates bicarbonate release from pancreas', style='List Bullet')
+sub3.paragraph_format.left_indent = Inches(0.5)
+sub4 = doc.add_paragraph('Cholecystokinin (CCK) stimulates enzyme release', style='List Bullet')
+sub4.paragraph_format.left_indent = Inches(0.5)
 
-doc.add_paragraph()
+# Note: Manual numbering (1. 2. 3.) is used instead of style='List Number' because
+# python-docx continues numbering across the document and has no native API to restart.
 
-# Clinical Pearls & High-Yield Points Box
-add_colored_box(doc, 'Clinical Pearls & High-Yield Points:', [
+# DECISION CRITERIA:
+# - 3+ distinct components/steps/mechanisms → Use numbered list
+# - Hierarchical structure (main points with sub-details) → Numbered with sub-bullets
+# - Sequential processes → Numbered list
+# - Simple explanation (1-2 concepts) → Paragraph format
+
+# SPACING RULES:
+# - Within an LO section: Only 1 line space (natural paragraph spacing - NO doc.add_paragraph())
+# - Between LO sections: 1 line space (ONE doc.add_paragraph() call)
+
+# Clinical Pearls & High-Yield Points (plain bullets, NO colored box)
+# NOTE: Only 1 line space between summary and clinical pearls (natural paragraph spacing)
+add_plain_bullets(doc, [
     'Clinical reasoning pearl',
     'High-yield exam point',
     'If X think Y association'
-], (0, 77, 64), 'E0F2F1')
+], bold_title='Clinical Pearls & High-Yield Points:')
 
-doc.add_page_break()  # After each learning objective
+# Tables (clickable links to Reference Tables section)
+# NOTE: Only 1 line space between clinical pearls and tables (natural paragraph spacing)
+tables_heading = doc.add_paragraph()
+run = tables_heading.add_run('Tables:')
+run.bold = True
+run.font.name = 'Calibri'
+run.font.size = Pt(12)
+
+# Add clickable link for each table (bookmark names: LO_X_Table_1, LO_X_Table_2, etc.)
+for table_idx, table_title in enumerate(['Topic Comparison', 'Additional Information'], start=1):
+    link_para = doc.add_paragraph()
+    link_para.paragraph_format.left_indent = Inches(0.25)
+
+    # Arrow symbol (not hyperlinked)
+    arrow_run = link_para.add_run('→ ')
+    arrow_run.font.name = 'Calibri'
+    arrow_run.font.size = Pt(12)
+
+    # Table title (hyperlinked to table in Reference Tables section)
+    bookmark_name = f'LO_X_Table_{table_idx}'
+    add_hyperlink_to_bookmark(link_para, table_title, bookmark_name, color='0563C1')
+
+# 1 line space between Learning Objectives (NO page break)
+doc.add_paragraph()
 ```
 
 ---
 
-## TAB STRUCTURE TEMPLATES
+## DOCUMENT STRUCTURE
 
-### TAB 1: Learning Objectives
+### Page 1: Title and Table of Contents
 ```python
-heading = doc.add_heading('Learning Objectives', 1)
-heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+# Title (no subtitle)
+title = doc.add_heading('Study Guide Title', 0)
+title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+title.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+title.runs[0].font.size = Pt(20)
 
-# For each learning objective, use template above
-# Then add page break before next tab
+doc.add_paragraph()  # Spacing
+
+# Table of Contents (clickable)
+toc_heading = doc.add_heading('Table of Contents', 2)
+toc_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+
+for idx, lo_text in enumerate(learning_objectives, start=1):
+    toc_para = doc.add_paragraph()
+    toc_para.paragraph_format.left_indent = Inches(0.25)
+    num_run = toc_para.add_run(f'{idx}. ')
+    num_run.font.name = 'Calibri'
+    num_run.font.size = Pt(12)
+    add_hyperlink_to_bookmark(toc_para, lo_text, f'LO_{idx}', color='0563C1')
+
 doc.add_page_break()
 ```
 
-### TAB 2: Key Comparisons
+### Page 2+: Learning Objectives
 ```python
+# NO section heading "Learning Objectives" - starts directly with LO 1
+# (Title/TOC already on page 1, no need to repeat)
+
+# For each learning objective, use template above with bookmarks
+# Add spacing between LOs (NO page break - continuous flow)
+doc.add_paragraph()  # Spacing between LOs
+```
+
+### Reference Tables Section (NEW)
+```python
+# Section heading for Reference Tables
+ref_tables_heading = doc.add_heading('Reference Tables', 1)
+ref_tables_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+
+doc.add_paragraph()
+
+# Group tables by learning objective
+for lo_idx in range(1, num_learning_objectives + 1):
+    # Subsection heading for this LO's tables
+    lo_tables_heading = doc.add_heading(f'Learning Objective {lo_idx}', 2)
+    lo_tables_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
+
+    doc.add_paragraph()
+
+    # Create each table for this LO
+    for table_idx, (table_title, table_data) in enumerate(lo_tables[lo_idx-1], start=1):
+        # Table title with bookmark and back-link
+        table_heading_para = doc.add_paragraph()
+
+        # Title (bold, purple)
+        title_run = table_heading_para.add_run(table_title)
+        title_run.bold = True
+        title_run.font.name = 'Calibri'
+        title_run.font.size = Pt(14)
+        title_run.font.color.rgb = RGBColor(118, 75, 162)
+
+        # Add bookmark (target for forward-link from LO section)
+        bookmark_name = f'LO_{lo_idx}_Table_{table_idx}'
+        add_bookmark(table_heading_para, bookmark_name)
+
+        # Spacing
+        table_heading_para.add_run('    ')
+
+        # Back-link to LO (clickable)
+        add_hyperlink_to_bookmark(table_heading_para, f'LO {lo_idx}',
+                                   f'LO_{lo_idx}', color='0563C1')
+
+        # Create the table
+        table = doc.add_table(rows=len(table_data)+1, cols=3)
+        table.style = 'Table Grid'
+
+        # Populate headers (colored background, bold)
+        headers = ['Column 1', 'Column 2', 'Column 3']
+        for i, header_text in enumerate(headers):
+            set_cell_background(table.rows[0].cells[i], 'B3E5FC')  # Pastel color
+            set_cell_text(table.rows[0].cells[i], header_text, bold=True, size=12)
+
+        # Populate data rows (supports line breaks and bullet points)
+        for row_idx, row_data in enumerate(table_data, start=1):
+            for col_idx, cell_data in enumerate(row_data):
+                cell = table.rows[row_idx].cells[col_idx]
+
+                # If cell_data is a list, format as bullets
+                if isinstance(cell_data, list):
+                    cell.text = ''  # Clear cell
+                    for item in cell_data:
+                        para = cell.add_paragraph(item, style='List Bullet')
+                        para.runs[0].font.name = 'Calibri'
+                        para.runs[0].font.size = Pt(11)
+                else:
+                    # Single text (may contain \n for line breaks)
+                    set_cell_text(cell, cell_data, bold=False, size=11)
+
+        doc.add_paragraph()  # Spacing after table
+
+    doc.add_paragraph()  # Extra spacing between LO table groups
+```
+
+### Key Comparisons Section
+```python
+# Section heading for Key Comparisons (this one is kept)
 heading = doc.add_heading('Key Comparisons', 1)
 heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
 
 # Create comparison tables for similar concepts
+# IMPORTANT: Use descriptive title ONLY - NO "Comparison 1:", "Comparison 2:" prefixes
+
 # Example structure:
-doc.add_heading('Concept A vs Concept B', 2)
+doc.add_heading('Segmentation vs Peristalsis', 2)  # ✅ Correct
+# NOT: doc.add_heading('Comparison 2: Segmentation vs Peristalsis', 2)  # ❌ Wrong
+
 # [Create comparison table with appropriate color scheme]
 ```
 
@@ -385,7 +658,8 @@ Before finalizing, verify:
 
 ### Content Requirements
 - [ ] All information from source file only
-- [ ] Every learning objective has: summary + tables + pearls box
+- [ ] Every learning objective has: summary (NO "Summary:" label) + clinical pearls (plain bullets) + related tables links
+- [ ] All tables in Reference Tables section grouped by LO
 - [ ] All comparison tables have appropriate categories
 
 ### Formatting Requirements
@@ -398,13 +672,18 @@ Before finalizing, verify:
 - [ ] Headings use purple color (118, 75, 162)
 - [ ] Font is Calibri throughout
 - [ ] Margins set to 0.8 inches all sides
+- [ ] Clinical Pearls use plain bullets (NO colored box)
+- [ ] Table cells support line breaks (\n) and bullet points (lists)
 
 ### Structure Requirements
-- [ ] Title and (Lecture #) centered at beginning
-- [ ] 2 main sections (tabs) present
-- [ ] Page breaks after each learning objective
-- [ ] Page breaks between main sections
-- [ ] Consistent spacing (6pt before/after boxes)
+- [ ] Title and clickable TOC on page 1 (no subtitle)
+- [ ] 3 main sections: Learning Objectives → Reference Tables → Key Comparisons
+- [ ] NO page breaks between learning objectives (continuous flow with spacing)
+- [ ] Each LO has "Tables:" section with clickable links
+- [ ] Reference Tables section has "Learning Objective X" grouping headings
+- [ ] Each table has title with "LO X" hyperlink
+- [ ] Bidirectional linking works (forward to tables, back to LOs)
+- [ ] TOC hyperlinks jump to correct LO sections
 
 ---
 
@@ -424,12 +703,14 @@ Before finalizing, verify:
 ❌ Inconsistent spacing or formatting
 
 ### Best Practices
-✅ Add clinical pearls using medical reasoning
+✅ Add clinical pearls using medical reasoning (plain bullets, no colored box)
 ✅ Create comparison tables for ANY items needing differentiation (2+ items)
-✅ Include all 2 required tabs/sections
+✅ Include all 3 required sections (Learning Objectives → Reference Tables → Key Comparisons)
 ✅ Use clinical reasoning tips ("If X think Y")
 ✅ Read entire source file to identify ALL relevant content
 ✅ Verify all table text is black/dark colored for readability
+✅ Implement bidirectional linking (forward to tables, back to LOs)
+✅ Support line breaks (\n) and bullet points in table cells
 
 ---
 
@@ -461,3 +742,220 @@ heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
 ---
 
 **End of Instructions**
+
+---
+
+## APPENDIX: EXTRACTION PATTERNS FOR SOURCE PARSING
+
+This appendix helps Claude extract content from source files when generating Python scripts.
+
+### A. Identifying Learning Objectives
+
+**Common patterns in source files:**
+
+**Pattern 1: Explicit section**
+```
+Learning Objectives:
+1. Describe the regions of the small intestine.
+2. Examine the effects of ANS innervation of the small intestine.
+3. Examine the differences between segmentation and peristalsis motility.
+```
+
+**Pattern 2: Alternative headings**
+- "Learning Outcomes:"
+- "Objectives:" at document start
+- "LO:" or "LOs:" prefix
+- "By the end of this lecture, you will be able to:"
+
+**Pattern 3: Bullet lists**
+```
+• Describe the mechanism of action of beta blockers
+• List the clinical uses of beta blockers
+• Identify contraindications for beta blocker therapy
+```
+
+**Extraction rule:** Copy EXACTLY as written (verbatim, no paraphrasing)
+
+### B. Mapping Content to Learning Objectives
+
+**Challenge:** Large source file (800 lines) with 14 LOs - which content belongs to which LO?
+
+**Strategy 1: Slide-based structure**
+```
+Slide 1: Title matches LO 1 keywords
+[Content for LO 1 - typically 2-5 slides]
+
+Slide 6: Title matches LO 2 keywords
+[Content for LO 2 - typically 2-5 slides]
+```
+
+**Match by:** Slide titles containing LO keywords ("regions", "innervation", "segmentation")
+
+**Strategy 2: Section headers**
+```
+## Regions of Small Intestine  ← Matches LO 1: "Describe regions..."
+[Content paragraph 1]
+[Content paragraph 2]
+
+## ANS Innervation  ← Matches LO 2: "Examine ANS innervation..."
+[Content paragraph 3]
+```
+
+**Match by:** Section headings with LO keywords
+
+**Strategy 3: Sequential flow**
+- Content typically follows LO order
+- LO 1 content → LO 2 content → LO 3 content
+- Look for topic transitions
+- When topic changes, likely moved to next LO
+
+**Real example from Small Intestine file:**
+```
+Learning Objective 1: "Describe the regions of the small intestine."
+→ Slide 3: "Small Intestine" with diagram showing duodenum, jejunum, ileum
+→ Content: "Jejunum – wider diameter, thicker walls... ileum – narrower diameter, thinner walls"
+
+Learning Objective 2: "Examine the effects of ANS innervation"
+→ Slide 4: "Innervation of the Intestine"
+→ Content: "PNS – via vagus nerve → ↑ contraction... SNS → ↓ contraction"
+```
+
+### C. Extracting Comparison Data
+
+**What to look for:**
+
+**Pattern 1: Explicit comparisons**
+```
+Segmentation vs Peristalsis:
+
+Segmentation:
+- Primary means of motility during digestion
+- Oscillating closely spaced contractions
+- Mixes contents with enzymes
+
+Peristalsis:
+- Propels content forward
+- Sequential wave of contractions
+- Moves bolus through intestine
+```
+
+**Convert to table:**
+```python
+comparison_data = [
+    ['Feature', 'Segmentation', 'Peristalsis'],
+    ['Timing', 'During digestion', 'Continuous'],
+    ['Pattern', 'Oscillating contractions', 'Sequential wave'],
+    ['Function', 'Mix contents', 'Propel forward']
+]
+```
+
+**Pattern 2: Lists with similar structure**
+```
+Beta-1 selective blockers:
+- Metoprolol
+- Atenolol
+- Target: β₁ receptors (heart)
+- Safer in asthma
+
+Non-selective blockers:
+- Propranolol
+- Nadolol
+- Target: β₁ + β₂ receptors
+- Avoid in asthma
+```
+
+**Convert to comparison table with appropriate categories**
+
+**Pattern 3: Tables in source**
+- Source may already have comparison tables
+- Extract and reformat for Word
+- Maintain row/column structure
+
+### D. Extracting Clinical Pearls
+
+**What to look for in source:**
+- Clinical significance statements
+- "Important:" or "Note:" markers
+- Diagnostic tips
+- Common mistakes
+- Red flags or warnings
+- "Clinical correlation:" sections
+
+**Transform facts into pearls:**
+
+**Source fact:**
+```
+- Lactase deficiency results in lactose intolerance
+- Undigested lactose draws water into lumen
+- Bacteria ferment lactose producing gas
+```
+
+**Clinical pearl:**
+```
+"Lactose intolerance symptoms (bloating, diarrhea, gas) occur because
+undigested lactose is osmotically active (draws water → diarrhea) and
+fermented by colonic bacteria (produces gas → bloating). Think osmotic +
+fermentative diarrhea."
+```
+
+**Source fact:**
+```
+- PNS (vagus nerve) increases intestinal contraction
+- SNS decreases intestinal contraction
+```
+
+**Clinical pearl:**
+```
+"Vagal stimulation (parasympathetic) during eating initiates intestinal
+motility. Sympathetic activation during stress/danger shuts down digestion
+('fight or flight'). Remember: parasympathetic = 'rest and digest'."
+```
+
+**Quality criteria for clinical pearls:**
+- NOT just restating source facts
+- Uses clinical reasoning
+- Makes connections ("If X, think Y")
+- Aids differential diagnosis
+- Explains mechanism in clinical context
+- Helps with board exam recall
+
+### E. Handling Large Files
+
+**Large file example:** 804 lines, 14 learning objectives, 40KB
+
+**Strategy:**
+
+**Phase 1: Quick scan (LO inventory)**
+- Extract all 14 LO statements
+- Create inventory list
+- Estimate content distribution
+
+**Phase 2: Sequential extraction (per LO)**
+- For LO 1: Find matching content, extract data
+- For LO 2: Find matching content, extract data
+- ... continue through LO 14
+
+**Phase 3: Identify comparisons**
+- Scan for comparison opportunities across all content
+- Note commonly confused items
+- Extract comparison data
+
+**Phase 4: Extract clinical context**
+- Scan for clinical pearls throughout
+- Group by relevant LO
+- Transform facts into insights
+
+**Phase 5: Generate Python**
+- Organize all extracted data
+- Create hardcoded data structures
+- Generate complete script
+
+**Do NOT:**
+- ❌ Skip LOs due to file size
+- ❌ Truncate content extraction
+- ❌ Process only first N LOs
+- ❌ Summarize instead of extract
+
+**Evidence:** /anki successfully processes same large files with comprehensive extraction
+
+---
