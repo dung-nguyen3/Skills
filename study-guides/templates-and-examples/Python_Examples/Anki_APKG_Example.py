@@ -557,7 +557,7 @@ if __name__ == '__main__':
     output_path = 'HIV_Drugs_Flashcards.apkg'
     card_count = create_flashcard_deck(
         csv_path=csv_path,
-        deck_name='Pharmacology::HIV Drugs',
+        deck_name='Pharmacology::11 HIV Drugs',  # Include lecture number from filename
         output_path=output_path
     )
 

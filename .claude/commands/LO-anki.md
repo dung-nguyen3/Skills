@@ -1,5 +1,5 @@
 ---
-description: Create comprehensive Anki flashcard deck (.apkg) from source material
+description: Create Anki flashcard deck (.apkg) with LO-filtering (cards only for Learning Objectives)
 argument-hint: Single file, batch files separated by semicolon, or directory path. Use --merge for combined output (e.g., "file.txt" OR "f1.txt;f2.txt" OR "/path/to/dir" OR "--merge /dir1;/dir2")
 ---
 
@@ -60,11 +60,7 @@ Source: [directory (auto-detected batch) / semicolon-separated / single file]
 VERIFICATION CHECKLIST:
 ☐ Source file: $ARGUMENTS
 ☐ Source-only policy: I will ONLY use information from source file
-☐ Source-driven: I will extract substantive educational content using objective criteria
-☐ Comprehensive coverage: Facts, concepts, mechanisms, characteristics, effects, and details from source
-☐ Exclusion criteria: Skip introductory sentences, filler text, and redundant content
-☐ LO verification: All learning objectives will be covered (but cards not limited to LOs)
-☐ Exact wording: I will use exact words from source - NO paraphrasing
+☐ LO-filtering: I will create cards for LO content AND high-yield clinical facts
 ☐ No external facts will be added
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
@@ -82,8 +78,7 @@ BATCH SEPARATE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Homogeneity check: All files use same source-only policy
-☐ Source-driven: Each file will have comprehensive content extraction
-☐ Exact wording: Use exact words from source - NO paraphrasing
+☐ LO-filtering: Each file will be filtered by its Learning Objectives
 ☐ Output: N files → N Anki decks
 ☐ Agent: batch-separate-processor (launched N times)
 ☐ Architectural isolation: Each file processed in separate agent context
@@ -117,8 +112,6 @@ BATCH MERGE VALIDATION:
 ☐ Source files: [list all files]
 ☐ File validation: All files exist and are readable
 ☐ Files are related/compatible for merging
-☐ Source-driven: Comprehensive content extraction from all files
-☐ Exact wording: Use exact words from sources - NO paraphrasing
 ☐ Output: N files → 1 merged Anki deck
 ☐ Agent: batch-merge-orchestrator (launched once)
 ☐ Merge features: Content matrix, overlap resolution, source traceability
@@ -161,17 +154,7 @@ Read these files in order:
 
 2. **Source File**: Read the ENTIRE source file specified
 
-**CRITICAL - When generating Python code:**
-You MUST include all auto-import functions from the example file (lines 257-420):
-- `invoke_ankiconnect()` - AnkiConnect API calls
-- `is_ankiconnect_available()` - Check if Anki running
-- `load_auto_import_settings()` - Load settings from config
-- `auto_import_to_anki()` - Import single .apkg file
-- `batch_import_to_anki()` - Import multiple .apkg files (for batch mode)
-
-### Step 3: Extract Learning Objectives (For Coverage Verification Only)
-
-**IMPORTANT: LOs will be used to verify coverage in Step 8, NOT to filter content.**
+### Step 3: Extract Learning Objectives
 
 **MANDATORY - Parse LOs from source file:**
 
@@ -187,7 +170,7 @@ You MUST include all auto-import functions from the example file (lines 257-420)
 **If NO learning objectives found:**
 - STOP and ask user: "No learning objectives found in source file. Options:
   A) Provide LO statements manually
-  B) Proceed without LOs (create cards for substantive content using extraction criteria)
+  B) Proceed without filtering (create cards for all content)
   C) Cancel flashcard creation"
 - Wait for user response before proceeding
 
@@ -200,23 +183,29 @@ LEARNING OBJECTIVES EXTRACTED:
 ...
 ```
 
-### Step 4: Analyze Source File (Comprehensive Extraction)
+### Step 4: Analyze Source File (Essential Facts + High-Yield)
 
-**COMPREHENSIVE SOURCE ANALYSIS:**
+**For EACH learning objective:**
+- Identify the **minimum essential facts** needed to answer the LO
+- Focus on what you'd need to **recall** to answer the question
+- Skip background/context that doesn't require memorization
+- Map essential content to LO number
+- EXCLUDE content unrelated to any LO
 
-Extract substantive educational content from source material:
-- **Concepts and definitions** (terminology, classifications)
-- **Mechanisms and processes** (how things work, pathways)
-- **Characteristics and features** (properties, attributes)
-- **Effects, outcomes, and consequences** (results, impacts)
-- **Diagnostic/identifying criteria** (signs, symptoms, findings)
-- **Facts and specific details** (values, measurements, specifics)
-- **Comparisons and contrasts** (when source explicitly compares items)
-- **Rules and principles** (relationships, formulas, patterns)
-- **Examples and applications** (concrete instances, clinical scenarios)
+**Create Essential Facts Mapping:**
+```
+LO 1: "Understand the mechanism of penicillin"
+  - Essential: Penicillin inhibits transpeptidase enzyme
+  - Essential: Prevents peptidoglycan cross-linking
+  - Essential: Results in bacterial cell wall lysis
 
-**IDENTIFY HIGH-YIELD FACTS:**
+LO 2: [LO statement]
+  - Essential: [minimum facts needed to answer LO]
+...
+```
 
+**IDENTIFY HIGH-YIELD FACTS (even if not directly tied to LOs):**
+```
 HIGH-YIELD FACTS:
 - Black box warnings
 - Drug interactions (especially dangerous ones)
@@ -225,49 +214,31 @@ HIGH-YIELD FACTS:
 - Common adverse effects (not exhaustive lists)
 - Clinical pearls emphasized in lecture
 - Board exam favorites
-
-**What NOT to extract:**
-- Introductory or transitional sentences
-- Background filler text
-- Meta-commentary about the content
-- Redundant information already covered
-
-**Completeness Check:**
-- Re-read source after analysis to verify no substantive content missed
-- Include all facts, concepts, and details that could be tested
-- Use EXACT wording from source - NO paraphrasing
-
-**Content Organization:**
-Organize extracted content by topic/concept for card creation in Step 5.
-
-```
-HIGH YIELD (if applicable - from source markers):
-  TOPIC: [Concept name]
-    - Fact 1 (exact wording from source) [HY]
-    - Fact 2 (exact wording from source) [HY]
-
-COMPREHENSIVE CONTENT:
-  TOPIC 1: [Concept name]
-    - Fact 1 (exact wording from source)
-    - Fact 2 (exact wording from source)
-    - Fact 3 (exact wording from source)
-
-  TOPIC 2: [Concept name]
-    - Fact 1 (exact wording from source)
-    - Fact 2 (exact wording from source)
-...
 ```
 
-### Step 5: Create Flashcards (Comprehensive)
+**ESSENTIAL + HIGH-YIELD FILTERING RULE:**
+- Include facts that **directly answer** the LO (essential)
+- Include **high-yield clinical facts** (black box warnings, dangerous interactions, first-line treatments)
+- EXCLUDE background/context that doesn't require active recall
+- EXCLUDE content unrelated to any LO or clinical practice
+- **When in doubt about relevance, SKIP it** - focus on essential + high-yield only
 
-**Create flashcards for substantive educational content from Step 4**
+### Step 5: Create Flashcards (LO-Filtered)
 
-**Card Creation Principles:**
-- Atomic cards as default (one fact per card - proven superior)
-- Focused comparison cards when testing differentiation
-- Comprehensive coverage of substantive content (concepts, mechanisms, characteristics, effects, facts, principles, examples)
-- Skip non-substantive content (introductory sentences, filler text, redundant content)
-- Use EXACT wording from source - NO paraphrasing
+**CRITICAL: Only create flashcards for LO-mapped content from Step 4**
+
+**LO-Aligned Flashcard Creation:**
+
+For each LO:
+- Create flashcards that test knowledge required by that LO
+- Questions should align with the verb in the LO (describe, understand, define, etc.)
+- Each LO should have at least 1 flashcard
+- All flashcards must map to an LO
+
+**Flashcard-LO Alignment Examples:**
+- LO: "Describe bacterial shapes" → Cards asking about each shape
+- LO: "Understand peptidoglycan structure" → Cards about components, function
+- LO: "Define virulence factors" → Definition and example cards
 
 **COMPARISON CARDS - Use When Testing Differentiation:**
 
@@ -422,15 +393,27 @@ Never create cards that do not test actual content or clinical understanding.
    - Preserve exact drug names, receptor names, classifications
    - No lengthy explanations - just the core fact
 
-3. **Coverage (Comprehensive)**
-   - Create cards for substantive educational content from Step 4
+3. **Coverage (Essential + High-Yield)**
+   - Create cards ONLY for essential facts and high-yield content from Step 4
    - **ONE fact per card** (Minimum Information Principle - atomic cards)
    - **Word limits:** Questions <20 words, Answers <30 words (ideally 3-15)
    - **No filler words** - be concise and precise
+   - **Context connection:** Link each card to its LO or clinical significance
    - **Vary question structures:** Avoid repetitive phrasing (What/Which/How/Define/Describe)
    - No duplicate concepts
-   - Comprehensive coverage of substantive content (concepts, mechanisms, characteristics, effects, facts, principles, examples)
-   - Skip non-substantive content (introductory sentences, filler text, redundant content)
+   - Do NOT create cards for content outside LO scope or low-yield facts
+
+   **Essential vs Skip Decision Criteria:**
+   ✓ Create cards for:
+   - Facts that directly answer an LO
+   - High-yield clinical facts (black box warnings, dangerous interactions)
+   - Information you'd be tested on or need clinically
+
+   ✗ Skip cards for:
+   - Background physiology you already know
+   - Low-yield trivia or historical facts
+   - Over-detailed information not emphasized in lecture
+   - Context that doesn't require active recall
 
 4. **Source-Only Policy**
    - Use ONLY information from the source file
@@ -463,17 +446,6 @@ Track your progress:
 
 @study-guides/templates-and-examples/Python_Examples/Anki_APKG_Example.py
 
-**Generated Python Code MUST Include:**
-
-☐ All imports: genanki, csv, html, random, os, json, requests
-☐ invoke_ankiconnect() function (from example lines 261-289)
-☐ is_ankiconnect_available() function (from example lines 292-298)
-☐ load_auto_import_settings() function (from example lines 301-342)
-☐ auto_import_to_anki() function (from example lines 345-377)
-☐ batch_import_to_anki() function (from example lines 380-420)
-☐ Call auto_import_to_anki(output_path) after package.write_to_file()
-☐ Graceful failure messages if AnkiConnect unavailable
-
 **Deck Naming Convention:**
 
 Determine the deck name based on the file path:
@@ -504,41 +476,39 @@ Determine the deck name based on the file path:
 
 **Verify the completed deck:**
 
-1. **LO Coverage Verification**
-   - Verify all LOs are adequately covered (multiple cards per LO as needed for different components)
-   - This ensures all objectives are covered
-   - BUT cards are not limited to only LO-mapped content
+1. **LO Coverage Check**
+   - All LOs have at least one flashcard
+   - Every flashcard maps to a specific LO or high-yield fact
+   - No flashcards for non-LO or low-yield content
 
-2. **Source Completeness Check**
-   - Compare cards against source material
-   - Verify no substantive content was excluded
-   - Check: concepts, mechanisms, characteristics, effects, facts, principles, examples from source
-   - **High Yield Coverage**: If source marked content as "high yield," "board-relevant," "exam tip," or similar - verify all high yield content has cards
-   - Skip introductory sentences, filler text, meta-commentary, redundant content
-   - Comprehensive coverage of substantive educational content
-
-3. **Source Accuracy & Exact Wording**
+2. **Source Accuracy**
    - All facts come from source file only
-   - **CRITICAL: Terminology matches source EXACTLY - word-for-word**
-   - No paraphrasing of medical terms, drug names, or technical language
+   - Terminology matches source exactly
    - No external information added
 
-4. **Question Quality**
+3. **Question Quality**
    - Questions are clear and unambiguous
    - **Atomic cards:** Each card tests ONE fact only (no combined concepts)
    - **Word count:** Questions <20 words
    - **Variety:** Question structures vary (not repetitive)
    - **Precision:** Questions are specific and self-contained
 
-5. **Answer Quality**
+4. **Answer Quality**
    - **Concise:** Answers <30 words (ideally 3-15 words)
    - **Atomic:** Single concept per answer
-   - **Exact terminology:** Source wording preserved exactly - NO paraphrasing
+   - **Exact terminology:** Source wording preserved exactly
+   - **Context:** Answers connect to LO or clinical significance
 
-6. **Volume Check**
-   - Comprehensive coverage of source material
-   - Typical range: 50-100 cards for standard lecture (may vary based on source density)
-   - If unusually high/low: Verify completeness and accuracy
+5. **Volume Check**
+   - Typical range: 50-100 cards for standard lecture
+   - If >150 cards: Review for over-inclusion (too many low-yield or background facts)
+   - If <30 cards: Verify all LOs and high-yield facts covered
+   - **Quality over quantity** - better fewer essential cards than exhaustive coverage
+
+6. **Essential vs Exhaustive**
+   - Are these essential facts or exhaustive coverage?
+   - Did you skip low-yield background information?
+   - Are cards focused on what you'd be tested on?
 
 7. **Card Direction Check**
    - Reverse cards used for terms/tools/structures/diseases?
@@ -546,12 +516,7 @@ Determine the deck name based on the file path:
    - No repetitive "What is [term]?" → "[definition]" patterns
    - Variety in question stems for both card types
 
-8. **Comparison Card Check**
-   - Comparison cards used appropriately (only when testing differentiation)?
-   - Focused per category (not mega-cards with all aspects)?
-   - Atomic cards used as default?
-
-9. **Answer Formatting Check**
+8. **Answer Formatting Check**
    - Multi-item answers use line breaks (not comma-separated)?
    - Procedure steps displayed with line breaks for readability?
    - Symptoms/treatments/side effects listed with line breaks?
@@ -604,10 +569,7 @@ Claude Study Tools/
 
 - Confirm both files saved successfully
 
-### Step 10: Auto-Import (Included in Generated Code)
-
-**IMPORTANT:** The Python code you generate MUST include auto-import functionality.
-Do NOT generate minimal scripts - include ALL auto-import functions from the example.
+### Step 10: Auto-Import (Optional)
 
 **Auto-import uses AnkiConnect to automatically import .apkg files into Anki.**
 
@@ -670,15 +632,15 @@ For batch operations (semicolon-separated files or --merge flag):
 
 - Creating vague or ambiguous questions
 - **Putting multiple concepts in one card** (violates Minimum Information Principle)
-- **Excluding content from source** - Create comprehensive coverage
+- **Creating too many cards** - Focus on essential + high-yield, not exhaustive coverage
+- **Including low-yield facts** that don't appear in LOs or clinical practice
 - Adding information not in the source
-- **CRITICAL: Paraphrasing medical terms** instead of using exact source wording word-for-word
+- **Paraphrasing medical terms** instead of using exact source wording
 - Using pronouns without clear referents
 - Making answers too long (should be 3-15 words, max 30)
-- **Skipping content from source material**
+- **Skipping essential or high-yield facts** from source
 - **Repetitive question phrasing** - vary structures (What/Which/How/Define)
 - Not escaping special characters in data properly
-- Using comparison cards when atomic cards are more appropriate
 
 ## Example Usage
 

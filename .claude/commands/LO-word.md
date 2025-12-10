@@ -560,10 +560,7 @@ def create_word_study_guide(output_path):
     doc.add_paragraph()
 
     # Tables for Learning Objective 1
-    lo1_tables_heading = doc.add_heading('Learning Objective 1', 2)
-    lo1_tables_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-
-    doc.add_paragraph()
+    # (No subsection heading - tables listed directly)
 
     # Table 1 for LO 1 (with bookmark and back-link)
     table_heading_para = doc.add_paragraph()

@@ -141,31 +141,40 @@ Create comprehensive medical comparison Excel files with:
 
 ## CRITICAL: DYNAMIC TABLE COUNT
 
-The number of comparison tables is NOT fixed. Create as many tables as needed to compare the information asked in the learning objectives.
+The number of comparison tables is NOT fixed. Create as many tables as needed to comprehensively compare the information in the source file.
 
 ### How to Determine Tables:
 
 <category_selection_protocol>
 
-**Step 1: Analyze Learning Objectives**
-Read all learning objectives in source file to identify what comparisons are being asked.
+**Step 1: Analyze Source Content**
+Read the entire source file to identify:
+- Main topics being covered
+- Items that need comparison (similar types/categories that appear together)
+- Content found in "Lecture Outline", "Outline", or "Overview" sections
+- Subtypes within major categories
 
 **Step 2: Select Relevant Categories from Menus**
-Choose categories from the menus below that relate to the learning objectives. Only create comparison tables for categories that help students master the LOs.
+Choose categories from the menus below or other shared categories mentioned in source file that enable meaningful comparisons. Create comparison tables for categories that:
+- Help differentiate similar items
+- Enable clinical decision-making
+- Contain critical distinguishing features
+- Are explicitly mentioned in the source as important comparisons
 
 **Step 3: Create ONE Table Per Category**
 Each table compares that single category across all items (don't combine categories).
 
-**LO Relevance Filter - Include if:**
-- Learning objective explicitly asks to compare this category
-- Category helps differentiate items students frequently confuse
-- Category enables actionable clinical decisions from LOs
-- Category contains hallmark/pathognomonic findings mentioned in LOs
+**Content Selection Filter - Include if:**
+- Category helps differentiate items that are similar/easily confused
+- Category enables actionable clinical decisions
+- Category contains hallmark/pathognomonic/distinguishing findings
+- Category is emphasized or repeated throughout the source
+- Items within category share meaningful comparable characteristics
 
-**LO Relevance Filter - Exclude if:**
-- Tangential information not related to LOs
-- Background context that doesn't aid comparison
-- Information too broad or generic to be useful
+**Content Selection Filter - Exclude if:**
+- Tangential information not central to the topic
+- Only one item has data for this category (no comparison possible)
+- Category is mentioned briefly without detail
 
 </category_selection_protocol>
 
@@ -178,8 +187,11 @@ Each table compares that single category across all items (don't combine categor
 
 **Categories:**
 - Test Type & Modality (imaging, lab, physical exam finding)
+- Test Subtype if applicable
 - Test Characteristics (Sensitivity, Specificity, PPV, NPV, Accuracy)
 - Indications (When to Order / Clinical Scenarios)
+- Uses
+- Evaluates
 - Contraindications & Limitations
 - Interpretation (How to Read Results / What Results Mean)
 - Cost & Availability
@@ -188,7 +200,9 @@ Each table compares that single category across all items (don't combine categor
 - Comparison to Alternative Tests
 - Follow-up Based on Results
 
+
 **Example:** Comparing D-dimer, CT angiography, V/Q scan for PE diagnosis
+**Example:** Comparing different types of ECG and uses
 </menu>
 
 <menu id="B" topic="Medical Conditions (Universal - Any Specialty)">
@@ -369,9 +383,13 @@ Each table compares that single category across all items (don't combine categor
 - Equipment & Setup
 - Step-by-Step Technique
 - Expected Findings/Results
-- Complications & Management
+- Complications
+- Management
 - Post-Procedure Care
 - Alternatives & When to Choose
+- Patient Education
+- Considerations
+
 
 **Example:** Comparing joint aspiration techniques for different joints
 </menu>
@@ -408,24 +426,26 @@ Each table compares that single category across all items (don't combine categor
 **Example:** Comparing sympathetic vs parasympathetic nervous system
 </menu>
 
+**Other Categories**
+- Include any other shared categories not listed above if mentioned in source file.
 ---
 
 ### How to Use These Menus
 
 **Example 1: Diagnostic Tools**
-LO: "Compare diagnostic tests for pulmonary embolism"
+Source topic: "Diagnostic tests for pulmonary embolism"
 - Use Menu A (Diagnostic Tools)
 - Select relevant categories: Test Characteristics, Indications, Interpretation, Advantages/Disadvantages
 - Create 4 separate comparison tables (one per category)
 
 **Example 2: Medical Conditions**
-LO: "Compare and contrast the hypersensitivity reactions"
+Source topic: "Hypersensitivity reactions"
 - Use Menu B (Medical Conditions)
 - Select relevant categories: Pathophysiology/Mechanism, Clinical Presentation, Treatment
 - Create 3 separate comparison tables
 
 **Example 3: Mixed Topic**
-LO: "Describe the pathophysiology of different shock types and their management"
+Source topic: "Pathophysiology of shock types and their management"
 - Use Menu D (Pathophysiologic Mechanisms) for mechanism comparison
 - Use Menu F (Treatment Modalities) for management comparison
 - Create tables from both menus as needed
@@ -437,8 +457,8 @@ LO: "Describe the pathophysiology of different shock types and their management"
 **WRONG**: 3 tables combining multiple categories (e.g., one table with mechanism AND treatment AND diagnosis)
 **RIGHT**: N tables where N = number of relevant categories from menus (one category per table)
 
-**WRONG**: Creating comparison tables for all categories in a menu regardless of LO relevance
-**RIGHT**: Only create tables for categories that relate to learning objectives
+**WRONG**: Creating comparison tables for all categories in a menu regardless of source content
+**RIGHT**: Only create tables for categories with meaningful comparable data in the source
 
 ---
 
@@ -483,6 +503,7 @@ When creating comparisons, prioritize:
 6. Hallmark/pathognomonic findings
 7. "If-then" clinical decision rules
 8. Urgency levels for referrals/complications
+9. Other high yield exam information
 
 ---
 
@@ -506,6 +527,67 @@ Comprehensive overview of ALL conditions/concepts in one searchable table
 - Treatment (Alternatives)
 - Complications
 - Key Differentiators
+
+### Example Column Categories by Topic Type
+
+**For Diagnostic Tools/Tests:**
+- Test Name
+- Category/Type
+- Technology/How It Works
+- Indications
+- Contraindications
+- Protocol/Procedure
+- Interpretation
+- Key Characteristics
+
+**For Procedures:**
+- Procedure Name
+- Procedure Type & Approach
+- Indications
+- Contraindications
+- Patient Preparation & Consent
+- Equipment & Setup
+- Step-by-Step Technique
+- Expected Findings/Results
+- Complications
+- Management
+- Post-Procedure Care
+- Alternatives & When to Choose
+- Patient Education
+- Considerations
+
+**For Medical Conditions:**
+- Condition/Disease
+- Definition
+- Etiology/Causes
+- Clinical Presentation/Symptoms
+- Pathophysiology/Mechanism
+- Diagnosis/Labs
+- Treatment (First-line)
+- Treatment (Alternatives)
+- Complications
+- Key Differentiators
+
+**For Drugs:**
+- Drug Name
+- Drug Class
+- Mechanism of Action
+- Indications
+- Contraindications
+- Dosing
+- Adverse Effects
+- Drug Interactions
+- Monitoring
+- Special Populations
+
+**IMPORTANT:** These are EXAMPLES only. Adapt columns based on what categories are actually mentioned and shared throughout the source file. Use source-driven column selection.
+
+**Column Selection Guidelines:**
+- Review what information is provided for each item in the source
+- Identify categories that appear consistently across multiple items
+- Include columns for categories that enable meaningful comparison
+- Exclude categories where only 1-2 items have data
+- Add source-specific columns not listed in examples if they appear frequently
 
 ### Layout Rules
 ```
@@ -596,7 +678,7 @@ Example: `Clinical Medicine/Exam 2/Claude Study Tools/Hypersensitivity_Compariso
 - [ ] All information from source files is included
 - [ ] No external information added
 - [ ] Medical terminology matches source exactly
-- [ ] All learning objectives are addressed
+- [ ] All major topics and comparable content from source are included
 
 ### Tab 1: Key Comparisons
 - [ ] Multiple comparison tables (not one giant table)

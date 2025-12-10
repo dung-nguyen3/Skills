@@ -13,7 +13,7 @@ Structure:
 
 Category Selection:
 Categories are selected from comprehensive menus (A-M) in the template based on
-learning objectives. This example uses Menu B (Medical Conditions) categories:
+source content analysis. This example uses Menu B (Medical Conditions) categories:
 - Mechanism comparison (Table 1)
 - Clinical presentation comparison (Table 2)
 - Treatment comparison (Table 3)

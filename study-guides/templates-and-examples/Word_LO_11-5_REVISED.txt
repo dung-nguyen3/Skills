@@ -563,11 +563,7 @@ doc.add_paragraph()
 
 # Group tables by learning objective
 for lo_idx in range(1, num_learning_objectives + 1):
-    # Subsection heading for this LO's tables
-    lo_tables_heading = doc.add_heading(f'Learning Objective {lo_idx}', 2)
-    lo_tables_heading.runs[0].font.color.rgb = RGBColor(118, 75, 162)
-
-    doc.add_paragraph()
+    # No subsection heading - tables listed directly under "Reference Tables"
 
     # Create each table for this LO
     for table_idx, (table_title, table_data) in enumerate(lo_tables[lo_idx-1], start=1):

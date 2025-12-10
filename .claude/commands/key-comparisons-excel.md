@@ -62,7 +62,6 @@ VERIFICATION CHECKLIST:
 ☐ Python reference: Excel_Comparison_Example.py (HOW to implement - styling/code)
 ☐ Resource hierarchy: Text=structure/requirements, Python=styling/implementation
 ☐ Source-only policy: I will ONLY use information from source file
-☐ Learning objectives: I will extract LO statements EXACTLY as written (NO paraphrasing)
 ☐ Save location: [Class]/[Exam]/Claude Study Tools/
 ```
 
@@ -163,26 +162,28 @@ Read these files in order:
 ### Step 3: Analyze Source File
 
 **CRITICAL - Read ENTIRE source file:**
-- Identify ALL conditions/concepts/mechanisms mentioned (don't skip any)
+- Identify ALL conditions/concepts/mechanisms, diagnostic tools mentioned (don't skip any)
 - Identify topic type (diagnostic tools, medical conditions, drugs, mechanisms, etc.)
+- Identify all subtypes if any.
+- Search for and include all items found in "Lecture Outline", "Outline", or "Overview"
 - Note items that need side-by-side comparison
+
 
 ### Step 3.5: Select Comparison Categories from Menus
 
 <category_selection_step>
 
-**Using the comprehensive category menus from template, select relevant categories:**
+**Using the comprehensive category menus from template as examples or other relevant categories not listed, select relevant categories:**
 
 **Checklist:**
-☐ Analyzed all learning objectives in source file
+☐ Analyzed all content in source file (lecture outline, topics, subtypes)
 ☐ Identified which menu(s) apply (A-M from template)
-☐ Selected categories from menu that relate to LOs
-☐ Applied LO relevance filter (include/exclude criteria)
+☐ Selected categories from menu that relate to source content
 ☐ Documented category list for comparison tables
 
 **Process:**
 
-1. **Match Source to Menu(s):**
+1. **Example Match Source to Menu(s):**
    - Diagnostic tools/tests → Menu A
    - Medical conditions (any specialty) → Menu B
    - Drugs/pharmacology → Menu C
@@ -198,17 +199,17 @@ Read these files in order:
    - Systems/physiology → Menu M
 
 2. **Select Relevant Categories:**
-   From the matched menu(s), select categories that:
-   - Learning objectives explicitly ask to compare
+   From the matched menu(s) or other categories, select categories that:
+   - Are explicitly compared or emphasized in source content
    - Help differentiate items students frequently confuse
-   - Enable actionable clinical decisions from LOs
-   - Contain hallmark/pathognomonic findings mentioned in LOs
+   - Enable actionable clinical decisions
+   - Contain hallmark/pathognomonic/distinguishing findings
+   - Include any other shared categories mentioned throughout source file
 
 3. **Exclude Irrelevant Categories:**
    Skip categories that contain:
-   - Tangential information not related to LOs
-   - Background context that doesn't aid comparison
-   - Information too broad or generic to be useful
+   - Tangential information not central to the main topics
+   - No comparable data (only one item has information)
 
 4. **Document Category List:**
    ```
@@ -234,14 +235,14 @@ Number of comparison tables: 4
 
 </category_selection_step>
 
-**IMPORTANT:** The number of comparison tables = number of categories selected from menus. Do NOT limit to 3 tables.
+**IMPORTANT:** The number of comparison tables = number of categories. Do NOT limit to 3 tables.
 
 ### Step 4: Create 3-Tab Excel Chart
 
 **Required Tabs:**
 
 **Tab 1: Key Comparisons**
-- **DYNAMIC number of comparison tables** - create as many as needed based on learning objectives
+- **DYNAMIC number of comparison tables** - create as many as needed based on source content
 - Each table compares 1-2 categories at a time to help break it down and differentiate
 - ONE category per table (don't combine)
   - Example: If comparing Clinical Presentation, Diagnosis, and Treatment for Conditions A, B, C:
@@ -251,7 +252,7 @@ Number of comparison tables: 4
 - Columns = items being compared (e.g., Condition A, Condition B, Condition C)
 - Rows = features within that category
 - 2-3 blank rows between different comparison tables
-- **Do NOT limit to 3 tables** - create N tables where N = comparison categories in LOs
+- **Do NOT limit to 3 tables** - create N tables where N = comparison categories in source content
 
 **Tab 2: Master Chart**
 - ALL items in one comprehensive table
@@ -259,6 +260,22 @@ Number of comparison tables: 4
 - Columns = key characteristics
 - Frozen header row
 - Color-coded by category
+
+**Example Column Categories by Topic Type:**
+
+**For Diagnostic Tools/Tests:**
+- Test Name, Category/Type, Technology/How It Works, Indications, Contraindications, Protocol/Procedure, Interpretation, Key Characteristics
+
+**For Procedures:**
+- Procedure Name, Procedure Type & Approach, Indications, Contraindications, Patient Preparation & Consent, Equipment & Setup, Step-by-Step Technique, Expected Findings/Results, Complications, Management, Post-Procedure Care, Alternatives & When to Choose, Patient Education, Considerations
+
+**For Medical Conditions:**
+- Condition/Disease, Definition, Etiology/Causes, Clinical Presentation/Symptoms, Pathophysiology/Mechanism, Diagnosis/Labs, Treatment (First-line), Treatment (Alternatives), Complications, Key Differentiators
+
+**For Drugs:**
+- Drug Name, Drug Class, Mechanism of Action, Indications, Contraindications, Dosing, Adverse Effects, Drug Interactions, Monitoring, Special Populations
+
+**IMPORTANT:** These are EXAMPLES only. Adapt columns based on what categories are actually mentioned and shared throughout the source file. Use source-driven column selection.
 
 **Tab 3: Summary (for clinical medicine sources)**
 - "If you see X, Think Y" associations
@@ -270,6 +287,7 @@ Number of comparison tables: 4
 - Use ONLY source file information
 - ALL data cells have soft pastel backgrounds
 - Multiple comparison tables (one category per table)
+- If unsure, ask user. 
 
 <template-compliance>
 MANDATORY TEMPLATE REQUIREMENTS - Excel Comparison Chart (3 tabs):
@@ -411,7 +429,7 @@ Briefly confirm which resources were followed:
 
 ## Common Mistakes to Avoid
 
-❌ **Limiting to only 3 comparison tables** - create as many as needed based on LOs
+❌ **Limiting to only 3 comparison tables** - create as many as needed based on source content
 ❌ Combining multiple categories in one comparison table
 ❌ White backgrounds on data cells (should be pastel)
 ❌ Using 4 tabs instead of 3
@@ -425,7 +443,7 @@ Briefly confirm which resources were followed:
 
 **Structure:**
 ✓ 3 tabs: Key Comparisons, Master Chart, Summary
-✓ Tab 1 has MULTIPLE tables (one for Mechanism, one for Clinical, one for Treatment)
+✓ Tab 1 has MULTIPLE tables (one for Mechanism, one for Clinical, one for Treatment, etc.)
 ✓ 2-3 blank rows between comparison tables
 
 **Formatting:**
