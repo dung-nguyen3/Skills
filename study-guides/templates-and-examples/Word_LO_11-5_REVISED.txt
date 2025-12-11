@@ -236,6 +236,7 @@ def add_plain_bullets(doc, items, bold_title=None):
 
     IMPORTANT: Clinical Pearls in Learning Objectives section now use
     plain bullets instead of colored boxes.
+    Uses Word multilevel list defaults with hanging indents.
 
     Args:
         doc: Document object
@@ -251,7 +252,13 @@ def add_plain_bullets(doc, items, bold_title=None):
 
     for item in items:
         para = doc.add_paragraph(item, style='List Bullet')
-        para.paragraph_format.left_indent = Inches(0.25)
+        # Word default: bullet at 0.25", text at 0.5"
+        para.paragraph_format.left_indent = Inches(0.5)
+        para.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+        # Universal formatting: 1.5 spacing
+        para.paragraph_format.space_before = Pt(0)
+        para.paragraph_format.space_after = Pt(0)
+        para.paragraph_format.line_spacing = 1.5
         for run in para.runs:
             run.font.name = 'Calibri'
             run.font.size = Pt(12)
@@ -439,11 +446,18 @@ add_bookmark(obj, 'LO_X')  # Add bookmark (e.g., LO_1, LO_2, etc.)
 
 # SIMPLE SUMMARY (1-2 concepts): Use paragraph format (NO label)
 summary = doc.add_paragraph('Concise paragraph answering the learning objective with key points from source.')
+# Universal formatting: 1.5 spacing
+summary.paragraph_format.space_before = Pt(0)
+summary.paragraph_format.space_after = Pt(0)
+summary.paragraph_format.line_spacing = 1.5
 summary.runs[0].font.name = 'Calibri'
 summary.runs[0].font.size = Pt(12)
 
 # COMPLEX SUMMARY (3+ steps/components with hierarchy): Use numbered list with manual numbering (NO label)
 summary_intro = doc.add_paragraph('Topic involves multiple regulatory mechanisms:')
+summary_intro.paragraph_format.space_before = Pt(0)
+summary_intro.paragraph_format.space_after = Pt(0)
+summary_intro.paragraph_format.line_spacing = 1.5
 summary_intro.runs[0].font.name = 'Calibri'
 summary_intro.runs[0].font.size = Pt(12)
 
@@ -451,21 +465,48 @@ summary_intro.runs[0].font.size = Pt(12)
 p1 = doc.add_paragraph()
 p1.add_run('1. ').bold = True
 p1.add_run('Neural regulation')
+# Word default: number at 0", text at 0.25"
 p1.paragraph_format.left_indent = Inches(0.25)
+p1.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+p1.paragraph_format.space_before = Pt(0)
+p1.paragraph_format.space_after = Pt(0)
+p1.paragraph_format.line_spacing = 1.5
 sub1 = doc.add_paragraph('Parasympathetic (vagus nerve) increases motility', style='List Bullet')
+# Word default: bullet at 0.25", text at 0.5"
 sub1.paragraph_format.left_indent = Inches(0.5)
+sub1.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+sub1.paragraph_format.space_before = Pt(0)
+sub1.paragraph_format.space_after = Pt(0)
+sub1.paragraph_format.line_spacing = 1.5
 sub2 = doc.add_paragraph('Sympathetic nervous system decreases motility during stress', style='List Bullet')
 sub2.paragraph_format.left_indent = Inches(0.5)
+sub2.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+sub2.paragraph_format.space_before = Pt(0)
+sub2.paragraph_format.space_after = Pt(0)
+sub2.paragraph_format.line_spacing = 1.5
 
 # Item 2 with manual numbering
 p2 = doc.add_paragraph()
 p2.add_run('2. ').bold = True
 p2.add_run('Hormonal regulation')
+# Word default: number at 0", text at 0.25"
 p2.paragraph_format.left_indent = Inches(0.25)
+p2.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+p2.paragraph_format.space_before = Pt(0)
+p2.paragraph_format.space_after = Pt(0)
+p2.paragraph_format.line_spacing = 1.5
 sub3 = doc.add_paragraph('Secretin stimulates bicarbonate release from pancreas', style='List Bullet')
 sub3.paragraph_format.left_indent = Inches(0.5)
+sub3.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+sub3.paragraph_format.space_before = Pt(0)
+sub3.paragraph_format.space_after = Pt(0)
+sub3.paragraph_format.line_spacing = 1.5
 sub4 = doc.add_paragraph('Cholecystokinin (CCK) stimulates enzyme release', style='List Bullet')
 sub4.paragraph_format.left_indent = Inches(0.5)
+sub4.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+sub4.paragraph_format.space_before = Pt(0)
+sub4.paragraph_format.space_after = Pt(0)
+sub4.paragraph_format.line_spacing = 1.5
 
 # Note: Manual numbering (1. 2. 3.) is used instead of style='List Number' because
 # python-docx continues numbering across the document and has no native API to restart.

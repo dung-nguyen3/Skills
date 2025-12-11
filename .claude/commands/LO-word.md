@@ -327,7 +327,13 @@ def add_plain_bullets(doc, items, bold_title=None):
 
     for item in items:
         para = doc.add_paragraph(item, style='List Bullet')
-        para.paragraph_format.left_indent = Inches(0.25)
+        # Word default: bullet at 0.25", text at 0.5"
+        para.paragraph_format.left_indent = Inches(0.5)
+        para.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+        # Universal formatting: 1.5 spacing
+        para.paragraph_format.space_before = Pt(0)
+        para.paragraph_format.space_after = Pt(0)
+        para.paragraph_format.line_spacing = 1.5
         for run in para.runs:
             run.font.name = 'Calibri'
             run.font.size = Pt(12)
@@ -335,6 +341,10 @@ def add_plain_bullets(doc, items, bold_title=None):
 def add_summary_simple(doc, summary_text):
     """Add simple paragraph-style summary (1-2 concepts) - NO 'Summary:' label"""
     summary_para = doc.add_paragraph(summary_text)
+    # Universal formatting: 1.5 spacing
+    summary_para.paragraph_format.space_before = Pt(0)
+    summary_para.paragraph_format.space_after = Pt(0)
+    summary_para.paragraph_format.line_spacing = 1.5
     summary_para.runs[0].font.name = 'Calibri'
     summary_para.runs[0].font.size = Pt(12)
     return summary_para
@@ -343,6 +353,7 @@ def add_summary_structured(doc, intro_text, items):
     """
     Add structured numbered summary with sub-bullets (3+ components) - NO 'Summary:' label
     Uses manual numbering to ensure numbering restarts at 1 for each LO
+    Uses Word multilevel list defaults with hanging indents
 
     Args:
         doc: Document object
@@ -351,6 +362,9 @@ def add_summary_structured(doc, intro_text, items):
     """
     # Intro paragraph (no label)
     summary_intro = doc.add_paragraph(intro_text)
+    summary_intro.paragraph_format.space_before = Pt(0)
+    summary_intro.paragraph_format.space_after = Pt(0)
+    summary_intro.paragraph_format.line_spacing = 1.5
     summary_intro.runs[0].font.name = 'Calibri'
     summary_intro.runs[0].font.size = Pt(12)
 
@@ -364,13 +378,25 @@ def add_summary_structured(doc, intro_text, items):
         text_run = p.add_run(item['main'])
         text_run.font.size = Pt(12)
         text_run.font.name = 'Calibri'
+        # Word default: number at 0", text at 0.25"
         p.paragraph_format.left_indent = Inches(0.25)
+        p.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.5
 
         # Sub-bullets (if any)
         if 'subs' in item and item['subs']:
             for sub in item['subs']:
                 sub_p = doc.add_paragraph(sub, style='List Bullet')
+                # Word default: bullet at 0.25", text at 0.5"
                 sub_p.paragraph_format.left_indent = Inches(0.5)
+                sub_p.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+                sub_p.paragraph_format.space_before = Pt(0)
+                sub_p.paragraph_format.space_after = Pt(0)
+                sub_p.paragraph_format.line_spacing = 1.5
+                sub_p.runs[0].font.name = 'Calibri'
+                sub_p.runs[0].font.size = Pt(12)
 
 def add_bookmark(paragraph, bookmark_name):
     """Add a bookmark anchor to a paragraph for hyperlinking"""
@@ -652,6 +678,9 @@ if __name__ == '__main__':
 - Example:
   ```python
   summary_intro = doc.add_paragraph('Regulation involves multiple mechanisms:')
+  summary_intro.paragraph_format.space_before = Pt(0)
+  summary_intro.paragraph_format.space_after = Pt(0)
+  summary_intro.paragraph_format.line_spacing = 1.5
   summary_intro.runs[0].font.name = 'Calibri'
   summary_intro.runs[0].font.size = Pt(12)
 
@@ -659,11 +688,27 @@ if __name__ == '__main__':
   p1 = doc.add_paragraph()
   p1.add_run('1. ').bold = True
   p1.add_run('Neural regulation')
+  # Word default: number at 0", text at 0.25"
   p1.paragraph_format.left_indent = Inches(0.25)
+  p1.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+  p1.paragraph_format.space_before = Pt(0)
+  p1.paragraph_format.space_after = Pt(0)
+  p1.paragraph_format.line_spacing = 1.5
+
   sub1 = doc.add_paragraph('Parasympathetic increases motility', style='List Bullet')
+  # Word default: bullet at 0.25", text at 0.5"
   sub1.paragraph_format.left_indent = Inches(0.5)
+  sub1.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+  sub1.paragraph_format.space_before = Pt(0)
+  sub1.paragraph_format.space_after = Pt(0)
+  sub1.paragraph_format.line_spacing = 1.5
+
   sub2 = doc.add_paragraph('Sympathetic decreases motility', style='List Bullet')
   sub2.paragraph_format.left_indent = Inches(0.5)
+  sub2.paragraph_format.first_line_indent = Inches(-0.25)  # Hanging indent
+  sub2.paragraph_format.space_before = Pt(0)
+  sub2.paragraph_format.space_after = Pt(0)
+  sub2.paragraph_format.line_spacing = 1.5
   ```
 
 **Decision Criteria (USE THIS FOR EVERY LO):**
